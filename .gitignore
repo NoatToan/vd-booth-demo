@@ -1,2 +1,4 @@
 .vercel
 .DS_Store
+scripts/verify/node_modules
+docs/verify/img/

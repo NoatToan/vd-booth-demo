@@ -1,0 +1,6 @@
+{
+  "$comment": "Per-node patches. {node, css, reason} appends CSS to the generated declarations; {node, asset, reason} draws an IMAGE-SVG root with another exported asset. Reason is mandatory. Keep it under 30; fix the general rule in scripts/gen/lib/*.mjs first.",
+  "overrides": [
+    { "node": "4:4", "asset": "arrow-right", "reason": "SEND Home 'Receiving market' icon is named chevron-down in Figma but its vector is an arrow (10.5x10.5 at 3.75..14.25, same as arrow-right; see 2-4235_home.png). Assets are exported once per name, so chevron-down.svg holds the real chevron." }
+  ]
+}

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VD Booth Workflow</title>
+<link rel="stylesheet" href="../vendor/inter.css">
+<style>
+:root {
+  --bg: #f5f7fb; --card: #fff; --ink: #17233d; --mute: #65718a; --line: #e5eaf2;
+  --visa: #1434cb; --navy: #12224a; --tp: #5b2d90; --tp-deep: #351755;
+  --ok: #13845d; --ok-bg: #eaf7f1; --warn: #956600; --warn-bg: #fff6de; --q: #b42318; --q-bg: #fdecea;
+  --chip: #edf2ff;
+}
+:root:not([data-theme="light"]) { color-scheme: light dark; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1424; --card: #161e33; --ink: #e8edf7; --mute: #9aa6bf; --line: #26314d;
+    --visa: #7d95ff; --navy: #c8d3f0; --tp: #c0a5dd; --tp-deep: #d1c0e5;
+    --ok: #4cc79a; --ok-bg: #12352a; --warn: #f0c05a; --warn-bg: #3a2f12; --q: #ff8a80; --q-bg: #3d1a1a; --chip: #1f2a4a;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1424; --card: #161e33; --ink: #e8edf7; --mute: #9aa6bf; --line: #26314d;
+  --visa: #7d95ff; --navy: #c8d3f0; --tp: #c0a5dd; --tp-deep: #d1c0e5;
+  --ok: #4cc79a; --ok-bg: #12352a; --warn: #f0c05a; --warn-bg: #3a2f12; --q: #ff8a80; --q-bg: #3d1a1a; --chip: #1f2a4a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 Inter, system-ui, sans-serif; }
+main { max-width: 1180px; margin: 0 auto; padding: 32px 16px 80px; }
+h1 { font-size: 30px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -.01em; }
+h2 { font-size: 22px; margin: 56px 0 6px; letter-spacing: -.01em; }
+h3 { font-size: 17px; margin: 0 0 4px; }
+p { margin: 6px 0; }
+a { color: var(--visa); }
+code { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--chip); padding: 1px 5px; border-radius: 4px; }
+.lede { color: var(--mute); max-width: 820px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: var(--chip); font-size: 13px; color: var(--ink); }
+.pill.warn { background: var(--warn-bg); color: var(--warn); }
+.pill.ok { background: var(--ok-bg); color: var(--ok); }
+.pill.q { background: var(--q-bg); color: var(--q); font-weight: 600; }
+nav.toc { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); margin: 24px -16px 0; padding: 10px 16px; display: flex; gap: 16px; overflow-x: auto; white-space: nowrap; font-size: 14px; }
+nav.toc a { text-decoration: none; color: var(--mute); }
+nav.toc a:hover { color: var(--ink); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 14px; }
+ul.tight { margin: 6px 0; padding-left: 20px; }
+ul.tight li { margin: 3px 0; }
+
+/* shell flow */
+.shell { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; margin-top: 14px; }
+.shell .node { flex: 1 1 150px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; position: relative; }
+.shell .node b { display: block; }
+.shell .node span { color: var(--mute); font-size: 13px; }
+.shell .arrow { align-self: center; color: var(--mute); font-size: 20px; }
+
+/* zone header */
+.zone-head { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
+@media (min-width: 860px) { .zone-head { grid-template-columns: 1.3fr 1fr; } }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14px; margin: 8px 0 0; }
+.facts dt { color: var(--mute); }
+.facts dd { margin: 0; font-variant-numeric: tabular-nums; }
+.brand-send { border-top: 4px solid var(--tp); }
+.brand-vx { border-top: 4px solid var(--visa); }
+
+/* flow strip */
+.strip { display: flex; gap: 0; overflow-x: auto; padding: 14px 2px 10px; margin-top: 10px; scroll-snap-type: x proximity; }
+.strip .st { flex: 0 0 auto; display: flex; align-items: center; scroll-snap-align: start; }
+.strip a.th { display: block; width: 120px; text-decoration: none; color: var(--ink); }
+.strip a.th img { width: 120px; height: 200px; object-fit: cover; object-position: top; border-radius: 12px; border: 1px solid var(--line); display: block; background: var(--card); }
+.strip a.th small { display: block; font-size: 12px; margin-top: 6px; line-height: 1.3; }
+.strip a.th small i { font-style: normal; color: var(--mute); }
+.strip .go { width: 92px; padding: 0 6px; text-align: center; font-size: 11px; color: var(--mute); line-height: 1.25; margin-top: -30px; }
+.strip .go::before { content: "→"; display: block; font-size: 20px; color: var(--ink); }
+.strip .go.auto::before { content: "⟳"; }
+.strip .go.q { color: var(--q); }
+
+/* screen cards */
+.screen { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 16px; }
+@media (min-width: 860px) { .screen { grid-template-columns: 260px 1fr; } }
+.screen .shot { position: relative; }
+.screen .shot img { width: 100%; max-width: 260px; border-radius: 18px; border: 1px solid var(--line); display: block; max-height: 640px; object-fit: cover; object-position: top; }
+.screen .shot .h { position: absolute; left: 8px; bottom: 8px; font-size: 11px; background: rgba(0,0,0,.65); color: #fff; padding: 2px 8px; border-radius: 6px; }
+.screen .top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.screen .top .n { font-weight: 700; color: var(--mute); }
+.rows { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 10px; border-top: 1px solid var(--line); }
+.rows > div { display: grid; grid-template-columns: 1fr; gap: 2px 14px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+@media (min-width: 640px) { .rows > div { grid-template-columns: 130px 1fr; } }
+.rows > div > b { color: var(--mute); font-weight: 600; font-size: 13px; }
+.trigger { font-weight: 600; }
+.trigger .cta { display: inline-block; padding: 1px 8px; border-radius: 6px; background: var(--chip); }
+.note-q { color: var(--q); }
+.note-w { color: var(--warn); }
+
+table.qa { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px; }
+table.qa th, table.qa td { text-align: left; vertical-align: top; padding: 10px 10px; border-bottom: 1px solid var(--line); }
+table.qa th { color: var(--mute); font-weight: 600; font-size: 13px; }
+table.qa td:first-child { font-weight: 700; white-space: nowrap; }
+.wrap-x { overflow-x: auto; }
+footer { margin-top: 64px; color: var(--mute); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>VD Booth: workflow of the 2 Figma prototypes</h1>
+  <p class="lede">The reviewed screen-by-screen workflow for the three journeys SEND / RECEIVE / COLLECT, built from 24 Figma frames: what each screen does in business terms, where the visitor taps to move on, what moves, which screens scroll, and where the design has gaps. The build in this repo follows this page. Decisions are recorded in <a href="DECISIONS.md"><code>docs/DECISIONS.md</code></a> and verification results are in <a href="verify/report.html"><code>docs/verify/report.html</code></a>.</p>
+  <div class="meta">
+    <span class="pill">Source: Framelink <code>get_figma_data</code> + Figma REST, 29/10/2026</span>
+    <span class="pill">Figma last modified: 15/10/2026</span>
+    <span class="pill warn">Figma has no prototype links: the order is inferred from the canvas + the "n of 6" counters</span>
+    <span class="pill ok">Q1–Q8 decided · see Q&amp;A</span>
+  </div>
+
+  <nav class="toc">
+    <a href="#rules">Principles</a>
+    <a href="#shell">Kiosk shell</a>
+    <a href="#send">SEND · TPBank</a>
+    <a href="#receive">RECEIVE · VXBS</a>
+    <a href="#collect">COLLECT · VXBS seller</a>
+    <a href="#qa">Q&amp;A</a>
+    <a href="#impl">Implementation notes</a>
+  </nav>
+
+  <h2 id="rules">General principles</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>100% faithful to the prototype</h3>
+      <ul class="tight">
+        <li>Each Figma frame is one step. The step counts are kept: SEND 10, RECEIVE 6, COLLECT 8.</li>
+        <li>Copy, amounts, exchange rates, reference codes and status-bar times are taken verbatim from the JSON. Nothing is translated, re-rounded or "fixed".</li>
+        <li>English only, including the kiosk shell. The VI/EN switch is removed.</li>
+        <li>Every disclaimer line is kept ("Illustrative scenario…", "VXBS concept…").</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Navigation inside the phone</h3>
+      <ul class="tight">
+        <li><b>One hotspot per screen:</b> the Figma element that acts as the CTA, listed in each screen’s "Forward" row. The hotspot gets a soft pulsing ring after 4 seconds without a touch.</li>
+        <li><b>The Back button</b> (left arrow) returns to the previous step. Other elements (tab bar, quick actions, dropdowns) only give touch feedback and do not change the screen.</li>
+        <li><b>Screen transitions:</b> a 320 ms horizontal slide like an iOS push; Back slides the other way.</li>
+        <li>Status screens (review, tracking) play their timeline on their own. A screen with no CTA advances automatically.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Scrolling and the scroll hint</h3>
+      <ul class="tight">
+        <li>The phone frame is 402 × 874 (iPhone 16 Pro). Content taller than the frame scrolls inside it. The header/navigation and footer CTA stay fixed, as in Figma.</li>
+        <li><b>Bottom scroll hint:</b> a fade plus a gently bouncing chevron above the footer. It hides once the bottom is reached and shows again on scrolling up.</li>
+        <li>When the CTA sits <i>inside</i> the scrolling content (RECEIVE: Receive funds), the hint reads "Scroll to continue" until the CTA is in view.</li>
+        <li>COLLECT fits the 874 frame and does not scroll.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Unchanged from the previous demo</h3>
+      <ul class="tight">
+        <li>16:9 1920 × 1080 stage, particle map background, <code>?zone= ?idle= ?reload= ?fx= ?qr=</code>.</li>
+        <li>Runs offline (<code>vendor/</code>), reloads itself every 2 hours, keeps the screen awake, <code>fx=low</code>.</li>
+        <li>Icons are the SVGs exported from Figma (<code>figma/assets/</code>), kept in the repo; nothing is loaded from the network.</li>
+        <li>The previous demo (GitHub Pages and vd-booth-demo.vercel.app) is untouched. This rebuild lives only on branch <code>figma-wip</code> + Vercel project <code>vd-booth-demo-wip</code>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="shell">Kiosk shell (outside the phone)</h2>
+  <p class="lede">The layout follows the previous demo: the left column holds the journey name, the headline and the step list, the phone sits centre-right, and the "route" card is in the bottom-right corner. All shell copy is in English. The step list on the left uses the Figma frame names.</p>
+  <div class="shell">
+    <div class="node"><b>Attract</b><span>Idle screen with a background animation. Tap anywhere to start.</span></div><div class="arrow">→</div>
+    <div class="node"><b>Choose a journey</b><span>3 cards: SEND · RECEIVE · COLLECT. Skipped when the link has <code>?zone=</code>.</span></div><div class="arrow">→</div>
+    <div class="node"><b>Journey</b><span>Step rail on the left + the phone (the Figma screens). "All journeys" and "Restart" in the bottom corner.</span></div><div class="arrow">→</div>
+    <div class="node"><b>Done</b><span>Summary + QR. Returns to Attract after 60 seconds without a touch (<code>?idle=</code>).</span></div>
+  </div>
+  <div class="grid2">
+    <div class="card brand-send"><h3>SEND</h3><p><b>“Send money abroad, securely.”</b><br>TPBank → Visa Direct → NAB · Vietnam → Australia</p></div>
+    <div class="card brand-vx"><h3>RECEIVE</h3><p><b>“Receive from overseas.”</b><br>VXBS · United States → Vietcombank, Vietnam</p></div>
+    <div class="card brand-vx"><h3>COLLECT</h3><p><b>“Your sales, connected.”</b><br>VXBS seller · Amazon / Shopify / invoices → Vietnam</p></div>
+  </div>
+  <p class="lede" style="margin-top:10px">The headlines above are drawn from the Figma copy and are the ones the kiosk shell shows. The shell brand follows the journey (Q7): SEND is “VISA Direct × TPBank”, RECEIVE / COLLECT are “VISA / VXBS”.</p>
+
+  <div id="zones"></div>
+
+  <h2 id="qa">Q&amp;A: decisions</h2>
+  <p class="lede">Decided on 29/10/2026. The source of record is <a href="DECISIONS.md"><code>docs/DECISIONS.md</code></a>. To change a decision, edit that file first, then this page, then the code.</p>
+  <div class="wrap-x card" style="padding:4px 14px">
+  <table class="qa">
+    <thead><tr><th>#</th><th>Issue in the design</th><th>Decision</th></tr></thead>
+    <tbody>
+      <tr><td>Q1</td><td>RECEIVE: the canvas order is Tracking → Transfer details → Funds arrived, but Details is already "Completed" before the success screen.</td><td><span class="pill ok">Decided</span> Keep the canvas order.</td></tr>
+      <tr><td>Q2</td><td>RECEIVE: Receiving details and Transfer details have no forward CTA.</td><td><span class="pill ok">Decided</span> A <b>Next</b> button on the kiosk shell (left rail, outside the phone). The Figma screens are left untouched.</td></tr>
+      <tr><td>Q3</td><td>COLLECT: Upcoming payouts, Channels, Payout tracking and Settlement history have no forward CTA.</td><td><span class="pill ok">Decided</span> Tab bar + auto-advance + Finish. Upcoming → tap tab <span class="cta">Channels</span>. Channels → tab <span class="cta">Balances</span>. Payout tracking moves to History on its own once its timeline finishes. History shows a <b>Finish</b> button on the kiosk → Done.</td></tr>
+      <tr><td>Q4</td><td>COLLECT: Withdraw / FX are 2,500 USD → 63,295,800 ₫, but Payout tracking is 1,500 USD → 37,977,480 ₫.</td><td><span class="pill ok">Decided</span> Keep the Figma values. Designer to fix.</td></tr>
+      <tr><td>Q5</td><td>RECEIVE Home already lists the Daniel Carter transaction as Completed.</td><td><span class="pill ok">Decided</span> Keep the Figma values.</td></tr>
+      <tr><td>Q6</td><td>SEND recipient form: First Name = "Emily Nguyen".</td><td><span class="pill ok">Decided</span> Keep the Figma values. Designer to fix.</td></tr>
+      <tr><td>Q7</td><td>Kiosk shell brand.</td><td><span class="pill ok">Decided</span> Per journey. SEND: "VISA Direct × TPBank". RECEIVE / COLLECT: "VISA / VXBS".</td></tr>
+      <tr><td>Q8</td><td>End of a journey, and the QR on the Done screen.</td><td><span class="pill ok">Decided</span> The last CTA → kiosk Done screen. The QR points to <code>https://vd-booth-demo.vercel.app/</code> (still overridable with <code>?qr=</code>).</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="impl">Implementation notes</h2>
+  <p class="lede">Full detail in <a href="IMPL-PLAN.md"><code>docs/IMPL-PLAN.md</code></a>.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Structure</h3>
+      <ul class="tight">
+        <li>A dev-time generator, <code>scripts/gen/build-screens.mjs</code> (pure Node, no dependencies), compiles <code>figma/rest/*.json</code> into <code>screens/gen/screens.js</code> + <code>screens/gen/screens.css</code>. The output is committed and never edited by hand; re-run <code>node scripts/gen/build-screens.mjs</code> after a Figma pull.</li>
+        <li>One element per Figma node, each tagged with <code>data-node</code> (RECEIVE also <code>data-twin</code>). Sizes, spacing, radii, colours and line heights come from the REST JSON, not from eyeballing. Per-node patches live in <code>scripts/gen/overrides.json</code>, each with a reason.</li>
+        <li>Icons come from <code>figma/assets/&lt;fileKey&gt;/*.svg</code> and are inlined by the generator.</li>
+        <li><code>screens/behaviors.js</code> adds the hotspots, Back, tabs, auto-advance and the motion listed on this page. Motion starts from a temporary state and always ends on the generated Figma state. <code>screens/phone.css</code> holds the phone host, kiosk/solo modes, scroll hint and hotspot ring. <code>index.html</code> / <code>app.js</code> are the English-only kiosk shell; full Inter is in <code>vendor/</code>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Verification</h3>
+      <ul class="tight">
+        <li>The harness in <code>scripts/verify/</code> (puppeteer-core with the local Chrome, network blocked) runs with <code>pnpm --dir scripts/verify verify</code>. The exit code is non-zero on any hard failure.</li>
+        <li>Each screen is rendered alone with <code>index.html?solo=&lt;zone&gt;-&lt;n&gt;</code> and checked against the Figma REST JSON and the reference PNGs in <code>figma/screens/</code>: text, geometry, style and pixel layers.</li>
+        <li>An end-to-end flow run at 1920 × 1080 walks every journey: forward CTAs, Back, inert elements, scroll hint, the Done QR, idle return, English only, offline, <code>?fx=low</code>.</li>
+        <li>Results: <a href="verify/report.html"><code>docs/verify/report.html</code></a> and <code>docs/verify/report.json</code>. Deploy: <code>figma-wip</code> → Vercel project <code>vd-booth-demo-wip</code>; <code>main</code>, <code>gh-pages</code> and <code>vd-booth-demo.vercel.app</code> are not touched.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>Screenshots are 1x renders from Figma (<code>figma/screens/</code>). Click a thumbnail to jump to that screen’s details.</footer>
+</main>
+
+<script>
+const A = 'zSn01lZ2vy3a2kM9EDo6mD', B = 'MPq4C2qjwzVdD2gYloQuUu';
+const img = (k, f) => `../figma/screens/${k}/${f}`;
+const fig = (k, id) => `https://www.figma.com/design/${k}/Untitled?node-id=${id.replace(':', '-')}`;
+
+const ZONES = [
+{
+  id: 'send', name: 'SEND · TPBank International Transfer', cls: 'brand-send', key: A,
+  story: 'A TPBank customer in Vietnam sends money to Australia to help cover medical costs for a family member (their mother), Emily Nguyen. The money travels over the Visa Direct network and reaches the recipient’s NAB account within minutes. Business highlights: choosing the transfer purpose, compliance documents (proof of relationship + hospital invoice, OCR check), FX rate lock, Face ID authorization, paperwork review, then tracking 6 stages until the funds are credited.',
+  facts: [['Sender', 'TPBank Savings · 135,000,000 VND'], ['Recipient', 'Emily Nguyen · NAB · Australia'], ['Amount', '50,000,000 VND → AUD 2,900'], ['Rate', '1 AUD = 17,240 VND · locked for 30 min'], ['Fee', '100,000 VND · total debit 50,100,000 VND'], ['Purpose', 'Medical Expenses'], ['Route', 'Vietnam → Visa Direct → Australia → NAB']],
+  screens: [
+    { id: '2:4235', f: '2-4235_home.png', h: 1016, t: 'Home', role: 'TPBank opening screen: a purple card promoting the VN → AU corridor ("Send money directly to bank accounts worldwide", Receiving market: Australia, "Set up in under 3 min"). Below it are the quick actions and the 135,000,000 VND source account.', go: 'New Transfer', gonote: 'white button in the purple card', motion: 'The VN ↔ AU route graphic (globe) rotates or breathes gently.', inert: 'Bell, Receiving market dropdown, 4 quick actions, tab bar.' },
+    { id: '2:4307', f: '2-4307_select-purpose.png', h: 941, t: 'Select purpose', step: '1 of 6', role: 'Declaring the transfer purpose: Family Support / Tuition Fees / <b>Medical Expenses</b> (selected) / Travel / Personal. The "Purpose declaration" box is ticked. The purpose determines which documents are required in step 3.', go: 'Continue', motion: '6-segment progress bar: segment 1 fills.', inert: 'The other purposes (Figma only has the Medical selected state).' },
+    { id: '2:4372', f: '2-4372_beneficiary-details.png', h: 1057, t: 'Recipient information', step: '2 of 6', role: 'A saved, verified recipient: Emily Nguyen, NAB, masked account number / BSB / phone number, relationship "Mother (Parent)" with a Parent chip.', go: 'Continue', motion: 'Progress segment 2.', inert: 'The fields, relationship chips.', issue: 'Q6: First Name = "Emily Nguyen".' },
+    { id: '2:4463', f: '2-4463_compliance-documents.png', h: 1450, t: 'Supporting documents', step: '3 of 6', role: 'Compliance documents required for an international transfer. A, Proof of Relationship: Birth Certificate uploaded. B, Purpose of Transfer: Royal Melbourne Hospital Invoice uploaded. OCR status: <b>Verified</b>. This is the longest screen (1,450 px).', go: 'Continue', motion: 'On entry, the 2 file cards show "Uploaded ✓" one after the other, then the OCR badge changes from "Checking…" to "Verified".', inert: 'The "Upload document" button.', scrollHeavy: true },
+    { id: '2:4582', f: '2-4582_transfer-amount.png', h: 1109, t: 'Transfer amount', step: '4 of 6', role: 'A transparent FX calculator: Sender pays 50,000,000 VND, recipient receives AUD 2,900 at 1 AUD = 17,240 VND. Transfer fee 100,000 VND, Visa Direct fee "Included", arrival "Within Minutes", total debit 50,100,000. FX Rate Lock: the rate is held for 30 minutes.', go: 'Continue', motion: 'The amounts count up from 0 on entry. The rate-lock timer icon ticks gently.', inert: 'Currency selection.' },
+    { id: '2:4661', f: '2-4661_review-transfer.png', h: 1200, t: 'Review transfer', step: '5 of 6', role: 'Final review: FROM / TO, purpose + 2 documents, summary (Amount, Fee, Total Debit, Recipient Receives, Expected Delivery), and the Visa Direct commitment.', go: 'Confirm Transfer', gonote: 'lock icon. Footer: "You’ll authorize securely on the next step"', motion: 'Progress segment 5.', inert: '' },
+    { id: '2:4747', f: '2-4747_security-authorization.png', h: 943, t: 'Security authorization', step: '6 of 6', role: 'Authorizing the 50,100,000 VND debit with Face ID. Fingerprint is disabled ("Unavailable on iPhone 16 Pro"), with TPBank Smart OTP as the fallback. Includes the Visa Direct protection promise and 24/7 fraud monitoring.', go: 'Confirm Transfer', gonote: 'or tap the Face ID block', motion: 'A Face ID scan of about 1.5 seconds: the dashed frame contracts, a purple ring runs around it, then a ✓ appears on "Face ID". The screen changes only after that.', inert: 'Smart OTP.' },
+    { id: '4:224', f: '4-224_paperwork-review.png', h: 943, t: 'Paperwork review', role: 'After authorization the paperwork is reviewed (estimated 8 minutes). Both documents show "Received • Under review", and the footer says "No action required". Status bar 9:41.', go: null, auto: 'Advances on its own after about 5 seconds', motion: 'The clock icon spins and the "Under review" dot blinks. A thin progress bar above the footer can show the time until auto-advance.', inert: '' },
+    { id: '4:281', f: '4-281_transfer-approved.png', h: 943, t: 'Transfer approved', role: 'The paperwork is approved ("Reviewed in 8 minutes"). Status bar <b>9:49</b>, matching 8 minutes after 9:41. Both documents are accepted.', go: 'Continue', gonote: '"Next: track your transfer"', motion: 'The two ✓ marks pop in one after the other.', inert: '' },
+    { id: '2:4809', f: '2-4809_transfer-tracking.png', h: 1244, t: 'Transfer tracking', role: 'Complete: AUD 2,900 has reached Emily’s NAB account. Timeline 6/6: Created → Compliance Validated → TPBank Processing → Visa Direct Processing → NAB Receiving → Funds Credited. Route diagram: Vietnam · TPBank → Visa Direct Network → Australia → NAB.', go: 'View Transfer Receipt', gonote: '→ kiosk Done screen (Q8)', motion: 'The 6 stages tick ✓ in turn (about 0.5 seconds each), the status halo/pulse spreads out, and the route arc draws through its 4 points. This is SEND’s "wow moment".', inert: '' },
+  ]
+},
+{
+  id: 'receive', name: 'RECEIVE · VXBS Global Receiving', cls: 'brand-vx', key: B,
+  story: 'Nguyễn Thị Linh in Vietnam receives money from Daniel Carter in the United States. Linh creates her USD receiving details (virtual account, SWIFT, QR) and shares them with the sender. The money passes compliance checks and FX conversion, then is paid out to her VND account at Vietcombank the same day. Business highlights: a transparent quote before receiving, a global receiving account, live tracking, and a fee breakdown.',
+  facts: [['Recipient', 'Nguyễn Thị Linh · Vietcombank •• 6789'], ['Sender', 'Daniel Carter · United States'], ['Amount', '2,500.00 USD − fee 10.00 = 2,490.00 USD'], ['Rate', '1 USD = 25,420 VND'], ['Received', '63,295,800 VND'], ['Reference', 'VX26101500482 · settled 10:42 ICT']],
+  screens: [
+    { id: '2:5492', f: '11-155_01-pdf-home-dashboard.png', h: 1477, t: 'Home dashboard', role: 'VXBS dashboard: "Good morning, Linh", KYC verified, available balance 128,450,800 VND, received this month 184,920,800 VND (+18.6%), 5 currency wallets, reference rates, recent transactions.', go: 'Receive Money', motion: 'The monthly chart draws in. The balance counts up from 0.', inert: 'Bell, eye (hide balance), the wallets, View all, tab bar.', issue: 'Q5: Recent Transactions already shows Daniel Carter Completed. Avatar "NL"; COLLECT uses "LS".' },
+    { id: '2:5630', f: '11-308_02-pdf-receive-funds.png', h: 1294, t: 'Receive funds', role: 'Receiving setup: currency USD, receiving country Vietnam, indicative quote: the sender sends 2,500.00 USD, fee 10.00 USD, about 63,295,800 VND received at 1 USD = 25,420 VND. Funds usually arrive in 1–2 business days.', go: 'Continue', gonote: 'the button sits in the scrolling content, not fixed at the bottom', motion: '"Scroll to continue" hint until the Continue button is in view.', inert: 'The two selects, Help Center.', scrollHeavy: true },
+    { id: '2:5716', f: '11-407_03-pdf-receiving-details.png', h: 1182, t: 'Receiving details', role: 'USD receiving account: name NGUYEN THI LINH, virtual account number, SWIFT/BIC, bank, routing (all "Sample only"). Copy / Share buttons and a QR for sharing. Funds are paid out to Vietcombank •• 6789 in VND.', go: 'Next (kiosk)', gonote: 'button in the left rail, Q2', motion: 'The Next button in the left rail pulses after 4 seconds. The copy icons give "Copied" feedback.', inert: '' },
+    { id: '2:6011', f: '11-715_04-pdf-incoming-transfer-tracking.png', h: 1235, t: 'Incoming transfer tracking', role: '"Your money is on its way", status Settling. Timeline: Sender Initiated 09:12 → Funds Received 10:05 → Compliance Review 10:18 → FX Conversion 10:22 → Settlement (in progress) 10:40 → Credited (pending). Expected in the account before 12:00 ICT today.', go: 'View transfer details', gonote: 'link in the content', motion: 'The stages tick ✓ in turn, the Settlement spinner turns, and the "Live updates" dot blinks. The final state stays exactly as in Figma (Settlement in progress, Credited pending).', inert: 'Refresh, Help, Live chat.' },
+    { id: '2:6117', f: '11-840_05-pdf-transfer-details.png', h: 1317, t: 'Transfer details', role: 'Detailed receipt, status Completed: sender, sending country, amount sent, time initiated. Fee table (transfer 10.00, receiving 0.00, total 10.00, converted 2,490.00 USD, FX), 63,295,800 VND received, payout details and reference code.', go: 'Next (kiosk)', gonote: 'button in the left rail, Q2', motion: 'The Next button in the left rail pulses after 4 seconds.', inert: 'Help Center, Live chat.' },
+    { id: '2:6212', f: '11-946_06-pdf-funds-arrived-success.png', h: 1141, t: 'Funds arrived', role: 'Success screen: "Your funds have arrived", credited to Vietcombank, 63,295,800 VND, rate, bank, recipient, reference code, payout time 10:42 ICT.', go: 'Transfer Again', gonote: '→ kiosk Done screen', motion: 'A "$" banknote drops onto the "VND ACCOUNT" card, a green ✓ pops in and confetti bursts out. This is RECEIVE’s "wow moment".', inert: 'Download Receipt, View Transaction History.' },
+  ]
+},
+{
+  id: 'collect', name: 'COLLECT · VXBS Seller (Linh Studio)', cls: 'brand-vx', key: B,
+  story: 'Linh Studio is an online seller paid by Amazon, Shopify and client invoices in several currencies. She holds multi-currency balances, sees upcoming payouts, connects sales channels, then withdraws USD to Vietcombank with a transparent rate and fee, tracks the payout and reviews her settlement history. The app is tab-based (Earnings / Payouts / Balances / Channels / History); Withdraw → FX → Tracking are screens opened from a tab.',
+  facts: [['Seller', 'Linh Studio · Nguyễn Thị Linh'], ['Available', '283,329,000 ₫ · 5 currencies'], ['Monthly revenue', '$12,480.00 (+18.6%) = Amazon 7,600 + Shopify 3,680 + Invoices 1,200'], ['Upcoming', '90,656,000 ₫ · 3 payouts'], ['Withdrawal', '2,500.00 USD − 10.00 → 63,295,800 ₫'], ['Rate', '1 USD = 25,420 VND']],
+  screens: [
+    { id: '15:4975', f: '15-4975_earnings-dashboard.png', h: 874, t: 'Earnings dashboard', tab: 'Earnings', role: 'Seller overview: 283,329,000 ₫ available across 5 currencies (verified), monthly revenue $12,480.00 with a chart, the next payout Amazon 2,000.00 USD on 16/10, and revenue by channel.', go: 'Next · Amazon · View upcoming', gonote: 'yellow card', motion: 'The chart draws in and the figures count up.', inert: 'Withdraw funds, Manage, tab bar.' },
+    { id: '15:5065', f: '15-5065_upcoming-payouts.png', h: 874, t: 'Upcoming payouts', tab: 'Payouts', role: 'Pending funds 90,656,000 ₫: Amazon 2,000 USD (16/10, Scheduled), Shopify 480 SGD (17/10, Awaiting release), Meridian invoice 1,200 USD (19/10, Approved).', go: 'tab Channels', gonote: 'Q3', motion: 'The 3 cards slide in one after the other.', inert: 'Upcoming / In progress, All channels.' },
+    { id: '15:5158', f: '15-5158_marketplace-connectors.png', h: 874, t: 'Channels', tab: 'Channels', role: 'Connected channels: Amazon (US store), Shopify, Client invoices. Channels available to add: App Store (USD), Etsy (EUR).', go: 'tab Balances', gonote: 'Q3', motion: 'The "Synced" dot blinks.', inert: 'Connect, Manage, Contact support.' },
+    { id: '15:5261', f: '15-5261_multi-currency-balances.png', h: 874, t: 'Balances', tab: 'Balances', role: 'Multi-currency balances with an indicative VND equivalent: USD 8,400.00, SGD 1,250.00, EUR 680.00, GBP 320.00, AUD 950.00, total 283,329,000 ₫. Pending funds are not counted as available. "Hold globally. Settle locally in Vietnam."', go: 'Withdraw', motion: 'The currency rows appear one after the other.', inert: 'Convert.' },
+    { id: '15:5374', f: '15-5374_withdraw-funds.png', h: 874, t: 'Withdraw funds', role: 'Withdraw 2,500.00 USD (8,400.00 available, 5,900.00 remaining) to Vietcombank •• 6789 (verified). Indicative rate 25,420, fee 10.00 USD, 63,295,800 ₫ received, expected 16–19/10.', go: 'Review withdrawal', motion: '', inert: 'Use max, bank selection.' },
+    { id: '15:5440', f: '15-5440_fx-conversion.png', h: 874, t: 'FX conversion', role: '"Clarity in every dong": a transparent calculation 2,500.00 − 10.00 = 2,490.00 USD × 25,420 = 63,295,800 ₫. Rate "Indicative · not locked", quote Q-1510-082.', go: 'Use quote for withdrawal', motion: 'The calculation appears line by line.', inert: '' },
+    { id: '15:5496', f: '15-5496_payout-tracking.png', h: 874, t: 'Payout tracking', role: 'A payout on its way to the bank (Processing): 37,977,480 ₫ = 1,500.00 USD from Amazon. Timeline: Requested 09:10 → Checks 09:11 → Converted 09:12 → Sent for settlement 09:18 → waiting for the bank to credit (expected 16/10).', go: null, auto: 'Advances on its own after the timeline, about 4 seconds (Q3)', motion: '4 stages tick ✓; the last stage shows a waiting clock.', inert: 'Contact support, copy code.', issue: 'Q4: the amount differs from the withdrawal just made (2,500 USD). The Figma values are kept.' },
+    { id: '15:5580', f: '15-5580_settlement-history.png', h: 874, t: 'Settlement history', tab: 'History', role: 'Paid out this month: 3 payouts totalling 182,478,000 ₫ (Amazon 75,904,000 · Shopify 50,738,400 · Client invoice 55,835,600), each with a reference and a receipt.', go: 'Finish (kiosk)', gonote: 'Q3', motion: 'The rows appear one after the other.', inert: 'Export, search, filters, Receipt.' },
+  ]
+}];
+
+const esc = s => s;
+const out = ZONES.map(z => {
+  const strip = z.screens.map((s, i) => {
+    const last = i === z.screens.length - 1;
+    const goTxt = s.go ? s.go : (s.auto || 'auto');
+    return `<div class="st"><a class="th" href="#${z.id}-${i + 1}"><img loading="lazy" src="${img(z.key, s.f)}" alt="${s.t}"><small><b>${i + 1}. ${s.t}</b>${s.step ? `<i> · ${s.step}</i>` : ''}${s.tab ? `<i> · tab ${s.tab}</i>` : ''}</small></a>${last ? `<div class="go${s.q ? ' q' : ''}">${goTxt}<br>→ Done</div>` : `<div class="go${s.go ? '' : ' auto'}${s.q ? ' q' : ''}">${goTxt}</div>`}</div>`;
+  }).join('');
+  const cards = z.screens.map((s, i) => {
+    const needScroll = s.h > 874;
+    const next = i < z.screens.length - 1 ? `${i + 2}. ${z.screens[i + 1].t}` : 'Done (kiosk)';
+    const goLine = s.go
+      ? `<span class="trigger"><span class="cta">${s.go}</span></span>${s.gonote ? ` <span style="color:var(--mute)">(${s.gonote})</span>` : ''} → ${next}${s.q ? ' <span class="pill q">Q</span>' : ''}`
+      : `<span class="trigger">${s.auto}</span> → ${next}${s.q ? ' <span class="pill q">Q</span>' : ''}`;
+    return `<div class="card screen" id="${z.id}-${i + 1}">
+      <div class="shot"><a href="${img(z.key, s.f)}" target="_blank"><img loading="lazy" src="${img(z.key, s.f)}" alt="${s.t}"></a><span class="h">${s.h} px</span></div>
+      <div>
+        <div class="top"><span class="n">${i + 1}/${z.screens.length}</span><h3>${s.t}</h3>${s.step ? `<span class="pill">${s.step}</span>` : ''}${s.tab ? `<span class="pill">tab ${s.tab}</span>` : ''}<a class="pill" href="${fig(z.key, s.id)}" target="_blank">Figma ${s.id}</a></div>
+        <p>${s.role}</p>
+        <div class="rows">
+          <div><b>Forward</b><span>${goLine}</span></div>
+          <div><b>Back</b><span>${i === 0 ? 'None (first step). Use the kiosk’s "All journeys" to exit.' : `← ${i}. ${z.screens[i - 1].t}`}</span></div>
+          <div><b>Motion</b><span>${s.motion || 'Screen transition only.'}</span></div>
+          <div><b>Scroll</b><span>${needScroll ? `<span class="${s.scrollHeavy ? 'note-w' : ''}">Yes: content ${s.h} px, frame 874 px.${s.scrollHeavy ? ' Long scroll; the bottom hint matters most here.' : ''}</span> Bottom scroll hint.` : 'No: fits the 874 px frame.'}</span></div>
+          ${s.inert ? `<div><b>Display only</b><span>${s.inert}</span></div>` : ''}
+          ${s.issue ? `<div><b>Note</b><span class="note-q">${s.issue}</span></div>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  return `<h2 id="${z.id}">${z.name}</h2>
+    <div class="zone-head">
+      <div class="card ${z.cls}"><h3>Business flow</h3><p>${z.story}</p></div>
+      <div class="card"><h3>Scenario figures</h3><dl class="facts">${z.facts.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl></div>
+    </div>
+    <div class="strip">${strip}</div>
+    ${cards}`;
+}).join('');
+document.getElementById('zones').innerHTML = out;
+</script>
+</body>
+</html>
