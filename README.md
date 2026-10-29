@@ -29,7 +29,7 @@ Link cho từng TV trong booth (mỗi màn khoá vào một hành trình):
   - **COLLECT** (Visa Cross-Border Solutions — VXBS): tài khoản nhận → chia sẻ → nhận tiền → xem số dư → quy đổi → rút/quản lý
 - **Màn chờ (attract)** với animation dòng tiền toàn cầu; chạm để bắt đầu.
 - **Màn kết thúc** giải thích sản phẩm Visa + **QR code** (tìm hiểu thêm / đặt lịch demo / kết nối đội Visa).
-- **Song ngữ VI / EN** — tiếng Việt mặc định, nút đổi ngôn ngữ góc trên trái; tự về tiếng Việt khi quay lại màn chờ.
+- **Chỉ tiếng Anh** (kể cả khung kiosk). Màn điện thoại dựng từ 2 prototype Figma (SEND 10, RECEIVE 6, COLLECT 8 bước).
 - **16:9 ngang** (thiết kế 1920×1080, tự scale cho mọi màn); điện thoại cầm dọc tự xoay nội dung ngang.
 - **Chạy ổn định cả ngày**: tự về màn chờ khi không ai chạm, tự reload định kỳ ở màn chờ, giữ màn hình luôn sáng, chạy **offline hoàn toàn** (font + thư viện QR nằm trong `vendor/`).
 
@@ -38,12 +38,13 @@ Link cho từng TV trong booth (mỗi màn khoá vào một hành trình):
 | Tham số | Ý nghĩa | Mặc định |
 |---|---|---|
 | `zone=send\|receive\|collect` | Khoá màn hình vào một hành trình | màn chọn hành trình |
-| `lang=en` | Ngôn ngữ mặc định | `vi` |
 | `idle=60` | Số giây không chạm trước khi về màn chờ | `60` |
 | `reload=2` | Số giờ giữa các lần tự reload (chỉ ở màn chờ, `0` = tắt) | `2` |
 | `fx=low` | Animation nhẹ cho máy yếu | đầy đủ |
-| `qr=https://...` | Link trong QR code màn kết thúc | link mẫu |
-| `goto=home \| send:2 \| done:collect` | Nhảy thẳng tới một màn (để test) | — |
+| `qr=https://...` | Link trong QR code màn kết thúc | `https://vd-booth-demo.vercel.app/` |
+| `goto=home \| send:3 \| done:collect` | Nhảy thẳng tới một màn (bước đếm từ 1, để test) | — |
+| `solo=send-1` | Chỉ render một màn điện thoại, không scale, đủ chiều cao Figma (để kiểm tra); `zone-n`, n đếm từ 1 | — |
+| `solo=receive-2&clip=1` | Màn đó trong khung 402×874 của kiosk (header/footer cố định) | — |
 
 Phím tắt: `F` toàn màn hình · `Esc` về màn chờ · `1/2/3` mở SEND/RECEIVE/COLLECT.
 
@@ -70,12 +71,16 @@ Checklist máy chạy:
 ## Cấu trúc
 
 ```
-index.html        # layout + style
-app.js            # nội dung 3 hành trình, i18n, điều hướng, animation nền
-vendor/           # font Inter (có tiếng Việt) + qrcode.js — để chạy offline
+index.html                    # khung kiosk + style
+app.js                        # điều hướng, solo mode, idle, animation nền, window.VD
+screens/gen/screens.{js,css}  # SINH TỰ ĐỘNG từ figma/rest/*.json — không sửa tay
+screens/phone.css             # khung điện thoại, kiosk/solo, scroll hint, hiệu ứng
+screens/behaviors.js          # hotspot, back, chuyển động từng màn
+scripts/gen/                  # generator: node scripts/gen/build-screens.mjs
+vendor/                       # Inter 4.1 (InterVariable) + qrcode.js — để chạy offline
 docs/             # ảnh chụp màn hình cho README
 ```
 
 ## Lưu ý
 
-Logo/wordmark, nội dung mô tả sản phẩm và số liệu (tỷ giá, tên người, số tài khoản) là **placeholder** cho bản demo — cần thay bằng tài sản thương hiệu và nội dung được Visa phê duyệt trước khi dùng chính thức. Giao diện điện thoại là bản dựng lại theo brief, chưa phải prototype Figma gốc của Visa.
+Logo/wordmark, nội dung mô tả sản phẩm và số liệu (tỷ giá, tên người, số tài khoản) là **placeholder** cho bản demo — cần thay bằng tài sản thương hiệu và nội dung được Visa phê duyệt trước khi dùng chính thức. Màn điện thoại được sinh từ prototype Figma (`figma/`); khi Figma đổi thì pull lại rồi chạy `node scripts/gen/build-screens.mjs`.

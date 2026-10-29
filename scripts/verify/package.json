@@ -1,0 +1,16 @@
+{
+  "name": "vd-booth-verify",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.5.0",
+  "scripts": {
+    "verify": "node run.mjs",
+    "serve": "node serve.mjs"
+  },
+  "dependencies": {
+    "jsqr": "^1.4.0",
+    "pixelmatch": "^7.2.0",
+    "pngjs": "^7.0.0",
+    "puppeteer-core": "^25.16.0"
+  }
+}

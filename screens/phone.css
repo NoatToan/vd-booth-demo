@@ -1,0 +1,77 @@
+/* Phone host for the generated Figma screens (IMPL-PLAN.md §1 "The phone host").
+   The generated DOM (screens/gen/*) is the final Figma state; everything here is host chrome,
+   kiosk/solo layout modes, and decoration that carries [data-fx]. */
+
+/* ---------- solo: one screen, unscaled, natural height (verification contract §2.1) ---------- */
+html.solo, html.solo body { margin: 0; padding: 0; background: #fff; width: 402px; overflow: hidden; }
+html.solo body { min-height: 0; }
+html.solo::-webkit-scrollbar, html.solo *::-webkit-scrollbar { display: none; }
+html.solo, html.solo * { scrollbar-width: none; }
+.solo *, .solo *::before, .solo *::after { animation: none !important; transition: none !important; }
+.solo .solo-clip { width: 402px; height: 874px; position: relative; overflow: hidden; border-radius: 40px; }
+
+/* ---------- kiosk viewport: 402×874, fixed header and footer, the scroll node scrolls ---------- */
+#phone { position: absolute; left: 1010px; top: 53px; width: 430px; height: 902px; padding: 14px; border-radius: 54px;
+  background: #0a0f2a; transform: scale(1.08); transform-origin: 0 0;
+  box-shadow: 0 0 0 2px #2c3878, 0 40px 120px rgba(0,0,0,.6), 0 0 140px color-mix(in srgb, var(--z, #2f9bff) 35%, transparent); }
+.viewport { position: relative; width: 402px; height: 874px; border-radius: 40px; overflow: hidden; background: #fff; isolation: isolate; }
+.viewport > .scr { position: absolute; left: 0; top: 0; width: 402px; height: 874px; overflow: hidden; will-change: transform; }
+
+.kiosk .fr { height: 874px !important; min-height: 0 !important; display: flex; flex-direction: column; }
+.kiosk .fr > [data-role="scroll"] { flex: 1 1 0 !important; min-height: 0 !important; height: auto !important;
+  overflow-x: hidden !important; overflow-y: auto !important; scrollbar-width: none; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.kiosk .fr > [data-role="scroll"]::-webkit-scrollbar { display: none; }
+.solo-clip .fr { height: 874px !important; min-height: 0 !important; display: flex; flex-direction: column; }
+.solo-clip .fr > [data-role="scroll"] { flex: 1 1 0 !important; min-height: 0 !important; height: auto !important; overflow: hidden !important; }
+
+/* ---------- transitions: 320 ms horizontal push; old screen to -30% with a dim ---------- */
+.scr.in-fwd { animation: push-in .32s cubic-bezier(.3,.7,.2,1) both; }
+.scr.out-fwd { animation: push-out .32s cubic-bezier(.3,.7,.2,1) both; }
+.scr.in-back { animation: push-out .32s cubic-bezier(.3,.7,.2,1) reverse both; }
+.scr.out-back { animation: push-in .32s cubic-bezier(.3,.7,.2,1) reverse both; z-index: 2; }
+.scr.out-fwd::after, .scr.in-back::after { content: ""; position: absolute; inset: 0; background: #000; pointer-events: none; animation: dim .32s both; }
+.scr.in-back::after { animation-direction: reverse; }
+@keyframes push-in { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes push-out { from { transform: none; } to { transform: translateX(-30%); } }
+@keyframes dim { from { opacity: 0; } to { opacity: .22; } }
+
+/* ---------- touch feedback (inert elements and hotspots) ---------- */
+.kiosk .fr .pressed { transform: scale(.97); transition: transform .12s; }
+.kiosk .fr [data-a] { cursor: pointer; }
+
+/* ---------- scroll hint: fade + bouncing chevron above the bottom of the scroll node ---------- */
+.scroll-hint { position: absolute; left: 0; width: 402px; height: 64px; pointer-events: none; z-index: 5;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 6px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), var(--hint-bg, rgba(247,247,250,.96)) 78%);
+  transition: opacity .25s; font: 600 13px/16px Inter, sans-serif; color: var(--hint-ink, #5b2d90); }
+.scroll-hint.off { opacity: 0; }
+.scroll-hint b { font-weight: 600; letter-spacing: .2px; margin-bottom: 2px; }
+.scroll-hint i { display: block; width: 22px; height: 14px; animation: hint-bounce 1.2s ease-in-out infinite; }
+.scroll-hint i svg { display: block; width: 22px; height: 14px; }
+@keyframes hint-bounce { 0%, 100% { transform: translateY(-3px); } 50% { transform: translateY(3px); } }
+
+/* ---------- hotspot ring (after 4 s without a touch) ---------- */
+.hot-ring { position: absolute; pointer-events: none; z-index: 6; border-radius: 16px;
+  box-shadow: 0 0 0 3px var(--ring, rgba(47,155,255,.9)); animation: ring 1.6s ease-out infinite; }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 var(--ring, rgba(47,155,255,.9)); opacity: 1; } 70% { box-shadow: 0 0 0 10px rgba(47,155,255,0); opacity: 1; } 100% { box-shadow: 0 0 0 10px rgba(47,155,255,0); opacity: 0; } }
+
+/* ---------- motion helpers used by behaviors.js (all temporary) ---------- */
+.fx-spin { animation: fx-spin 1.1s linear infinite; }
+@keyframes fx-spin { to { transform: rotate(360deg); } }
+.fx-blink { animation: fx-blink 1.2s ease-in-out infinite; }
+@keyframes fx-blink { 50% { opacity: .25; } }
+.fx-breathe { animation: fx-breathe 3.2s ease-in-out infinite; }
+@keyframes fx-breathe { 50% { transform: scale(1.04); } }
+.fx-halo { animation: fx-halo 1.8s ease-out infinite; }
+@keyframes fx-halo { 0% { transform: scale(.8); opacity: 1; } 100% { transform: scale(1.9); opacity: 0; } }
+.fx-auto-bar { position: absolute; left: 24px; right: 24px; height: 3px; border-radius: 2px; background: rgba(91,45,144,.15); overflow: hidden; z-index: 5; pointer-events: none; }
+.fx-auto-bar::after { content: ""; position: absolute; inset: 0; background: #5b2d90; transform-origin: 0 50%; animation: fx-fill var(--dur, 5s) linear both; }
+@keyframes fx-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.fx-scan { position: absolute; pointer-events: none; z-index: 6; border-radius: 22px; border: 2px dashed rgba(91,45,144,.7); }
+.fx-scan.run { animation: fx-scan 1.5s ease-in-out both; }
+@keyframes fx-scan { 0% { transform: scale(1.12); opacity: 0; } 15% { opacity: 1; } 70% { transform: scale(.94); border-color: #5b2d90; border-style: solid; box-shadow: 0 0 0 4px rgba(91,45,144,.18); } 100% { transform: scale(1); opacity: 0; } }
+.fx-tick { position: absolute; z-index: 7; width: 44px; height: 44px; border-radius: 50%; background: #20785d; display: grid; place-items: center; pointer-events: none; animation: fx-pop .4s cubic-bezier(.2,1.6,.4,1) both; }
+@keyframes fx-pop { from { transform: scale(0); } to { transform: scale(1); } }
+.fx-toast { position: absolute; z-index: 8; padding: 4px 10px; border-radius: 8px; background: #12224a; color: #fff; font: 600 12px/16px Inter, sans-serif; pointer-events: none; animation: fx-toast 1.2s ease both; white-space: nowrap; }
+@keyframes fx-toast { 0% { opacity: 0; transform: translateY(4px); } 15%, 75% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.fx-confetti { position: absolute; z-index: 7; width: 7px; height: 12px; border-radius: 2px; pointer-events: none; }
