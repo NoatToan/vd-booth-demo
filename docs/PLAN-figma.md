@@ -1,6 +1,8 @@
 # Plan: rebuild the 3 journeys from the Figma prototypes
 
-Status: **draft, waiting for approval**. Source data: `figma/` (see `figma/README.md`).
+> **Superseded.** This was the first draft, written before the Q&A. It still mentions VI/EN and the open questions that were later decided. The current documents are [`DECISIONS.md`](DECISIONS.md) (decisions), [`workflow.html`](workflow.html) (screen-by-screen workflow) and [`IMPL-PLAN.md`](IMPL-PLAN.md) (implementation and verification). It is kept for history only.
+
+Source data: `figma/` (see `figma/README.md`).
 
 ## What stays
 
