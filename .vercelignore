@@ -1,0 +1,7 @@
+# runtime needs index.html, app.js, screens/, vendor/, figma/assets/*/fills (photos) and docs/; the rest is design data and tooling
+scripts/
+figma/fig/
+figma/rest/
+figma/*.json
+figma/screens/
+docs/verify/img/

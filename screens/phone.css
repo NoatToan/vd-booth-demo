@@ -76,3 +76,7 @@ html.solo, html.solo * { scrollbar-width: none; }
 @keyframes fx-toast { 0% { opacity: 0; transform: translateY(4px); } 15%, 75% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 .fx-confetti { position: absolute; z-index: 7; width: 7px; height: 12px; border-radius: 2px; pointer-events: none; }
 #phone[data-size="414x896"] { --pw: 414px; --ph: 896px; top: 44px; }
+
+/* auto-populate caret (behaviors.js typeIn): a blinking bar after the text being typed */
+.fx-caret::after { content: ""; display: inline-block; width: 1.5px; height: 1em; margin-left: 1px; vertical-align: -0.12em; background: currentColor; animation: fx-caret .8s steps(1) infinite; }
+@keyframes fx-caret { 50% { opacity: 0; } }

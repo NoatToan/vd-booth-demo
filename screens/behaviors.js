@@ -60,6 +60,24 @@ function countUp(el, api, dur = 900) {
   api.later(() => { tn.nodeValue = orig; }, dur + 200);
 }
 const cls = (el, c) => el && el.classList.add(c);
+// auto-populate (client brief 2026-11-10): each field types itself in, one after another, from empty to its Figma
+// value; the screen then ends on the generated DOM (innerHTML restored), and the CTA pops so the visitor taps on.
+function typeIn(fr, api, ids, { delay = 350, total = 2800, gap = 160 } = {}) {
+  const els = qa(fr, ids);
+  const chars = els.reduce((a, e) => a + e.textContent.length, 0) || 1;
+  const per = Math.max(18, Math.min(70, (total - gap * els.length) / chars));
+  let t = delay;
+  for (const el of els) {
+    const html = el.innerHTML, text = el.textContent;
+    el.textContent = ''; el.classList.add('fx-caret');
+    for (let i = 1; i <= text.length; i++) api.later(() => { el.textContent = text.slice(0, i); }, t + i * per);
+    t += text.length * per;
+    api.later(() => { el.innerHTML = html; el.classList.remove('fx-caret'); }, t + 1);
+    t += gap;
+  }
+  return t;
+}
+const autofill = (ids, cta, opts) => (fr, api) => { const end = typeIn(fr, api, ids, opts); const b = q(fr, cta); if (b) api.later(() => pop(b.closest('[data-hotspot]') || b, 0, 380), end); };
 // the n-th "Step segment" of SEND's 6-part journey progress fills in
 function progress(fr, i) {
   const bar = [...fr.querySelectorAll('div')].find(d => d.children.length === 6 && [...d.children].every(c => !c.children.length && c.offsetHeight <= 6));
@@ -88,6 +106,7 @@ const B = window.BEHAVIORS = {};
 // SEND
 B['send-1'] = { enter(fr) { cls(q(fr, '2:4256'), 'fx-breathe'); } };
 for (let n = 2; n <= 7; n++) B[`send-${n}`] = { enter(fr) { progress(fr, n - 2); } };
+{ const fill = autofill(['2:4411', '2:4415', '2:4419', '2:4424', '2:4429', '2:4433', '2:4437', '2:4441'], '2:4457', { total: 3200 }); B['send-3'].enter = (fr, api) => { progress(fr, 1); fill(fr, api); }; }
 B['send-4'].enter = (fr, api) => {
   progress(fr, 2);
   const cards = qa(fr, ['2:4517', '2:4554']);
@@ -196,4 +215,11 @@ B['collect-4'] = { enter(fr) { stagger(kids(fr, '15:5291'), { delay: 150, step: 
 B['collect-6'] = { enter(fr) { stagger(qa(fr, ['15:5470', '15:5472', '15:5475', '15:5478', '15:5479']), { delay: 200, step: 260, dy: 8 }); } };
 B['collect-7'] = { enter(fr) { const st = kids(fr, '15:5522'); ticks(st.slice(0, 4), { delay: 300, step: 650 }); st.slice(4).forEach(s => s.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 300 + 4 * 650, fill: 'backwards' })); } };
 B['collect-8'] = { enter(fr) { stagger(kids(fr, '15:5615'), { delay: 150, step: 150 }); } };
+
+// AFT · travel wallet (XinChaoVietnam)
+B['travel-2'] = { enter: autofill(['2:15860', '2:15864', '2:15869', '2:15874'], '2:15884') };
+B['travel-5'] = { enter: autofill(['2:16027', '2:16031', '2:16043'], '2:16053', { total: 2400 }) };
+B['travel-7'] = { enter: autofill(['2:16131'], '2:16174', { total: 900 }) };
+// AFT · friends and family (NovaBank)
+B['family-3'] = { enter: autofill(['2:46985', '2:46993', '2:46999'], '2:47014', { total: 2600 }) };
 })();
