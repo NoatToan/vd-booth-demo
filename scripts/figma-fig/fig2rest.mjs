@@ -61,7 +61,8 @@ function typeStyle(n, base) {
   }
   if (n.fontSize !== undefined) st.fontSize = n.fontSize;
   const fsz = n.fontSize ?? base?.fontSize;
-  if (n.letterSpacing) st.letterSpacing = n.letterSpacing.units === 'PIXELS' ? n.letterSpacing.value : n.letterSpacing.value * fsz / 100;
+  // RAW (legacy) tracking is not reported by REST (zSn01 page "PDF Export"), so it is left out here too
+  if (n.letterSpacing && n.letterSpacing.units !== 'RAW') st.letterSpacing = n.letterSpacing.units === 'PIXELS' ? n.letterSpacing.value : n.letterSpacing.value * fsz / 100;
   if (n.textDecoration && n.textDecoration !== 'NONE') st.textDecoration = n.textDecoration;
   if (n.textCase && n.textCase !== 'ORIGINAL') st.textCase = n.textCase;
   if (n.fillPaints) st.fills = n.fillPaints.map(paint);
@@ -88,14 +89,19 @@ export function toRest(fig, fileKey) {
       m00: world.m00 * T.m00 + world.m01 * T.m10, m01: world.m00 * T.m01 + world.m01 * T.m11, m02: world.m00 * T.m02 + world.m01 * T.m12 + world.m02,
       m10: world.m10 * T.m00 + world.m11 * T.m10, m11: world.m10 * T.m01 + world.m11 * T.m11, m12: world.m10 * T.m02 + world.m11 * T.m12 + world.m12,
     } : T;
-    if (Math.abs(T.m01) > 1e-6 || Math.abs(T.m10) > 1e-6) throw new Error(`${id}: rotation is not mapped`);
     const type = { ROUNDED_RECTANGLE: 'RECTANGLE' }[n.type] || n.type;
     const r = { id, name: n.name, type };
     if (n.visible === false) r.visible = false;
     const isFrame = n.type === 'FRAME', isDoc = n.type === 'DOCUMENT', isCanvas = n.type === 'CANVAS';
     if (!isDoc && !isCanvas) {
       const sz = n.size || { x: 0, y: 0 };
-      r.absoluteBoundingBox = { x: W.m02, y: W.m12, width: sz.x, height: sz.y };
+      // REST: the axis-aligned box of the world-transformed rect, and rotation = the local angle atan2(m10, m00)
+      // (checked on VXBS 2:6228 "Arriving banknote": -0.2094 rad, box 144.44 × 95.14)
+      const xs = [0, sz.x].flatMap(x => [0, sz.y].map(y => W.m00 * x + W.m01 * y + W.m02));
+      const ys = [0, sz.x].flatMap(x => [0, sz.y].map(y => W.m10 * x + W.m11 * y + W.m12));
+      r.absoluteBoundingBox = { x: Math.min(...xs), y: Math.min(...ys), width: Math.max(...xs) - Math.min(...xs), height: Math.max(...ys) - Math.min(...ys) };
+      const rot = Math.atan2(T.m10, T.m00);
+      if (Math.abs(rot) > 1e-9) r.rotation = rot;
       r.absoluteRenderBounds = { ...r.absoluteBoundingBox };
       if (n.opacity !== undefined && n.opacity !== 1) r.opacity = n.opacity;
       r.fills = (n.fillPaints || []).map(paint);
@@ -142,7 +148,8 @@ export function toRest(fig, fileKey) {
         const primary = (r.layoutMode === 'HORIZONTAL') === (axis === 'H');
         return primary ? r.primaryAxisSizingMode === 'AUTO' : r.counterAxisSizingMode === 'AUTO';
       };
-      for (const axis of ['H', 'V']) {
+      // REST only reports sizing for nodes that take part in auto layout (as a child or as a container)
+      if (pl || r.layoutMode) for (const axis of ['H', 'V']) {
         const along = pl && ((pl === 'HORIZONTAL') === (axis === 'H'));
         const fill = inFlow && (along ? grow : stretch);
         r[axis === 'H' ? 'layoutSizingHorizontal' : 'layoutSizingVertical'] = fill ? 'FILL' : hug(axis) ? 'HUG' : 'FIXED';
@@ -163,7 +170,9 @@ export function toRest(fig, fileKey) {
       // has already resolved into derivedTextData
       const { value: lv, units: lu } = n.lineHeight;
       const auto = lu === 'PERCENT' && lv === 100;
-      style.lineHeightPx = auto ? n.derivedTextData.baselines[0].lineHeight : lu === 'PIXELS' ? lv : lu === 'RAW' ? lv * n.fontSize : lv * n.fontSize / 100;
+      // auto = the font's own line height × size (REST 16.943 for Inter 14), not the rounded baseline metric
+      const fontLH = n.derivedTextData?.fontMetaData?.[0]?.fontLineHeight;
+      style.lineHeightPx = auto ? (fontLH ? fontLH * n.fontSize : n.derivedTextData.baselines[0].lineHeight) : lu === 'PIXELS' ? lv : lu === 'RAW' ? lv * n.fontSize : lv * n.fontSize / 100;
       style.lineHeightUnit = auto ? 'INTRINSIC_%' : lu === 'PIXELS' ? 'PIXELS' : 'FONT_SIZE_%';
       if (!auto && lu !== 'PIXELS') style.lineHeightPercentFontSize = lu === 'RAW' ? lv * 100 : lv;
       r.style = style;

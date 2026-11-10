@@ -1,11 +1,131 @@
 {
- "commit": "4f79913+dirty",
- "at": "2026-11-10T10:46:58.916Z",
+ "commit": "7b29090+dirty",
+ "at": "2026-11-10T11:15:40.017Z",
  "summary": {
-  "screens": 0,
-  "screensHardPass": 0,
+  "screens": 61,
+  "screensHardPass": 61,
   "hardFailScreens": [],
-  "perGate": {},
+  "perGate": {
+   "C": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "NET": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "T1": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "T2": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "T3": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "T4": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "G1": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "G2": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "G3": {
+    "hard": false,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "S1": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "S2": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "S3": {
+    "hard": false,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "P1": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "P1t": {
+    "hard": false,
+    "pass": 42,
+    "fail": 0,
+    "warn": 19,
+    "of": 61
+   },
+   "P2": {
+    "hard": false,
+    "pass": 42,
+    "fail": 0,
+    "warn": 19,
+    "of": 61
+   },
+   "P3": {
+    "hard": false,
+    "pass": 14,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   },
+   "D": {
+    "hard": true,
+    "pass": 61,
+    "fail": 0,
+    "warn": 0,
+    "of": 61
+   }
+  },
   "topIssues": [],
   "flow": {
    "pass": true,
@@ -14,18 +134,9529 @@
    "aborted": 0
   },
   "hardFail": false,
-  "partial": {
-   "only": null,
-   "layer": "flow"
-  },
   "app": {
-   "before": "4aabe7a6239e",
-   "after": "4aabe7a6239e",
+   "before": "4260babe5797",
+   "after": "4260babe5797",
    "changedDuringRun": false
   },
-  "line": "ALL HARD GATES GREEN — screens 0/0 hard-green, flow PASS"
+  "line": "ALL HARD GATES GREEN — screens 61/61 hard-green, flow PASS"
  },
- "screens": [],
+ "screens": [
+  {
+   "key": "send-1",
+   "node": "2:4235",
+   "twin": null,
+   "h": 1034,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "53/53 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "25/25",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "25/25 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1034 vs 1034",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (44/44)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.118%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.118%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 53,
+    "pass": 53,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1034,
+     "actual": 1034
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 44
+   },
+   "pixel": {
+    "pct": 1.118,
+    "diffPx": 4646,
+    "diff": "img/send-1-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-1-figma.png",
+    "build": "img/send-1-build.png",
+    "diff": "img/send-1-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-2",
+   "node": "2:4307",
+   "twin": null,
+   "h": 941,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "50/50 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "16/16",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "16/16 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 941 vs 941",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (52/52)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.525%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.525%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 50,
+    "pass": 50,
+    "passPct": 100,
+    "frameH": {
+     "expected": 941,
+     "actual": 941
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 52
+   },
+   "pixel": {
+    "pct": 1.525,
+    "diffPx": 5768,
+    "diff": "img/send-2-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-2-figma.png",
+    "build": "img/send-2-build.png",
+    "diff": "img/send-2-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-3",
+   "node": "2:4372",
+   "twin": null,
+   "h": 1057,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "71/71 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "33/33",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "33/33 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1057 vs 1057",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (88/88)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.582%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.582%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "2 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 71,
+    "pass": 71,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1057,
+     "actual": 1057
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 88
+   },
+   "pixel": {
+    "pct": 1.582,
+    "diffPx": 6724,
+    "diff": "img/send-3-diff.png",
+    "regions": [
+     {
+      "id": "2:4439",
+      "name": "Field label",
+      "density": 20.3,
+      "diffPx": 369,
+      "box": "40,754 140×13"
+     },
+     {
+      "id": "2:4431",
+      "name": "Field label",
+      "density": 20.6,
+      "diffPx": 356,
+      "box": "40,614 133×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:4439",
+     "name": "Field label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "20.3% of 40,754 140×13"
+    },
+    {
+     "id": "2:4431",
+     "name": "Field label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "20.6% of 40,614 133×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-3-figma.png",
+    "build": "img/send-3-build.png",
+    "diff": "img/send-3-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-4",
+   "node": "2:4463",
+   "twin": null,
+   "h": 1450,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "93/93 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "40/40",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "40/40 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1450 vs 1450",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (100/100)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.685%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.685%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 93,
+    "pass": 93,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1450,
+     "actual": 1450
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 100
+   },
+   "pixel": {
+    "pct": 1.685,
+    "diffPx": 9819,
+    "diff": "img/send-4-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-4-figma.png",
+    "build": "img/send-4-build.png",
+    "diff": "img/send-4-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-5",
+   "node": "2:4582",
+   "twin": null,
+   "h": 1109,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "58/58 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "32/32",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "32/32 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1109 vs 1109",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (46/46)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.082%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.082%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 58,
+    "pass": 58,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1109,
+     "actual": 1109
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 46
+   },
+   "pixel": {
+    "pct": 1.082,
+    "diffPx": 4823,
+    "diff": "img/send-5-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-5-figma.png",
+    "build": "img/send-5-build.png",
+    "diff": "img/send-5-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-6",
+   "node": "2:4661",
+   "twin": null,
+   "h": 1218,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "66/66 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "35/35",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "35/35 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1218 vs 1218",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (56/56)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.343%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.343%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 66,
+    "pass": 66,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1218,
+     "actual": 1218
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 56
+   },
+   "pixel": {
+    "pct": 1.343,
+    "diffPx": 6574,
+    "diff": "img/send-6-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-6-figma.png",
+    "build": "img/send-6-build.png",
+    "diff": "img/send-6-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-7",
+   "node": "2:4747",
+   "twin": null,
+   "h": 943,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "46/46 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "18/18",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "18/18 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 943 vs 943",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (42/42)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.135%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.135%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 46,
+    "pass": 46,
+    "passPct": 100,
+    "frameH": {
+     "expected": 943,
+     "actual": 943
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 42
+   },
+   "pixel": {
+    "pct": 1.135,
+    "diffPx": 4301,
+    "diff": "img/send-7-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-7-figma.png",
+    "build": "img/send-7-build.png",
+    "diff": "img/send-7-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-8",
+   "node": "4:224",
+   "twin": null,
+   "h": 943,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "38/38 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "20/20",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "20/20 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 943 vs 943",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (30/30)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "2.11%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "2.11%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 38,
+    "pass": 38,
+    "passPct": 100,
+    "frameH": {
+     "expected": 943,
+     "actual": 943
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 30
+   },
+   "pixel": {
+    "pct": 2.11,
+    "diffPx": 7997,
+    "diff": "img/send-8-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-8-figma.png",
+    "build": "img/send-8-build.png",
+    "diff": "img/send-8-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-9",
+   "node": "4:281",
+   "twin": null,
+   "h": 943,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "37/37 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 943 vs 943",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (30/30)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.469%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.469%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 37,
+    "pass": 37,
+    "passPct": 100,
+    "frameH": {
+     "expected": 943,
+     "actual": 943
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 30
+   },
+   "pixel": {
+    "pct": 1.469,
+    "diffPx": 5570,
+    "diff": "img/send-9-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-9-figma.png",
+    "build": "img/send-9-build.png",
+    "diff": "img/send-9-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-10",
+   "node": "2:4809",
+   "twin": null,
+   "h": 1244,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "70/70 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "38/38",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "38/38 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1244 vs 1244",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (42/42)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.824%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.824%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 70,
+    "pass": 70,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1244,
+     "actual": 1244
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 42
+   },
+   "pixel": {
+    "pct": 1.824,
+    "diffPx": 9123,
+    "diff": "img/send-10-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-10-figma.png",
+    "build": "img/send-10-build.png",
+    "diff": "img/send-10-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-11",
+   "node": "22:134",
+   "twin": null,
+   "h": 943,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "37/37 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "23/23",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "23/23 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 943 vs 943",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (24/24)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.881%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.881%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 37,
+    "pass": 37,
+    "passPct": 100,
+    "frameH": {
+     "expected": 943,
+     "actual": 943
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 24
+   },
+   "pixel": {
+    "pct": 0.881,
+    "diffPx": 3339,
+    "diff": "img/send-11-diff.png",
+    "regions": [
+     {
+      "id": "22:163",
+      "name": "Status",
+      "density": 20.7,
+      "diffPx": 323,
+      "box": "141,397 120×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "22:163",
+     "name": "Status",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "20.7% of 141,397 120×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-11-figma.png",
+    "build": "img/send-11-build.png",
+    "diff": "img/send-11-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "receive-1",
+   "node": "2:5492",
+   "twin": "11:155",
+   "h": 1477,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "98/98 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "58/58",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "58/58 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1477 vs 1477",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (64/64)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.443%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.443%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.035%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 98,
+    "pass": 98,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1477,
+     "actual": 1477
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 64
+   },
+   "pixel": {
+    "pct": 1.443,
+    "diffPx": 8566,
+    "diff": "img/receive-1-diff.png",
+    "regions": [
+     {
+      "id": "2:5501",
+      "name": "Label",
+      "density": 23.5,
+      "diffPx": 280,
+      "box": "174,74 85×14"
+     }
+    ],
+    "clipPct": 1.035
+   },
+   "offenders": [
+    {
+     "id": "2:5501",
+     "name": "Label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "23.5% of 174,74 85×14"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/receive-1-figma.png",
+    "build": "img/receive-1-build.png",
+    "diff": "img/receive-1-diff.png",
+    "clipFigma": "img/receive-1-clip-figma.png",
+    "clipBuild": "img/receive-1-clip-build.png",
+    "clipDiff": "img/receive-1-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "receive-2",
+   "node": "2:5630",
+   "twin": "11:308",
+   "h": 1294,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "63/63 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "36/36",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "36/36 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1294 vs 1294",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (36/36)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.969%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.969%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.732%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 63,
+    "pass": 63,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1294,
+     "actual": 1294
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 36
+   },
+   "pixel": {
+    "pct": 1.969,
+    "diffPx": 10240,
+    "diff": "img/receive-2-diff.png",
+    "regions": [
+     {
+      "id": "2:5643",
+      "name": "Label",
+      "density": 22.5,
+      "diffPx": 365,
+      "box": "22,120 108×15"
+     }
+    ],
+    "clipPct": 1.732
+   },
+   "offenders": [
+    {
+     "id": "2:5643",
+     "name": "Label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "22.5% of 22,120 108×15"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/receive-2-figma.png",
+    "build": "img/receive-2-build.png",
+    "diff": "img/receive-2-diff.png",
+    "clipFigma": "img/receive-2-clip-figma.png",
+    "clipBuild": "img/receive-2-clip-build.png",
+    "clipDiff": "img/receive-2-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "receive-3",
+   "node": "2:5716",
+   "twin": "11:407",
+   "h": 1182,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "272/272 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "29/29",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "29/29 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1182 vs 1182",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (466/466)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "2.102%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "2.102%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.658%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 272,
+    "pass": 272,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1182,
+     "actual": 1182
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 466
+   },
+   "pixel": {
+    "pct": 2.102,
+    "diffPx": 9988,
+    "diff": "img/receive-3-diff.png",
+    "regions": [],
+    "clipPct": 1.658
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/receive-3-figma.png",
+    "build": "img/receive-3-build.png",
+    "diff": "img/receive-3-diff.png",
+    "clipFigma": "img/receive-3-clip-figma.png",
+    "clipBuild": "img/receive-3-clip-build.png",
+    "clipDiff": "img/receive-3-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "receive-4",
+   "node": "2:6011",
+   "twin": "11:715",
+   "h": 1235,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "68/68 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "34/34",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "34/34 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1235 vs 1235",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (46/46)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.891%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.891%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "2 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.592%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 68,
+    "pass": 68,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1235,
+     "actual": 1235
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 46
+   },
+   "pixel": {
+    "pct": 1.891,
+    "diffPx": 9387,
+    "diff": "img/receive-4-diff.png",
+    "regions": [
+     {
+      "id": "2:6079",
+      "name": "Settlement loading indicator",
+      "density": 50.7,
+      "diffPx": 292,
+      "box": "41,760 24×24"
+     },
+     {
+      "id": "2:6030",
+      "name": "Label",
+      "density": 22.2,
+      "diffPx": 140,
+      "box": "308,232 42×15"
+     }
+    ],
+    "clipPct": 1.592
+   },
+   "offenders": [
+    {
+     "id": "2:6079",
+     "name": "Settlement loading indicator",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "50.7% of 41,760 24×24"
+    },
+    {
+     "id": "2:6030",
+     "name": "Label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "22.2% of 308,232 42×15"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/receive-4-figma.png",
+    "build": "img/receive-4-build.png",
+    "diff": "img/receive-4-diff.png",
+    "clipFigma": "img/receive-4-clip-figma.png",
+    "clipBuild": "img/receive-4-clip-build.png",
+    "clipDiff": "img/receive-4-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "receive-5",
+   "node": "2:6117",
+   "twin": "11:840",
+   "h": 1317,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "69/69 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "45/45",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "45/45 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1317 vs 1317",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (30/30)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.417%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.417%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.099%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 69,
+    "pass": 69,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1317,
+     "actual": 1317
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 30
+   },
+   "pixel": {
+    "pct": 1.417,
+    "diffPx": 7500,
+    "diff": "img/receive-5-diff.png",
+    "regions": [],
+    "clipPct": 1.099
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/receive-5-figma.png",
+    "build": "img/receive-5-build.png",
+    "diff": "img/receive-5-diff.png",
+    "clipFigma": "img/receive-5-clip-figma.png",
+    "clipBuild": "img/receive-5-clip-build.png",
+    "clipDiff": "img/receive-5-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "receive-6",
+   "node": "2:6212",
+   "twin": "11:946",
+   "h": 1141,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "56/56 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "25/25",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "25/25 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1141 vs 1141",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (46/46)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.552%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.552%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.191%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 56,
+    "pass": 56,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1141,
+     "actual": 1141
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 46
+   },
+   "pixel": {
+    "pct": 1.552,
+    "diffPx": 7119,
+    "diff": "img/receive-6-diff.png",
+    "regions": [],
+    "clipPct": 1.191
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/receive-6-figma.png",
+    "build": "img/receive-6-build.png",
+    "diff": "img/receive-6-diff.png",
+    "clipFigma": "img/receive-6-clip-figma.png",
+    "clipBuild": "img/receive-6-clip-build.png",
+    "clipDiff": "img/receive-6-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "collect-1",
+   "node": "15:4975",
+   "twin": null,
+   "h": 874,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "65/65 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "35/35",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "35/35 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 874 vs 874",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (36/36)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.184%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.184%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.184%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 65,
+    "pass": 65,
+    "passPct": 100,
+    "frameH": {
+     "expected": 874,
+     "actual": 874
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 36
+   },
+   "pixel": {
+    "pct": 1.184,
+    "diffPx": 4160,
+    "diff": "img/collect-1-diff.png",
+    "regions": [],
+    "clipPct": 1.184
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/collect-1-figma.png",
+    "build": "img/collect-1-build.png",
+    "diff": "img/collect-1-diff.png",
+    "clipFigma": "img/collect-1-clip-figma.png",
+    "clipBuild": "img/collect-1-clip-build.png",
+    "clipDiff": "img/collect-1-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "collect-2",
+   "node": "15:5065",
+   "twin": null,
+   "h": 874,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "70/70 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "38/38",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "38/38 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 874 vs 874",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (48/48)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.526%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.526%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.526%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 70,
+    "pass": 70,
+    "passPct": 100,
+    "frameH": {
+     "expected": 874,
+     "actual": 874
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 48
+   },
+   "pixel": {
+    "pct": 1.526,
+    "diffPx": 5363,
+    "diff": "img/collect-2-diff.png",
+    "regions": [],
+    "clipPct": 1.526
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/collect-2-figma.png",
+    "build": "img/collect-2-build.png",
+    "diff": "img/collect-2-diff.png",
+    "clipFigma": "img/collect-2-clip-figma.png",
+    "clipBuild": "img/collect-2-clip-build.png",
+    "clipDiff": "img/collect-2-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "collect-3",
+   "node": "15:5158",
+   "twin": null,
+   "h": 874,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "74/74 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "41/41",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "41/41 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 874 vs 874",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (46/46)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.455%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.455%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.455%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 74,
+    "pass": 74,
+    "passPct": 100,
+    "frameH": {
+     "expected": 874,
+     "actual": 874
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 46
+   },
+   "pixel": {
+    "pct": 1.455,
+    "diffPx": 5113,
+    "diff": "img/collect-3-diff.png",
+    "regions": [],
+    "clipPct": 1.455
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/collect-3-figma.png",
+    "build": "img/collect-3-build.png",
+    "diff": "img/collect-3-diff.png",
+    "clipFigma": "img/collect-3-clip-figma.png",
+    "clipBuild": "img/collect-3-clip-build.png",
+    "clipDiff": "img/collect-3-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "collect-4",
+   "node": "15:5261",
+   "twin": null,
+   "h": 874,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "80/80 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "48/48",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "48/48 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 874 vs 874",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (46/46)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.14%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.14%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.14%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 80,
+    "pass": 80,
+    "passPct": 100,
+    "frameH": {
+     "expected": 874,
+     "actual": 874
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 46
+   },
+   "pixel": {
+    "pct": 1.14,
+    "diffPx": 4006,
+    "diff": "img/collect-4-diff.png",
+    "regions": [],
+    "clipPct": 1.14
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/collect-4-figma.png",
+    "build": "img/collect-4-build.png",
+    "diff": "img/collect-4-diff.png",
+    "clipFigma": "img/collect-4-clip-figma.png",
+    "clipBuild": "img/collect-4-clip-build.png",
+    "clipDiff": "img/collect-4-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "collect-5",
+   "node": "15:5374",
+   "twin": null,
+   "h": 874,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "48/48 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "26/26",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "26/26 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 874 vs 874",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (28/28)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.688%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.688%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.688%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 48,
+    "pass": 48,
+    "passPct": 100,
+    "frameH": {
+     "expected": 874,
+     "actual": 874
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 28
+   },
+   "pixel": {
+    "pct": 1.688,
+    "diffPx": 5932,
+    "diff": "img/collect-5-diff.png",
+    "regions": [],
+    "clipPct": 1.688
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/collect-5-figma.png",
+    "build": "img/collect-5-build.png",
+    "diff": "img/collect-5-diff.png",
+    "clipFigma": "img/collect-5-clip-figma.png",
+    "clipBuild": "img/collect-5-clip-build.png",
+    "clipDiff": "img/collect-5-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "collect-6",
+   "node": "15:5440",
+   "twin": null,
+   "h": 874,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "43/43 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "24/24",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "24/24 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 874 vs 874",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (28/28)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.39%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.39%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.39%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 43,
+    "pass": 43,
+    "passPct": 100,
+    "frameH": {
+     "expected": 874,
+     "actual": 874
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 28
+   },
+   "pixel": {
+    "pct": 1.39,
+    "diffPx": 4882,
+    "diff": "img/collect-6-diff.png",
+    "regions": [],
+    "clipPct": 1.39
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/collect-6-figma.png",
+    "build": "img/collect-6-build.png",
+    "diff": "img/collect-6-diff.png",
+    "clipFigma": "img/collect-6-clip-figma.png",
+    "clipBuild": "img/collect-6-clip-build.png",
+    "clipDiff": "img/collect-6-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "collect-7",
+   "node": "15:5496",
+   "twin": null,
+   "h": 874,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "54/54 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "25/25",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "25/25 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 874 vs 874",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (36/36)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.969%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.969%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.969%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 54,
+    "pass": 54,
+    "passPct": 100,
+    "frameH": {
+     "expected": 874,
+     "actual": 874
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 36
+   },
+   "pixel": {
+    "pct": 1.969,
+    "diffPx": 6917,
+    "diff": "img/collect-7-diff.png",
+    "regions": [],
+    "clipPct": 1.969
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/collect-7-figma.png",
+    "build": "img/collect-7-build.png",
+    "diff": "img/collect-7-diff.png",
+    "clipFigma": "img/collect-7-clip-figma.png",
+    "clipBuild": "img/collect-7-clip-build.png",
+    "clipDiff": "img/collect-7-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "collect-8",
+   "node": "15:5580",
+   "twin": null,
+   "h": 874,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "74/74 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "40/40",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "40/40 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 874 vs 874",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (42/42)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.694%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.694%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.694%",
+     "threshold": "≤4.0%"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 74,
+    "pass": 74,
+    "passPct": 100,
+    "frameH": {
+     "expected": 874,
+     "actual": 874
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 42
+   },
+   "pixel": {
+    "pct": 1.694,
+    "diffPx": 5952,
+    "diff": "img/collect-8-diff.png",
+    "regions": [],
+    "clipPct": 1.694
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/collect-8-figma.png",
+    "build": "img/collect-8-build.png",
+    "diff": "img/collect-8-diff.png",
+    "clipFigma": "img/collect-8-clip-figma.png",
+    "clipBuild": "img/collect-8-clip-build.png",
+    "clipDiff": "img/collect-8-clip-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-1",
+   "node": "2:15812",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "21/21 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "10/10",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "10/10 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (20/20)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.366%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.366%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "6 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 21,
+    "pass": 21,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 20
+   },
+   "pixel": {
+    "pct": 1.366,
+    "diffPx": 5066,
+    "diff": "img/travel-1-diff.png",
+    "regions": [
+     {
+      "id": "2:15823",
+      "name": "Brand name",
+      "density": 31.2,
+      "diffPx": 1152,
+      "box": "24,64 154×24"
+     },
+     {
+      "id": "2:15824",
+      "name": "Demo label",
+      "density": 80.7,
+      "diffPx": 905,
+      "box": "339,65 51×22"
+     },
+     {
+      "id": "2:15827",
+      "name": "Editorial label",
+      "density": 27.4,
+      "diffPx": 582,
+      "box": "26,350 177×12"
+     },
+     {
+      "id": "2:15818",
+      "name": "Device status",
+      "density": 38.1,
+      "diffPx": 494,
+      "box": "314,18 72×18"
+     },
+     {
+      "id": "2:15825",
+      "name": "Label",
+      "density": 98.2,
+      "diffPx": 389,
+      "box": "348,70 33×12"
+     },
+     {
+      "id": "2:15817",
+      "name": "Time",
+      "density": 29.5,
+      "diffPx": 170,
+      "box": "28,18 32×18"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:15823",
+     "name": "Brand name",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "31.2% of 24,64 154×24"
+    },
+    {
+     "id": "2:15824",
+     "name": "Demo label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "80.7% of 339,65 51×22"
+    },
+    {
+     "id": "2:15827",
+     "name": "Editorial label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "27.4% of 26,350 177×12"
+    },
+    {
+     "id": "2:15818",
+     "name": "Device status",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "38.1% of 314,18 72×18"
+    },
+    {
+     "id": "2:15825",
+     "name": "Label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "98.2% of 348,70 33×12"
+    },
+    {
+     "id": "2:15817",
+     "name": "Time",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "29.5% of 28,18 32×18"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-1-figma.png",
+    "build": "img/travel-1-build.png",
+    "diff": "img/travel-1-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-2",
+   "node": "2:15840",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "37/37 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "18/18",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "18/18 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (36/36)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.007%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.007%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 37,
+    "pass": 37,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 36
+   },
+   "pixel": {
+    "pct": 1.007,
+    "diffPx": 3737,
+    "diff": "img/travel-2-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-2-figma.png",
+    "build": "img/travel-2-build.png",
+    "diff": "img/travel-2-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-3",
+   "node": "2:15889",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "33/33 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "14/14",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "14/14 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (24/24)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.579%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.579%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 33,
+    "pass": 33,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 24
+   },
+   "pixel": {
+    "pct": 1.579,
+    "diffPx": 5856,
+    "diff": "img/travel-3-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-3-figma.png",
+    "build": "img/travel-3-build.png",
+    "diff": "img/travel-3-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-4",
+   "node": "2:15935",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "52/52 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "24/24",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "24/24 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (40/40)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.251%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.251%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 52,
+    "pass": 52,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 40
+   },
+   "pixel": {
+    "pct": 1.251,
+    "diffPx": 4639,
+    "diff": "img/travel-4-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-4-figma.png",
+    "build": "img/travel-4-build.png",
+    "diff": "img/travel-4-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-5",
+   "node": "2:16002",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "41/41 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "21/21",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "21/21 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (40/40)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.264%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.264%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 41,
+    "pass": 41,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 40
+   },
+   "pixel": {
+    "pct": 1.264,
+    "diffPx": 4689,
+    "diff": "img/travel-5-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-5-figma.png",
+    "build": "img/travel-5-build.png",
+    "diff": "img/travel-5-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-6",
+   "node": "2:16058",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "33/33 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "17/17",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "17/17 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (24/24)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.71%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.71%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 33,
+    "pass": 33,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 24
+   },
+   "pixel": {
+    "pct": 0.71,
+    "diffPx": 2633,
+    "diff": "img/travel-6-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-6-figma.png",
+    "build": "img/travel-6-build.png",
+    "diff": "img/travel-6-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-7",
+   "node": "2:16105",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "58/58 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "29/29",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "29/29 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (54/54)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.629%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.629%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 58,
+    "pass": 58,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 54
+   },
+   "pixel": {
+    "pct": 0.629,
+    "diffPx": 2333,
+    "diff": "img/travel-7-diff.png",
+    "regions": [
+     {
+      "id": "2:16137",
+      "name": "Rate",
+      "density": 23,
+      "diffPx": 674,
+      "box": "40,421 225×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:16137",
+     "name": "Rate",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "23% of 40,421 225×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-7-figma.png",
+    "build": "img/travel-7-build.png",
+    "diff": "img/travel-7-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-8",
+   "node": "2:16178",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "44/44 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "24/24",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "24/24 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (34/34)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.465%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.465%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 44,
+    "pass": 44,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 34
+   },
+   "pixel": {
+    "pct": 1.465,
+    "diffPx": 5435,
+    "diff": "img/travel-8-diff.png",
+    "regions": [
+     {
+      "id": "2:16205",
+      "name": "Destination",
+      "density": 27.5,
+      "diffPx": 884,
+      "box": "74,321 201×16"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:16205",
+     "name": "Destination",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "27.5% of 74,321 201×16"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-8-figma.png",
+    "build": "img/travel-8-build.png",
+    "diff": "img/travel-8-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-9",
+   "node": "2:16236",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "36/36 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (32/32)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.035%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.035%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 36,
+    "pass": 36,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 32
+   },
+   "pixel": {
+    "pct": 1.035,
+    "diffPx": 3839,
+    "diff": "img/travel-9-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-9-figma.png",
+    "build": "img/travel-9-build.png",
+    "diff": "img/travel-9-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-10",
+   "node": "2:16284",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "39/39 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "21/21",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "21/21 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (24/24)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.068%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.068%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 39,
+    "pass": 39,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 24
+   },
+   "pixel": {
+    "pct": 1.068,
+    "diffPx": 3963,
+    "diff": "img/travel-10-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-10-figma.png",
+    "build": "img/travel-10-build.png",
+    "diff": "img/travel-10-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-11",
+   "node": "2:16344",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "39/39 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "23/23",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "23/23 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (24/24)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.821%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.821%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 39,
+    "pass": 39,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 24
+   },
+   "pixel": {
+    "pct": 0.821,
+    "diffPx": 3046,
+    "diff": "img/travel-11-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-11-figma.png",
+    "build": "img/travel-11-build.png",
+    "diff": "img/travel-11-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-12",
+   "node": "2:16399",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "51/51 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "26/26",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "26/26 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (36/36)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.285%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.285%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 51,
+    "pass": 51,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 36
+   },
+   "pixel": {
+    "pct": 1.285,
+    "diffPx": 4767,
+    "diff": "img/travel-12-diff.png",
+    "regions": [
+     {
+      "id": "2:16415",
+      "name": "Subtitle",
+      "density": 21.6,
+      "diffPx": 718,
+      "box": "24,199 208×16"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:16415",
+     "name": "Subtitle",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "21.6% of 24,199 208×16"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-12-figma.png",
+    "build": "img/travel-12-build.png",
+    "diff": "img/travel-12-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-13",
+   "node": "2:16472",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "42/42 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "16/16",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "16/16 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (38/38)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.749%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.749%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 42,
+    "pass": 42,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 38
+   },
+   "pixel": {
+    "pct": 0.749,
+    "diffPx": 2777,
+    "diff": "img/travel-13-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-13-figma.png",
+    "build": "img/travel-13-build.png",
+    "diff": "img/travel-13-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-14",
+   "node": "2:16526",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "36/36 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "18/18",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "18/18 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (30/30)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.147%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.147%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 36,
+    "pass": 36,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 30
+   },
+   "pixel": {
+    "pct": 1.147,
+    "diffPx": 4253,
+    "diff": "img/travel-14-diff.png",
+    "regions": [
+     {
+      "id": "2:16549",
+      "name": "Currency",
+      "density": 25.7,
+      "diffPx": 494,
+      "box": "133,440 148×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:16549",
+     "name": "Currency",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "25.7% of 133,440 148×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-14-figma.png",
+    "build": "img/travel-14-build.png",
+    "diff": "img/travel-14-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-15",
+   "node": "2:16573",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "38/38 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (30/30)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.958%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.958%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 38,
+    "pass": 38,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 30
+   },
+   "pixel": {
+    "pct": 0.958,
+    "diffPx": 3555,
+    "diff": "img/travel-15-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-15-figma.png",
+    "build": "img/travel-15-build.png",
+    "diff": "img/travel-15-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-16",
+   "node": "2:16625",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "56/56 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "32/32",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "32/32 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (42/42)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.2%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.2%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 56,
+    "pass": 56,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 42
+   },
+   "pixel": {
+    "pct": 1.2,
+    "diffPx": 4452,
+    "diff": "img/travel-16-diff.png",
+    "regions": [
+     {
+      "id": "2:16687",
+      "name": "End label",
+      "density": 23.4,
+      "diffPx": 665,
+      "box": "108,738 219×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:16687",
+     "name": "End label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "23.4% of 108,738 219×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-16-figma.png",
+    "build": "img/travel-16-build.png",
+    "diff": "img/travel-16-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-17",
+   "node": "2:16704",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "45/45 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "26/26",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "26/26 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (30/30)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.566%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.566%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "2 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 45,
+    "pass": 45,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 30
+   },
+   "pixel": {
+    "pct": 1.566,
+    "diffPx": 5810,
+    "diff": "img/travel-17-diff.png",
+    "regions": [
+     {
+      "id": "2:16731",
+      "name": "Wallet",
+      "density": 27.2,
+      "diffPx": 1003,
+      "box": "42,367 217×17"
+     },
+     {
+      "id": "2:16727",
+      "name": "Cardholder",
+      "density": 23.4,
+      "diffPx": 583,
+      "box": "42,301 192×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:16731",
+     "name": "Wallet",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "27.2% of 42,367 217×17"
+    },
+    {
+     "id": "2:16727",
+     "name": "Cardholder",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "23.4% of 42,301 192×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-17-figma.png",
+    "build": "img/travel-17-build.png",
+    "diff": "img/travel-17-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "travel-18",
+   "node": "2:16767",
+   "twin": null,
+   "h": 896,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "55/55 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "29/29",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "29/29 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 896 vs 896",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (38/38)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.987%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.987%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 55,
+    "pass": 55,
+    "passPct": 100,
+    "frameH": {
+     "expected": 896,
+     "actual": 896
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 38
+   },
+   "pixel": {
+    "pct": 1.987,
+    "diffPx": 7370,
+    "diff": "img/travel-18-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/travel-18-figma.png",
+    "build": "img/travel-18-build.png",
+    "diff": "img/travel-18-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-1",
+   "node": "2:46821",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "55/55 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "29/29",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "29/29 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (26/26)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.715%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.715%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 55,
+    "pass": 55,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 26
+   },
+   "pixel": {
+    "pct": 0.715,
+    "diffPx": 3104,
+    "diff": "img/family-1-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-1-figma.png",
+    "build": "img/family-1-build.png",
+    "diff": "img/family-1-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-2",
+   "node": "2:46909",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "39/39 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "17/17",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "17/17 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (28/28)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.537%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.537%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 39,
+    "pass": 39,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 28
+   },
+   "pixel": {
+    "pct": 1.537,
+    "diffPx": 6670,
+    "diff": "img/family-2-diff.png",
+    "regions": [
+     {
+      "id": "2:46955",
+      "name": "Security text",
+      "density": 20.4,
+      "diffPx": 390,
+      "box": "144,971 147×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:46955",
+     "name": "Security text",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "20.4% of 144,971 147×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-2-figma.png",
+    "build": "img/family-2-build.png",
+    "diff": "img/family-2-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-3",
+   "node": "2:46966",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "41/41 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "22/22",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "22/22 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (34/34)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.027%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.027%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 41,
+    "pass": 41,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 34
+   },
+   "pixel": {
+    "pct": 1.027,
+    "diffPx": 4454,
+    "diff": "img/family-3-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-3-figma.png",
+    "build": "img/family-3-build.png",
+    "diff": "img/family-3-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-4",
+   "node": "2:47024",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "40/40 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "18/18",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "18/18 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (26/26)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.548%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.548%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 40,
+    "pass": 40,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 26
+   },
+   "pixel": {
+    "pct": 0.548,
+    "diffPx": 2377,
+    "diff": "img/family-4-diff.png",
+    "regions": [
+     {
+      "id": "2:47074",
+      "name": "Security text",
+      "density": 20.4,
+      "diffPx": 390,
+      "box": "144,971 147×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:47074",
+     "name": "Security text",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "20.4% of 144,971 147×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-4-figma.png",
+    "build": "img/family-4-build.png",
+    "diff": "img/family-4-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-5",
+   "node": "2:47085",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "48/48 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "22/22",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "22/22 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (36/36)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.547%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1.547%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 48,
+    "pass": 48,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 36
+   },
+   "pixel": {
+    "pct": 1.547,
+    "diffPx": 6714,
+    "diff": "img/family-5-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-5-figma.png",
+    "build": "img/family-5-build.png",
+    "diff": "img/family-5-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-6",
+   "node": "2:47161",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "37/37 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "15/15",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "15/15 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (38/38)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.732%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.732%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 37,
+    "pass": 37,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 38
+   },
+   "pixel": {
+    "pct": 0.732,
+    "diffPx": 3177,
+    "diff": "img/family-6-diff.png",
+    "regions": [
+     {
+      "id": "2:47195",
+      "name": "Secure link",
+      "density": 22.4,
+      "diffPx": 527,
+      "box": "112,649 181×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:47195",
+     "name": "Secure link",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "22.4% of 112,649 181×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-6-figma.png",
+    "build": "img/family-6-build.png",
+    "diff": "img/family-6-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-7",
+   "node": "2:47212",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "40/40 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "17/17",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "17/17 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (24/24)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.713%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.713%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 40,
+    "pass": 40,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 24
+   },
+   "pixel": {
+    "pct": 0.713,
+    "diffPx": 3094,
+    "diff": "img/family-7-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-7-figma.png",
+    "build": "img/family-7-build.png",
+    "diff": "img/family-7-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-8",
+   "node": "2:47440",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "36/36 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "14/14",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "14/14 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (38/38)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.746%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.746%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 36,
+    "pass": 36,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 38
+   },
+   "pixel": {
+    "pct": 0.746,
+    "diffPx": 3238,
+    "diff": "img/family-8-diff.png",
+    "regions": [
+     {
+      "id": "2:47474",
+      "name": "Secure link",
+      "density": 22.4,
+      "diffPx": 527,
+      "box": "56,649 181×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:47474",
+     "name": "Secure link",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "22.4% of 56,649 181×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-8-figma.png",
+    "build": "img/family-8-build.png",
+    "diff": "img/family-8-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-9",
+   "node": "2:47489",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "40/40 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "16/16",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "16/16 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (28/28)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.077%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.077%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 40,
+    "pass": 40,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 28
+   },
+   "pixel": {
+    "pct": 1.077,
+    "diffPx": 4673,
+    "diff": "img/family-9-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-9-figma.png",
+    "build": "img/family-9-build.png",
+    "diff": "img/family-9-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-10",
+   "node": "2:47552",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "45/45 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "23/23",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "23/23 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (30/30)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.955%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.955%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 45,
+    "pass": 45,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 30
+   },
+   "pixel": {
+    "pct": 0.955,
+    "diffPx": 4143,
+    "diff": "img/family-10-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-10-figma.png",
+    "build": "img/family-10-build.png",
+    "diff": "img/family-10-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-11",
+   "node": "2:47619",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "52/52 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "22/22",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "22/22 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (52/52)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.65%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.65%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 52,
+    "pass": 52,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 52
+   },
+   "pixel": {
+    "pct": 0.65,
+    "diffPx": 2821,
+    "diff": "img/family-11-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-11-figma.png",
+    "build": "img/family-11-build.png",
+    "diff": "img/family-11-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-12",
+   "node": "2:47699",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "50/50 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "25/25",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "25/25 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (32/32)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "1.007%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "1.007%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 50,
+    "pass": 50,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 32
+   },
+   "pixel": {
+    "pct": 1.007,
+    "diffPx": 4369,
+    "diff": "img/family-12-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-12-figma.png",
+    "build": "img/family-12-build.png",
+    "diff": "img/family-12-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-13",
+   "node": "2:47774",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "39/39 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "15/15",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "15/15 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (32/32)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.736%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.736%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 39,
+    "pass": 39,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 32
+   },
+   "pixel": {
+    "pct": 0.736,
+    "diffPx": 3192,
+    "diff": "img/family-13-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-13-figma.png",
+    "build": "img/family-13-build.png",
+    "diff": "img/family-13-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-14",
+   "node": "2:47834",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "44/44 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "16/16",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "16/16 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (24/24)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "2.278%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "WARN",
+     "hard": false,
+     "value": "2.278%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 44,
+    "pass": 44,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 24
+   },
+   "pixel": {
+    "pct": 2.278,
+    "diffPx": 9883,
+    "diff": "img/family-14-diff.png",
+    "regions": [
+     {
+      "id": "2:47895",
+      "name": "Security text",
+      "density": 20.4,
+      "diffPx": 390,
+      "box": "144,929 147×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:47895",
+     "name": "Security text",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "20.4% of 144,929 147×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-14-figma.png",
+    "build": "img/family-14-build.png",
+    "diff": "img/family-14-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-15",
+   "node": "2:47911",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "48/48 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "22/22",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "22/22 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (30/30)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.788%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.788%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 48,
+    "pass": 48,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 30
+   },
+   "pixel": {
+    "pct": 0.788,
+    "diffPx": 3417,
+    "diff": "img/family-15-diff.png",
+    "regions": [
+     {
+      "id": "2:47968",
+      "name": "Security text",
+      "density": 20.4,
+      "diffPx": 390,
+      "box": "144,929 147×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:47968",
+     "name": "Security text",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "20.4% of 144,929 147×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-15-figma.png",
+    "build": "img/family-15-build.png",
+    "diff": "img/family-15-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-16",
+   "node": "2:47278",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "20/20 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "8/8",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "8/8 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (20/20)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.942%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.942%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 20,
+    "pass": 20,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 20
+   },
+   "pixel": {
+    "pct": 0.942,
+    "diffPx": 4088,
+    "diff": "img/family-16-diff.png",
+    "regions": [
+     {
+      "id": "2:48680",
+      "name": "lock-keyhole",
+      "density": 29.9,
+      "diffPx": 172,
+      "box": "195,92 24×24"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "2:48680",
+     "name": "lock-keyhole",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "29.9% of 195,92 24×24"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-16-figma.png",
+    "build": "img/family-16-build.png",
+    "diff": "img/family-16-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-17",
+   "node": "2:47311",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "39/39 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (28/28)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.66%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.66%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 39,
+    "pass": 39,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 28
+   },
+   "pixel": {
+    "pct": 0.66,
+    "diffPx": 2865,
+    "diff": "img/family-17-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-17-figma.png",
+    "build": "img/family-17-build.png",
+    "diff": "img/family-17-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "family-18",
+   "node": "2:47367",
+   "twin": null,
+   "h": 1048,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "40/40 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "19/19 Figma font",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 1048 vs 1048",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (24/24)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.689%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.689%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 40,
+    "pass": 40,
+    "passPct": 100,
+    "frameH": {
+     "expected": 1048,
+     "actual": 1048
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 24
+   },
+   "pixel": {
+    "pct": 0.689,
+    "diffPx": 2989,
+    "diff": "img/family-18-diff.png",
+    "regions": []
+   },
+   "offenders": [],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/family-18-figma.png",
+    "build": "img/family-18-build.png",
+    "diff": "img/family-18-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  }
+ ],
  "flow": {
   "steps": [
    {
@@ -2093,7 +11724,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1508 ms"
+    "detail": "1506 ms"
    },
    {
     "run": "home-send",
@@ -2235,7 +11866,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5028 ms"
+    "detail": "5005 ms"
    },
    {
     "run": "home-send",
@@ -4522,7 +14153,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4029 ms"
+    "detail": "4016 ms"
    },
    {
     "run": "home-collect",
@@ -6661,7 +16292,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4028 ms"
+    "detail": "4020 ms"
    },
    {
     "run": "home-family",
@@ -8548,7 +18179,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4014 ms"
+    "detail": "4001 ms"
    },
    {
     "run": "home-travel",
@@ -9802,7 +19433,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1533 ms"
+    "detail": "1507 ms"
    },
    {
     "run": "zone-send",
@@ -9821,7 +19452,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5000 ms"
+    "detail": "5027 ms"
    },
    {
     "run": "zone-send",
@@ -10451,7 +20082,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4017 ms"
+    "detail": "4002 ms"
    },
    {
     "run": "zone-collect",
@@ -11463,7 +21094,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4029 ms"
+    "detail": "3999 ms"
    },
    {
     "run": "zone-travel",
@@ -11838,7 +21469,7 @@
     "step": "mid",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (mid-journey)",
     "ok": true,
-    "detail": "6431 ms"
+    "detail": "6504 ms"
    },
    {
     "run": "idle-done",
@@ -12092,7 +21723,7 @@
     "step": "done",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (on Done)",
     "ok": true,
-    "detail": "6558 ms"
+    "detail": "6551 ms"
    },
    {
     "run": "fx-low",

@@ -40,9 +40,11 @@ four `scripts/figma-fig` commands above and `node scripts/gen/build-screens.mjs`
 
 | File | Source of `rest/<key>.json` |
 |---|---|
-| AFT F&F `h8rm8…`, AFT travel `r2SAr…` | `.fig` (2026-11-10) |
-| SEND `zSn01…` | REST pull 2026-11-10 (complete) |
-| VXBS `MPq4…` | REST pull 2026-10-29 + `scripts/gen/patch-vxbs-2026-11-09.mjs` (copy edits, 731/731 texts checked). Replace with its `.fig` when available. |
+| All four files | `.fig` (2026-11-10), converted by `fig2rest.mjs` |
+
+Checks: Framelink on the converted REST equals the API Framelink pull for every node (SEND 1678, VXBS 1844, F&F 1527,
+travel 1013). SEND node boxes match its official REST within 0.002 px. VXBS replaces the 2026-10-29 REST + copy patch,
+which had missed 37 layout shifts of the 2026-11-09 edit (shorter "VISA" header and "Concept demo" footer).
 
 - Travel-app SVGs, the SEND `22:134` icons and the travel photos (`assets/<key>/fills/`) were exported by the API on
   2026-11-10; everything else in `assets/` for the AFT files comes from the `.fig`.

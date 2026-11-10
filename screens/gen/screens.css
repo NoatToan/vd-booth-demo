@@ -295,7 +295,7 @@
 .g-xtqsul{flex-shrink:0;width:26px;height:18px;display:block;color:#17233d}
 .g-1q35hik{flex-shrink:0;display:flex;flex-direction:row;align-items:flex-start;gap:5px;overflow:hidden}
 .g-13injls{flex-shrink:0;align-self:stretch;height:54px;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:8px 28px 0px 28px;background-color:#f5f7fb;overflow:hidden}
-.g-4zow63{flex-shrink:0;width:109px;font-size:23px;font-weight:400;line-height:32px;color:#1434cb;white-space:pre}
+.g-v9r50q{flex-shrink:0;width:52px;font-size:23px;font-weight:400;line-height:32px;color:#1434cb;white-space:pre}
 .g-1sglhzc{flex-shrink:0;width:84px;font-size:10px;font-weight:600;line-height:14px;color:#65718a;white-space:pre}
 .g-uxl3b4{flex-shrink:0;width:21px;height:21px;display:block;color:#17233d}
 .g-1o20s28{flex-shrink:0;align-self:stretch;height:54px;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:0px 22px 0px 22px;background-color:#f5f7fb;overflow:hidden}
@@ -311,7 +311,7 @@
 .g-1dsm70k{flex-shrink:0;width:18px;height:18px;display:block;color:#c8d3f0}
 .g-1xqvx8b{flex-shrink:0;width:205px;font-size:33px;font-weight:600;line-height:46px;color:#ffffff;white-space:pre}
 .g-1qu25lt{flex-shrink:0;width:28px;font-size:13px;font-weight:400;line-height:18px;color:#c8d3f0;white-space:pre}
-.g-g0no1p{flex-shrink:0;width:120px;font-size:11px;font-weight:400;line-height:15px;color:#c8d3f0;white-space:pre}
+.g-smyufo{flex-shrink:0;width:123px;font-size:11px;font-weight:400;line-height:15px;color:#c8d3f0;white-space:pre}
 .g-1pl0yoj{flex-shrink:0;width:5px;height:5px;background-color:#bfd7c7;border-radius:100px}
 .g-6e9so1{flex-shrink:0;width:77px;font-size:10px;font-weight:400;line-height:14px;color:#d9e9df;white-space:pre}
 .g-n1oy48{flex-shrink:0;width:111px;font-size:15px;font-weight:600;line-height:21px;color:#ffffff;white-space:pre}
@@ -677,7 +677,7 @@
 .g-1hkf4h0{flex-shrink:0;flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:7px;overflow:hidden}
 .g-1v0t92h{flex-shrink:0;align-self:stretch;display:flex;flex-direction:row;align-items:center;gap:16px;overflow:hidden}
 .g-c9m89n{flex-shrink:0;align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:16px 16px 16px 16px;background-color:#ffffff;border-radius:16px;box-shadow:0px 4px 16px 0px rgba(21,43,92,0.0314);overflow:hidden}
-.g-2aw7eh{flex-shrink:0;width:132px;font-size:12px;font-weight:600;line-height:17px;color:#17233d;white-space:pre}
+.g-1lyjito{flex-shrink:0;width:135px;font-size:12px;font-weight:600;line-height:17px;color:#17233d;white-space:pre}
 .g-pl9oik{flex-shrink:0;width:169px;font-size:11px;font-weight:400;line-height:15px;color:#65718a;white-space:pre}
 .g-ctjnq{flex-shrink:0;align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:14px 14px 14px 14px;background-color:#ffffff;border-radius:16px;box-shadow:0px 4px 16px 0px rgba(21,43,92,0.0314);overflow:hidden}
 .g-12h6i9m{flex-shrink:0;width:100px;font-size:12px;font-weight:400;line-height:17px;color:#c8d3f0;white-space:pre}
@@ -701,7 +701,7 @@
 .g-9pho91{flex-shrink:0;width:107px;font-size:14px;font-weight:600;line-height:20px;color:#17233d;white-space:pre}
 .g-1m5ha4q{flex-shrink:0;width:133px;font-size:14px;font-weight:600;line-height:20px;color:#17233d;white-space:pre}
 .g-1h3s2pb{flex-shrink:0;width:99px;font-size:14px;font-weight:600;line-height:20px;color:#17233d;white-space:pre}
-.g-bcn1jz{flex-shrink:0;width:24px;height:24px;background:conic-gradient(from 90deg,transparent 0deg 10deg,#1434cb 10deg 285deg,transparent 285deg);-webkit-mask:radial-gradient(closest-side,transparent 78%,#000 78%);mask:radial-gradient(closest-side,transparent 78%,#000 78%);border-radius:50%}
+.g-ftegki{flex-shrink:0;width:24px;height:24px;background-color:#1434cb;border-radius:50%}
 .g-640jfi{flex-shrink:0;width:2px;height:41px;background-color:#e5eaf2}
 .g-il15xq{flex-shrink:0;width:75px;font-size:14px;font-weight:600;line-height:20px;color:#1434cb;white-space:pre}
 .g-dvr652{flex-shrink:0;width:6px;height:6px;background-color:#b4bece;border-radius:50%}
@@ -751,6 +751,7 @@
 .g-usgz5o{flex-shrink:0;width:58px;font-size:13px;font-weight:400;line-height:18px;color:#65718a;white-space:pre}
 .g-12wcab8{flex-shrink:0;width:101px;font-size:13px;font-weight:500;line-height:18px;color:#17233d;white-space:pre}
 .g-1ylnzrq{flex-shrink:0;width:81px;font-size:13px;font-weight:400;line-height:18px;color:#65718a;white-space:pre}
+.g-1upu9bd{flex-shrink:0;width:146px;font-size:13px;font-weight:500;line-height:18px;color:#17233d;white-space:pre}
 .g-1tk6tuw{flex-shrink:0;width:100px;font-size:13px;font-weight:400;line-height:18px;color:#65718a;white-space:pre}
 .g-e2b7ja{flex-shrink:0;width:143px;font-size:13px;font-weight:500;line-height:18px;color:#17233d;white-space:pre}
 .g-rm2iy{flex-shrink:0;width:63px;font-size:13px;font-weight:400;line-height:18px;color:#65718a;white-space:pre}
@@ -761,7 +762,7 @@
 .g-1bf8sxm{flex-shrink:0;width:124px;font-size:14px;font-weight:600;line-height:20px;color:#17233d;white-space:pre}
 .g-1rf2oeh{position:absolute;left:94px;top:16px;width:170px;height:170px;background-color:#edf2ff;border-radius:50%}
 .g-sxjcqt{position:absolute;left:91px;top:164px;width:176px;height:16px;background-color:rgba(23,52,203,0.0471);border-radius:50%}
-.g-znq8vy{position:absolute;left:7.0001px;top:7px;width:119px;height:55px;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.3333)}
+.g-1i4b143{position:absolute;left:7px;top:7px;width:119px;height:55px;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.3333)}
 .g-rrf6lf{flex-shrink:0;width:17px;font-size:26px;font-weight:400;line-height:36px;color:#ffffff;white-space:pre}
 .g-16gnxc1{position:absolute;left:18px;top:28px;width:9px;height:9px;background-color:rgba(255,255,255,0.4);border-radius:50%}
 .g-14x47qh{position:absolute;left:118.2198px;top:7.42px;width:133px;height:69px;transform:rotate(-12deg);display:flex;flex-direction:row;justify-content:center;align-items:center;background-color:#1434cb;border-radius:12px;box-shadow:0px 4px 16px 0px rgba(21,43,92,0.0314);overflow:hidden}
@@ -791,7 +792,7 @@
 .g-wxt4rq{flex-shrink:0;align-self:stretch;height:52px;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:8px;background-color:#ffffff;border-radius:16px;box-shadow:inset 0 0 0 1px #e5eaf2;overflow:hidden}
 .g-10ub2jp{flex-shrink:0;width:159px;font-size:13px;font-weight:600;line-height:18px;color:#1434cb;white-space:pre}
 .g-1bo3gpm{flex-shrink:0;align-self:stretch;height:42px;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:6px;overflow:hidden}
-.g-1md9h3d{flex-shrink:0;width:105px;font-size:24px;font-weight:700;font-style:italic;line-height:29px;color:#1434cb;white-space:pre}
+.g-1faoate{flex-shrink:0;width:58px;font-size:24px;font-weight:700;font-style:italic;line-height:29px;color:#1434cb;white-space:pre}
 .g-ffke5z{flex-shrink:0;width:76px;font-size:11px;font-weight:600;line-height:15px;color:#65718a;white-space:pre}
 .g-1u9d82b{flex-shrink:0;display:flex;flex-direction:row;align-items:flex-start;padding:5px 9px 5px 9px;background-color:#f5f7fb;border-radius:100px;overflow:hidden}
 .g-16fq0j4{flex-shrink:0;width:20px;height:20px;display:block;color:#17233d}
@@ -835,7 +836,7 @@
 .g-5yl187{flex-shrink:0;width:59px;font-size:12px;font-weight:600;line-height:17px;color:#17233d;white-space:pre}
 .g-1jjiuzp{flex-shrink:0;align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:12px 12px 12px 12px;background-color:#ffffff;border-radius:16px;overflow:hidden}
 .g-1wm1fl9{flex-shrink:0;align-self:stretch;flex:1 1 0;min-height:0;display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:10px 22px 12px 22px;overflow:hidden}
-.g-19jiehv{flex-shrink:0;width:190px;font-size:9px;font-weight:400;line-height:13px;color:#65718a;white-space:pre}
+.g-ifde4a{flex-shrink:0;width:63px;font-size:9px;font-weight:400;line-height:13px;color:#65718a;white-space:pre}
 .g-1mqujmp{flex-shrink:0;width:228px;font-size:9px;font-weight:400;line-height:13px;color:#65718a;white-space:pre}
 .g-1mfc4qk{flex-shrink:0;align-self:stretch;height:36px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1px;overflow:hidden}
 .g-w7abr4{flex-shrink:0;width:43px;font-size:10px;font-weight:600;line-height:14px;color:#1434cb;white-space:pre}
@@ -944,7 +945,7 @@
 .g-m014gp{flex-shrink:0;width:42px;font-size:11px;font-weight:600;line-height:15px;color:#117653;white-space:pre}
 .g-l1uldn{flex-shrink:0;width:20px;height:20px;display:block;color:#117653}
 .g-1cba6cv{flex-shrink:0;width:36px;height:36px;display:flex;flex-direction:row;justify-content:center;align-items:center;background-color:#eaf7f1;border-radius:10px;overflow:hidden}
-.g-1t0rikh{flex-shrink:0;width:154px;font-size:14px;font-weight:600;line-height:20px;color:#17233d;white-space:pre}
+.g-4k13r9{flex-shrink:0;width:158px;font-size:14px;font-weight:600;line-height:20px;color:#17233d;white-space:pre}
 .g-h2ibqy{flex-shrink:0;width:163px;font-size:11px;font-weight:400;line-height:15px;color:#65718a;white-space:pre}
 .g-1yn7k10{flex-shrink:0;align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:14px 14px 14px 14px;background-color:#ffffff;border-radius:16px;overflow:hidden}
 .g-1ifuecb{flex-shrink:0;width:99px;font-size:12px;font-weight:400;line-height:17px;color:#65718a;white-space:pre}
@@ -983,7 +984,7 @@
 .g-2v8omi{flex-shrink:0;width:139px;font-size:12px;font-weight:400;line-height:17px;color:#c8d3f0;white-space:pre}
 .g-1fnkfgs{flex-shrink:0;width:60px;font-size:11px;font-weight:600;line-height:15px;color:#956600;white-space:pre}
 .g-1ym37y3{flex-shrink:0;width:182px;font-size:29px;font-weight:600;line-height:41px;color:#ffffff;white-space:pre}
-.g-46ff5l{flex-shrink:0;width:233px;font-size:12px;font-weight:400;line-height:17px;color:#c8d3f0;white-space:pre}
+.g-nn9ive{flex-shrink:0;width:236px;font-size:12px;font-weight:400;line-height:17px;color:#c8d3f0;white-space:pre}
 .g-7gxjlo{flex-shrink:0;width:257px;font-size:10px;font-weight:400;line-height:14px;color:#c8d3f0;white-space:pre}
 .g-1njt7e5{flex-shrink:0;align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:16px 16px 16px 16px;background-color:#12224a;border-radius:16px;overflow:hidden}
 .g-170shtl{flex-shrink:0;width:109px;font-size:15px;font-weight:600;line-height:21px;color:#17233d;white-space:pre}
