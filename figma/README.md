@@ -10,6 +10,28 @@ Raw design data pulled with the Framelink MCP (`figma-developer-mcp`, `get_figma
 | `h8rm8AicgWcMQ2FpMe0bDK` | [AFT me-to-you](https://www.figma.com/design/h8rm8AicgWcMQ2FpMe0bDK/Untitled?node-id=0-1) | RECEIVE (not built yet) | One storyboard frame `2:46793` (NovaBank, 414 wide): receiver lane 01–07 + 16–18, sender lane 08–15, recovery states A–E. Each step is a "Storyboard step" node; the PNGs include the device frame and step label. |
 | `r2SArlDBWw4YrxIR7xcSVb` | [AFT me-to-me](https://www.figma.com/design/r2SArlDBWw4YrxIR7xcSVb/Untitled?node-id=0-1) | RECEIVE (not built yet) | 18 frames, 414×896 (XinChaoVietnam travel wallet): Welcome → Create account → Verify → Wallet created → Add Visa card → Card linked → Amount → Review → Issuer auth → Funding in progress → Funding success → Wallet home → Scan to pay → Review café payment → Payment success → Wallet activity → Funding detail → My Vietnam trip |
 
+## Single source of truth
+
+Everything the booth shows inside the phone comes from these files: copy, amounts, colours, sizes, icons and
+photos. Code never restates a design value; when Figma changes, pull again and regenerate.
+
+## The two AFT files come from .fig (Save local copy)
+
+`fig/<key>.fig` are "Save local copy" exports of Drafts duplicates (node ids unchanged). `scripts/figma-fig/` turns
+them into the same files an API pull gives, with no token or quota:
+
+```bash
+node scripts/figma-fig/fig2rest.mjs <key>            # fig/<key>.fig -> rest/<key>.json + fig/<key>.geometry.json
+node scripts/figma-fig/framelink-offline.mjs <key>   # Framelink's own get_figma_data on rest/<key>.json -> <key>.json
+node scripts/figma-fig/fig2svg.mjs <key>             # vector geometry -> assets/<key>/<name>.svg
+node scripts/figma-fig/compare.mjs a.json b.json     # node-by-node Framelink diff
+```
+
+Checks (2026-11-10): Framelink run on the converted REST equals the API Framelink pull node for node (1013/1013
+travel, 1527/1527 F&F). SVGs rebuilt from geometry match the 34 API-exported travel SVGs within 0.38 % of ink pixels
+at 8x, colours equal. The 66 F&F SVGs are geometry exports (53 Framelink IMAGE-SVG names + 13 parts the generator
+draws inside the two illustrations). Image fills: `assets/<key>/fills/` (travel only; F&F has none).
+
 ## 2026-11-10 pull: what is and is not from Figma REST
 
 - The REST API (Tier 1) gives a View/Collab seat about 20 requests a month on these enterprise-plan files. Both tokens

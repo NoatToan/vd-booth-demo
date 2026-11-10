@@ -1,0 +1,14 @@
+{
+  "name": "vd-booth-figma-fig",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.5.0",
+  "scripts": {
+    "fig2rest": "node fig2rest.mjs",
+    "framelink": "node framelink-offline.mjs"
+  },
+  "dependencies": {
+    "figma-developer-mcp": "0.13.2",
+    "kiwi-schema": "^0.5.0"
+  }
+}
