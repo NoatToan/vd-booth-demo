@@ -229,15 +229,15 @@ function armRing(scr, s) {
   }, 4000);
 }
 
-/* touch feedback on anything that looks tappable */
+/* touch feedback on the phone's actionable elements */
 function pressTarget(t) {
   const fr = t.closest && t.closest('.fr');
   if (!fr) return null;
+  // only elements wired to an action (hotspot, back) give touch feedback: a button that looks tappable but does
+  // nothing in the demo stays still, so visitors are not led to think it worked
   for (let n = t; n && n !== fr; n = n.parentElement) {
     if (n.dataset.role === 'scroll') break;
     if (n.hasAttribute('data-a')) return n;
-    const cs = getComputedStyle(n);
-    if (cs.borderTopLeftRadius !== '0px' && cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && n.parentElement !== fr) return n;
   }
   return null;
 }
@@ -307,8 +307,8 @@ function draw() {
     html = brand(z) + `<div class="flow">
       <div class="left"><div class="zone-pill"><span class="ic">${ICON[z]}</span>${m.name}<em>${m.title}</em></div>
         <h1 class="hero">${m.hero}</h1><div class="prod">${m.sub}</div>
-        <div id="rail" class="steps"></div>
-        <button id="kiosk-next" class="kbtn" data-a="next" hidden>Next <span>→</span></button>
+        <div id="rail" class="steps"></div></div>
+      <div class="knav s${(SIZE[z] || '402x874').slice(0, 3)}"><button id="kiosk-next" class="kbtn" data-a="next" hidden>Next <span>→</span></button>
         <button id="kiosk-finish" class="kbtn" data-a="finish" hidden>Finish <span>✓</span></button></div>
       <div class="route"><span>Live journey</span><b>${m.route}</b></div>
       <div id="lane" class="lane" hidden></div>

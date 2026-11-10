@@ -39,7 +39,11 @@ function paintAttrs(paints, n, dx, dy, defs) {
   const q = p[0], po = q.opacity ?? 1;
   if (q.type === 'SOLID') { const a = (q.color.a ?? 1) * po; return `fill="${hex(q.color)}"${a < 1 ? ` fill-opacity="${r4(a)}"` : ''}`; }
   if (q.type === 'GRADIENT_LINEAR') {
-    const { width: w, height: h } = n.absoluteBoundingBox, [a, b] = q.gradientHandlePositions, id = `g${n.id.replace(/\W/g, '_')}_${defs.length}`;
+    // colour lines run parallel to p0→p2, so the SVG gradient vector is the pixel-space normal of p0→p2 (see node.mjs)
+    const { width: w, height: h } = n.absoluteBoundingBox, [a0, b0, c0] = q.gradientHandlePositions, id = `g${n.id.replace(/\W/g, '_')}_${defs.length}`;
+    const A = [a0.x * w, a0.y * h], B = [b0.x * w, b0.y * h], C = [c0.x * w, c0.y * h], dv = [C[0] - A[0], C[1] - A[1]], dl = Math.hypot(...dv) || 1;
+    const nv = [-dv[1] / dl, dv[0] / dl], sp = (B[0] - A[0]) * nv[0] + (B[1] - A[1]) * nv[1];
+    const a = { x: A[0] / w, y: A[1] / h }, b = { x: (A[0] + nv[0] * sp) / w, y: (A[1] + nv[1] * sp) / h };
     const stops = q.gradientStops.map(s => `<stop offset="${r4(s.position)}" stop-color="${hex(s.color)}"${(s.color.a ?? 1) * po < 1 ? ` stop-opacity="${r4((s.color.a ?? 1) * po)}"` : ''}/>`).join('');
     defs.push(`<linearGradient id="${id}" x1="${r4(dx + a.x * w)}" y1="${r4(dy + a.y * h)}" x2="${r4(dx + b.x * w)}" y2="${r4(dy + b.y * h)}" gradientUnits="userSpaceOnUse">${stops}</linearGradient>`);
     return `fill="url(#${id})"`;

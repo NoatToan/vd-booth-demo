@@ -1,0 +1,15 @@
+{
+  "name": "vd-booth-e2e",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.5.0",
+  "scripts": {
+    "test": "playwright test",
+    "report": "open compare/index.html"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "pixelmatch": "^8.0.0",
+    "pngjs": "^7.0.0"
+  }
+}

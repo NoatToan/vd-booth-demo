@@ -121,16 +121,20 @@ button{font-family:inherit;cursor:pointer}
 .steps.dense{display:grid;grid-auto-flow:column;grid-template-rows:repeat(9,auto);grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;row-gap:6px}
 .steps.dense .step{font-size:18px;gap:14px;white-space:nowrap}
 .steps.dense .step .n{width:32px;height:32px;font-size:14px;flex-shrink:0}
-.kbtn{margin-top:34px;height:76px;padding:0 44px;border-radius:99px;border:0;background:#fff;color:var(--ink);font-weight:800;font-size:28px;display:inline-flex;align-items:center;gap:16px;position:relative;
+.kbtn{height:76px;padding:0 44px;border-radius:99px;border:0;background:#fff;color:var(--ink);font-weight:800;font-size:28px;display:inline-flex;align-items:center;gap:16px;position:relative;
   box-shadow:0 12px 40px rgba(0,0,0,.35)}
 .kbtn span{color:var(--blue);font-size:30px}
 .kbtn:active{transform:scale(.97)}
 .kbtn.pulse::before,.kbtn.pulse::after{content:'';position:absolute;inset:-3px;border-radius:99px;border:3px solid var(--z);animation:ripple 2s infinite;pointer-events:none}
 .kbtn.pulse::after{animation-delay:1s}
+/* kiosk Next / Finish: outside the phone, at its bottom-right edge (phone right = 1010 + (pw + 28) × 1.08) */
+.knav{position:absolute;bottom:56px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;z-index:5}
+.knav.s402{left:1500px}
+.knav.s414{left:1513px}
 .nav{position:absolute;left:120px;bottom:64px;display:flex;gap:16px}
 .ghost{height:64px;padding:0 32px;border-radius:99px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;font-weight:600;font-size:22px}
 .ghost:active{background:rgba(255,255,255,.18)}
-.route{position:absolute;right:64px;bottom:64px;max-width:330px;padding:20px 26px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);text-align:right}
+.route{position:absolute;right:64px;top:150px;max-width:330px;padding:20px 26px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);text-align:right}
 .route span{display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:15px;letter-spacing:3px;text-transform:uppercase;color:var(--z);font-weight:800}
 .route span::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--z);animation:blink 1.4s infinite}
 .route b{display:block;font-size:22px;margin-top:6px;line-height:1.3}

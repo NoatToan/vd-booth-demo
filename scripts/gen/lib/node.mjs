@@ -14,18 +14,23 @@ function unrotate(W, H, rad) {
 
 const st0 = n => n.style || {};
 
-/** CSS linear-gradient for a Figma GRADIENT_LINEAR paint on a w×h box (handles are in 0..1 box space). */
+/** CSS linear-gradient for a Figma GRADIENT_LINEAR paint on a w×h box (handles are in 0..1 box space).
+ *  Figma's colour lines run parallel to handle p0→p2 (the gradient's own y axis), so on a non-square box the CSS
+ *  direction is the pixel-space normal of p0→p2, not p0→p1 (family-16 lock screen: handles (0,0)→(1,1), p2 (1,0)
+ *  give a top-to-bottom gradient, same colour at the left and right edges). */
 function linearGradient(p, w, h) {
-  const [a, b] = p.gradientHandlePositions;
-  const ax = a.x * w, ay = a.y * h, bx = b.x * w, by = b.y * h;
-  const dx = bx - ax, dy = by - ay, len = Math.hypot(dx, dy) || 1;
-  const ux = dx / len, uy = dy / len;
-  // CSS: angle clockwise from "to top"; its line passes the centre and spans |w·sin| + |h·cos|
-  const ang = Math.atan2(ux, -uy), L = Math.abs(w * Math.sin(ang)) + Math.abs(h * Math.cos(ang));
-  const at = t => { const x = ax + dx * t - w / 2, y = ay + dy * t - h / 2; return ((x * ux + y * uy) / L + 0.5) * 100; };
+  const [a, b, c] = p.gradientHandlePositions;
+  const A = [a.x * w, a.y * h], B = [b.x * w, b.y * h], C = [c.x * w, c.y * h];
+  const d = [C[0] - A[0], C[1] - A[1]], dl = Math.hypot(...d) || 1;
+  let n = [-d[1] / dl, d[0] / dl];
+  const span = (B[0] - A[0]) * n[0] + (B[1] - A[1]) * n[1];
+  if (span < 0) n = [-n[0], -n[1]];
+  const ang = Math.atan2(n[0], -n[1]), L = Math.abs(w * Math.sin(ang)) + Math.abs(h * Math.cos(ang));
+  const at = t => (((A[0] - w / 2) * n[0] + (A[1] - h / 2) * n[1] + t * Math.abs(span)) / L + 0.5) * 100;
   const stops = p.gradientStops.map(s => `${rgba(s.color, p.opacity ?? 1)} ${+at(s.position).toFixed(3)}%`);
   return `linear-gradient(${+(ang * 180 / Math.PI).toFixed(3)}deg,${stops.join(',')})`;
 }
+
 
 export class Translator {
   /**
