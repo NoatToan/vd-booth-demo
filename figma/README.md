@@ -32,20 +32,21 @@ travel, 1527/1527 F&F). SVGs rebuilt from geometry match the 34 API-exported tra
 at 8x, colours equal. The 66 F&F SVGs are geometry exports (53 Framelink IMAGE-SVG names + 13 parts the generator
 draws inside the two illustrations). Image fills: `assets/<key>/fills/` (travel only; F&F has none).
 
-## 2026-11-10 pull: what is and is not from Figma REST
+## Workflow: .fig + Framelink local (no Figma API)
 
-- The REST API (Tier 1) gives a View/Collab seat about 20 requests a month on these enterprise-plan files. Both tokens
-  ran out on 2026-11-10 (`retry-after` 46 h and 111 h). Framelink JSON and PNG renders of all four files came through.
-- `rest/zSn01lZ2vy3a2kM9EDo6mD.json` is a fresh REST pull.
-- `rest/MPq4C2qjwzVdD2gYloQuUu.json` is the 2026-10-29 REST pull with the 2026-11-09 copy edits applied by
-  `scripts/gen/patch-vxbs-2026-11-09.mjs` (Vietcombank → Vietnam Bank, "VXBS" removed). The script checks all 731 text
-  nodes against the Framelink pull; the verify harness passes P1 against the new renders. Replace it with a real REST
-  pull when quota allows.
-- `GET /v1/images` (SVG/PNG export) and `GET /v1/files/:key/images` (image fills) kept answering after `GET file` was
-  limited, so the travel-app SVGs, the SEND `22:134` icons and the travel-app photos (`assets/<key>/fills/`) are real exports.
-- What is still missing is pulled by `scripts/figma-pull/pull.mjs` (state in `pull-state.json`), retried hourly by a
-  launchd agent (`scripts/figma-pull/install-agent.sh`, log `~/Library/Logs/vd-booth-figma-pull.log`) that removes itself when done.
-- No file has prototype links; step order is still read from the canvas and the copy.
+The Figma REST API is not used any more (a View/Collab seat on these enterprise files gets ~20 requests a month).
+To refresh a design: Duplicate to Drafts → File → Save local copy → put the file at `fig/<key>.fig`, then run the
+four `scripts/figma-fig` commands above and `node scripts/gen/build-screens.mjs` + the verify harness.
+
+| File | Source of `rest/<key>.json` |
+|---|---|
+| AFT F&F `h8rm8…`, AFT travel `r2SAr…` | `.fig` (2026-11-10) |
+| SEND `zSn01…` | REST pull 2026-11-10 (complete) |
+| VXBS `MPq4…` | REST pull 2026-10-29 + `scripts/gen/patch-vxbs-2026-11-09.mjs` (copy edits, 731/731 texts checked). Replace with its `.fig` when available. |
+
+- Travel-app SVGs, the SEND `22:134` icons and the travel photos (`assets/<key>/fills/`) were exported by the API on
+  2026-11-10; everything else in `assets/` for the AFT files comes from the `.fig`.
+- No file has prototype links; step order is read from the canvas and the copy.
 
 ## Layout
 
