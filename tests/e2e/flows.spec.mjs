@@ -30,8 +30,8 @@ for (const z of ZONES) {
         const hot = scr.querySelector('[data-hotspot]'), sc = scr.querySelector('[data-role="scroll"]');
         const h = hot.getBoundingClientRect(), v = (sc && sc.contains(hot) ? sc : scr).getBoundingClientRect();
         const inView = h.top >= v.top - 1 && h.bottom <= v.bottom + 1;
-        const ring = scr.querySelector('.hot-ring');
-        if (inView) return ring && !ring.hidden ? 'ok' : 'CTA in view but no ring';
+        const ring = hot.classList.contains('fx-cta') && getComputedStyle(hot).outlineStyle === 'solid';
+        if (inView) return ring ? 'ok' : 'CTA in view but no ring';
         return cueOn ? 'ok' : 'CTA below the fold and no scroll cue';
       }, s.go), { message: `${s.key}: tap target is indicated`, timeout: 8_000 }).toBe('ok');
       // the scroll cue never sits on the phone

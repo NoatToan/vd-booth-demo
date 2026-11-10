@@ -200,7 +200,7 @@ function scrollHint(scr, s) {
 
 /* CTA indicator: from ~1.2 s after entry (later on auto-populate screens, see behaviors.js ctaAt) the screen's
    call to action carries a continuous pulse ring, and the kiosk Next / Finish pulse, so visitors see where to tap.
-   A CTA below the fold shows its ring once it is scrolled into view; the scroll cue leads there. */
+   A CTA below the fold carries it too and comes into view with it; the scroll cue leads there. */
 function armRing(scr, s) {
   clearTimeout(ringTimer);
   const k = $('#kiosk-next'), f = $('#kiosk-finish');
@@ -212,17 +212,10 @@ function armRing(scr, s) {
     if (s.go === 'kiosk-finish' && f) return f.classList.add('pulse');
     const hot = $('[data-hotspot]', scr);
     if (!hot) return;
-    const ring = api.fx(scr, 'hot-ring');
-    ring.style.setProperty('--ring', `${INK[S.zone]}d9`);
-    ring.style.borderRadius = getComputedStyle(hot).borderRadius;
-    const sc = $('[data-role="scroll"]', scr), inScroll = sc && sc.contains(hot);
-    const place = () => {
-      const r = relRect(hot, scr), v = inScroll ? relRect(sc, scr) : null;
-      Object.assign(ring.style, { left: `${r.x}px`, top: `${r.y}px`, width: `${r.w}px`, height: `${r.h}px` });
-      ring.hidden = !!v && (r.y < v.y - 1 || r.y + r.h > v.y + v.h + 1); // only when fully in view
-    };
-    place();
-    if (sc) sc.addEventListener('scroll', place, { passive: true });
+    // the indicator is a class on the CTA itself (an outline), so it scrolls with the button natively: no overlay to
+    // reposition on scroll, no lag when the visitor flicks the page
+    hot.style.setProperty('--ring', INK[S.zone]);
+    hot.classList.add('fx-cta');
   }, at);
 }
 
