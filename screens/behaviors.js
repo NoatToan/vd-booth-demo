@@ -92,9 +92,11 @@ function simulate(fr, api, pairs, { delay = 400, total = 3000, gap = 160, color 
     api.later(() => el.classList.remove('fx-caret'), t + 1);
     t += gap;
   }
+  fr.parentElement.dataset.ctaAt = Math.round(t + 400);
   const b = cta && q(fr, cta); if (b) api.later(() => pop(b.closest('[data-hotspot]') || b, 0, 380), t);
 }
-const autofill = (ids, cta, opts) => (fr, api) => { const end = typeIn(fr, api, ids, opts); const b = q(fr, cta); if (b) api.later(() => pop(b.closest('[data-hotspot]') || b, 0, 380), end); };
+// the CTA ring (app.js armRing) waits for the typing: fr.parentElement is the .scr, which reads data-cta-at
+const autofill = (ids, cta, opts) => (fr, api) => { const end = typeIn(fr, api, ids, opts); fr.parentElement.dataset.ctaAt = Math.round(end + 400); const b = q(fr, cta); if (b) api.later(() => pop(b.closest('[data-hotspot]') || b, 0, 380), end); };
 // the n-th "Step segment" of SEND's 6-part journey progress fills in
 function progress(fr, i) {
   const bar = [...fr.querySelectorAll('div')].find(d => d.children.length === 6 && [...d.children].every(c => !c.children.length && c.offsetHeight <= 6));

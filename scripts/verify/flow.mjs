@@ -167,7 +167,7 @@ export async function runFlow(browser, { zones = ZONES, imgDir } = {}) {
           const h = await page.evaluate((k) => {
             const ph = document.querySelector('#phone'), fr = [...document.querySelectorAll(`#phone .fr[data-screen="${k}"]`)].pop();
             const sc = fr && fr.querySelector('[data-role="scroll"]');
-            const hints = [...(ph?.querySelectorAll('[data-fx].scroll-hint') || [])];
+            const hints = [...document.querySelectorAll('#scroll-cue')]; // the cue lives outside the phone (app.js scrollHint)
             const vis = () => hints.filter(e => { const r = e.getBoundingClientRect(); if (r.width < 1 || r.height < 1) return false; for (let x = e; x; x = x.parentElement) { const c = getComputedStyle(x); if (c.display === 'none' || c.visibility === 'hidden' || +c.opacity < 0.05) return false; } return true; });
             const v = vis();
             return { hasScroll: !!sc, overflow: sc ? sc.scrollHeight > sc.clientHeight + 1 : null, px: sc ? sc.scrollHeight - sc.clientHeight : null, visible: v.length > 0, text: v.map(e => e.textContent.trim()).join(' ') };
@@ -182,7 +182,7 @@ export async function runFlow(browser, { zones = ZONES, imgDir } = {}) {
             if (k === 'receive-2') A(k, 'E4 hint reads "Scroll to continue"', /Scroll to continue/.test(h.text), h.text);
             await page.evaluate(k => { const sc = [...document.querySelectorAll(`#phone .fr[data-screen="${k}"]`)].pop()?.querySelector('[data-role="scroll"]'); if (sc) sc.scrollTop = sc.scrollHeight; }, k);
             await sleep(600);
-            const after = await page.evaluate(() => [...document.querySelectorAll('#phone [data-fx].scroll-hint')].some(e => { const r = e.getBoundingClientRect(); if (r.width < 1 || r.height < 1) return false; for (let x = e; x; x = x.parentElement) { const c = getComputedStyle(x); if (c.display === 'none' || c.visibility === 'hidden' || +c.opacity < 0.05) return false; } return true; }));
+            const after = await page.evaluate(() => [...document.querySelectorAll('#scroll-cue')].some(e => { const r = e.getBoundingClientRect(); if (r.width < 1 || r.height < 1) return false; for (let x = e; x; x = x.parentElement) { const c = getComputedStyle(x); if (c.display === 'none' || c.visibility === 'hidden' || +c.opacity < 0.05) return false; } return true; }));
             A(k, 'E4 scroll hint hidden at bottom', !after);
             await page.evaluate(k => { const sc = [...document.querySelectorAll(`#phone .fr[data-screen="${k}"]`)].pop()?.querySelector('[data-role="scroll"]'); if (sc) sc.scrollTop = 0; }, k);
           }

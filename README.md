@@ -57,7 +57,8 @@ Uses the installed Google Chrome (`channel: 'chrome'`). A screen passes when it 
 ## Features
 
 - **Attract screen** with a global money-flow animation. Touch anywhere to start.
-- **Phone screens generated from Figma.** Long screens scroll inside the phone and show an animated scroll hint at the bottom. Header and footer stay fixed, as in the design.
+- **Phone screens generated from Figma.** Long screens scroll inside the phone; header and footer stay fixed, as in the design. A **Scroll for more** cue sits outside the phone (bottom right, above Next) while there is more below, scrolls the phone when tapped, and hides at the bottom.
+- **Where to tap:** every step's call to action carries a steady glow and a pulsing wave (from ~1.2 s, or once auto-populate finishes); Next / Finish pulse on the steps without one.
 - **Motion** on key moments: Face ID scan, timelines ticking stage by stage, count-ups, confetti when funds arrive.
 - **Auto-populate**: on the form screens (SEND 3, travel 2 / 5 / 7, F&F 3) each field types itself in to its Figma value, then the call to action pops for the visitor to tap. F&F 11 (an empty card form in Figma) simulates the card: Sarah Nguyen, 4111 1234 5678 4812, 08/29.
 - **Brand logo** on the kiosk shell is `brand/logo.svg`, a test image: replace that one file with the approved Visa logo.

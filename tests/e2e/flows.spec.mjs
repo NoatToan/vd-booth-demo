@@ -20,6 +20,27 @@ for (const z of ZONES) {
       await page.waitForTimeout(700); // push transition + entry motion
       write(`flow/${s.key}.png`, await page.screenshot());
       shots.push({ key: s.key, n: s.n, go: s.go });
+      // where to tap: the CTA carries a pulse ring (or Next / Finish pulse); a CTA below the fold has the scroll cue
+      const cue = await expect.poll(() => page.evaluate(go => {
+        const scr = document.querySelector('.viewport .scr:last-child'), cue = document.querySelector('#scroll-cue');
+        const cueOn = cue && !cue.hidden && cue.getBoundingClientRect().height > 0;
+        if (go === 'kiosk-next') return document.querySelector('#kiosk-next.pulse') ? 'ok' : 'no pulse on Next';
+        if (go === 'kiosk-finish') return document.querySelector('#kiosk-finish.pulse') ? 'ok' : 'no pulse on Finish';
+        if (go.startsWith('auto:')) return 'ok';
+        const hot = scr.querySelector('[data-hotspot]'), sc = scr.querySelector('[data-role="scroll"]');
+        const h = hot.getBoundingClientRect(), v = (sc && sc.contains(hot) ? sc : scr).getBoundingClientRect();
+        const inView = h.top >= v.top - 1 && h.bottom <= v.bottom + 1;
+        const ring = scr.querySelector('.hot-ring');
+        if (inView) return ring && !ring.hidden ? 'ok' : 'CTA in view but no ring';
+        return cueOn ? 'ok' : 'CTA below the fold and no scroll cue';
+      }, s.go), { message: `${s.key}: tap target is indicated`, timeout: 8_000 }).toBe('ok');
+      // the scroll cue never sits on the phone
+      const overlap = await page.evaluate(() => {
+        const cue = document.querySelector('#scroll-cue'); if (!cue || cue.hidden) return false;
+        const a = cue.getBoundingClientRect(), b = document.querySelector('#phone').getBoundingClientRect();
+        return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+      });
+      expect(overlap, `${s.key}: scroll cue overlaps the phone`).toBe(false);
       // the kiosk Next / Finish buttons appear exactly on the steps without a CTA
       await expect(page.locator('#kiosk-next')).toBeVisible({ visible: s.go === 'kiosk-next' });
       await expect(page.locator('#kiosk-finish')).toBeVisible({ visible: s.go === 'kiosk-finish' });

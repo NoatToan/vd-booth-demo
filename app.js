@@ -175,45 +175,39 @@ function mount(dir) {
   const b = (window.BEHAVIORS || {})[s.key];
   if (b && b.enter) { try { b.enter(fr, api, el); } catch (e) { console.warn(e); } }
   if (s.auto) later(nextStep, s.auto);
+  const cue = $('#scroll-cue'); if (cue) cue.hidden = true;
   setTimeout(() => scrollHint(el, s), dir ? 340 : 0);
   armRing(el, s);
 }
 
 // ink of each app's primary buttons (Figma), for the scroll hint and the hotspot ring
 const INK = { send: '#5b2d90', receive: '#1434cb', collect: '#1434cb', family: '#2563eb', travel: '#8e1c2d' };
-/* scroll hint: fade + chevron over the bottom of the scroll node, until the bottom is reached */
 const CHEVRON = '<svg viewBox="0 0 22 14" fill="none"><path d="M3 3l8 8 8-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+/* scroll cue: outside the phone, in the bottom-right column above Next, so it never covers the app's content.
+   Shown while the screen's scroll node has more below; tapping it scrolls the phone; hidden at the bottom. */
 function scrollHint(scr, s) {
-  if (!scr.isConnected || s.zone === 'collect') return;
+  const cue = $('#scroll-cue');
+  if (!cue || !scr.isConnected || s.zone === 'collect') return;
   const sc = $('[data-role="scroll"]', scr);
-  if (!sc || sc.scrollHeight <= sc.clientHeight + 1) return;
-  const bg = getComputedStyle($('.fr', scr)).backgroundColor;
-  const hint = api.fx(scr, 'scroll-hint', `${s.key === 'receive-2' ? '<b>Scroll to continue</b>' : ''}<i>${CHEVRON}</i>`);
-  const r = relRect(sc, scr);
-  hint.style.top = `${r.bottom - 64}px`;
-  hint.style.setProperty('--hint-bg', bg.replace(/^rgb\(([^)]+)\)$/, 'rgba($1,.96)'));
-  hint.style.setProperty('--hint-ink', INK[s.zone]);
-  const cta = s.key === 'receive-2' && s.hot ? $(`[data-node="${s.hot}"]`, scr) : null;
-  const upd = () => {
-    hint.classList.toggle("off", sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 1);
-    if (cta) {
-      const a = cta.getBoundingClientRect(), b = sc.getBoundingClientRect();
-      const label = $('b', hint);
-      if (label) label.style.display = a.top < b.bottom && a.bottom > b.top ? 'none' : '';
-    }
-  };
+  if (!sc || sc.scrollHeight <= sc.clientHeight + 1) { cue.hidden = true; return; }
+  $('b', cue).textContent = s.key === 'receive-2' ? 'Scroll to continue' : 'Scroll for more';
+  cue.style.setProperty('--hint-ink', INK[s.zone]);
+  const upd = () => { if (cur() === s) cue.hidden = sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 1; };
   sc.addEventListener('scroll', upd, { passive: true });
+  cue.onclick = () => sc.scrollBy({ top: sc.clientHeight * 0.7, behavior: 'smooth' });
   upd();
 }
 
-/* hotspot pulse ring after 4 s without a touch */
+/* CTA indicator: from ~1.2 s after entry (later on auto-populate screens, see behaviors.js ctaAt) the screen's
+   call to action carries a continuous pulse ring, and the kiosk Next / Finish pulse, so visitors see where to tap.
+   A CTA below the fold shows its ring once it is scrolled into view; the scroll cue leads there. */
 function armRing(scr, s) {
   clearTimeout(ringTimer);
   const k = $('#kiosk-next'), f = $('#kiosk-finish');
   [k, f].forEach(b => b && b.classList.remove('pulse'));
+  const at = Math.max(1200, +(scr.dataset.ctaAt || 0));
   ringTimer = setTimeout(() => {
     if (!scr.isConnected) return;
-    if (Date.now() - lastTouch < 3900) return armRing(scr, s);
     if (s.go === 'kiosk-next' && k) return k.classList.add('pulse');
     if (s.go === 'kiosk-finish' && f) return f.classList.add('pulse');
     const hot = $('[data-hotspot]', scr);
@@ -221,13 +215,15 @@ function armRing(scr, s) {
     const ring = api.fx(scr, 'hot-ring');
     ring.style.setProperty('--ring', `${INK[S.zone]}d9`);
     ring.style.borderRadius = getComputedStyle(hot).borderRadius;
-    const place = () => { const r = relRect(hot, scr); Object.assign(ring.style, { left: `${r.x}px`, top: `${r.y}px`, width: `${r.w}px`, height: `${r.h}px` }); };
+    const sc = $('[data-role="scroll"]', scr), inScroll = sc && sc.contains(hot);
+    const place = () => {
+      const r = relRect(hot, scr), v = inScroll ? relRect(sc, scr) : null;
+      Object.assign(ring.style, { left: `${r.x}px`, top: `${r.y}px`, width: `${r.w}px`, height: `${r.h}px` });
+      ring.hidden = !!v && (r.y < v.y - 1 || r.y + r.h > v.y + v.h + 1); // only when fully in view
+    };
     place();
-    const sc = $('[data-role="scroll"]', scr);
     if (sc) sc.addEventListener('scroll', place, { passive: true });
-    const clear = () => { ring.remove(); removeEventListener('pointerdown', clear, true); if (scr.isConnected && S.view === 'flow' && cur() === s) armRing(scr, s); };
-    addEventListener('pointerdown', clear, true);
-  }, 4000);
+  }, at);
 }
 
 /* touch feedback on the phone's actionable elements */
@@ -312,7 +308,8 @@ function draw() {
       <div class="left"><div class="zone-pill"><span class="ic">${ICON[z]}</span>${m.name}<em>${m.title}</em></div>
         <h1 class="hero">${m.hero}</h1><div class="prod">${m.sub}</div>
         <div id="rail" class="steps"></div></div>
-      <div class="knav s${(SIZE[z] || '402x874').slice(0, 3)}"><button id="kiosk-next" class="kbtn" data-a="next" hidden>Next <span>→</span></button>
+      <div class="knav s${(SIZE[z] || '402x874').slice(0, 3)}"><button id="scroll-cue" class="scroll-cue" type="button" hidden><b>Scroll for more</b><i>${CHEVRON}</i></button>
+        <button id="kiosk-next" class="kbtn" data-a="next" hidden>Next <span>→</span></button>
         <button id="kiosk-finish" class="kbtn" data-a="finish" hidden>Finish <span>✓</span></button></div>
       <div class="route"><span>Live journey</span><b>${m.route}</b></div>
       <div id="lane" class="lane" hidden></div>
