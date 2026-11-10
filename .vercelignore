@@ -4,3 +4,4 @@ figma/fig/
 figma/rest/
 figma/*.json
 figma/screens/
+tests/
