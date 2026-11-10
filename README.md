@@ -48,7 +48,10 @@ How visitors move through each journey (one hotspot per screen, kiosk **Next** a
 - **Attract screen** with a global money-flow animation. Touch anywhere to start.
 - **Phone screens generated from Figma.** Long screens scroll inside the phone and show an animated scroll hint at the bottom. Header and footer stay fixed, as in the design.
 - **Motion** on key moments: Face ID scan, timelines ticking stage by stage, count-ups, confetti when funds arrive.
-- **Done screen** with a product summary and a QR code (default: https://vd-booth-demo.vercel.app/).
+- **Auto-populate**: on the form screens (SEND 3, travel 2 / 5 / 7, F&F 3) each field types itself in to its Figma value, then the call to action pops for the visitor to tap.
+- **Done screen** with a product summary and a QR code to the **lead form** (`/lead/?exp=<experience>`; override with `?qr=`).
+- **Lead capture**: https://vd-booth-demo.vercel.app/lead/ (phone page in the Visa Direct look of the Figma files) posts to `/api/lead`, a Vercel Function that stores the lead in the Neon Postgres database `vd-booth-leads` (Vercel Marketplace, env `DATABASE_URL`). Consent is required and its wording is stored with each lead. Export for the booth team:
+  `curl -H "Authorization: Bearer $(cat ~/.vd-booth-leads-token)" https://vd-booth-demo.vercel.app/api/leads > leads.csv` (token = Vercel env `LEADS_ADMIN_TOKEN`).
 - **English only**, with the brand shown per journey.
 - **16:9 landscape** (designed at 1920×1080, scales to any screen). On a portrait display the stage rotates to stay landscape.
 - **Built to run all day:**
