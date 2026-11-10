@@ -77,6 +77,23 @@ function typeIn(fr, api, ids, { delay = 350, total = 2800, gap = 160 } = {}) {
   }
   return t;
 }
+// simulated entry (client brief: "bước 11 simulate số thẻ"): an empty card form gets sample values typed in, in the
+// filled-field colour of the same design (#152345, F&F recovery state B). Values come from the journey itself:
+// Sarah Nguyen and the card ending 4812 shown on step 12. Unlike typeIn, the screen keeps the typed values.
+function simulate(fr, api, pairs, { delay = 400, total = 3000, gap = 160, color = '#152345', cta } = {}) {
+  const els = pairs.map(([id, v]) => [q(fr, id), v]).filter(([e]) => e);
+  const chars = els.reduce((a, [, v]) => a + v.length, 0) || 1;
+  const per = Math.max(18, Math.min(70, (total - gap * els.length) / chars));
+  let t = delay;
+  for (const [el, v] of els) {
+    api.later(() => { el.textContent = ''; el.style.color = color; el.classList.add('fx-caret'); }, t);
+    for (let i = 1; i <= v.length; i++) api.later(() => { el.textContent = v.slice(0, i); }, t + i * per);
+    t += v.length * per;
+    api.later(() => el.classList.remove('fx-caret'), t + 1);
+    t += gap;
+  }
+  const b = cta && q(fr, cta); if (b) api.later(() => pop(b.closest('[data-hotspot]') || b, 0, 380), t);
+}
 const autofill = (ids, cta, opts) => (fr, api) => { const end = typeIn(fr, api, ids, opts); const b = q(fr, cta); if (b) api.later(() => pop(b.closest('[data-hotspot]') || b, 0, 380), end); };
 // the n-th "Step segment" of SEND's 6-part journey progress fills in
 function progress(fr, i) {
@@ -222,4 +239,5 @@ B['travel-5'] = { enter: autofill(['2:16027', '2:16031', '2:16043'], '2:16053', 
 B['travel-7'] = { enter: autofill(['2:16131'], '2:16174', { total: 900 }) };
 // AFT · friends and family (NovaBank)
 B['family-3'] = { enter: autofill(['2:46985', '2:46993', '2:46999'], '2:47014', { total: 2600 }) };
+B['family-11'] = { enter: (fr, api) => simulate(fr, api, [['2:47654', '4111 1234 5678 4812'], ['2:47660', '08/29'], ['2:47664', '•••'], ['2:47669', 'Sarah Nguyen'], ['2:47673', '94107']], { cta: '2:47683' }) };
 })();

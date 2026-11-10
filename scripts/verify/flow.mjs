@@ -151,9 +151,9 @@ export async function runFlow(browser, { zones = ZONES, imgDir } = {}) {
             lastTouch = Date.now();
           }
           const budget = autoW ? Math.max(0, autoW[0] - (Date.now() - entered) - 1200) : 4500;
-          // motion rule: settled kiosk text equals the Figma text
+          // motion rule: settled kiosk text equals the Figma text (or the manifest's simulated value)
           const X = expected(k);
-          const texts = X.texts.map(n => [n.id, n.text.chars]);
+          const texts = X.texts.map(n => [n.id, s.simulated?.[n.id] ?? n.text.chars]); // simulated card fields end on their typed value
           let mism = null;
           await waitFor(async () => {
             mism = await page.evaluate((k, texts) => {

@@ -59,7 +59,8 @@ Uses the installed Google Chrome (`channel: 'chrome'`). A screen passes when it 
 - **Attract screen** with a global money-flow animation. Touch anywhere to start.
 - **Phone screens generated from Figma.** Long screens scroll inside the phone and show an animated scroll hint at the bottom. Header and footer stay fixed, as in the design.
 - **Motion** on key moments: Face ID scan, timelines ticking stage by stage, count-ups, confetti when funds arrive.
-- **Auto-populate**: on the form screens (SEND 3, travel 2 / 5 / 7, F&F 3) each field types itself in to its Figma value, then the call to action pops for the visitor to tap.
+- **Auto-populate**: on the form screens (SEND 3, travel 2 / 5 / 7, F&F 3) each field types itself in to its Figma value, then the call to action pops for the visitor to tap. F&F 11 (an empty card form in Figma) simulates the card: Sarah Nguyen, 4111 1234 5678 4812, 08/29.
+- **Brand logo** on the kiosk shell is `brand/logo.svg`, a test image: replace that one file with the approved Visa logo.
 - **Kiosk Next / Finish** beside the phone (bottom right, outside the device) on the steps whose design has no call to action. Only elements wired to an action give touch feedback; look-alike buttons that do nothing in the demo stay still.
 - **Done screen** with a product summary and a QR code to the **lead form** (`/lead/?exp=<experience>`; override with `?qr=`).
 - **Lead capture**: https://vd-booth-demo.vercel.app/lead/ (phone page in the Visa Direct look of the Figma files) posts to `/api/lead`, a Vercel Function that stores the lead in the Neon Postgres database `vd-booth-leads` (Vercel Marketplace, env `DATABASE_URL`). Consent is required and its wording is stored with each lead. Export for the booth team:

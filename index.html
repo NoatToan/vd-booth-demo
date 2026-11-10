@@ -18,7 +18,8 @@
     ?solo=send-1                render one phone screen only, unscaled at its full Figma height (verification)
     ?solo=receive-2&clip=1      the same screen in the kiosk viewport (402x874, AFT 414x896; fixed header and footer)
   Keys: F fullscreen · Esc attract screen · 1–5 open SEND / VXBS individual / VXBS seller / AFT family / AFT travel
-  Brand assets on the kiosk shell (wordmark, copy) are placeholders until Visa supplies the approved ones.
+  Brand assets on the kiosk shell are placeholders until Visa supplies the approved ones: the logo is brand/logo.svg
+  (a test image; replace the file), the shell copy lives in app.js META.
 -->
 <!-- all assets are local so the booth runs fully offline (open index.html from disk) -->
 <link href="vendor/inter.css" rel="stylesheet">
@@ -39,6 +40,10 @@ button{font-family:inherit;cursor:pointer}
 .brand{position:absolute;right:64px;top:48px;display:flex;align-items:baseline;gap:12px;z-index:5}
 .vw{font-weight:900;font-style:italic;letter-spacing:-1px}
 .brand .vw{font-size:40px}
+.brand .mark{display:flex;align-items:center;gap:10px}
+.brand .logo{height:52px;width:auto;display:block}
+.brand .vp{font-size:30px;font-weight:700;letter-spacing:-.5px}
+.logo-xl{display:block;height:300px;width:auto;margin:8px auto 36px}
 .brand .vd{font-size:20px;font-weight:600;color:var(--muted)}
 .brand.co{flex-direction:column;align-items:flex-end;gap:2px} /* co-brand: partner bank under the Visa mark, clear of the phone */
 

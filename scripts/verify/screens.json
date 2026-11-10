@@ -1,5 +1,5 @@
 {
-  "$comment": "IMPL-PLAN.md §2.4 verbatim. go: TEXT node id the harness clicks | kiosk-next | kiosk-finish | auto:<min>-<max>ms. then: scan:<min>-<max> (advance window after the go click) | done (go leads to the Done view). back: node id clicked for Back, null when none. png/clipPng are under figma/screens/<file>/. w: Figma frame width (402, or 414 for the AFT files). scrollNode: id of the scrolling child when it is not named Screen content / Scroll content / Content. clipPng is the 874 reference for P3 (RECEIVE and COLLECT only).",
+  "$comment": "IMPL-PLAN.md §2.4 verbatim. go: TEXT node id the harness clicks | kiosk-next | kiosk-finish | auto:<min>-<max>ms. then: scan:<min>-<max> (advance window after the go click) | done (go leads to the Done view). back: node id clicked for Back, null when none. png/clipPng are under figma/screens/<file>/. w: Figma frame width (402, or 414 for the AFT files). scrollNode: id of the scrolling child when it is not named Screen content / Scroll content / Content. clipPng is the 874 reference for P3 (RECEIVE and COLLECT only). simulated: {textNodeId: value} a behaviour types in on purpose (client brief: simulate the card on F&F 11); the motion rule expects these values there.",
   "screens": [
     {
       "key": "send-1",
@@ -676,7 +676,14 @@
       "h": 1048,
       "w": 414,
       "go": "2:47683",
-      "back": "2:48875"
+      "back": "2:48875",
+      "simulated": {
+        "2:47654": "4111 1234 5678 4812",
+        "2:47660": "08/29",
+        "2:47664": "•••",
+        "2:47669": "Sarah Nguyen",
+        "2:47673": "94107"
+      }
     },
     {
       "key": "family-12",

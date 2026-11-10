@@ -3,7 +3,7 @@
 Decision log for rebuilding the booth demo from the two Figma prototypes. Each decision is final until it is changed **here** first, then in `docs/workflow.html`, then in the code.
 
 - Source: `figma/` (Framelink pull, 29/10/2026; Figma last modified 15/10/2026)
-- Screen-by-screen workflow: [`docs/workflow.html`](workflow.html), live at https://vd-booth-demo-wip.vercel.app/docs/workflow.html
+- Screen-by-screen workflow: [`docs/workflow.html`](workflow.html), live at https://vd-booth-demo.vercel.app/docs/workflow.html
 - Decided by: the product owner (Q&A in the Claude Code session, 29/10/2026)
 
 ## Scope and principles
@@ -42,3 +42,4 @@ Decision log for rebuilding the booth demo from the two Figma prototypes. Each d
 - 2026-11-10: Figma pulled again (edited 2026-11-09). SEND is now Vietnam Pioneer Bank and gains step 11 "Visa transfer success" (`22:134`), whose "View transfer receipt" leads to Done (Q8). VXBS copy: Vietcombank → Vietnam Bank, "VXBS" dropped from the screens, so the kiosk brand for RECEIVE / COLLECT is now "VISA" alone (Q7). Q4–Q6 are still open in Figma. Two new AFT files pulled for the next phase (five experiences).
 - 2026-11-10: Five experiences (client brief): SEND 1, RECEIVE 4 (VXBS individual, VXBS seller, AFT friends & family, AFT travel). The AFT designs are read from Save-local-copy `.fig` files (`scripts/figma-fig`), verified equal to the API Framelink pull. Step order: F&F = the storyboard numbers 01–18 (recovery states A–E not shown, pending Q&A); travel = the frames' node order (Welcome → My Vietnam trip). Each step advances on its own CTA; kiosk Next on F&F 6–7 and travel 17, Finish on travel 18, auto-advance on F&F 14 and travel 10. The phone takes the Figma device size (414×896 for AFT). F&F shows whose phone is on screen (storyboard swimlane). Verify: 61/61 screens hard-green, flow PASS.
 - 2026-11-10 (Q&A): F&F recovery states A–E are left out. Lead capture = QR → form on the visitor's phone → Vercel Function → Neon Postgres (replaces Q8's QR target). Auto-populate = fields type themselves in, the visitor taps on. Deployed to production the same day.
+- 2026-11-10: One domain: the Vercel project `vd-booth-demo-wip` is deleted (D4 is history); everything ships to https://vd-booth-demo.vercel.app. The kiosk's Visa logo is a test image (`brand/logo.svg`) until Visa sends the approved asset. F&F step 11 simulates the card entry (Sarah Nguyen, card ending 4812 as on step 12).

@@ -9,6 +9,7 @@ const GROUPS = [{ name: 'SEND', zones: ['send'] }, { name: 'RECEIVE', zones: ['r
 // readable lock links, e.g. ?zone=aft-travel (the short keys keep working)
 const ALIAS = { 'vxbs-individual': 'receive', 'vxbs-seller': 'collect', 'aft-family': 'family', 'aft-travel': 'travel' };
 const SIZE = { family: '414x896', travel: '414x896' }; // Figma device size; others are 402x874
+const BRAND_LOGO = 'brand/logo.svg'; // swap this file for the approved Visa logo
 const FLOW = Object.fromEntries(ZONES.map(z => [z, SCREENS.filter(s => s.zone === z).sort((a, b) => a.n - b.n)]));
 const raf2 = fn => requestAnimationFrame(() => requestAnimationFrame(fn));
 const markReady = () => (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => raf2(() => { document.documentElement.dataset.ready = '1'; }));
@@ -277,7 +278,10 @@ app.addEventListener('click', e => {
 /* ---------- views ---------- */
 const brand = z => {
   const b = z ? META[z].brand : ['VISA', 'Direct'];
-  return `<div class="brand${b[1].startsWith('×') ? ' co' : ''}"><span class="vw">${b[0]}</span><span class="vd">${b[1]}</span></div>`;
+  // the Visa mark is an image (brand/logo.svg, a test image until Visa supplies the approved logo); the product
+  // name ("Direct") and the co-brand stay text
+  const product = b[0].replace(/^VISA\s*/, '');
+  return `<div class="brand${b[1].startsWith('×') ? ' co' : ''}"><span class="mark"><img class="logo" src="${BRAND_LOGO}" alt="Visa">${product ? `<span class="vp">${product}</span>` : ''}</span><span class="vd">${b[1]}</span></div>`;
 };
 function drawRail() {
   const rail = $('#rail');
@@ -294,7 +298,7 @@ function draw() {
   let html = '';
   if (S.view === 'idle') {
     html = `<div class="idle" data-a="start">
-      <div class="mm">MOVE MONEY WITH</div><div class="vw">VISA</div>
+      <div class="mm">MOVE MONEY WITH</div><img class="logo-xl" src="${BRAND_LOGO}" alt="Visa">
       <div class="src"><b style="--c:#b38cff">SEND</b><i></i><b style="--c:#f7b600">RECEIVE</b></div>
       <div class="touch">${LOCK ? `Touch to start · <b>${m.name} · ${m.title}</b>` : 'Touch anywhere to start'}</div></div>`;
   } else if (S.view === 'home') {
