@@ -39,3 +39,4 @@ Decision log for rebuilding the booth demo from the two Figma prototypes. Each d
 ## Change log
 
 - 2026-10-29: D1–D5 and Q1–Q8 decided.
+- 2026-11-10: Figma pulled again (edited 2026-11-09). SEND is now Vietnam Pioneer Bank and gains step 11 "Visa transfer success" (`22:134`), whose "View transfer receipt" leads to Done (Q8). VXBS copy: Vietcombank → Vietnam Bank, "VXBS" dropped from the screens, so the kiosk brand for RECEIVE / COLLECT is now "VISA" alone (Q7). Q4–Q6 are still open in Figma. Two new AFT files pulled for the next phase (five experiences).

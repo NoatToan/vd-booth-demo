@@ -1,5 +1,5 @@
 {
-  "$comment": "IMPL-PLAN.md §2.4 verbatim. go: TEXT node id the harness clicks | kiosk-next | kiosk-finish | auto:<min>-<max>ms. then: scan:<min>-<max> (advance window after the go click) | done (go leads to the Done view). back: node id clicked for Back, null when none. png/clipPng are under figma/screens/<file>/. clipPng is the 874 reference for P3 (RECEIVE and COLLECT only).",
+  "$comment": "IMPL-PLAN.md §2.4 verbatim. go: TEXT node id the harness clicks | kiosk-next | kiosk-finish | auto:<min>-<max>ms. then: scan:<min>-<max> (advance window after the go click) | done (go leads to the Done view). back: node id clicked for Back, null when none. png/clipPng are under figma/screens/<file>/. scrollNode: id of the scrolling child when it is not named Screen content / Scroll content / Content. clipPng is the 874 reference for P3 (RECEIVE and COLLECT only).",
   "screens": [
     {
       "key": "send-1",
@@ -8,7 +8,7 @@
       "file": "zSn01lZ2vy3a2kM9EDo6mD",
       "node": "2:4235",
       "png": "2-4235_home.png",
-      "h": 1016,
+      "h": 1034,
       "go": "2:4268",
       "back": null
     },
@@ -63,7 +63,7 @@
       "file": "zSn01lZ2vy3a2kM9EDo6mD",
       "node": "2:4661",
       "png": "2-4661_review-transfer.png",
-      "h": 1200,
+      "h": 1218,
       "go": "2:4741",
       "back": "2:4671"
     },
@@ -110,8 +110,20 @@
       "png": "2-4809_transfer-tracking.png",
       "h": 1244,
       "go": "2:4913",
-      "then": "done",
       "back": "2:4819"
+    },
+    {
+      "key": "send-11",
+      "zone": "send",
+      "n": 11,
+      "file": "zSn01lZ2vy3a2kM9EDo6mD",
+      "node": "22:134",
+      "png": "22-134_visa-transfer-success.png",
+      "h": 943,
+      "go": "22:190",
+      "then": "done",
+      "back": "22:150",
+      "scrollNode": "22:159"
     },
     {
       "key": "receive-1",

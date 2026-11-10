@@ -6,16 +6,17 @@
     "collect": "MPq4C2qjwzVdD2gYloQuUu"
   },
   "screens": [
-    { "key": "send-1", "node": "2:4235", "png": "2-4235_home.png", "h": 1016, "title": "Home", "go": "2:4268", "back": null },
+    { "key": "send-1", "node": "2:4235", "png": "2-4235_home.png", "h": 1034, "title": "Home", "go": "2:4268", "back": null },
     { "key": "send-2", "node": "2:4307", "png": "2-4307_select-purpose.png", "h": 941, "title": "Select purpose", "go": "2:4366", "back": "2:4317" },
     { "key": "send-3", "node": "2:4372", "png": "2-4372_beneficiary-details.png", "h": 1057, "title": "Recipient information", "go": "2:4457", "back": "2:4382" },
     { "key": "send-4", "node": "2:4463", "png": "2-4463_compliance-documents.png", "h": 1450, "title": "Supporting documents", "go": "2:4576", "back": "2:4473" },
     { "key": "send-5", "node": "2:4582", "png": "2-4582_transfer-amount.png", "h": 1109, "title": "Transfer amount", "go": "2:4655", "back": "2:4592" },
-    { "key": "send-6", "node": "2:4661", "png": "2-4661_review-transfer.png", "h": 1200, "title": "Review transfer", "go": "2:4741", "back": "2:4671" },
+    { "key": "send-6", "node": "2:4661", "png": "2-4661_review-transfer.png", "h": 1218, "title": "Review transfer", "go": "2:4741", "back": "2:4671" },
     { "key": "send-7", "node": "2:4747", "png": "2-4747_security-authorization.png", "h": 943, "title": "Security authorization", "go": "2:4803", "scan": 1500, "back": "2:4757" },
     { "key": "send-8", "node": "4:224", "png": "4-224_paperwork-review.png", "h": 943, "title": "Paperwork review", "go": "auto:4000-7000ms", "auto": 5000, "back": "4:237" },
     { "key": "send-9", "node": "4:281", "png": "4-281_transfer-approved.png", "h": 943, "title": "Transfer approved", "go": "4:331", "back": "4:294" },
     { "key": "send-10", "node": "2:4809", "png": "2-4809_transfer-tracking.png", "h": 1244, "title": "Transfer tracking", "go": "2:4913", "back": "2:4819" },
+    { "key": "send-11", "node": "22:134", "png": "22-134_visa-transfer-success.png", "h": 943, "title": "Transfer complete", "go": "22:190", "back": "22:150", "scrollNode": "22:159" },
 
     { "key": "receive-1", "node": "2:5492", "twin": "11:155", "png": "11-155_01-pdf-home-dashboard.png", "clip": "2-5492_home-dashboard.png", "h": 1477, "title": "Home dashboard", "go": "2:5527", "back": null },
     { "key": "receive-2", "node": "2:5630", "twin": "11:308", "png": "11-308_02-pdf-receive-funds.png", "clip": "2-5630_receive-funds.png", "h": 1294, "title": "Receive funds", "go": "2:5702", "back": "2:6342" },

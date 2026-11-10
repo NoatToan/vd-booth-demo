@@ -90,7 +90,8 @@ export function expected(key) {
   }
   const ox = geoRoot.absoluteBoundingBox.x, oy = geoRoot.absoluteBoundingBox.y;
   const topIds = new Set((root.children || []).map(c => c.id));
-  const scroll = (root.children || []).find(c => SCROLL_NAMES.has(c.name));
+  // s.scrollNode: same per-screen override as scripts/gen/screens.json (send-11's middle section has its own name)
+  const scroll = (root.children || []).find(c => (s.scrollNode ? c.id === s.scrollNode : SCROLL_NAMES.has(c.name)));
 
   const nodes = [];
   const byId = new Map();

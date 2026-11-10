@@ -61,8 +61,9 @@ for (const sc of manifest.screens) {
   const twin = sc.twin ? f.byId.get(sc.twin) : null;
   const struct = twin || app;
   const map = twin ? twinMap(app, twin) : null;
-  const scrollNode = app.children.find(c => c.name === SCROLL_NAME[zone]);
-  if (!scrollNode) throw new Error(`${sc.key}: no "${SCROLL_NAME[zone]}" child`);
+  // sc.scrollNode: a frame whose middle section is not named like the rest of its zone (send-11)
+  const scrollNode = sc.scrollNode ? app.children.find(c => c.id === sc.scrollNode) : app.children.find(c => c.name === SCROLL_NAME[zone]);
+  if (!scrollNode) throw new Error(`${sc.key}: no "${sc.scrollNode || SCROLL_NAME[zone]}" child`);
   const tr = new Translator({
     root: ROOT, fileKey: f.fileKey, zone, screenKey: sc.key, overrides, classFor,
     scrollId: scrollNode.id, frameId: app.id,

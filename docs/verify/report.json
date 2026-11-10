@@ -1,152 +1,152 @@
 {
- "commit": "c48ebe8+dirty",
- "at": "2026-10-29T10:27:41.032Z",
+ "commit": "6a876cf",
+ "at": "2026-11-10T09:06:05.347Z",
  "summary": {
-  "screens": 24,
-  "screensHardPass": 24,
+  "screens": 25,
+  "screensHardPass": 25,
   "hardFailScreens": [],
   "perGate": {
    "C": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "NET": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "T1": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "T2": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "T3": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "T4": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "G1": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "G2": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "G3": {
     "hard": false,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "S1": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "S2": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "S3": {
     "hard": false,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "P1": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "P1t": {
     "hard": false,
     "pass": 11,
     "fail": 0,
-    "warn": 13,
-    "of": 24
+    "warn": 14,
+    "of": 25
    },
    "P2": {
     "hard": false,
-    "pass": 21,
+    "pass": 16,
     "fail": 0,
-    "warn": 3,
-    "of": 24
+    "warn": 9,
+    "of": 25
    },
    "P3": {
     "hard": false,
     "pass": 14,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    },
    "D": {
     "hard": true,
-    "pass": 24,
+    "pass": 25,
     "fail": 0,
     "warn": 0,
-    "of": 24
+    "of": 25
    }
   },
   "topIssues": [],
   "flow": {
    "pass": true,
-   "asserts": 761,
+   "asserts": 789,
    "fails": 0,
    "aborted": 0
   },
   "hardFail": false,
   "app": {
-   "before": "efdf90f527e7",
-   "after": "efdf90f527e7",
+   "before": "35dea913b016",
+   "after": "35dea913b016",
    "changedDuringRun": false
   },
-  "line": "ALL HARD GATES GREEN — screens 24/24 hard-green, flow PASS"
+  "line": "ALL HARD GATES GREEN — screens 25/25 hard-green, flow PASS"
  },
  "screens": [
   {
    "key": "send-1",
    "node": "2:4235",
    "twin": null,
-   "h": 1016,
+   "h": 1034,
    "gates": {
     "C": {
      "status": "PASS",
@@ -193,7 +193,7 @@
     "G2": {
      "status": "PASS",
      "hard": true,
-     "value": "0 node(s) >8px; frame h 1016 vs 1016",
+     "value": "0 node(s) >8px; frame h 1034 vs 1034",
      "threshold": "0, ±4px"
     },
     "G3": {
@@ -221,13 +221,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "0.681%",
+     "value": "0.689%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "PASS",
      "hard": false,
-     "value": "0.681%",
+     "value": "0.689%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -258,8 +258,8 @@
     "pass": 53,
     "passPct": 100,
     "frameH": {
-     "expected": 1016,
-     "actual": 1016
+     "expected": 1034,
+     "actual": 1034
     },
     "worst": [],
     "grossFails": 0,
@@ -271,8 +271,8 @@
     "s2props": 44
    },
    "pixel": {
-    "pct": 0.681,
-    "diffPx": 2782,
+    "pct": 0.689,
+    "diffPx": 2866,
     "diff": "img/send-1-diff.png",
     "regions": []
    },
@@ -843,13 +843,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.066%",
+     "value": "1.082%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "PASS",
      "hard": false,
-     "value": "1.066%",
+     "value": "1.082%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -893,8 +893,8 @@
     "s2props": 46
    },
    "pixel": {
-    "pct": 1.066,
-    "diffPx": 4752,
+    "pct": 1.082,
+    "diffPx": 4823,
     "diff": "img/send-5-diff.png",
     "regions": []
    },
@@ -916,7 +916,7 @@
    "key": "send-6",
    "node": "2:4661",
    "twin": null,
-   "h": 1200,
+   "h": 1218,
    "gates": {
     "C": {
      "status": "PASS",
@@ -963,7 +963,7 @@
     "G2": {
      "status": "PASS",
      "hard": true,
-     "value": "0 node(s) >8px; frame h 1200 vs 1200",
+     "value": "0 node(s) >8px; frame h 1218 vs 1218",
      "threshold": "0, ±4px"
     },
     "G3": {
@@ -991,13 +991,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.347%",
+     "value": "1.343%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "PASS",
      "hard": false,
-     "value": "1.347%",
+     "value": "1.343%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -1028,8 +1028,8 @@
     "pass": 66,
     "passPct": 100,
     "frameH": {
-     "expected": 1200,
-     "actual": 1200
+     "expected": 1218,
+     "actual": 1218
     },
     "worst": [],
     "grossFails": 0,
@@ -1041,8 +1041,8 @@
     "s2props": 56
    },
    "pixel": {
-    "pct": 1.347,
-    "diffPx": 6497,
+    "pct": 1.343,
+    "diffPx": 6574,
     "diff": "img/send-6-diff.png",
     "regions": []
    },
@@ -1139,13 +1139,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.071%",
+     "value": "1.135%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "PASS",
      "hard": false,
-     "value": "1.071%",
+     "value": "1.135%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -1189,8 +1189,8 @@
     "s2props": 42
    },
    "pixel": {
-    "pct": 1.071,
-    "diffPx": 4060,
+    "pct": 1.135,
+    "diffPx": 4301,
     "diff": "img/send-7-diff.png",
     "regions": []
    },
@@ -1583,13 +1583,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.8%",
+     "value": "1.828%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "WARN",
      "hard": false,
-     "value": "1.8%",
+     "value": "1.828%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -1633,8 +1633,8 @@
     "s2props": 42
    },
    "pixel": {
-    "pct": 1.8,
-    "diffPx": 9004,
+    "pct": 1.828,
+    "diffPx": 9142,
     "diff": "img/send-10-diff.png",
     "regions": []
    },
@@ -1648,6 +1648,170 @@
     "figma": "img/send-10-figma.png",
     "build": "img/send-10-build.png",
     "diff": "img/send-10-diff.png"
+   },
+   "contract": [],
+   "fonts": []
+  },
+  {
+   "key": "send-11",
+   "node": "22:134",
+   "twin": null,
+   "h": 943,
+   "gates": {
+    "C": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "NET": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 aborted, 0 console errors",
+     "threshold": "0 / 0"
+    },
+    "T1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "37/37 present, 0 duplicated",
+     "threshold": "100%, each once"
+    },
+    "T2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "23/23",
+     "threshold": "100%"
+    },
+    "T3": {
+     "status": "PASS",
+     "hard": true,
+     "value": 0,
+     "threshold": 0
+    },
+    "T4": {
+     "status": "PASS",
+     "hard": true,
+     "value": "23/23 Inter-only",
+     "threshold": "100%"
+    },
+    "G1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100%",
+     "threshold": "≥95%"
+    },
+    "G2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 node(s) >8px; frame h 943 vs 943",
+     "threshold": "0, ±4px"
+    },
+    "G3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 node(s) drift >2px vs parent"
+    },
+    "S1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 failing properties on 0 text node(s)",
+     "threshold": "100%"
+    },
+    "S2": {
+     "status": "PASS",
+     "hard": true,
+     "value": "100% (24/24)",
+     "threshold": "≥98%"
+    },
+    "S3": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0 shadow mismatch(es)"
+    },
+    "P1": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0.939%",
+     "threshold": "≤3.0%"
+    },
+    "P1t": {
+     "status": "PASS",
+     "hard": false,
+     "value": "0.939%",
+     "threshold": "≤1.5%"
+    },
+    "P2": {
+     "status": "WARN",
+     "hard": false,
+     "value": "1 box(es) >20% mismatch (top 10)"
+    },
+    "D": {
+     "status": "PASS",
+     "hard": true,
+     "value": "0 px",
+     "threshold": "0 px"
+    },
+    "P3": {
+     "status": "N/A",
+     "hard": false,
+     "reason": "SEND has no 874 reference"
+    }
+   },
+   "text": {
+    "missing": [],
+    "dup": [],
+    "extra": [],
+    "mismatch": []
+   },
+   "geom": {
+    "n": 37,
+    "pass": 37,
+    "passPct": 100,
+    "frameH": {
+     "expected": 943,
+     "actual": 943
+    },
+    "worst": [],
+    "grossFails": 0,
+    "g3": []
+   },
+   "style": {
+    "fails": [],
+    "s3": [],
+    "s2props": 24
+   },
+   "pixel": {
+    "pct": 0.939,
+    "diffPx": 3559,
+    "diff": "img/send-11-diff.png",
+    "regions": [
+     {
+      "id": "22:163",
+      "name": "Status",
+      "density": 20.7,
+      "diffPx": 323,
+      "box": "141,397 120×13"
+     }
+    ]
+   },
+   "offenders": [
+    {
+     "id": "22:163",
+     "name": "Status",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "20.7% of 141,397 120×13"
+    }
+   ],
+   "net": {
+    "aborted": 0,
+    "abortedUrls": [],
+    "consoleErrors": []
+   },
+   "img": {
+    "figma": "img/send-11-figma.png",
+    "build": "img/send-11-build.png",
+    "diff": "img/send-11-diff.png"
    },
    "contract": [],
    "fonts": []
@@ -1731,13 +1895,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.263%",
+     "value": "1.4%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "PASS",
      "hard": false,
-     "value": "1.263%",
+     "value": "1.4%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -1754,7 +1918,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.085%",
+     "value": "1.139%",
      "threshold": "≤4.0%"
     }
    },
@@ -1782,11 +1946,11 @@
     "s2props": 64
    },
    "pixel": {
-    "pct": 1.263,
-    "diffPx": 7502,
+    "pct": 1.4,
+    "diffPx": 8311,
     "diff": "img/receive-1-diff.png",
     "regions": [],
-    "clipPct": 1.085
+    "clipPct": 1.139
    },
    "offenders": [],
    "net": {
@@ -1884,13 +2048,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.815%",
+     "value": "1.969%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "WARN",
      "hard": false,
-     "value": "1.815%",
+     "value": "1.969%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -1935,8 +2099,8 @@
     "s2props": 36
    },
    "pixel": {
-    "pct": 1.815,
-    "diffPx": 9444,
+    "pct": 1.969,
+    "diffPx": 10240,
     "diff": "img/receive-2-diff.png",
     "regions": [
      {
@@ -2053,13 +2217,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.744%",
+     "value": "2.102%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "WARN",
      "hard": false,
-     "value": "1.744%",
+     "value": "2.102%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -2076,7 +2240,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.782%",
+     "value": "1.658%",
      "threshold": "≤4.0%"
     }
    },
@@ -2104,11 +2268,11 @@
     "s2props": 466
    },
    "pixel": {
-    "pct": 1.744,
-    "diffPx": 8286,
+    "pct": 2.102,
+    "diffPx": 9988,
     "diff": "img/receive-3-diff.png",
     "regions": [],
-    "clipPct": 1.782
+    "clipPct": 1.658
    },
    "offenders": [],
    "net": {
@@ -2206,13 +2370,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.637%",
+     "value": "1.832%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "WARN",
      "hard": false,
-     "value": "1.637%",
+     "value": "1.832%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -2229,7 +2393,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.49%",
+     "value": "1.509%",
      "threshold": "≤4.0%"
     }
    },
@@ -2257,8 +2421,8 @@
     "s2props": 46
    },
    "pixel": {
-    "pct": 1.637,
-    "diffPx": 8129,
+    "pct": 1.832,
+    "diffPx": 9095,
     "diff": "img/receive-4-diff.png",
     "regions": [
      {
@@ -2269,7 +2433,7 @@
       "box": "308,232 42×15"
      }
     ],
-    "clipPct": 1.49
+    "clipPct": 1.509
    },
    "offenders": [
     {
@@ -2375,13 +2539,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.236%",
+     "value": "1.433%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "PASS",
      "hard": false,
-     "value": "1.236%",
+     "value": "1.433%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -2426,8 +2590,8 @@
     "s2props": 30
    },
    "pixel": {
-    "pct": 1.236,
-    "diffPx": 6542,
+    "pct": 1.433,
+    "diffPx": 7588,
     "diff": "img/receive-5-diff.png",
     "regions": [],
     "clipPct": 1.099
@@ -2528,13 +2692,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.157%",
+     "value": "1.571%",
      "threshold": "≤3.0%"
     },
     "P1t": {
-     "status": "PASS",
+     "status": "WARN",
      "hard": false,
-     "value": "1.157%",
+     "value": "1.571%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -2551,7 +2715,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.18%",
+     "value": "1.27%",
      "threshold": "≤4.0%"
     }
    },
@@ -2579,11 +2743,11 @@
     "s2props": 46
    },
    "pixel": {
-    "pct": 1.157,
-    "diffPx": 5306,
+    "pct": 1.571,
+    "diffPx": 7207,
     "diff": "img/receive-6-diff.png",
     "regions": [],
-    "clipPct": 1.18
+    "clipPct": 1.27
    },
    "offenders": [],
    "net": {
@@ -2681,19 +2845,19 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.267%",
+     "value": "1.285%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "PASS",
      "hard": false,
-     "value": "1.267%",
+     "value": "1.285%",
      "threshold": "≤1.5%"
     },
     "P2": {
-     "status": "PASS",
+     "status": "WARN",
      "hard": false,
-     "value": "0 box(es) >20% mismatch (top 10)"
+     "value": "1 box(es) >20% mismatch (top 10)"
     },
     "D": {
      "status": "PASS",
@@ -2704,7 +2868,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.267%",
+     "value": "1.285%",
      "threshold": "≤4.0%"
     }
    },
@@ -2732,13 +2896,29 @@
     "s2props": 36
    },
    "pixel": {
-    "pct": 1.267,
-    "diffPx": 4450,
+    "pct": 1.285,
+    "diffPx": 4516,
     "diff": "img/collect-1-diff.png",
-    "regions": [],
-    "clipPct": 1.267
+    "regions": [
+     {
+      "id": "15:4985",
+      "name": "Label",
+      "density": 23.5,
+      "diffPx": 290,
+      "box": "193,71 77×16"
+     }
+    ],
+    "clipPct": 1.285
    },
-   "offenders": [],
+   "offenders": [
+    {
+     "id": "15:4985",
+     "name": "Label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "23.5% of 193,71 77×16"
+    }
+   ],
    "net": {
     "aborted": 0,
     "abortedUrls": [],
@@ -2834,19 +3014,19 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.609%",
+     "value": "1.628%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "WARN",
      "hard": false,
-     "value": "1.609%",
+     "value": "1.628%",
      "threshold": "≤1.5%"
     },
     "P2": {
-     "status": "PASS",
+     "status": "WARN",
      "hard": false,
-     "value": "0 box(es) >20% mismatch (top 10)"
+     "value": "1 box(es) >20% mismatch (top 10)"
     },
     "D": {
      "status": "PASS",
@@ -2857,7 +3037,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.609%",
+     "value": "1.628%",
      "threshold": "≤4.0%"
     }
    },
@@ -2885,13 +3065,29 @@
     "s2props": 48
    },
    "pixel": {
-    "pct": 1.609,
-    "diffPx": 5654,
+    "pct": 1.628,
+    "diffPx": 5720,
     "diff": "img/collect-2-diff.png",
-    "regions": [],
-    "clipPct": 1.609
+    "regions": [
+     {
+      "id": "15:5075",
+      "name": "Label",
+      "density": 23.5,
+      "diffPx": 290,
+      "box": "193,71 77×16"
+     }
+    ],
+    "clipPct": 1.628
    },
-   "offenders": [],
+   "offenders": [
+    {
+     "id": "15:5075",
+     "name": "Label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "23.5% of 193,71 77×16"
+    }
+   ],
    "net": {
     "aborted": 0,
     "abortedUrls": [],
@@ -2987,19 +3183,19 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.538%",
+     "value": "1.557%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "WARN",
      "hard": false,
-     "value": "1.538%",
+     "value": "1.557%",
      "threshold": "≤1.5%"
     },
     "P2": {
-     "status": "PASS",
+     "status": "WARN",
      "hard": false,
-     "value": "0 box(es) >20% mismatch (top 10)"
+     "value": "1 box(es) >20% mismatch (top 10)"
     },
     "D": {
      "status": "PASS",
@@ -3010,7 +3206,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.538%",
+     "value": "1.557%",
      "threshold": "≤4.0%"
     }
    },
@@ -3038,13 +3234,29 @@
     "s2props": 46
    },
    "pixel": {
-    "pct": 1.538,
-    "diffPx": 5404,
+    "pct": 1.557,
+    "diffPx": 5470,
     "diff": "img/collect-3-diff.png",
-    "regions": [],
-    "clipPct": 1.538
+    "regions": [
+     {
+      "id": "15:5168",
+      "name": "Label",
+      "density": 23.5,
+      "diffPx": 290,
+      "box": "193,71 77×16"
+     }
+    ],
+    "clipPct": 1.557
    },
-   "offenders": [],
+   "offenders": [
+    {
+     "id": "15:5168",
+     "name": "Label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "23.5% of 193,71 77×16"
+    }
+   ],
    "net": {
     "aborted": 0,
     "abortedUrls": [],
@@ -3140,19 +3352,19 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.223%",
+     "value": "1.242%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "PASS",
      "hard": false,
-     "value": "1.223%",
+     "value": "1.242%",
      "threshold": "≤1.5%"
     },
     "P2": {
-     "status": "PASS",
+     "status": "WARN",
      "hard": false,
-     "value": "0 box(es) >20% mismatch (top 10)"
+     "value": "1 box(es) >20% mismatch (top 10)"
     },
     "D": {
      "status": "PASS",
@@ -3163,7 +3375,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.223%",
+     "value": "1.242%",
      "threshold": "≤4.0%"
     }
    },
@@ -3191,13 +3403,29 @@
     "s2props": 46
    },
    "pixel": {
-    "pct": 1.223,
-    "diffPx": 4297,
+    "pct": 1.242,
+    "diffPx": 4363,
     "diff": "img/collect-4-diff.png",
-    "regions": [],
-    "clipPct": 1.223
+    "regions": [
+     {
+      "id": "15:5271",
+      "name": "Label",
+      "density": 23.5,
+      "diffPx": 290,
+      "box": "193,71 77×16"
+     }
+    ],
+    "clipPct": 1.242
    },
-   "offenders": [],
+   "offenders": [
+    {
+     "id": "15:5271",
+     "name": "Label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "23.5% of 193,71 77×16"
+    }
+   ],
    "net": {
     "aborted": 0,
     "abortedUrls": [],
@@ -3293,13 +3521,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.754%",
+     "value": "1.723%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "WARN",
      "hard": false,
-     "value": "1.754%",
+     "value": "1.723%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -3316,7 +3544,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.754%",
+     "value": "1.723%",
      "threshold": "≤4.0%"
     }
    },
@@ -3344,11 +3572,11 @@
     "s2props": 28
    },
    "pixel": {
-    "pct": 1.754,
-    "diffPx": 6161,
+    "pct": 1.723,
+    "diffPx": 6053,
     "diff": "img/collect-5-diff.png",
     "regions": [],
-    "clipPct": 1.754
+    "clipPct": 1.723
    },
    "offenders": [],
    "net": {
@@ -3446,13 +3674,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.461%",
+     "value": "1.424%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "PASS",
      "hard": false,
-     "value": "1.461%",
+     "value": "1.424%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -3469,7 +3697,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.461%",
+     "value": "1.424%",
      "threshold": "≤4.0%"
     }
    },
@@ -3497,11 +3725,11 @@
     "s2props": 28
    },
    "pixel": {
-    "pct": 1.461,
-    "diffPx": 5133,
+    "pct": 1.424,
+    "diffPx": 5003,
     "diff": "img/collect-6-diff.png",
     "regions": [],
-    "clipPct": 1.461
+    "clipPct": 1.424
    },
    "offenders": [],
    "net": {
@@ -3599,13 +3827,13 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "2.026%",
+     "value": "2.003%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "WARN",
      "hard": false,
-     "value": "2.026%",
+     "value": "2.003%",
      "threshold": "≤1.5%"
     },
     "P2": {
@@ -3622,7 +3850,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "2.026%",
+     "value": "2.003%",
      "threshold": "≤4.0%"
     }
    },
@@ -3650,11 +3878,11 @@
     "s2props": 36
    },
    "pixel": {
-    "pct": 2.026,
-    "diffPx": 7118,
+    "pct": 2.003,
+    "diffPx": 7038,
     "diff": "img/collect-7-diff.png",
     "regions": [],
-    "clipPct": 2.026
+    "clipPct": 2.003
    },
    "offenders": [],
    "net": {
@@ -3752,19 +3980,19 @@
     "P1": {
      "status": "PASS",
      "hard": true,
-     "value": "1.769%",
+     "value": "1.796%",
      "threshold": "≤3.0%"
     },
     "P1t": {
      "status": "WARN",
      "hard": false,
-     "value": "1.769%",
+     "value": "1.796%",
      "threshold": "≤1.5%"
     },
     "P2": {
-     "status": "PASS",
+     "status": "WARN",
      "hard": false,
-     "value": "0 box(es) >20% mismatch (top 10)"
+     "value": "1 box(es) >20% mismatch (top 10)"
     },
     "D": {
      "status": "PASS",
@@ -3775,7 +4003,7 @@
     "P3": {
      "status": "PASS",
      "hard": false,
-     "value": "1.769%",
+     "value": "1.796%",
      "threshold": "≤4.0%"
     }
    },
@@ -3803,13 +4031,29 @@
     "s2props": 42
    },
    "pixel": {
-    "pct": 1.769,
-    "diffPx": 6217,
+    "pct": 1.796,
+    "diffPx": 6309,
     "diff": "img/collect-8-diff.png",
-    "regions": [],
-    "clipPct": 1.769
+    "regions": [
+     {
+      "id": "15:5590",
+      "name": "Label",
+      "density": 23.5,
+      "diffPx": 290,
+      "box": "193,71 77×16"
+     }
+    ],
+    "clipPct": 1.796
    },
-   "offenders": [],
+   "offenders": [
+    {
+     "id": "15:5590",
+     "name": "Label",
+     "layer": "P2",
+     "expected": "≤20% mismatch",
+     "actual": "23.5% of 193,71 77×16"
+    }
+   ],
    "net": {
     "aborted": 0,
     "abortedUrls": [],
@@ -3888,6 +4132,12 @@
     "i": 10,
     "key": "send-10",
     "shot": "img/flow/home-send-11-send-10.png"
+   },
+   {
+    "run": "home-send",
+    "i": 11,
+    "key": "send-11",
+    "shot": "img/flow/home-send-12-send-11.png"
    },
    {
     "run": "home-receive",
@@ -4031,6 +4281,12 @@
     "run": "zone-send",
     "i": 10,
     "key": "send-10",
+    "shot": null
+   },
+   {
+    "run": "zone-send",
+    "i": 11,
+    "key": "send-11",
     "shot": null
    },
    {
@@ -4294,7 +4550,7 @@
     "consoleErrors": []
    }
   ],
-  "asserts": 761,
+  "asserts": 789,
   "aborted": 0,
   "checks": [
    {
@@ -4398,7 +4654,7 @@
     "step": "send-1",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -4412,14 +4668,14 @@
     "step": "send-1",
     "name": "E4 scroll node overflows in kiosk",
     "ok": true,
-    "detail": "hasScroll=true overflow=142px"
+    "detail": "hasScroll=true overflow=160px"
    },
    {
     "run": "home-send",
     "step": "send-1",
     "name": "E4 scroll hint visible on entry",
     "ok": true,
-    "detail": "scroll overflow 142px in kiosk; Figma implies 142px (frame 1016 − 874)"
+    "detail": "scroll overflow 160px in kiosk; Figma implies 160px (frame 1034 − 874)"
    },
    {
     "run": "home-send",
@@ -4513,7 +4769,7 @@
     "step": "send-2",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -4668,7 +4924,7 @@
     "step": "send-3",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -4823,7 +5079,7 @@
     "step": "send-4",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -4978,7 +5234,7 @@
     "step": "send-5",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -5133,7 +5389,7 @@
     "step": "send-6",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -5187,14 +5443,14 @@
     "step": "send-6",
     "name": "E4 scroll node overflows in kiosk",
     "ok": true,
-    "detail": "hasScroll=true overflow=326px"
+    "detail": "hasScroll=true overflow=344px"
    },
    {
     "run": "home-send",
     "step": "send-6",
     "name": "E4 scroll hint visible on entry",
     "ok": true,
-    "detail": "scroll overflow 326px in kiosk; Figma implies 326px (frame 1200 − 874)"
+    "detail": "scroll overflow 344px in kiosk; Figma implies 344px (frame 1218 − 874)"
    },
    {
     "run": "home-send",
@@ -5288,7 +5544,7 @@
     "step": "send-7",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -5410,7 +5666,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1533 ms"
+    "detail": "1506 ms"
    },
    {
     "run": "home-send",
@@ -5450,7 +5706,7 @@
     "step": "send-8",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -5552,7 +5808,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5000 ms"
+    "detail": "5014 ms"
    },
    {
     "run": "home-send",
@@ -5592,7 +5848,7 @@
     "step": "send-9",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -5734,7 +5990,7 @@
     "step": "send-10",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=817.375"
+    "detail": "bottom=857.375"
    },
    {
     "run": "home-send",
@@ -5847,7 +6103,162 @@
    {
     "run": "home-send",
     "step": "send-10",
-    "name": "E1 send-10 → Done (VD.state().view==='done')",
+    "name": "E1 sequence send-10 → send-11",
+    "ok": true,
+    "detail": "unexpected screens on the way: "
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E1 #kiosk-next visible only on its steps",
+    "ok": true
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E1 #kiosk-finish visible only on its steps",
+    "ok": true
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E7 html[lang=en]",
+    "ok": true,
+    "detail": "lang=\"en\""
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E7 no .lang element",
+    "ok": true,
+    "detail": "0"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E7 no Vietnamese outside #phone",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "SEND rail .left bottom ≤ 1016",
+    "ok": true,
+    "detail": "bottom=857.375"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "click target 22:150 exists in #phone .fr[data-screen=send-11]",
+    "ok": true
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "22:150 has a [data-a=\"back\"] ancestor",
+    "ok": true,
+    "detail": "data-a=back"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E2 back → send-10",
+    "ok": true,
+    "detail": "got undefined"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11 (forward again)",
+    "name": "click target 2:4913 exists in #phone .fr[data-screen=send-10]",
+    "ok": true
+   },
+   {
+    "run": "home-send",
+    "step": "send-11 (forward again)",
+    "name": "2:4913 has a [data-a] ancestor",
+    "ok": true,
+    "detail": "data-a=next"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E2 forward again send-10 → send-11",
+    "ok": true,
+    "detail": "got undefined"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "motion settles on Figma text",
+    "ok": true,
+    "detail": "0 text node(s) differ, e.g. "
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E4 scroll node overflows in kiosk",
+    "ok": true,
+    "detail": "hasScroll=true overflow=69px"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E4 scroll hint visible on entry",
+    "ok": true,
+    "detail": "scroll overflow 69px in kiosk; Figma implies 69px (frame 943 − 874)"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E4 scroll hint hidden at bottom",
+    "ok": true
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E3 found 3 inert TEXT nodes to click",
+    "ok": true,
+    "detail": "3"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E3 inert click on 22:137 keeps send-11",
+    "ok": true,
+    "detail": "screen=send-11 view=flow"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E3 inert click on 22:174 keeps send-11",
+    "ok": true,
+    "detail": "screen=send-11 view=flow"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E3 inert click on 22:195 keeps send-11",
+    "ok": true,
+    "detail": "screen=send-11 view=flow"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "click target 22:190 exists in #phone .fr[data-screen=send-11]",
+    "ok": true
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "22:190 has a [data-a] ancestor",
+    "ok": true,
+    "detail": "data-a=next"
+   },
+   {
+    "run": "home-send",
+    "step": "send-11",
+    "name": "E1 send-11 → Done (VD.state().view==='done')",
     "ok": true,
     "detail": "{\"view\":\"done\",\"zone\":\"send\",\"step\":null,\"screen\":null,\"node\":null}"
    },
@@ -7684,7 +8095,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4004 ms"
+    "detail": "4018 ms"
    },
    {
     "run": "home-collect",
@@ -8086,7 +8497,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1532 ms"
+    "detail": "1533 ms"
    },
    {
     "run": "zone-send",
@@ -8105,7 +8516,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "4987 ms"
+    "detail": "4998 ms"
    },
    {
     "run": "zone-send",
@@ -8167,7 +8578,39 @@
    {
     "run": "zone-send",
     "step": "send-10",
-    "name": "E1 send-10 → Done (VD.state().view==='done')",
+    "name": "E1 sequence send-10 → send-11",
+    "ok": true,
+    "detail": "unexpected screens on the way: "
+   },
+   {
+    "run": "zone-send",
+    "step": "send-11",
+    "name": "E1 #kiosk-next visible only on its steps",
+    "ok": true
+   },
+   {
+    "run": "zone-send",
+    "step": "send-11",
+    "name": "E1 #kiosk-finish visible only on its steps",
+    "ok": true
+   },
+   {
+    "run": "zone-send",
+    "step": "send-11",
+    "name": "click target 22:190 exists in #phone .fr[data-screen=send-11]",
+    "ok": true
+   },
+   {
+    "run": "zone-send",
+    "step": "send-11",
+    "name": "22:190 has a [data-a] ancestor",
+    "ok": true,
+    "detail": "data-a=next"
+   },
+   {
+    "run": "zone-send",
+    "step": "send-11",
+    "name": "E1 send-11 → Done (VD.state().view==='done')",
     "ok": true,
     "detail": "{\"view\":\"done\",\"zone\":\"send\",\"step\":null,\"screen\":null,\"node\":null}"
    },
@@ -8703,7 +9146,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4008 ms"
+    "detail": "4020 ms"
    },
    {
     "run": "zone-collect",
@@ -8854,7 +9297,7 @@
     "step": "mid",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (mid-journey)",
     "ok": true,
-    "detail": "6497 ms"
+    "detail": "6516 ms"
    },
    {
     "run": "idle-done",
@@ -9108,7 +9551,7 @@
     "step": "done",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (on Done)",
     "ok": true,
-    "detail": "6549 ms"
+    "detail": "6514 ms"
    },
    {
     "run": "fx-low",

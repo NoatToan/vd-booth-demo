@@ -50,32 +50,32 @@ const ICON = {
 };
 const META = {
   send: {
-    name: 'SEND', color: '#b38cff', brand: ['VISA Direct', '× TPBank'],
+    name: 'SEND', color: '#b38cff', brand: ['VISA Direct', '× Vietnam Pioneer Bank'],
     intent: 'I want to send money abroad.',
-    hero: 'Send money abroad, securely.', sub: 'TPBank → Visa Direct → NAB · Vietnam → Australia',
+    hero: 'Send money abroad, securely.', sub: 'Vietnam Pioneer Bank → Visa Direct → NAB · Vietnam → Australia',
     route: 'Vietnam → Australia',
     verb: 'You just sent money abroad, securely.',
     summary: 'Purpose, documents, a locked rate and Face ID. Then AUD 2,900 landed in Emily’s NAB account within minutes.',
     powered: 'Powered by Visa Direct', product: 'Visa Direct',
-    explain: 'Visa Direct helps banks like TPBank push funds across borders to bank accounts, cards and wallets in near real time, with compliance and FX built into the flow.'
+    explain: 'Visa Direct helps banks like Vietnam Pioneer Bank push funds across borders to bank accounts, cards and wallets in near real time, with compliance and FX built into the flow.'
   },
   receive: {
-    name: 'RECEIVE', color: '#f7b600', brand: ['VISA', '/ VXBS'],
+    name: 'RECEIVE', color: '#f7b600', brand: ['VISA', ''],
     intent: 'I want to get paid from overseas.',
-    hero: 'Receive from overseas.', sub: 'VXBS · United States → Vietcombank, Vietnam',
+    hero: 'Receive from overseas.', sub: 'United States → Vietnam Bank, Vietnam',
     route: 'United States → Vietnam',
     verb: 'You just received money from overseas.',
-    summary: 'Linh shared her USD receiving details, Daniel paid from the US, and 63,295,800 ₫ reached Vietcombank the same day.',
+    summary: 'Linh shared her USD receiving details, Daniel paid from the US, and 63,295,800 ₫ reached Vietnam Bank the same day.',
     powered: 'Powered by Visa Cross-Border Solutions', product: 'VXBS Global Receiving',
     explain: 'Visa Cross-Border Solutions give people in Vietnam a global receiving account, a transparent quote before the money moves, live tracking and local settlement in VND.'
   },
   collect: {
-    name: 'COLLECT', color: '#22d3ae', brand: ['VISA', '/ VXBS'],
+    name: 'COLLECT', color: '#22d3ae', brand: ['VISA', ''],
     intent: 'I want to collect my sales from the world.',
-    hero: 'Your sales, connected.', sub: 'VXBS seller · Amazon / Shopify / invoices → Vietnam',
+    hero: 'Your sales, connected.', sub: 'Seller · Amazon / Shopify / invoices → Vietnam',
     route: 'Amazon · Shopify · Invoices → Vietnam',
     verb: 'You just collected your global sales.',
-    summary: 'Linh Studio held five currencies, connected its sales channels, and withdrew USD to Vietcombank with the rate and fee shown up front.',
+    summary: 'Linh Studio held five currencies, connected its sales channels, and withdrew USD to Vietnam Bank with the rate and fee shown up front.',
     powered: 'Powered by Visa Cross-Border Solutions', product: 'VXBS for sellers',
     explain: 'Visa Cross-Border Solutions help online sellers, SMEs and freelancers collect from marketplaces and clients abroad, hold multiple currencies, and settle locally in Vietnam.'
   }
@@ -245,7 +245,7 @@ app.addEventListener('click', e => {
 /* ---------- views ---------- */
 const brand = z => {
   const b = z ? META[z].brand : ['VISA', 'Direct'];
-  return `<div class="brand"><span class="vw">${b[0]}</span><span class="vd">${b[1]}</span></div>`;
+  return `<div class="brand${b[1].startsWith('×') ? ' co' : ''}"><span class="vw">${b[0]}</span><span class="vd">${b[1]}</span></div>`;
 };
 function drawRail() {
   const rail = $('#rail');

@@ -33,9 +33,9 @@ All 24 screens come from two Figma prototypes and keep their copy, figures and l
 
 | Journey | Story | Steps |
 |---|---|---|
-| **SEND**: VISA Direct × TPBank | A TPBank customer in Vietnam sends AUD 2,900 to a family member's NAB account in Australia for medical expenses: purpose → recipient → supporting documents (OCR checked) → amount with FX rate lock → review → Face ID → paperwork review → approved → 6-stage tracking. | 10 |
-| **RECEIVE**: VISA / VXBS | Linh in Vietnam receives 2,500 USD from Daniel Carter in the US: quote → USD receiving details and QR → live tracking → transfer details → funds arrived in Vietcombank (63,295,800 VND). | 6 |
-| **COLLECT**: VISA / VXBS seller | Linh Studio collects marketplace earnings: earnings dashboard → upcoming payouts → connected channels (Amazon, Shopify, invoices) → multi-currency balances → withdraw → FX conversion → payout tracking → settlement history. | 8 |
+| **SEND**: VISA Direct × Vietnam Pioneer Bank | A Vietnam Pioneer Bank customer in Vietnam sends AUD 2,900 to a family member's NAB account in Australia for medical expenses: purpose → recipient → supporting documents (OCR checked) → amount with FX rate lock → review → Face ID → paperwork review → approved → 6-stage tracking → Visa Direct confirmation. | 11 |
+| **RECEIVE**: VISA (VXBS) | Linh in Vietnam receives 2,500 USD from Daniel Carter in the US: quote → USD receiving details and QR → live tracking → transfer details → funds arrived in Vietnam Bank (63,295,800 VND). | 6 |
+| **COLLECT**: VISA (VXBS) seller | Linh Studio collects marketplace earnings: earnings dashboard → upcoming payouts → connected channels (Amazon, Shopify, invoices) → multi-currency balances → withdraw → FX conversion → payout tracking → settlement history. | 8 |
 
 How visitors move through each journey (one hotspot per screen, kiosk **Next** and **Finish** where the design has no call to action, auto-advance on status screens) is documented in [`docs/workflow.html`](docs/workflow.html). The product decisions are in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
