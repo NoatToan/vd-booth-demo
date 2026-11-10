@@ -66,6 +66,8 @@ Uses the installed Google Chrome (`channel: 'chrome'`). A screen passes when it 
 - **Done screen** with a product summary and a QR code to the **lead form** (`/lead/?exp=<experience>`; override with `?qr=`).
 - **Lead capture**: https://vd-booth-demo.vercel.app/lead/ (phone page in the Visa Direct look of the Figma files) posts to `/api/lead`, a Vercel Function that stores the lead in the Neon Postgres database `vd-booth-leads` (Vercel Marketplace, env `DATABASE_URL`). Consent is required and its wording is stored with each lead. Export for the booth team:
   `curl -H "Authorization: Bearer $(cat ~/.vd-booth-leads-token)" https://vd-booth-demo.vercel.app/api/leads > leads.csv` (token = Vercel env `LEADS_ADMIN_TOKEN`).
+  `?format=json` gives JSON. Validation (`api/_validate.js`, mirrored in the page): name of letters (2–120), a real email shape, phone 7–15 digits (stored as `+84912345678`), length limits, consent v1 required and stored by the server's own wording; spam (honeypot, sent in < 2.5 s) is dropped; the same email within 10 min is not stored twice; at most 20 leads / 10 min per network (keyed IP hash only).
+  Live check: `LIVE=1 pnpm --dir tests/e2e test lead` submits on production, reads the rows back through the export API, saves `tests/e2e/compare/lead/export.{csv,json}`, then deletes its own `e2e-test:*` rows.
 - **English only**, with the brand shown per journey.
 - **16:9 landscape** (designed at 1920×1080, scales to any screen). On a portrait display the stage rotates to stay landscape.
 - **Built to run all day:**

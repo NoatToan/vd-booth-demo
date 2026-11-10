@@ -2,9 +2,6 @@
 // env DATABASE_URL). The table is created on first use, so a fresh database needs no migration step.
 import { neon } from '@neondatabase/serverless';
 
-export const EXPERIENCES = ['send', 'receive', 'collect', 'family', 'travel'];
-export const INTERESTS = ['visa-direct', 'vxbs', 'cross-border-aft', 'demo', 'partnership'];
-
 let ready = null;
 export function db() {
   if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
@@ -23,7 +20,11 @@ export function db() {
       consent     boolean NOT NULL,
       consent_text text NOT NULL,
       source      text
-    )`.catch(e => { ready = null; throw e; });
+    )`
+    // added 2026-11-10 (validation pass): consent wording version, and a keyed hash of the sender IP for rate limiting
+    .then(() => sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS consent_version text, ADD COLUMN IF NOT EXISTS ip_hash text`)
+    .then(() => sql`CREATE INDEX IF NOT EXISTS leads_email_time ON leads (email, created_at)`)
+    .catch(e => { ready = null; throw e; });
   return ready.then(() => sql);
 }
 
