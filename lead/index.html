@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1434cb">
+<title>Keep in touch · Visa</title>
+<!--
+  Lead capture, opened from the QR on the booth's Done screen (?exp=send|receive|collect|family|travel).
+  Visual language from Figma (zSn01… frame 22:134 "Visa transfer success" + 2:4416 "Input field"):
+  #1434cb band with the Arimo VISA wordmark, #f7f7fa page, white cards r20 #e4e6ef, fields r12 #e8e4ec with 11px
+  #777180 labels and 15px #201b29 values, 56px primary button r16. Posts to /api/lead (Neon Postgres).
+-->
+<link href="../vendor/inter.css" rel="stylesheet">
+<style>
+:root{--blue:#1434cb;--page:#f7f7fa;--card:#fff;--line:#e4e6ef;--field:#e8e4ec;--label:#777180;--ink:#201b29;--muted:#74788a;--soft:#d6deff;--err:#c62828}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--page);font-family:Inter,system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+.wrap{max-width:480px;margin:0 auto;min-height:100vh;background:var(--page)}
+header{background:var(--blue);color:#fff;padding:calc(18px + env(safe-area-inset-top)) 24px 40px}
+.brand{display:flex;align-items:baseline;gap:7px}
+.brand .vw{font:italic 700 32px/36.8px Arimo,Inter,sans-serif;letter-spacing:-1.4px}
+.brand .vd{font:400 19px/23px Inter,sans-serif;letter-spacing:-.5px}
+header h1{font:600 29px/33.1px Inter,sans-serif;letter-spacing:-.9px;margin-top:28px}
+header p{font:400 14px/20.3px Inter,sans-serif;color:var(--soft);margin-top:8px}
+.tried{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 12px;border-radius:100px;background:rgba(255,255,255,.14);font:600 12px/15px Inter,sans-serif}
+.tried::before{content:'';width:7px;height:7px;border-radius:50%;background:#7ee2b8}
+main{padding:24px 24px 20px;margin-top:-20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.card+.card{margin-top:16px}
+.card h2{font:600 16px/19.4px Inter,sans-serif}
+.card .hint{font:400 12px/16px Inter,sans-serif;color:var(--muted);margin-top:-6px}
+label.f{display:flex;flex-direction:column;gap:5px;background:#fff;border:1px solid var(--field);border-radius:12px;padding:12px 16px;transition:border-color .15s,box-shadow .15s}
+label.f span{font:500 11px/13.3px Inter,sans-serif;color:var(--label)}
+label.f span b{color:var(--blue);font-weight:600}
+label.f input,label.f select,label.f textarea{font:500 15px/18.2px Inter,sans-serif;color:var(--ink);border:0;outline:0;background:transparent;width:100%;padding:0;appearance:none;-webkit-appearance:none;border-radius:0}
+label.f textarea{resize:none;min-height:54px}
+label.f input::placeholder,label.f textarea::placeholder{color:#b4afbc}
+label.f:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(20,52,203,.12)}
+label.f.bad{border-color:var(--err)}
+label.f select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none'%3E%3Cpath d='M4.5 6.75 9 11.25l4.5-4.5' stroke='%23777180' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right center no-repeat;padding-right:24px}
+.err{font:500 12px/15px Inter,sans-serif;color:var(--err);margin:-6px 0 0 4px;display:none}
+.err.on{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0}
+.chip span{display:block;padding:10px 14px;border-radius:100px;border:1px solid var(--field);background:#fff;font:500 13px/16px Inter,sans-serif;color:var(--ink);transition:all .15s}
+.chip input:checked+span{border-color:var(--blue);background:#eef1ff;color:var(--blue);font-weight:600}
+.chip input:focus-visible+span{box-shadow:0 0 0 3px rgba(20,52,203,.2)}
+.consent{display:flex;gap:12px;align-items:flex-start;font:400 12px/17px Inter,sans-serif;color:var(--muted)}
+.consent input{flex:0 0 20px;width:20px;height:20px;margin-top:1px;accent-color:var(--blue)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{padding:16px 24px calc(24px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;align-items:center}
+button.primary{width:100%;height:56px;border:0;border-radius:16px;background:var(--blue);color:#fff;font:600 16px/19.4px Inter,sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer}
+button.primary:disabled{opacity:.6}
+button.primary svg{width:18px;height:18px}
+.note{font:400 10px/12.1px Inter,sans-serif;color:var(--muted);text-align:center}
+.formerr{font:500 13px/17px Inter,sans-serif;color:var(--err);text-align:center;display:none}
+.formerr.on{display:block}
+/* thank-you state (the Figma success band: white seal + check, 29px headline) */
+.done header{padding-bottom:64px;text-align:center}
+.done .brand{justify-content:center}
+.seal{width:64px;height:64px;border-radius:100px;background:#fff;display:grid;place-items:center;margin:32px auto 0}
+.seal svg{width:34px;height:34px}
+.done main,.done footer{display:none}
+.thanks{display:none}
+.done .thanks{display:block}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <header>
+    <div class="brand"><span class="vw">VISA</span><span class="vd">Direct</span></div>
+    <div class="thanks"><div class="seal"><svg viewBox="0 0 34 34" fill="none"><path d="M28.3321 8.5L12.7503 24.0822L5.66772 16.9994" stroke-width="2.5" stroke-linecap="round" stroke="#20785D"/></svg></div></div>
+    <h1 id="h1">Keep the conversation going</h1>
+    <p id="sub">Leave your details and the Visa team will follow up on what you saw at the booth.</p>
+    <div class="tried" id="tried" hidden></div>
+  </header>
+  <form id="form" novalidate>
+    <main>
+      <div class="card">
+        <h2>About you</h2>
+        <label class="f" id="f-fullName"><span>Full name <b>*</b></span><input name="fullName" autocomplete="name" maxlength="120" placeholder="Your name" required></label>
+        <div class="err" data-for="fullName"></div>
+        <label class="f" id="f-email"><span>Work email <b>*</b></span><input name="email" type="email" inputmode="email" autocomplete="email" maxlength="200" placeholder="name@company.com" required></label>
+        <div class="err" data-for="email"></div>
+        <label class="f"><span>Company</span><input name="company" autocomplete="organization" maxlength="160" placeholder="Company or organisation"></label>
+        <label class="f"><span>Job title</span><input name="jobTitle" autocomplete="organization-title" maxlength="120" placeholder="Your role"></label>
+        <label class="f" id="f-phone"><span>Phone (optional)</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" placeholder="+84 ..."></label>
+        <div class="err" data-for="phone"></div>
+      </div>
+      <div class="card">
+        <h2>What would you like to explore?</h2>
+        <div class="hint">Pick any that apply.</div>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="interests" value="visa-direct"><span>Visa Direct</span></label>
+          <label class="chip"><input type="checkbox" name="interests" value="vxbs"><span>Visa Cross-Border Solutions</span></label>
+          <label class="chip"><input type="checkbox" name="interests" value="cross-border-aft"><span>Cross-border AFT</span></label>
+          <label class="chip"><input type="checkbox" name="interests" value="demo"><span>A product demo</span></label>
+          <label class="chip"><input type="checkbox" name="interests" value="partnership"><span>Partnering with Visa</span></label>
+        </div>
+        <label class="f"><span>Which experience did you try?</span>
+          <select name="experience" id="experience">
+            <option value="">Choose one</option>
+            <option value="send">Send abroad · Visa Direct</option>
+            <option value="receive">Individual receiver · VXBS</option>
+            <option value="collect">E-seller withdrawal · VXBS</option>
+            <option value="family">Friends &amp; family · cross-border AFT</option>
+            <option value="travel">Travel wallet · cross-border AFT</option>
+          </select></label>
+        <label class="f"><span>Anything else? (optional)</span><textarea name="message" maxlength="1000" rows="3" placeholder="Tell us about your use case"></textarea></label>
+      </div>
+      <div class="card">
+        <label class="consent"><input type="checkbox" name="consent" id="consent"><span id="consentText">I agree that Visa may store these details and contact me about Visa money-movement solutions. I can ask for them to be deleted at any time.</span></label>
+        <div class="err" data-for="consent"></div>
+      </div>
+      <div class="hp" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+    </main>
+    <footer>
+      <div class="formerr" id="formerr"></div>
+      <button class="primary" id="send" type="submit">Send my details<svg viewBox="0 0 18 18" fill="none"><path d="M3.74939 8.99999H14.2506M8.99999 14.2506L14.2506 8.99999L8.99999 3.74939" stroke-linecap="round" stroke="white"/></svg></button>
+      <div class="note">Your details stay with the Visa booth team · Concept demo</div>
+    </footer>
+  </form>
+</div>
+<script>
+(() => {
+  const P = new URLSearchParams(location.search), f = document.getElementById('form');
+  const NAMES = { send: 'Send abroad · Visa Direct', receive: 'Individual receiver · VXBS', collect: 'E-seller withdrawal · VXBS', family: 'Friends & family · cross-border AFT', travel: 'Travel wallet · cross-border AFT' };
+  const INTEREST = { send: 'visa-direct', receive: 'vxbs', collect: 'vxbs', family: 'cross-border-aft', travel: 'cross-border-aft' };
+  const exp = P.get('exp');
+  if (NAMES[exp]) {
+    document.getElementById('experience').value = exp;
+    const t = document.getElementById('tried'); t.hidden = false; t.textContent = `You tried: ${NAMES[exp]}`;
+    const box = f.querySelector(`input[name="interests"][value="${INTEREST[exp]}"]`); if (box) box.checked = true;
+  }
+  const showErr = (name, msg) => {
+    const e = f.querySelector(`.err[data-for="${name}"]`); if (e) { e.textContent = msg || ''; e.classList.toggle('on', !!msg); }
+    const l = document.getElementById('f-' + name); if (l) l.classList.toggle('bad', !!msg);
+  };
+  f.addEventListener('input', e => { if (e.target.name) showErr(e.target.name, ''); });
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    const d = new FormData(f);
+    const body = {
+      fullName: d.get('fullName'), email: d.get('email'), company: d.get('company'), jobTitle: d.get('jobTitle'), phone: d.get('phone'),
+      experience: d.get('experience'), interests: d.getAll('interests'), message: d.get('message'), website: d.get('website'),
+      consent: document.getElementById('consent').checked, consentText: document.getElementById('consentText').textContent, source: exp ? `booth-qr:${exp}` : 'booth-qr',
+    };
+    const local = {};
+    if (!String(body.fullName).trim()) local.fullName = 'Please enter your name.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(body.email).trim())) local.email = 'Please enter a valid email address.';
+    if (!body.consent) local.consent = 'Please agree so we can contact you.';
+    ['fullName', 'email', 'phone', 'consent'].forEach(n => showErr(n, local[n]));
+    if (Object.keys(local).length) return;
+    const btn = document.getElementById('send'), fe = document.getElementById('formerr');
+    btn.disabled = true; fe.classList.remove('on');
+    try {
+      const r = await fetch('/api/lead', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+      const j = await r.json().catch(() => ({}));
+      if (r.status === 422 && j.errors) { Object.entries(j.errors).forEach(([k, v]) => showErr(k, v)); return; }
+      if (!r.ok) throw new Error(j.error || r.statusText);
+      document.getElementById('wrap').classList.add('done');
+      document.getElementById('h1').textContent = 'Thank you!';
+      document.getElementById('sub').textContent = 'The Visa team will be in touch soon. Enjoy the rest of the forum.';
+      document.getElementById('tried').hidden = true;
+      scrollTo(0, 0);
+    } catch (err) {
+      fe.textContent = 'Could not send right now. Please check your connection and try again.'; fe.classList.add('on');
+    } finally { btn.disabled = false; }
+  });
+})();
+</script>
+</body>
+</html>

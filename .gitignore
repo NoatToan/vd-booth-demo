@@ -3,3 +3,5 @@
 scripts/verify/node_modules
 docs/verify/img/
 scripts/figma-fig/node_modules
+node_modules
+.env*

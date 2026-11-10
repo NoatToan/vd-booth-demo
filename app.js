@@ -27,7 +27,8 @@ if (P.has('solo')) {
 /* ---------- kiosk ---------- */
 const LOCK = (z => (ZONES.includes(z) ? z : null))(ALIAS[P.get('zone')] || P.get('zone'));
 const IDLE_MS = (+P.get('idle') || 60) * 1000;
-const QR_URL = P.get('qr') || 'https://vd-booth-demo.vercel.app/';
+// Done-screen QR: the lead form (lead/index.html) tagged with the experience; ?qr= overrides it for every journey
+const QR_URL = z => P.get('qr') || `https://vd-booth-demo.vercel.app/lead/?exp=${z}`;
 const RELOAD_MS = (P.has('reload') ? +P.get('reload') : 2) * 3600e3;
 const LOW_FX = P.get('fx') === 'low';
 const LOADED = Date.now();
@@ -319,13 +320,14 @@ function draw() {
       <h1 class="hero">${m.verb}</h1><p class="lead">${m.summary}</p>
       <div class="pw"><span>${m.powered}</span><b>${m.product}</b><p>${m.explain}</p></div>
       <div class="btns"><button class="btn primary" data-a="again">${LOCK ? 'Try it again' : 'Try another journey'}</button><button class="btn" data-a="restart">Finish</button></div></div>
-      <div class="qr-card"><div id="qr"></div><h3>Scan to continue</h3><ul><li>Learn more about ${m.product}</li><li>Request a demo</li><li>Connect with the Visa team</li></ul></div></div>`;
+      <div class="qr-card"><div id="qr"></div><h3>Scan to keep in touch</h3><ul><li>Leave your details on your phone</li><li>Learn more about ${m.product}</li><li>Request a demo with the Visa team</li></ul></div></div>`;
   }
   app.innerHTML = html;
   if (S.view === 'done') {
     const el = $('#qr');
-    if (window.QRCode) new QRCode(el, { text: QR_URL, width: 300, height: 300, colorDark: '#0b1240', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
-    else { el.title = QR_URL; el.textContent = QR_URL; }
+    const url = QR_URL(S.zone);
+    if (window.QRCode) new QRCode(el, { text: url, width: 300, height: 300, colorDark: '#0b1240', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+    else { el.title = url; el.textContent = url; }
   }
 }
 

@@ -1,0 +1,10 @@
+{
+  "name": "vd-booth-demo",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.5.0",
+  "description": "Visa booth kiosk (static) + lead capture API (Vercel Functions, Neon Postgres)",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  }
+}

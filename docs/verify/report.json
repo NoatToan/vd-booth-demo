@@ -1,6 +1,6 @@
 {
- "commit": "417e2d8+dirty",
- "at": "2026-11-10T10:37:28.284Z",
+ "commit": "4f79913+dirty",
+ "at": "2026-11-10T10:46:58.916Z",
  "summary": {
   "screens": 0,
   "screensHardPass": 0,
@@ -19,8 +19,8 @@
    "layer": "flow"
   },
   "app": {
-   "before": "542234433c59",
-   "after": "542234433c59",
+   "before": "4aabe7a6239e",
+   "after": "4aabe7a6239e",
    "changedDuringRun": false
   },
   "line": "ALL HARD GATES GREEN — screens 0/0 hard-green, flow PASS"
@@ -2093,7 +2093,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1521 ms"
+    "detail": "1508 ms"
    },
    {
     "run": "home-send",
@@ -2235,7 +2235,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5000 ms"
+    "detail": "5028 ms"
    },
    {
     "run": "home-send",
@@ -2721,14 +2721,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=send"
    },
    {
     "run": "home-send",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=send",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=send"
    },
    {
     "run": "home-receive",
@@ -3680,14 +3680,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=receive"
    },
    {
     "run": "home-receive",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=receive",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=receive"
    },
    {
     "run": "home-collect",
@@ -4522,7 +4522,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4015 ms"
+    "detail": "4029 ms"
    },
    {
     "run": "home-collect",
@@ -4651,14 +4651,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=collect"
    },
    {
     "run": "home-collect",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=collect",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=collect"
    },
    {
     "run": "home-family",
@@ -6661,7 +6661,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4016 ms"
+    "detail": "4028 ms"
    },
    {
     "run": "home-family",
@@ -7221,14 +7221,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=family"
    },
    {
     "run": "home-family",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=family",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=family"
    },
    {
     "run": "home-travel",
@@ -8548,7 +8548,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4027 ms"
+    "detail": "4014 ms"
    },
    {
     "run": "home-travel",
@@ -9529,14 +9529,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=travel"
    },
    {
     "run": "home-travel",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=travel",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=travel"
    },
    {
     "run": "zone-send",
@@ -9802,7 +9802,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1535 ms"
+    "detail": "1533 ms"
    },
    {
     "run": "zone-send",
@@ -9821,7 +9821,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "4980 ms"
+    "detail": "5000 ms"
    },
    {
     "run": "zone-send",
@@ -9930,14 +9930,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=send"
    },
    {
     "run": "zone-send",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=send",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=send"
    },
    {
     "run": "zone-receive",
@@ -10451,7 +10451,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4009 ms"
+    "detail": "4017 ms"
    },
    {
     "run": "zone-collect",
@@ -10496,14 +10496,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=collect"
    },
    {
     "run": "zone-collect",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=collect",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=collect"
    },
    {
     "run": "zone-family",
@@ -10973,7 +10973,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4027 ms"
+    "detail": "4013 ms"
    },
    {
     "run": "zone-family",
@@ -11114,14 +11114,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=family"
    },
    {
     "run": "zone-family",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=family",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=family"
    },
    {
     "run": "zone-travel",
@@ -11463,7 +11463,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4022 ms"
+    "detail": "4029 ms"
    },
    {
     "run": "zone-travel",
@@ -11732,14 +11732,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=travel"
    },
    {
     "run": "zone-travel",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=travel",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=travel"
    },
    {
     "run": "idle-mid",
@@ -11838,7 +11838,7 @@
     "step": "mid",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (mid-journey)",
     "ok": true,
-    "detail": "6404 ms"
+    "detail": "6431 ms"
    },
    {
     "run": "idle-done",
@@ -12078,21 +12078,21 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=receive"
    },
    {
     "run": "idle-done",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=receive",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=receive"
    },
    {
     "run": "idle-done",
     "step": "done",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (on Done)",
     "ok": true,
-    "detail": "6580 ms"
+    "detail": "6558 ms"
    },
    {
     "run": "fx-low",
@@ -12338,14 +12338,14 @@
     "step": "done",
     "name": "E5 #qr title is the URL",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=receive"
    },
    {
     "run": "fx-low",
     "step": "done",
-    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/",
+    "name": "E5 QR decodes to https://vd-booth-demo.vercel.app/lead/?exp=receive",
     "ok": true,
-    "detail": "https://vd-booth-demo.vercel.app/"
+    "detail": "https://vd-booth-demo.vercel.app/lead/?exp=receive"
    },
    {
     "run": "fx-low",

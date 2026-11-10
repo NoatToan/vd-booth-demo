@@ -6,7 +6,8 @@ import { openPage } from './lib/browser.mjs';
 import { decode } from './lib/pixel.mjs';
 import { ORIGIN } from './serve.mjs';
 
-const QR_DEFAULT = 'https://vd-booth-demo.vercel.app/';
+// Done-screen QR: the lead form, tagged with the experience just played (overridable with ?qr=)
+const QR_DEFAULT = z => `https://vd-booth-demo.vercel.app/lead/?exp=${z}`;
 const QR_OVERRIDE = 'https://example.org/vd-booth-selfcheck';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const win = s => { const m = /^(?:auto|scan):(\d+)-(\d+)/.exec(s || ''); return m ? [+m[1], +m[2]] : null; };
@@ -240,7 +241,7 @@ export async function runFlow(browser, { zones = ZONES, imgDir } = {}) {
         await sleep(600);
         run.doneShot = await shot('99-done');
         if (deep || qr) await english('done');
-        const want = qr || QR_DEFAULT;
+        const want = qr || QR_DEFAULT(zone);
         const q = await page.evaluate(() => { const e = document.querySelector('#qr'); if (!e) return null; const r = e.getBoundingClientRect(); return { x: r.x, y: r.y, w: r.width, h: r.height, title: e.getAttribute('title') }; });
         if (A('done', 'E5 #qr present', !!q)) {
           A('done', 'E5 #qr title is the URL', q.title === want, q.title);
