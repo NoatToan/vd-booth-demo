@@ -19,8 +19,10 @@ Raw design data pulled with the Framelink MCP (`figma-developer-mcp`, `get_figma
   `scripts/gen/patch-vxbs-2026-11-09.mjs` (Vietcombank → Vietnam Bank, "VXBS" removed). The script checks all 731 text
   nodes against the Framelink pull; the verify harness passes P1 against the new renders. Replace it with a real REST
   pull when quota allows.
-- `assets/zSn01lZ2vy3a2kM9EDo6mD/x.svg` and `completed-check.svg` (frame `22:134`) were written by hand from the REST
-  vector bounds and stroke (the image export was rate-limited). Pixel check against the render: P1 0.94 %.
+- `GET /v1/images` (SVG/PNG export) and `GET /v1/files/:key/images` (image fills) kept answering after `GET file` was
+  limited, so the travel-app SVGs, the SEND `22:134` icons and the travel-app photos (`assets/<key>/fills/`) are real exports.
+- What is still missing is pulled by `scripts/figma-pull/pull.mjs` (state in `pull-state.json`), retried hourly by a
+  launchd agent (`scripts/figma-pull/install-agent.sh`, log `~/Library/Logs/vd-booth-figma-pull.log`) that removes itself when done.
 - No file has prototype links; step order is still read from the canvas and the copy.
 
 ## Layout
