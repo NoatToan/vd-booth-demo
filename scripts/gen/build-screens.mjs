@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Compiles figma/rest/*.json into screens/gen/screens.js + screens.css (IMPL-PLAN.md §1).
 // Plain Node, no dependencies:  node scripts/gen/build-screens.mjs
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadFile, twinMap, isSvgRoot, solidPaints } from './lib/figma.mjs';
@@ -16,7 +16,18 @@ for (const o of overridesList) {
   overrides.set(o.node, o);
 }
 
-const SCROLL_NAME = { send: 'Screen content', receive: 'Scroll content', collect: 'Content' };
+const SCROLL_NAME = { send: 'Screen content', receive: 'Scroll content', collect: 'Content', family: 'Screen content', travel: 'Content' };
+// image fills are served from figma/assets/<key>/fills/<imageRef>.<ext> (downloaded or unzipped from the .fig)
+const fillExt = new Map();
+function imageUrl(fileKey, ref) {
+  const k = `${fileKey}/${ref}`;
+  if (!fillExt.has(k)) {
+    const ext = ['jpg', 'png'].find(e => existsSync(`${ROOT}/figma/assets/${fileKey}/fills/${ref}.${e}`));
+    if (!ext) throw new Error(`missing image fill figma/assets/${fileKey}/fills/${ref}.*`);
+    fillExt.set(k, ext);
+  }
+  return `../../figma/assets/${fileKey}/fills/${ref}.${fillExt.get(k)}`; // relative to screens/gen/screens.css
+}
 const files = new Map();
 const file = key => files.get(key) || files.set(key, loadFile(ROOT, key)).get(key);
 
@@ -65,7 +76,7 @@ for (const sc of manifest.screens) {
   const scrollNode = sc.scrollNode ? app.children.find(c => c.id === sc.scrollNode) : app.children.find(c => c.name === SCROLL_NAME[zone]);
   if (!scrollNode) throw new Error(`${sc.key}: no "${sc.scrollNode || SCROLL_NAME[zone]}" child`);
   const tr = new Translator({
-    root: ROOT, fileKey: f.fileKey, zone, screenKey: sc.key, overrides, classFor,
+    root: ROOT, fileKey: f.fileKey, zone, screenKey: sc.key, overrides, classFor, imageUrl: ref => imageUrl(f.fileKey, ref),
     scrollId: scrollNode.id, frameId: app.id,
     idOf: n => (map ? { node: map.get(n.id), twin: n.id } : { node: n.id }),
   });
@@ -75,10 +86,20 @@ for (const sc of manifest.screens) {
   const h = struct.absoluteBoundingBox.height;
   if (Math.abs(h - sc.h) > 0.5) throw new Error(`${sc.key}: height ${h} != manifest ${sc.h}`);
   counts[sc.key] = tr.used.size;
+  // storyboard files (F&F): whose device this step is on, from the swimlane header ("RECEIVER / VIETNAM", "Nguyen Minh Anh")
+  let lane = null;
+  for (let p = f.parent.get(app.id); p; p = f.parent.get(p.id)) {
+    if (!/swimlane$/i.test(p.name)) continue;
+    const t = [];
+    const walk = n => { if (n.name === 'Storyboard step') return; if (n.type === 'TEXT') t.push(n.characters); (n.children || []).forEach(walk); };
+    walk(p);
+    lane = { role: t[0].replace(/\s+/g, ' '), name: t[1] };
+    break;
+  }
   out.push({
-    key: sc.key, zone, n: +nStr, node: app.id, twin: twin ? twin.id : null, title: sc.title, h,
+    key: sc.key, zone, n: +nStr, node: app.id, twin: twin ? twin.id : null, title: sc.title, h, w: struct.absoluteBoundingBox.width,
     go: sc.go, hot, back: sc.back || null, auto: sc.auto || null, scan: sc.scan || null,
-    scroll: scrollNode.id, html,
+    scroll: scrollNode.id, lane, html,
   });
 }
 

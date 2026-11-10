@@ -11,11 +11,13 @@ An interactive experience for the **Visa Direct** booth at the forum. Visitors w
 | Verification report | https://vd-booth-demo.vercel.app/docs/verify/report.html |
 | Screen-by-screen workflow | https://vd-booth-demo.vercel.app/docs/workflow.html |
 
-One link per booth screen (each locks the screen to a single journey):
+One link per booth screen (each locks the screen to a single experience):
 
-- SEND: https://vd-booth-demo.vercel.app/?zone=send
-- RECEIVE: https://vd-booth-demo.vercel.app/?zone=receive
-- COLLECT: https://vd-booth-demo.vercel.app/?zone=collect
+- SEND · Send at Vietnam Pioneer Bank via Visa Direct: https://vd-booth-demo.vercel.app/?zone=send
+- RECEIVE · Individual receiver via VXBS: https://vd-booth-demo.vercel.app/?zone=vxbs-individual
+- RECEIVE · E-seller withdrawal via VXBS: https://vd-booth-demo.vercel.app/?zone=vxbs-seller
+- RECEIVE · Cross-border AFT, friends and family (me-to-you): https://vd-booth-demo.vercel.app/?zone=aft-family
+- RECEIVE · Cross-border AFT, travel app (me-to-me): https://vd-booth-demo.vercel.app/?zone=aft-travel
 
 ![Attract screen](docs/attract.png)
 
@@ -29,13 +31,15 @@ One link per booth screen (each locks the screen to a single journey):
 
 ## Journeys
 
-All 24 screens come from two Figma prototypes and keep their copy, figures and layout exactly (see `figma/`).
+All 61 screens come from four Figma prototypes and keep their copy, figures and layout exactly; `figma/` is the single source of truth.
 
-| Journey | Story | Steps |
+| Experience | Story | Steps |
 |---|---|---|
 | **SEND**: VISA Direct × Vietnam Pioneer Bank | A Vietnam Pioneer Bank customer in Vietnam sends AUD 2,900 to a family member's NAB account in Australia for medical expenses: purpose → recipient → supporting documents (OCR checked) → amount with FX rate lock → review → Face ID → paperwork review → approved → 6-stage tracking → Visa Direct confirmation. | 11 |
-| **RECEIVE**: VISA (VXBS) | Linh in Vietnam receives 2,500 USD from Daniel Carter in the US: quote → USD receiving details and QR → live tracking → transfer details → funds arrived in Vietnam Bank (63,295,800 VND). | 6 |
-| **COLLECT**: VISA (VXBS) seller | Linh Studio collects marketplace earnings: earnings dashboard → upcoming payouts → connected channels (Amazon, Shopify, invoices) → multi-currency balances → withdraw → FX conversion → payout tracking → settlement history. | 8 |
+| **RECEIVE · Individual receiver** via VXBS | Linh in Vietnam receives 2,500 USD from Daniel Carter in the US: quote → USD receiving details and QR → live tracking → transfer details → funds arrived in Vietnam Bank (63,295,800 VND). | 6 |
+| **RECEIVE · E-seller withdrawal** via VXBS | Linh Studio collects marketplace earnings: earnings dashboard → upcoming payouts → connected channels (Amazon, Shopify, invoices) → multi-currency balances → withdraw → FX conversion → payout tracking → settlement history. | 8 |
+| **RECEIVE · Friends & family**: cross-border AFT, me-to-you (NovaBank) | Minh Anh in Vietnam requests USD 200 from Sarah in the US with a secure link: request → share via iMessage → *Sarah's phone:* secure payment page → pay with Visa (USD 202 incl. fee) → Visa Secure → sent → *Minh Anh's phone:* notification → 4,900,000 VND in her bank account in 2m 28s. The kiosk shows whose phone is on screen. | 18 |
+| **RECEIVE · Travel wallet**: cross-border AFT, me-to-me (XinChaoVietnam) | James from Australia creates a Vietnam travel wallet, links his Visa Debit, adds AUD 500 = 8,500,000 ₫, then pays Lotus Coffee in Hanoi by QR (185,000 ₫) and reviews his wallet and trip. | 18 |
 
 How visitors move through each journey (one hotspot per screen, kiosk **Next** and **Finish** where the design has no call to action, auto-advance on status screens) is documented in [`docs/workflow.html`](docs/workflow.html). The product decisions are in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
@@ -51,13 +55,13 @@ How visitors move through each journey (one hotspot per screen, kiosk **Next** a
   - returns to the attract screen when idle;
   - reloads periodically while on the attract screen;
   - keeps the display awake;
-  - runs **fully offline**, with the Inter font and the QR library in `vendor/`.
+  - runs **fully offline**, with the fonts (Inter, Lora, Arimo) and the QR library in `vendor/`.
 
 ## URL parameters
 
 | Parameter | Meaning | Default |
 |---|---|---|
-| `zone=send\|receive\|collect` | Lock the screen to one journey | journey picker |
+| `zone=send\|vxbs-individual\|vxbs-seller\|aft-family\|aft-travel` | Lock the screen to one experience (short keys `receive`, `collect`, `family`, `travel` also work) | experience picker |
 | `idle=60` | Seconds without a touch before returning to the attract screen | `60` |
 | `reload=2` | Hours between automatic reloads (attract screen only, `0` = off) | `2` |
 | `fx=low` | Lighter background animation for low-end machines | full |

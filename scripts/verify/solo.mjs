@@ -218,6 +218,13 @@ export function analyse(key, X, P, fonts) {
       // arc/ring: every non-transparent paint (background-color, gradient stops) must be the fill colour, and one must exist
       const paints = [c['background-color'], ...(c['background-image'].match(/(rgba?\([^)]*\)|color\([^)]*\))/g) || [])].map(parseColor).filter(p => p && p[3] > 0.02);
       if (!paints.length || !paints.every(p => colorClose(expBg, p))) f('background', `arc paint ${fmtC(expBg)}`, `${c['background-color']} / ${c['background-image']}`);
+    } else if (n.rich.length) {
+      // gradient / image fill: every Figma stop colour and image ref must be in background-image
+      const img = c['background-image'], cssStops = (img.match(/(rgba?\([^)]*\)|color\([^)]*\))/g) || []).map(parseColor);
+      for (const r of n.rich) {
+        if (r.image && !img.includes(r.image)) f('background', `image ${r.image}`, img.slice(0, 120));
+        if (r.stops && !r.stops.every(st => cssStops.some(p => p && colorClose(st, p)))) f('background', `gradient ${r.stops.map(fmtC).join(' → ')}`, img.slice(0, 160));
+      }
     } else {
       const actBg = compositeCss(c['background-color'], c['background-image']);
       if (!colorClose(expBg, actBg)) f('background', fmtC(expBg), actBg ? fmtC(actBg) : `${c['background-color']} / ${c['background-image']}`);
@@ -249,8 +256,9 @@ export function analyse(key, X, P, fonts) {
   if (fonts) for (const n of X.texts) {
     const fl = fonts[n.id];
     if (fl === null || fl === undefined) { if (P.els[n.id]) out.fonts.push({ id: n.id, name: n.name, actual: 'no CDP node' }); else out.fonts.push({ id: n.id, name: n.name, actual: 'missing' }); continue; }
-    const bad = fl.filter(f => !/^Inter\b/i.test(f));
-    if (bad.length) out.fonts.push({ id: n.id, name: n.name, expected: 'Inter', actual: fl.join(', '), chars: n.text.chars.slice(0, 40) });
+    const fam = n.text.fontFamily || 'Inter', re = new RegExp(`^${fam}\\b`, 'i');
+    const bad = fl.filter(f => !re.test(f) && !/Emoji/i.test(f)); // emoji glyphs come from the emoji font, as in Figma (emojiImageSet APPLE)
+    if (bad.length) out.fonts.push({ id: n.id, name: n.name, expected: fam, actual: fl.join(', '), chars: n.text.chars.slice(0, 40) });
   }
   return out;
 }
@@ -275,7 +283,7 @@ function regionOffenders(X, P, cmp) {
  * opts: { layers:Set, imgDir, url?(key, clip)=>string, readyTimeout }
  */
 export async function runSolo(browser, key, opts = {}) {
-  const X = expected(key), s = X.s, H = s.h, W = 402;
+  const X = expected(key), s = X.s, H = s.h, W = Math.round(X.frameW);
   const layers = opts.layers || new Set(['text', 'geom', 'style', 'pixel']);
   const url = opts.url || ((k, clip) => `${ORIGIN}/index.html?solo=${k}${clip ? '&clip=1' : ''}`);
   const readyTimeout = opts.readyTimeout ?? 10000;
@@ -325,7 +333,7 @@ export async function runSolo(browser, key, opts = {}) {
     if (want('T1')) R.gates.T1 = gate('T1', !A.missing.length && !A.dup.length, `${nReq - A.missing.length}/${nReq} present, ${A.dup.length} duplicated`, '100%, each once');
     if (want('T2')) { const bad = A.mismatch.length + X.texts.filter(n => !P.els[n.id]).length; R.gates.T2 = gate('T2', !bad, `${nText - bad}/${nText}`, '100%'); }
     if (want('T3')) R.gates.T3 = gate('T3', !A.extra.length, A.extra.length, 0);
-    if (want('T4')) R.gates.T4 = gate('T4', !A.fonts.length, `${nText - A.fonts.length}/${nText} Inter-only`, '100%');
+    if (want('T4')) R.gates.T4 = gate('T4', !A.fonts.length, `${nText - A.fonts.length}/${nText} Figma font`, '100%');
     R.fonts = A.fonts;
 
     const gp = A.geom.filter(g => g.pass).length, gross = A.geom.filter(g => !g.gross);
@@ -375,7 +383,7 @@ export async function runSolo(browser, key, opts = {}) {
     for (const id of A.dup) off.push({ id, name: X.byId.get(id)?.name ?? '', layer: 'T1', expected: '1 element', actual: `${P.counts[id]} elements` });
     for (const m of A.mismatch) off.push({ ...m, layer: 'T2' });
     for (const e of A.extra) off.push({ id: e.in, name: '', layer: 'T3', expected: '(none)', actual: e.text });
-    for (const f of A.fonts) off.push({ id: f.id, name: f.name, layer: 'T4', expected: 'Inter', actual: f.actual });
+    for (const f of A.fonts) off.push({ id: f.id, name: f.name, layer: 'T4', expected: f.expected, actual: f.actual });
     for (const g of R.geom.worst) if (g.actual !== 'missing') off.push({ id: g.id, name: g.name, layer: g.gross ? 'G1' : 'G2', expected: g.expected, actual: `${g.actual} (Δ ${JSON.stringify(g.d)})` });
     for (const f of R.style.fails) if (f.actual !== 'missing') off.push({ id: f.id, name: f.name, layer: f.layer, expected: `${f.prop}: ${f.expected}`, actual: f.actual });
     for (const r of regions) off.push({ id: r.id, name: r.name, layer: 'P2', expected: '≤20% mismatch', actual: `${r.density}% of ${r.box}` });

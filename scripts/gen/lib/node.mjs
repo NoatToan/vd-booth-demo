@@ -14,6 +14,19 @@ function unrotate(W, H, rad) {
 
 const st0 = n => n.style || {};
 
+/** CSS linear-gradient for a Figma GRADIENT_LINEAR paint on a w×h box (handles are in 0..1 box space). */
+function linearGradient(p, w, h) {
+  const [a, b] = p.gradientHandlePositions;
+  const ax = a.x * w, ay = a.y * h, bx = b.x * w, by = b.y * h;
+  const dx = bx - ax, dy = by - ay, len = Math.hypot(dx, dy) || 1;
+  const ux = dx / len, uy = dy / len;
+  // CSS: angle clockwise from "to top"; its line passes the centre and spans |w·sin| + |h·cos|
+  const ang = Math.atan2(ux, -uy), L = Math.abs(w * Math.sin(ang)) + Math.abs(h * Math.cos(ang));
+  const at = t => { const x = ax + dx * t - w / 2, y = ay + dy * t - h / 2; return ((x * ux + y * uy) / L + 0.5) * 100; };
+  const stops = p.gradientStops.map(s => `${rgba(s.color, p.opacity ?? 1)} ${+at(s.position).toFixed(3)}%`);
+  return `linear-gradient(${+(ang * 180 / Math.PI).toFixed(3)}deg,${stops.join(',')})`;
+}
+
 export class Translator {
   /**
    * @param ctx { root, fileKey, idOf(node)->{node, twin}, classFor(styleString)->className, overrides: Map(id -> css), scrollId, frameId, screenKey }
@@ -93,7 +106,23 @@ export class Translator {
 
     // ---- paint ----
     if (!isText && !svgRoot) {
-      const fills = solidPaints(n.fills);
+      // IMAGE and GRADIENT_LINEAR fills (AFT files) become background-image layers; SOLID keeps its rules below
+      const rich = (n.fills || []).filter(p => p.visible !== false && (p.type === 'IMAGE' || p.type === 'GRADIENT_LINEAR'));
+      if (rich.length) {
+        const layers = [], sizes = [];
+        for (const p of [...(n.fills || [])].filter(p => p.visible !== false).reverse()) {
+          if (p.type === 'IMAGE') {
+            if (p.scaleMode !== 'FILL') throw new Error(`image scaleMode ${p.scaleMode} on ${n.id}`);
+            layers.push(`url(${ctx.imageUrl(p.imageRef)})`); sizes.push('cover');
+          } else if (p.type === 'GRADIENT_LINEAR') { layers.push(linearGradient(p, w, h)); sizes.push('100% 100%'); }
+          else if (p.type === 'SOLID') { const c = rgba(p.color, p.opacity ?? 1); layers.push(`linear-gradient(${c},${c})`); sizes.push('100% 100%'); }
+        }
+        add('background-image', layers.join(','));
+        add('background-size', sizes.join(','));
+        add('background-position', 'center');
+        add('background-repeat', 'no-repeat');
+      }
+      const fills = rich.length ? [] : solidPaints(n.fills);
       const arc = n.type === 'ELLIPSE' && n.arcData && (n.arcData.innerRadius > 0 || Math.abs(n.arcData.endingAngle - n.arcData.startingAngle - 2 * Math.PI) > 1e-3);
       if (fills.length && !arc) {
         const top = fills.slice(1).reverse().map(f => `linear-gradient(${rgba(f.color, f.opacity)},${rgba(f.color, f.opacity)})`);
@@ -141,6 +170,7 @@ export class Translator {
     let inner = '';
     if (isText) {
       const st = n.style;
+      if (st.fontFamily && st.fontFamily !== 'Inter') add('font-family', `${st.fontFamily},${st.fontFamily === 'Lora' ? 'serif' : 'Inter,sans-serif'}`);
       add('font-size', px(st.fontSize));
       add('font-weight', String(st.fontWeight));
       if (st.italic || /italic/i.test(st.fontStyle)) add('font-style', 'italic');

@@ -3,25 +3,25 @@
    kiosk/solo layout modes, and decoration that carries [data-fx]. */
 
 /* ---------- solo: one screen, unscaled, natural height (verification contract §2.1) ---------- */
-html.solo, html.solo body { margin: 0; padding: 0; background: #fff; width: 402px; overflow: hidden; }
+html.solo, html.solo body { margin: 0; padding: 0; background: #fff; width: 100%; overflow: hidden; }
 html.solo body { min-height: 0; }
 html.solo::-webkit-scrollbar, html.solo *::-webkit-scrollbar { display: none; }
 html.solo, html.solo * { scrollbar-width: none; }
 .solo *, .solo *::before, .solo *::after { animation: none !important; transition: none !important; }
-.solo .solo-clip { width: 402px; height: 874px; position: relative; overflow: hidden; border-radius: 40px; }
+.solo .solo-clip { width: var(--pw, 402px); height: var(--ph, 874px); position: relative; overflow: hidden; border-radius: 40px; }
 
-/* ---------- kiosk viewport: 402×874, fixed header and footer, the scroll node scrolls ---------- */
-#phone { position: absolute; left: 1010px; top: 53px; width: 430px; height: 902px; padding: 14px; border-radius: 54px;
+/* ---------- kiosk viewport: the Figma device size (--pw × --ph: 402×874 SEND/VXBS, 414×896 AFT), fixed header and footer, the scroll node scrolls ---------- */
+#phone { --pw: 402px; --ph: 874px; position: absolute; left: 1010px; top: 53px; width: calc(var(--pw) + 28px); height: calc(var(--ph) + 28px); padding: 14px; border-radius: 54px;
   background: #0a0f2a; transform: scale(1.08); transform-origin: 0 0;
   box-shadow: 0 0 0 2px #2c3878, 0 40px 120px rgba(0,0,0,.6), 0 0 140px color-mix(in srgb, var(--z, #2f9bff) 35%, transparent); }
-.viewport { position: relative; width: 402px; height: 874px; border-radius: 40px; overflow: hidden; background: #fff; isolation: isolate; }
-.viewport > .scr { position: absolute; left: 0; top: 0; width: 402px; height: 874px; overflow: hidden; will-change: transform; }
+.viewport { position: relative; width: var(--pw); height: var(--ph); border-radius: 40px; overflow: hidden; background: #fff; isolation: isolate; }
+.viewport > .scr { position: absolute; left: 0; top: 0; width: var(--pw); height: var(--ph); overflow: hidden; will-change: transform; }
 
-.kiosk .fr { height: 874px !important; min-height: 0 !important; display: flex; flex-direction: column; }
+.kiosk .fr { height: var(--ph) !important; min-height: 0 !important; display: flex; flex-direction: column; }
 .kiosk .fr > [data-role="scroll"] { flex: 1 1 0 !important; min-height: 0 !important; height: auto !important;
   overflow-x: hidden !important; overflow-y: auto !important; scrollbar-width: none; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 .kiosk .fr > [data-role="scroll"]::-webkit-scrollbar { display: none; }
-.solo-clip .fr { height: 874px !important; min-height: 0 !important; display: flex; flex-direction: column; }
+.solo-clip .fr { height: var(--ph, 874px) !important; min-height: 0 !important; display: flex; flex-direction: column; }
 .solo-clip .fr > [data-role="scroll"] { flex: 1 1 0 !important; min-height: 0 !important; height: auto !important; overflow: hidden !important; }
 
 /* ---------- transitions: 320 ms horizontal push; old screen to -30% with a dim ---------- */
@@ -40,7 +40,7 @@ html.solo, html.solo * { scrollbar-width: none; }
 .kiosk .fr [data-a] { cursor: pointer; }
 
 /* ---------- scroll hint: fade + bouncing chevron above the bottom of the scroll node ---------- */
-.scroll-hint { position: absolute; left: 0; width: 402px; height: 64px; pointer-events: none; z-index: 5;
+.scroll-hint { position: absolute; left: 0; width: 100%; height: 64px; pointer-events: none; z-index: 5;
   display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 6px;
   background: linear-gradient(to bottom, rgba(255,255,255,0), var(--hint-bg, rgba(247,247,250,.96)) 78%);
   transition: opacity .25s; font: 600 13px/16px Inter, sans-serif; color: var(--hint-ink, #5b2d90); }
@@ -75,3 +75,4 @@ html.solo, html.solo * { scrollbar-width: none; }
 .fx-toast { position: absolute; z-index: 8; padding: 4px 10px; border-radius: 8px; background: #12224a; color: #fff; font: 600 12px/16px Inter, sans-serif; pointer-events: none; animation: fx-toast 1.2s ease both; white-space: nowrap; }
 @keyframes fx-toast { 0% { opacity: 0; transform: translateY(4px); } 15%, 75% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 .fx-confetti { position: absolute; z-index: 7; width: 7px; height: 12px; border-radius: 2px; pointer-events: none; }
+#phone[data-size="414x896"] { --pw: 414px; --ph: 896px; top: 44px; }

@@ -100,6 +100,9 @@ export function expected(key) {
     const g = twinOf.get(n.id);
     const svgRoot = !inSvg && n.id !== root.id && ((CONTAINER.has(n.type) && allVector(n)) || n.type === 'VECTOR');
     const fills = (g.fills || []).filter(p => vis(p) && p.type === 'SOLID' && alphaOf(p) > 0);
+    // gradient / image fills (AFT files): S2 checks the stop colours and the image ref in background-image
+    const rich = (g.fills || []).filter(p => vis(p) && (p.type === 'GRADIENT_LINEAR' || p.type === 'IMAGE'))
+      .map(p => p.type === 'IMAGE' ? { image: p.imageRef } : { stops: p.gradientStops.map(st => [st.color.r * 255, st.color.g * 255, st.color.b * 255, (st.color.a ?? 1) * (p.opacity ?? 1)]) });
     const stroke = strokeSpec(g);
     const rad = radii(g);
     const effects = (g.effects || []).filter(e => vis(e) && e.type === 'DROP_SHADOW');
@@ -109,14 +112,14 @@ export function expected(key) {
       else if (n.type === 'TEXT') { required = true; why = 'text'; }
       else if (svgRoot) { required = true; why = 'svg'; }
       else if (topIds.has(n.id)) { required = true; why = 'top'; }
-      else if (['FRAME', 'RECTANGLE', 'ELLIPSE'].includes(n.type) && (fills.length || stroke || rad.some(r => r > 0) || effects.length)) { required = true; why = 'box'; }
+      else if (['FRAME', 'RECTANGLE', 'ELLIPSE'].includes(n.type) && (fills.length || rich.length || stroke || rad.some(r => r > 0) || effects.length)) { required = true; why = 'box'; }
     }
     const bb = g.absoluteBoundingBox;
     const e = {
       id: n.id, twin: s.twin ? g.id : null, name: n.name, type: n.type, parentId, required, why, svgRoot,
       rotated: !!(g.rotation && Math.abs(g.rotation) > 1e-6),
       box: bb ? { x: bb.x - ox, y: bb.y - oy, w: bb.width, h: bb.height } : null,
-      fills, stroke, radii: rad, effects,
+      fills, rich, stroke, radii: rad, effects,
       // a partial ELLIPSE (arc or ring) cannot be a flat background; S2 then checks its paint colour instead
       arc: n.type === 'ELLIPSE' && g.arcData && (g.arcData.innerRadius > 0 || Math.abs(g.arcData.endingAngle - g.arcData.startingAngle) < 2 * Math.PI - 1e-3) ? g.arcData : null,
     };
@@ -124,7 +127,7 @@ export function expected(key) {
       const st = g.style;
       const tf = (g.fills || []).filter(vis);
       e.text = {
-        chars: n.characters, autoResize: st.textAutoResize, fontSize: st.fontSize, fontWeight: st.fontWeight,
+        chars: n.characters, autoResize: st.textAutoResize, fontFamily: st.fontFamily, fontSize: st.fontSize, fontWeight: st.fontWeight,
         lineHeightPx: st.lineHeightPx, letterSpacing: st.letterSpacing ?? 0, align: st.textAlignHorizontal,
         color: tf[0] ? rgba(tf[0]) : null,
       };
@@ -135,11 +138,22 @@ export function expected(key) {
   })(root, null, false);
 
   return (cache[key] = {
-    s, root: { id: root.id, name: root.name }, frameH: geoRoot.absoluteBoundingBox.height,
-    scrollId: scroll ? scroll.id : null, nodes, byId,
+    s, root: { id: root.id, name: root.name }, frameH: geoRoot.absoluteBoundingBox.height, frameW: geoRoot.absoluteBoundingBox.width,
+    scrollId: scroll ? scroll.id : null, contentH: contentHeight(geoRoot, scroll && twinOf.get(scroll.id)), nodes, byId,
     required: nodes.filter(n => n.required),
     texts: nodes.filter(n => n.type === 'TEXT' && n.required),
   });
+}
+
+/** Height the frame needs with its scroll node shrunk to its content: frame − scroll box + scroll content (auto layout). */
+function contentHeight(root, sc) {
+  const H = root.absoluteBoundingBox.height;
+  if (!sc || sc.layoutMode !== 'VERTICAL') return H;
+  const kids = (sc.children || []).filter(c => c.visible !== false && c.layoutPositioning !== 'ABSOLUTE');
+  // a FILL child (spacer) takes no height of its own
+  const inner = (sc.paddingTop || 0) + (sc.paddingBottom || 0) + Math.max(0, kids.length - 1) * (sc.itemSpacing || 0)
+    + kids.reduce((a, c) => a + (c.layoutSizingVertical === 'FILL' ? 0 : c.absoluteBoundingBox.height), 0);
+  return H - sc.absoluteBoundingBox.height + inner;
 }
 
 export function nodeName(key, id) { return expected(key).byId.get(id)?.name ?? ''; }

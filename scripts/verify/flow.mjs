@@ -11,7 +11,8 @@ const QR_OVERRIDE = 'https://example.org/vd-booth-selfcheck';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const win = s => { const m = /^(?:auto|scan):(\d+)-(\d+)/.exec(s || ''); return m ? [+m[1], +m[2]] : null; };
 
-export async function runFlow(browser, { zones = ['send', 'receive', 'collect'], imgDir } = {}) {
+const ZONES = ['send', 'receive', 'collect', 'family', 'travel'];
+export async function runFlow(browser, { zones = ZONES, imgDir } = {}) {
   const F = { steps: [], fails: [], checks: [], asserts: 0, runs: [] };
   const allLogs = [];
 
@@ -113,7 +114,7 @@ export async function runFlow(browser, { zones = ['send', 'receive', 'collect'],
         await english('home'); await shot('01-home');
         const pick = await page.$(`[data-a="pick"][data-v="${zone}"]`) || await page.$(`[data-a][data-v="${zone}"]`) || await page.$(`[data-a][data-zone="${zone}"]`);
         if (pick) { run.entry += ` → click ${await pick.evaluate(e => e.outerHTML.match(/^<[^>]*>/)[0].slice(0, 80))}`; await pick.click(); }
-        else { run.entry += ` → key ${['send', 'receive', 'collect'].indexOf(zone) + 1}`; await page.keyboard.press(String(['send', 'receive', 'collect'].indexOf(zone) + 1)); }
+        else { run.entry += ` → key ${ZONES.indexOf(zone) + 1}`; await page.keyboard.press(String(ZONES.indexOf(zone) + 1)); }
       }
       const steps = MANIFEST.filter(s => s.zone === zone).slice(0, limitSteps ?? undefined);
       let w = await waitKey(steps[0].key, null, 3000);
@@ -170,10 +171,12 @@ export async function runFlow(browser, { zones = ['send', 'receive', 'collect'],
             const v = vis();
             return { hasScroll: !!sc, overflow: sc ? sc.scrollHeight > sc.clientHeight + 1 : null, px: sc ? sc.scrollHeight - sc.clientHeight : null, visible: v.length > 0, text: v.map(e => e.textContent.trim()).join(' ') };
           }, k);
+          const VH = s.w === 414 ? 896 : 874; // kiosk viewport = the Figma device height
           if (s.zone === 'collect') A(k, 'E4 no scroll hint on COLLECT', !h.visible, h.text);
+          else if (X.contentH <= VH + 1) A(k, `E4 content (${Math.round(X.contentH)}px) fits the ${VH} viewport: no scroll hint`, !h.visible, h.text);
           else {
             A(k, 'E4 scroll node overflows in kiosk', h.overflow === true, `hasScroll=${h.hasScroll} overflow=${h.px}px`);
-            const ovf = `scroll overflow ${h.px}px in kiosk; Figma implies ${X.frameH - 874}px (frame ${X.frameH} − 874)`;
+            const ovf = `scroll overflow ${h.px}px in kiosk; Figma implies ${X.frameH - VH}px (frame ${X.frameH} − ${VH})`;
             A(k, 'E4 scroll hint visible on entry', h.visible, ovf);
             if (k === 'receive-2') A(k, 'E4 hint reads "Scroll to continue"', /Scroll to continue/.test(h.text), h.text);
             await page.evaluate(k => { const sc = [...document.querySelectorAll(`#phone .fr[data-screen="${k}"]`)].pop()?.querySelector('[data-role="scroll"]'); if (sc) sc.scrollTop = sc.scrollHeight; }, k);

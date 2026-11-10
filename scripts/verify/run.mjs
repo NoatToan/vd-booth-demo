@@ -67,7 +67,7 @@ try {
     }
     let flow = null;
     if (layers.has('flow') && (!only || layerArg === 'flow')) {
-      flow = await runFlow(browser, { zones: only ? [byKey[only].zone] : ['send', 'receive', 'collect'], imgDir: path.join(IMG, 'flow') });
+      flow = await runFlow(browser, { zones: only ? [byKey[only].zone] : undefined, imgDir: path.join(IMG, 'flow') });
       console.log(`flow: ${flow.pass ? 'PASS' : 'FAIL'} — ${flow.fails.length} failing assertion(s) of ${flow.asserts}`);
     }
     const fp1 = appFingerprint();

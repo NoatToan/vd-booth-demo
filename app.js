@@ -3,7 +3,12 @@ const $ = (s, r = document) => r.querySelector(s);
 const P = new URLSearchParams(location.search);
 const SCREENS = window.FIGMA_SCREENS || [];
 const BY_KEY = Object.fromEntries(SCREENS.map(s => [s.key, s]));
-const ZONES = ['send', 'receive', 'collect'];
+// Five experiences (client brief 2026-11-10): SEND 1, RECEIVE 4. Keys are the screen-key prefixes in screens/gen.
+const ZONES = ['send', 'receive', 'collect', 'family', 'travel'];
+const GROUPS = [{ name: 'SEND', zones: ['send'] }, { name: 'RECEIVE', zones: ['receive', 'collect', 'family', 'travel'] }];
+// readable lock links, e.g. ?zone=aft-travel (the short keys keep working)
+const ALIAS = { 'vxbs-individual': 'receive', 'vxbs-seller': 'collect', 'aft-family': 'family', 'aft-travel': 'travel' };
+const SIZE = { family: '414x896', travel: '414x896' }; // Figma device size; others are 402x874
 const FLOW = Object.fromEntries(ZONES.map(z => [z, SCREENS.filter(s => s.zone === z).sort((a, b) => a.n - b.n)]));
 const raf2 = fn => requestAnimationFrame(() => requestAnimationFrame(fn));
 const markReady = () => (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => raf2(() => { document.documentElement.dataset.ready = '1'; }));
@@ -12,7 +17,7 @@ const markReady = () => (document.fonts ? document.fonts.ready : Promise.resolve
 if (P.has('solo')) {
   document.documentElement.classList.add('solo');
   const s = BY_KEY[P.get('solo')];
-  document.body.innerHTML = !s ? '' : P.get('clip') === '1' ? `<div class="kiosk solo-clip">${s.html}</div>` : s.html;
+  document.body.innerHTML = !s ? '' : P.get('clip') === '1' ? `<div class="kiosk solo-clip" style="--pw:${s.w}px;--ph:${s.w === 414 ? 896 : 874}px">${s.html}</div>` : s.html;
   if (s && P.get('clip') === '1') { const sc = $('[data-role="scroll"]'); if (sc) sc.scrollTop = 0; }
   window.VD = { state: () => ({ view: 'solo', zone: s ? s.zone : null, step: s ? s.n - 1 : null, screen: s ? s.key : null, node: s ? s.node : null }) };
   markReady();
@@ -20,7 +25,7 @@ if (P.has('solo')) {
 }
 
 /* ---------- kiosk ---------- */
-const LOCK = ZONES.includes(P.get('zone')) ? P.get('zone') : null;
+const LOCK = (z => (ZONES.includes(z) ? z : null))(ALIAS[P.get('zone')] || P.get('zone'));
 const IDLE_MS = (+P.get('idle') || 60) * 1000;
 const QR_URL = P.get('qr') || 'https://vd-booth-demo.vercel.app/';
 const RELOAD_MS = (P.has('reload') ? +P.get('reload') : 2) * 3600e3;
@@ -46,11 +51,13 @@ document.addEventListener('fullscreenchange', () => {
 const ICON = {
   send: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 38 38 10M18 10h20v20"/></svg>',
   receive: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M38 10 10 38M30 38H10V18"/></svg>',
-  collect: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="27" r="6"/><path d="M6 7l11 11M42 7 31 18M24 46V37"/></svg>'
+  collect: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="27" r="6"/><path d="M6 7l11 11M42 7 31 18M24 46V37"/></svg>',
+  family: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 28a8 8 0 0 1 0-11l6-6a8 8 0 0 1 11 11l-3 3M28 20a8 8 0 0 1 0 11l-6 6a8 8 0 0 1-11-11l3-3"/></svg>',
+  travel: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30 42 14M14 26l-4-10 6-2 8 8M22 22l8 18 6-3-2-17"/></svg>'
 };
 const META = {
   send: {
-    name: 'SEND', color: '#b38cff', brand: ['VISA Direct', '× Vietnam Pioneer Bank'],
+    name: 'SEND', color: '#b38cff', brand: ['VISA Direct', '× Vietnam Pioneer Bank'], title: 'Send abroad', via: 'via Visa Direct',
     intent: 'I want to send money abroad.',
     hero: 'Send money abroad, securely.', sub: 'Vietnam Pioneer Bank → Visa Direct → NAB · Vietnam → Australia',
     route: 'Vietnam → Australia',
@@ -60,7 +67,7 @@ const META = {
     explain: 'Visa Direct helps banks like Vietnam Pioneer Bank push funds across borders to bank accounts, cards and wallets in near real time, with compliance and FX built into the flow.'
   },
   receive: {
-    name: 'RECEIVE', color: '#f7b600', brand: ['VISA', ''],
+    name: 'RECEIVE', color: '#f7b600', brand: ['VISA', ''], title: 'Individual receiver', via: 'via VXBS',
     intent: 'I want to get paid from overseas.',
     hero: 'Receive from overseas.', sub: 'United States → Vietnam Bank, Vietnam',
     route: 'United States → Vietnam',
@@ -70,7 +77,7 @@ const META = {
     explain: 'Visa Cross-Border Solutions give people in Vietnam a global receiving account, a transparent quote before the money moves, live tracking and local settlement in VND.'
   },
   collect: {
-    name: 'COLLECT', color: '#22d3ae', brand: ['VISA', ''],
+    name: 'RECEIVE', color: '#22d3ae', brand: ['VISA', ''], title: 'E-seller withdrawal', via: 'via VXBS',
     intent: 'I want to collect my sales from the world.',
     hero: 'Your sales, connected.', sub: 'Seller · Amazon / Shopify / invoices → Vietnam',
     route: 'Amazon · Shopify · Invoices → Vietnam',
@@ -78,6 +85,26 @@ const META = {
     summary: 'Linh Studio held five currencies, connected its sales channels, and withdrew USD to Vietnam Bank with the rate and fee shown up front.',
     powered: 'Powered by Visa Cross-Border Solutions', product: 'VXBS for sellers',
     explain: 'Visa Cross-Border Solutions help online sellers, SMEs and freelancers collect from marketplaces and clients abroad, hold multiple currencies, and settle locally in Vietnam.'
+  },
+  // AFT copy: scenario facts are the Figma texts (storyboard header, receipts); the explainers paraphrase the
+  // designs' own "About Visa Direct XB AFT" notes until Visa supplies approved marketing copy.
+  family: {
+    name: 'RECEIVE', color: '#4f7cff', brand: ['VISA Direct', ''], title: 'Friends & family', via: 'Cross-border AFT · me-to-you',
+    hero: 'Request with a link. Pay with Visa.', sub: 'NovaBank · United States → Vietnam',
+    route: 'United States → Vietnam',
+    verb: 'You just got paid from overseas with a link.',
+    summary: 'Minh Anh shared a secure link, Sarah paid USD 202 with her Visa Debit card, and 4,900,000 VND reached Minh Anh’s bank account in 2m 28s.',
+    powered: 'Powered by Visa Direct', product: 'Visa Direct cross-border AFT',
+    explain: 'A secure payment link lets family abroad pay with an eligible Visa card, with no account at the receiver’s bank, and the money lands directly in the receiver’s bank account.'
+  },
+  travel: {
+    name: 'RECEIVE', color: '#ff6b7a', brand: ['VISA Direct', ''], title: 'Travel wallet', via: 'Cross-border AFT · me-to-me',
+    hero: 'Bring your money to Vietnam in seconds.', sub: 'XinChaoVietnam · Australia → Vietnam',
+    route: 'Australia → Vietnam',
+    verb: 'You just funded your trip from your own Visa card.',
+    summary: 'James linked his Australian Visa Debit, added AUD 500 as 8,500,000 ₫ to his Vietnam wallet, and paid Lotus Coffee in Hanoi by QR.',
+    powered: 'Powered by Visa Direct', product: 'Visa Direct cross-border AFT',
+    explain: 'Cross-Border Account Funding Transactions let an overseas card fund a wallet in another country: one card debit in AUD, one wallet credit in VND.'
   }
 };
 
@@ -111,7 +138,7 @@ function prevStep() { if (S.view === 'flow' && S.step > 0) { S.step--; mount(-1)
 
 /* ---------- the phone ---------- */
 let lastTouch = Date.now(), ringTimer = null;
-function phoneScale() { const vp = $('.viewport'); return vp ? vp.getBoundingClientRect().width / 402 : 1; }
+function phoneScale() { const vp = $('.viewport'); return vp ? vp.getBoundingClientRect().width / vp.offsetWidth : 1; }
 function relRect(el, scr) {
   const k = phoneScale(), a = el.getBoundingClientRect(), b = scr.getBoundingClientRect();
   return { x: (a.left - b.left) / k, y: (a.top - b.top) / k, w: a.width / k, h: a.height / k, bottom: (a.bottom - b.top) / k };
@@ -139,6 +166,8 @@ function mount(dir) {
   vp.appendChild(el);
   $('#phone').dataset.screen = s.key;
   drawRail();
+  const lane = $('#lane');
+  if (lane) { lane.hidden = !s.lane; if (s.lane) lane.innerHTML = `<span>${s.lane.role}</span><b>${s.lane.name}</b>`; }
   const fr = $('.fr', el);
   if (window.VD_WIRE) window.VD_WIRE(el, s, api);
   const b = (window.BEHAVIORS || {})[s.key];
@@ -148,6 +177,8 @@ function mount(dir) {
   armRing(el, s);
 }
 
+// ink of each app's primary buttons (Figma), for the scroll hint and the hotspot ring
+const INK = { send: '#5b2d90', receive: '#1434cb', collect: '#1434cb', family: '#2563eb', travel: '#8e1c2d' };
 /* scroll hint: fade + chevron over the bottom of the scroll node, until the bottom is reached */
 const CHEVRON = '<svg viewBox="0 0 22 14" fill="none"><path d="M3 3l8 8 8-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 function scrollHint(scr, s) {
@@ -159,7 +190,7 @@ function scrollHint(scr, s) {
   const r = relRect(sc, scr);
   hint.style.top = `${r.bottom - 64}px`;
   hint.style.setProperty('--hint-bg', bg.replace(/^rgb\(([^)]+)\)$/, 'rgba($1,.96)'));
-  hint.style.setProperty('--hint-ink', s.zone === 'send' ? '#5b2d90' : '#1434cb');
+  hint.style.setProperty('--hint-ink', INK[s.zone]);
   const cta = s.key === 'receive-2' && s.hot ? $(`[data-node="${s.hot}"]`, scr) : null;
   const upd = () => {
     hint.classList.toggle("off", sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 1);
@@ -186,7 +217,7 @@ function armRing(scr, s) {
     const hot = $('[data-hotspot]', scr);
     if (!hot) return;
     const ring = api.fx(scr, 'hot-ring');
-    ring.style.setProperty('--ring', S.zone === 'send' ? 'rgba(91,45,144,.85)' : 'rgba(20,52,203,.85)');
+    ring.style.setProperty('--ring', `${INK[S.zone]}d9`);
     ring.style.borderRadius = getComputedStyle(hot).borderRadius;
     const place = () => { const r = relRect(hot, scr); Object.assign(ring.style, { left: `${r.x}px`, top: `${r.y}px`, width: `${r.w}px`, height: `${r.h}px` }); };
     place();
@@ -251,7 +282,7 @@ function drawRail() {
   const rail = $('#rail');
   if (!rail) return;
   const list = FLOW[S.zone], s = cur();
-  rail.className = `steps${list.length > 8 ? ' compact' : ''}`;
+  rail.className = `steps${list.length > 12 ? ' compact dense' : list.length > 8 ? ' compact' : ''}`;
   rail.innerHTML = list.map((x, i) => `<div class="step ${i < S.step ? 'ok' : i === S.step ? 'on' : ''}"><span class="n">${i < S.step ? '✓' : i + 1}</span>${x.title}</div>`).join('');
   $('#kiosk-next').hidden = s.go !== 'kiosk-next';
   $('#kiosk-finish').hidden = s.go !== 'kiosk-finish';
@@ -263,26 +294,28 @@ function draw() {
   if (S.view === 'idle') {
     html = `<div class="idle" data-a="start">
       <div class="mm">MOVE MONEY WITH</div><div class="vw">VISA</div>
-      <div class="src"><b style="--c:#b38cff">SEND</b><i></i><b style="--c:#f7b600">RECEIVE</b><i></i><b style="--c:#22d3ae">COLLECT</b></div>
-      <div class="touch">${LOCK ? `Touch to start · <b>${m.name}</b>` : 'Touch anywhere to start'}</div></div>`;
+      <div class="src"><b style="--c:#b38cff">SEND</b><i></i><b style="--c:#f7b600">RECEIVE</b></div>
+      <div class="touch">${LOCK ? `Touch to start · <b>${m.name} · ${m.title}</b>` : 'Touch anywhere to start'}</div></div>`;
   } else if (S.view === 'home') {
+    const card = k => { const g = META[k]; return `<button class="zc" style="--z:${g.color}" data-a="pick" data-v="${k}">
+        <div class="ic">${ICON[k]}</div><h2>${g.title}</h2><div class="via">${g.via}</div><q>${g.hero}</q>
+        <div class="go">Start<span>→</span></div></button>`; };
     html = brand() + `<div class="home"><h1>Choose your journey</h1><div class="k">Tap a card to try a live Visa money-movement experience</div>
-      <div class="cards">${ZONES.map(k => { const g = META[k]; return `<button class="zc" style="--z:${g.color}" data-a="pick" data-v="${k}">
-        <div class="ic">${ICON[k]}</div><h2>${g.name}</h2><q>${g.hero}</q><div class="pr">${g.powered}<br><b style="color:#fff">${g.brand.join(' ')}</b></div>
-        <div class="go">Start<span>→</span></div></button>`; }).join('')}</div></div>`;
+      <div class="groups">${GROUPS.map(gr => `<section class="grp g${gr.zones.length}"><h3>${gr.name}</h3><div class="cards">${gr.zones.map(card).join('')}</div></section>`).join('')}</div></div>`;
   } else if (S.view === 'flow') {
     html = brand(z) + `<div class="flow">
-      <div class="left"><div class="zone-pill"><span class="ic">${ICON[z]}</span>${m.name}</div>
+      <div class="left"><div class="zone-pill"><span class="ic">${ICON[z]}</span>${m.name}<em>${m.title}</em></div>
         <h1 class="hero">${m.hero}</h1><div class="prod">${m.sub}</div>
         <div id="rail" class="steps"></div>
         <button id="kiosk-next" class="kbtn" data-a="next" hidden>Next <span>→</span></button>
         <button id="kiosk-finish" class="kbtn" data-a="finish" hidden>Finish <span>✓</span></button></div>
       <div class="route"><span>Live journey</span><b>${m.route}</b></div>
-      <div id="phone" data-zone="${z}"><div class="viewport kiosk"></div></div>
+      <div id="lane" class="lane" hidden></div>
+      <div id="phone" data-zone="${z}" data-size="${SIZE[z] || '402x874'}"><div class="viewport kiosk"></div></div>
       <div class="nav">${LOCK ? '' : '<button class="ghost" data-a="home">‹ All journeys</button>'}<button class="ghost" data-a="restart">↺ Start over</button></div></div>`;
   } else if (S.view === 'done') {
     html = brand(z) + `<div class="done"><div class="done-l">
-      <div class="zone-pill"><span class="ic">${ICON[z]}</span>${m.name}</div>
+      <div class="zone-pill"><span class="ic">${ICON[z]}</span>${m.name}<em>${m.title}</em></div>
       <h1 class="hero">${m.verb}</h1><p class="lead">${m.summary}</p>
       <div class="pw"><span>${m.powered}</span><b>${m.product}</b><p>${m.explain}</p></div>
       <div class="btns"><button class="btn primary" data-a="again">${LOCK ? 'Try it again' : 'Try another journey'}</button><button class="btn" data-a="restart">Finish</button></div></div>
@@ -317,7 +350,7 @@ addEventListener('contextmenu', e => e.preventDefault());
 addEventListener('keydown', e => {
   if (e.key === 'f' || e.key === 'F') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {});
   if (e.key === 'Escape') show('idle');
-  if (['1', '2', '3'].includes(e.key)) openFlow(ZONES[+e.key - 1]);
+  if (/^[1-5]$/.test(e.key)) openFlow(ZONES[+e.key - 1]);
 });
 
 /* ---------- background money-movement animation ---------- */
@@ -346,7 +379,7 @@ function scene(m, x, y) {
       if (Math.hypot(a.x - b.x, a.y - b.y) > 350) routes.push(route(a, b, pal[routes.length % 4]));
     }
   } else if (m === 'send') for (let i = 0; i < 7; i++) routes.push(route(C, far(430), META.send.color));
-  else if (m === 'receive') for (let i = 0; i < 7; i++) routes.push(route(far(430), C, META.receive.color));
+  else if (m === 'receive' || m === 'family' || m === 'travel') for (let i = 0; i < 7; i++) routes.push(route(far(430), C, META[m].color));
   else if (m === 'collect') ['$', '€', '£', 'S$', 'A$', '₫'].forEach(l => routes.push(route(far(400), C, META.collect.color, l)));
 }
 const bez = (r, t) => { const u = 1 - t; return { x: u * u * r.a.x + 2 * u * t * r.c.x + t * t * r.b.x, y: u * u * r.a.y + 2 * u * t * r.c.y + t * t * r.b.y }; };
@@ -391,7 +424,7 @@ function frame(t) {
 requestAnimationFrame(frame);
 
 /* ---------- start ---------- */
-// ?goto=home | send:3 (1-based step) | done:collect
+// ?goto=home | send:3 (1-based step) | done:collect | travel:5
 const go = P.get('goto');
 if (go === 'home') show('home');
 else if (go && go.startsWith('done:') && META[go.slice(5)]) { S.zone = go.slice(5); show('done'); }

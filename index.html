@@ -8,15 +8,16 @@
   Visa Direct forum booth: kiosk demo for a 16:9 touch LED / TV (designed at 1920x1080, scales to any size).
   The phone screens are generated from the Figma prototypes (screens/gen/*, see scripts/gen/build-screens.mjs).
   URL params:
-    ?zone=send|receive|collect  lock this screen to one journey (one TV per zone). No param = home chooser.
+    ?zone=send|vxbs-individual|vxbs-seller|aft-family|aft-travel  lock this screen to one experience (one TV each;
+                                the short keys receive|collect|family|travel also work). No param = home chooser.
     ?idle=60                    seconds without touch before returning to the attract screen
     ?qr=https://...             link encoded in the end-screen QR (default https://vd-booth-demo.vercel.app/)
     ?reload=2                   hours between automatic page reloads (only on the attract screen, 0 = off)
     ?fx=low                     lighter background animation for weaker media players
-    ?goto=home | send:3 | done:collect   jump straight to a screen (step is 1-based; for testing)
+    ?goto=home | send:3 | done:collect | travel:5   jump straight to a screen (step is 1-based; for testing)
     ?solo=send-1                render one phone screen only, unscaled at its full Figma height (verification)
-    ?solo=receive-2&clip=1      the same screen in the 402x874 kiosk viewport (fixed header and footer)
-  Keys: F fullscreen · Esc attract screen · 1/2/3 open SEND/RECEIVE/COLLECT
+    ?solo=receive-2&clip=1      the same screen in the kiosk viewport (402x874, AFT 414x896; fixed header and footer)
+  Keys: F fullscreen · Esc attract screen · 1–5 open SEND / VXBS individual / VXBS seller / AFT family / AFT travel
   Brand assets on the kiosk shell (wordmark, copy) are placeholders until Visa supplies the approved ones.
 -->
 <!-- all assets are local so the booth runs fully offline (open index.html from disk) -->
@@ -73,6 +74,29 @@ button{font-family:inherit;cursor:pointer}
 .zc .pr{margin-top:auto;font-size:20px;color:var(--muted);line-height:1.4}
 .zc .go{margin-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:700;padding-top:22px;border-top:1px solid rgba(255,255,255,.15)}
 .zc .go span{color:var(--z);font-size:34px}
+/* five experiences: SEND (one tall card) | RECEIVE (2×2) */
+.groups{display:flex;gap:56px;margin-top:56px;align-items:stretch}
+.grp h3{font-size:22px;font-weight:800;letter-spacing:8px;color:var(--muted);margin:0 0 18px 6px}
+.grp .cards{margin-top:0;gap:32px}
+.grp.g4 .cards{display:grid;grid-template-columns:repeat(2,520px);gap:32px}
+.grp .zc{width:440px;height:664px;padding:40px}
+.grp.g4 .zc{width:520px;height:316px;padding:32px 36px}
+.grp .zc h2{font-size:46px;letter-spacing:0;font-weight:800;margin-top:34px;line-height:1.05}
+.grp.g4 .zc h2{font-size:34px;margin-top:18px}
+.grp .zc .via{font-size:19px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--z);margin-top:10px}
+.grp .zc q{font-size:26px}
+.grp.g4 .zc q{font-size:20px;margin-top:10px;line-height:1.3}
+.grp.g4 .zc .ic{width:68px;height:68px;border-radius:20px}
+.grp.g4 .zc .ic svg{width:36px;height:36px}
+.grp.g4 .zc .go{padding-top:14px;font-size:20px}
+.grp.g4 .zc .go span{font-size:28px}
+.grp.g4 .zc::before{width:300px;height:300px;right:-110px;top:-110px}
+.zone-pill em{font-style:normal;font-weight:600;letter-spacing:0;color:var(--muted);margin-left:4px}
+.zone-pill em::before{content:'·';margin-right:14px;color:rgba(255,255,255,.35)}
+/* F&F: whose phone the visitor is looking at (storyboard swimlane) */
+.lane{position:absolute;left:1010px;top:14px;transform:translateX(0);display:flex;gap:12px;align-items:baseline;padding:8px 20px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);font-size:17px;z-index:4}
+.lane span{letter-spacing:3px;font-weight:800;color:var(--z)}
+.lane b{font-weight:700}
 
 /* ---------- flow ---------- */
 .flow::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,10,46,.94) 0%,rgba(5,10,46,.75) 36%,transparent 52%);pointer-events:none}
@@ -93,6 +117,10 @@ button{font-family:inherit;cursor:pointer}
 .steps.compact .step{font-size:20px;gap:16px}
 .steps.compact .step .n{width:34px;height:34px;font-size:15px}
 .steps.compact .step.on .n{box-shadow:0 0 0 6px color-mix(in srgb,var(--z) 22%,transparent)}
+/* the 18-step AFT journeys: two columns, filled top to bottom */
+.steps.dense{display:grid;grid-auto-flow:column;grid-template-rows:repeat(9,auto);grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;row-gap:6px}
+.steps.dense .step{font-size:18px;gap:14px;white-space:nowrap}
+.steps.dense .step .n{width:32px;height:32px;font-size:14px;flex-shrink:0}
 .kbtn{margin-top:34px;height:76px;padding:0 44px;border-radius:99px;border:0;background:#fff;color:var(--ink);font-weight:800;font-size:28px;display:inline-flex;align-items:center;gap:16px;position:relative;
   box-shadow:0 12px 40px rgba(0,0,0,.35)}
 .kbtn span{color:var(--blue);font-size:30px}
