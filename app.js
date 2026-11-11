@@ -9,7 +9,7 @@ const GROUPS = [{ name: 'SEND', zones: ['send'] }, { name: 'RECEIVE', zones: ['r
 // readable lock links, e.g. ?zone=aft-travel (the short keys keep working)
 const ALIAS = { 'vxbs-individual': 'receive', 'vxbs-seller': 'collect', 'aft-family': 'family', 'aft-travel': 'travel' };
 const SIZE = { family: '414x896', travel: '414x896' }; // Figma device size; others are 402x874
-const BRAND_LOGO = 'brand/logo.svg'; // swap this file for the approved Visa logo
+const BRAND_LOGO = 'brand/visa-logo-white.png'; // Visa logo (white), from the client's brand pack 2026-11-11
 const FLOW = Object.fromEntries(ZONES.map(z => [z, SCREENS.filter(s => s.zone === z).sort((a, b) => a.n - b.n)]));
 const raf2 = fn => requestAnimationFrame(() => requestAnimationFrame(fn));
 const markReady = () => (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => raf2(() => { document.documentElement.dataset.ready = '1'; }));
@@ -35,7 +35,8 @@ const LOW_FX = P.get('fx') === 'low';
 const LOADED = Date.now();
 
 document.documentElement.lang = 'en';
-document.body.insertAdjacentHTML('afterbegin', '<div id="stage"><canvas id="bg" width="1920" height="1080"></canvas><div id="shade"></div><div id="app"></div></div>');
+document.body.insertAdjacentHTML('afterbegin', '<div id="stage"><div id="kv"><i></i><i></i><i></i><i></i><i></i><i></i></div><canvas id="bg" width="1920" height="1080"></canvas><div id="shade"></div><div id="app"></div></div>');
+if (P.get('fx') === 'low') document.documentElement.classList.add('lowfx');
 const stage = $('#stage'), app = $('#app');
 
 // Portrait phone → rotate the 16:9 stage 90° so it always reads landscape (browsers can't lock orientation outside fullscreen).
@@ -91,7 +92,7 @@ const META = {
   // AFT copy: scenario facts are the Figma texts (storyboard header, receipts); the explainers paraphrase the
   // designs' own "About Visa Direct XB AFT" notes until Visa supplies approved marketing copy.
   family: {
-    name: 'RECEIVE', color: '#4f7cff', brand: ['VISA Direct', ''], title: 'Friends & family', via: 'Cross-border AFT · me-to-you',
+    name: 'RECEIVE', color: '#8fd3ff', brand: ['VISA Direct', ''], title: 'Friends & family', via: 'Cross-border AFT · me-to-you',
     hero: 'Request with a link. Pay with Visa.', sub: 'NovaBank · United States → Vietnam',
     route: 'United States → Vietnam',
     verb: 'You just got paid from overseas with a link.',
@@ -124,6 +125,7 @@ window.VD = {
 function show(view) {
   clearTimers();
   S.view = view; S.busy = false;
+  stage.classList.toggle('idle-view', view === 'idle');
   if (view === 'idle') { S.zone = LOCK; scene('idle', 960, 540); }
   if (view === 'home') scene('home', 960, 540);
   if (view === 'done') scene(S.zone, 1500, 520);
@@ -287,9 +289,11 @@ function draw() {
   let html = '';
   if (S.view === 'idle') {
     html = `<div class="idle" data-a="start">
-      <div class="mm">MOVE MONEY WITH</div><img class="logo-xl" src="${BRAND_LOGO}" alt="Visa">
-      <div class="src"><b style="--c:#b38cff">SEND</b><i></i><b style="--c:#f7b600">RECEIVE</b></div>
-      <div class="touch">${LOCK ? `Touch to start · <b>${m.name} · ${m.title}</b>` : 'Touch anywhere to start'}</div></div>`;
+      <img class="kv-logo" src="${BRAND_LOGO}" alt="Visa">
+      <img class="kv-title" src="brand/kv-title.png" alt="Payments in Motion · Money Movement Edition">
+      <div class="kv-city">Ho Chi Minh, Vietnam</div>
+      <div class="kv-start"><div class="src"><b style="--c:#ffd66b">SEND</b><i></i><b style="--c:#ffd66b">RECEIVE</b></div>
+      <div class="touch">${LOCK ? `Touch to start · <b>${m.name} · ${m.title}</b>` : 'Touch anywhere to start'}</div></div></div>`;
   } else if (S.view === 'home') {
     const card = k => { const g = META[k]; return `<button class="zc" style="--z:${g.color}" data-a="pick" data-v="${k}">
         <div class="ic">${ICON[k]}</div><h2>${g.title}</h2><div class="via">${g.via}</div><q>${g.hero}</q>

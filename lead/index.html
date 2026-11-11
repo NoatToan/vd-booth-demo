@@ -16,52 +16,58 @@
 :root{--blue:#1434cb;--page:#f7f7fa;--card:#fff;--line:#e4e6ef;--field:#e8e4ec;--label:#777180;--ink:#201b29;--muted:#74788a;--soft:#d6deff;--err:#c62828}
 *{box-sizing:border-box;margin:0;padding:0}
 [hidden]{display:none!important}
-html,body{background:#e6e9f2;font-family:Inter,system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+html,body{background:#e6e9f2;font-family:'Visa Dialect',Inter,system-ui,sans-serif;font-synthesis:none;color:var(--ink);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
 /* one panel: the blue header and the form background share the same edges (wider screens get a backdrop + shadow) */
 .wrap{max-width:480px;margin:0 auto;min-height:100vh;background:var(--page);overflow:hidden}
 @media (min-width:520px){body{padding:32px 16px}.wrap{min-height:0;border-radius:28px;box-shadow:0 24px 60px rgba(20,30,80,.14),0 0 0 1px rgba(20,30,80,.05)}}
-header{background:var(--blue);color:#fff;padding:calc(18px + env(safe-area-inset-top)) 24px 32px}
-.brand{display:flex;align-items:baseline;gap:7px}
-.brand .vw{font:italic 700 32px/36.8px Arimo,Inter,sans-serif;letter-spacing:-1.4px}
-.brand .vd{font:400 19px/23px Inter,sans-serif;letter-spacing:-.5px}
-header h1{font:600 29px/33.1px Inter,sans-serif;letter-spacing:-.9px;margin-top:28px}
-header p{font:400 14px/20.3px Inter,sans-serif;color:var(--soft);margin-top:8px}
-.tried{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 12px;border-radius:100px;background:rgba(255,255,255,.14);font:600 12px/15px Inter,sans-serif}
+/* header = the Payments in Motion KV: Visa blue with soft diagonal light streaks (brand/kv-reference.jpg) */
+header{position:relative;overflow:hidden;color:#fff;padding:calc(20px + env(safe-area-inset-top)) 24px 30px;
+  background:radial-gradient(60% 40% at 92% 6%,rgba(255,214,107,.55),transparent 70%),radial-gradient(70% 30% at 8% 104%,rgba(247,182,0,.5),transparent 70%),
+  radial-gradient(50% 26% at 62% 100%,rgba(255,255,255,.35),transparent 70%),linear-gradient(160deg,#0a2a95 0%,#1336c9 50%,#0f2db8 75%,#08207a 100%)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{height:30px;width:auto;display:block}
+.brand .vd{font:400 20px/24px 'Visa Dialect',Inter,sans-serif}
+.event{font:400 12px/15px 'Visa Dialect',Inter,sans-serif;letter-spacing:2.2px;text-transform:uppercase;color:#ffe9a8;margin-top:22px}
+header h1{font:400 31px/35px 'Visa Dialect',Inter,sans-serif;letter-spacing:-.4px;margin-top:6px}
+header p{font:400 14.5px/21px 'Visa Dialect',Inter,sans-serif;color:var(--soft);margin-top:8px}
+.tried{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 12px;border-radius:100px;background:rgba(255,255,255,.16);font:400 12.5px/15px 'Visa Dialect',Inter,sans-serif}
 .tried::before{content:'';width:7px;height:7px;border-radius:50%;background:#7ee2b8}
 main{padding:24px 24px 4px;background:var(--page)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:12px}
 .card+.card{margin-top:16px}
-.card h2{font:600 16px/19.4px Inter,sans-serif}
-.card .hint{font:400 12px/16px Inter,sans-serif;color:var(--muted);margin-top:-6px}
+.card h2{font:400 16px/19.4px 'Visa Dialect',Inter,sans-serif}
+.card .hint{font:400 12px/16px 'Visa Dialect',Inter,sans-serif;color:var(--muted);margin-top:-6px}
 label.f{display:flex;flex-direction:column;gap:5px;background:#fff;border:1px solid var(--field);border-radius:12px;padding:12px 16px;transition:border-color .15s,box-shadow .15s}
-label.f span{font:500 11px/13.3px Inter,sans-serif;color:var(--label)}
+label.f span{font:400 11px/13.3px 'Visa Dialect',Inter,sans-serif;color:var(--label)}
 label.f span b{color:var(--blue);font-weight:600}
-label.f input,label.f select,label.f textarea{font:500 15px/18.2px Inter,sans-serif;color:var(--ink);border:0;outline:0;background:transparent;width:100%;padding:0;appearance:none;-webkit-appearance:none;border-radius:0}
+label.f input,label.f select,label.f textarea{font:400 15px/18.2px 'Visa Dialect',Inter,sans-serif;color:var(--ink);border:0;outline:0;background:transparent;width:100%;padding:0;appearance:none;-webkit-appearance:none;border-radius:0}
 label.f textarea{resize:none;min-height:54px}
 label.f input::placeholder,label.f textarea::placeholder{color:#b4afbc}
 label.f:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(20,52,203,.12)}
 label.f.bad{border-color:var(--err);box-shadow:0 0 0 3px rgba(198,40,40,.1)}
-.count{font:500 11px/13px Inter,sans-serif;color:var(--muted);text-align:right;margin:-6px 4px 0}
+.count{font:400 11px/13px 'Visa Dialect',Inter,sans-serif;color:var(--muted);text-align:right;margin:-6px 4px 0}
 .count.over{color:var(--err)}
 .consent.bad span{color:var(--err)}
 label.f select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none'%3E%3Cpath d='M4.5 6.75 9 11.25l4.5-4.5' stroke='%23777180' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right center no-repeat;padding-right:24px}
-.err{font:500 12px/15px Inter,sans-serif;color:var(--err);margin:-6px 0 0 4px;display:none}
+.err{font:400 12px/15px 'Visa Dialect',Inter,sans-serif;color:var(--err);margin:-6px 0 0 4px;display:none}
 .err.on{display:block}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{position:relative}
 .chip input{position:absolute;opacity:0;inset:0}
-.chip span{display:block;padding:10px 14px;border-radius:100px;border:1px solid var(--field);background:#fff;font:500 13px/16px Inter,sans-serif;color:var(--ink);transition:all .15s}
+.chip span{display:block;padding:10px 14px;border-radius:100px;border:1px solid var(--field);background:#fff;font:400 13px/16px 'Visa Dialect',Inter,sans-serif;color:var(--ink);transition:all .15s}
 .chip input:checked+span{border-color:var(--blue);background:#eef1ff;color:var(--blue);font-weight:600}
 .chip input:focus-visible+span{box-shadow:0 0 0 3px rgba(20,52,203,.2)}
-.consent{display:flex;gap:12px;align-items:flex-start;font:400 12px/17px Inter,sans-serif;color:var(--muted)}
+.consent{display:flex;gap:12px;align-items:flex-start;font:400 12px/17px 'Visa Dialect',Inter,sans-serif;color:var(--muted)}
 .consent input{flex:0 0 20px;width:20px;height:20px;margin-top:1px;accent-color:var(--blue)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 footer{padding:16px 24px calc(24px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;align-items:center;background:var(--page)}
-button.primary{width:100%;height:56px;border:0;border-radius:16px;background:var(--blue);color:#fff;font:600 16px/19.4px Inter,sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer}
+button.primary{width:100%;height:56px;border:0;border-radius:16px;background:var(--blue);color:#fff;font:400 16px/19.4px 'Visa Dialect',Inter,sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer}
 button.primary:disabled{opacity:.6}
 button.primary svg{width:18px;height:18px}
-.note{font:400 10px/12.1px Inter,sans-serif;color:var(--muted);text-align:center}
-.formerr{font:500 13px/17px Inter,sans-serif;color:var(--err);text-align:center;display:none}
+.enabled{display:flex;align-items:center;gap:7px;font:400 14px/16px 'Visa Dialect',Inter,sans-serif;color:var(--blue)}
+.enabled img{height:15px;width:auto;filter:brightness(0) saturate(100%) invert(16%) sepia(87%) saturate(4400%) hue-rotate(229deg) brightness(88%)}
+.note{font:400 10px/12.1px 'Visa Dialect',Inter,sans-serif;color:var(--muted);text-align:center}
+.formerr{font:400 13px/17px 'Visa Dialect',Inter,sans-serif;color:var(--err);text-align:center;display:none}
 .formerr.on{display:block}
 /* thank-you state (the Figma success band: white seal + check, 29px headline) */
 .done header{padding-bottom:64px;text-align:center}
@@ -76,7 +82,8 @@ button.primary svg{width:18px;height:18px}
 <body>
 <div class="wrap" id="wrap">
   <header>
-    <div class="brand"><span class="vw">VISA</span><span class="vd">Direct</span></div>
+    <div class="brand"><img src="../brand/visa-logo-white.png" alt="Visa"><span class="vd">Direct</span></div>
+    <div class="event">Payments in Motion · Money Movement Edition</div>
     <div class="thanks"><div class="seal"><svg viewBox="0 0 34 34" fill="none"><path d="M28.3321 8.5L12.7503 24.0822L5.66772 16.9994" stroke-width="2.5" stroke-linecap="round" stroke="#20785D"/></svg></div></div>
     <h1 id="h1">Keep the conversation going</h1>
     <p id="sub">Leave your details and the Visa team will follow up on what you saw at the booth.</p>
@@ -129,6 +136,7 @@ button.primary svg{width:18px;height:18px}
     <footer>
       <div class="formerr" id="formerr"></div>
       <button class="primary" id="send" type="submit">Send my details<svg viewBox="0 0 18 18" fill="none"><path d="M3.74939 8.99999H14.2506M8.99999 14.2506L14.2506 8.99999L8.99999 3.74939" stroke-linecap="round" stroke="white"/></svg></button>
+      <div class="enabled">Enabled by <img src="../brand/visa-logo-white.png" alt="Visa"></div>
       <div class="note">Your details stay with the Visa booth team · Concept demo</div>
     </footer>
   </form>

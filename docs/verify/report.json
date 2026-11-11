@@ -1,6 +1,6 @@
 {
- "commit": "dafa189+dirty",
- "at": "2026-11-10T14:09:25.949Z",
+ "commit": "2e63a6c+dirty",
+ "at": "2026-11-11T08:25:26.336Z",
  "summary": {
   "screens": 61,
   "screensHardPass": 61,
@@ -135,8 +135,8 @@
   },
   "hardFail": false,
   "app": {
-   "before": "62798d7e67f0",
-   "after": "62798d7e67f0",
+   "before": "ee4a818014cd",
+   "after": "ee4a818014cd",
    "changedDuringRun": false
   },
   "line": "ALL HARD GATES GREEN — screens 61/61 hard-green, flow PASS"
@@ -10527,7 +10527,7 @@
     "zone": "family",
     "url": "http://127.0.0.1:4317/index.html",
     "ok": true,
-    "entry": "click [data-a=start] → click <button class=\"zc\" style=\"--z:#4f7cff\" data-a=\"pick\" data-v=\"family\">",
+    "entry": "click [data-a=start] → click <button class=\"zc\" style=\"--z:#8fd3ff\" data-a=\"pick\" data-v=\"family\">",
     "doneShot": "img/flow/home-family-99-done.png",
     "aborted": 0,
     "consoleErrors": []
@@ -10726,7 +10726,7 @@
     "step": "send-1",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -10841,7 +10841,7 @@
     "step": "send-2",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -10996,7 +10996,7 @@
     "step": "send-3",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -11151,7 +11151,7 @@
     "step": "send-4",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -11306,7 +11306,7 @@
     "step": "send-5",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -11461,7 +11461,7 @@
     "step": "send-6",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -11616,7 +11616,7 @@
     "step": "send-7",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -11738,7 +11738,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1533 ms"
+    "detail": "1510 ms"
    },
    {
     "run": "home-send",
@@ -11778,7 +11778,7 @@
     "step": "send-8",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -11880,7 +11880,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5002 ms"
+    "detail": "4991 ms"
    },
    {
     "run": "home-send",
@@ -11920,7 +11920,7 @@
     "step": "send-9",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -12062,7 +12062,7 @@
     "step": "send-10",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -12217,7 +12217,7 @@
     "step": "send-11",
     "name": "SEND rail .left bottom ≤ 1016",
     "ok": true,
-    "detail": "bottom=857.375"
+    "detail": "bottom=886.375"
    },
    {
     "run": "home-send",
@@ -14167,7 +14167,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4023 ms"
+    "detail": "4020 ms"
    },
    {
     "run": "home-collect",
@@ -14364,7 +14364,7 @@
    {
     "run": "home-family",
     "step": "family-1",
-    "name": "E1 enters family-1 (click [data-a=start] → click <button class=\"zc\" style=\"--z:#4f7cff\" data-a=\"pick\" data-v=\"family\">)",
+    "name": "E1 enters family-1 (click [data-a=start] → click <button class=\"zc\" style=\"--z:#8fd3ff\" data-a=\"pick\" data-v=\"family\">)",
     "ok": true,
     "detail": "#phone[data-screen]=none state=undefined"
    },
@@ -16306,7 +16306,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4012 ms"
+    "detail": "4025 ms"
    },
    {
     "run": "home-family",
@@ -18193,7 +18193,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4006 ms"
+    "detail": "4031 ms"
    },
    {
     "run": "home-travel",
@@ -19447,7 +19447,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1533 ms"
+    "detail": "1587 ms"
    },
    {
     "run": "zone-send",
@@ -19466,7 +19466,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5001 ms"
+    "detail": "4944 ms"
    },
    {
     "run": "zone-send",
@@ -20096,7 +20096,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4027 ms"
+    "detail": "4015 ms"
    },
    {
     "run": "zone-collect",
@@ -20618,7 +20618,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4010 ms"
+    "detail": "4003 ms"
    },
    {
     "run": "zone-family",
@@ -21108,7 +21108,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4001 ms"
+    "detail": "4012 ms"
    },
    {
     "run": "zone-travel",
@@ -21483,7 +21483,7 @@
     "step": "mid",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (mid-journey)",
     "ok": true,
-    "detail": "6409 ms"
+    "detail": "6484 ms"
    },
    {
     "run": "idle-done",
@@ -21737,7 +21737,7 @@
     "step": "done",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (on Done)",
     "ok": true,
-    "detail": "6558 ms"
+    "detail": "6568 ms"
    },
    {
     "run": "fx-low",
