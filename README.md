@@ -153,5 +153,5 @@ docs/                         # workflow, decisions, implementation plan, verify
 
 ## Notes
 
-- **Placeholders.** Logos, wordmarks, product descriptions and scenario data (rates, names, account numbers) are demo placeholders. Replace them with Visa-approved brand assets and content before any official use.
+- **Brand and data.** Logos, wordmarks, the KV and Visa Dialect come from the Visa brand pack and Figma Make (web use approved 2026-11-11). Scenario data in the phone screens (rates, names, account numbers) are the designs' illustrative demo values.
 - **Figma copy and figures are kept as designed.** Some known design inconsistencies are listed under "Notes for the designer" in `docs/DECISIONS.md`.
