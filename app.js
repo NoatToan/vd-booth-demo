@@ -9,7 +9,9 @@ const GROUPS = [{ name: 'SEND', zones: ['send'] }, { name: 'RECEIVE', zones: ['r
 // readable lock links, e.g. ?zone=aft-travel (the short keys keep working)
 const ALIAS = { 'vxbs-individual': 'receive', 'vxbs-seller': 'collect', 'aft-family': 'family', 'aft-travel': 'travel' };
 const SIZE = { family: '414x896', travel: '414x896' }; // Figma device size; others are 402x874
-const BRAND_LOGO = 'brand/visa-logo-white.png'; // Visa logo (white), from the client's brand pack 2026-11-11
+// Visa marks: vector from the Figma Make "Payments in Motion: Money Movement Edition" (shared/visa/wordmark and
+// demo/VisaDirectLockup), read through the Figma MCP 2026-11-11
+const BRAND_LOGO = 'brand/visa-wordmark.svg', BRAND_DIRECT = 'brand/visa-direct-lockup.svg';
 const FLOW = Object.fromEntries(ZONES.map(z => [z, SCREENS.filter(s => s.zone === z).sort((a, b) => a.n - b.n)]));
 const raf2 = fn => requestAnimationFrame(() => requestAnimationFrame(fn));
 const markReady = () => (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => raf2(() => { document.documentElement.dataset.ready = '1'; }));
@@ -271,8 +273,8 @@ const brand = z => {
   const b = z ? META[z].brand : ['VISA', 'Direct'];
   // the Visa mark is an image (brand/logo.svg, a test image until Visa supplies the approved logo); the product
   // name ("Direct") and the co-brand stay text
-  const product = b[0].replace(/^VISA\s*/, '');
-  return `<div class="brand${b[1].startsWith('×') ? ' co' : ''}"><span class="mark"><img class="logo" src="${BRAND_LOGO}" alt="Visa">${product ? `<span class="vp">${product}</span>` : ''}</span><span class="vd">${b[1]}</span></div>`;
+  const direct = /^VISA Direct$/.test(b[0]);
+  return `<div class="brand${b[1].startsWith('×') ? ' co' : ''}"><span class="mark">${direct ? `<img class="lockup" src="${BRAND_DIRECT}" alt="Visa Direct">` : `<img class="logo" src="${BRAND_LOGO}" alt="Visa">`}</span><span class="vd">${b[1]}</span></div>`;
 };
 function drawRail() {
   const rail = $('#rail');
@@ -291,7 +293,7 @@ function draw() {
     html = `<div class="idle" data-a="start">
       <img class="kv-logo" src="${BRAND_LOGO}" alt="Visa">
       <img class="kv-title" src="brand/kv-title.png" alt="Payments in Motion · Money Movement Edition">
-      <div class="kv-city">Ho Chi Minh, Vietnam</div>
+      <div class="kv-city">Ho Chi Minh, Vietnam</div><i class="kv-sweep"></i>
       <div class="kv-start"><div class="src"><b style="--c:#ffd66b">SEND</b><i></i><b style="--c:#ffd66b">RECEIVE</b></div>
       <div class="touch">${LOCK ? `Touch to start · <b>${m.name} · ${m.title}</b>` : 'Touch anywhere to start'}</div></div></div>`;
   } else if (S.view === 'home') {

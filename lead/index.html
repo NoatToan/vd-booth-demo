@@ -25,7 +25,7 @@ header{position:relative;overflow:hidden;color:#fff;padding:calc(20px + env(safe
   background:radial-gradient(60% 40% at 92% 6%,rgba(255,214,107,.55),transparent 70%),radial-gradient(70% 30% at 8% 104%,rgba(247,182,0,.5),transparent 70%),
   radial-gradient(50% 26% at 62% 100%,rgba(255,255,255,.35),transparent 70%),linear-gradient(160deg,#0a2a95 0%,#1336c9 50%,#0f2db8 75%,#08207a 100%)}
 .brand{display:flex;align-items:center;gap:10px}
-.brand img{height:30px;width:auto;display:block}
+.brand img{height:28px;width:auto;display:block}
 .brand .vd{font:400 20px/24px 'Visa Dialect',Inter,sans-serif}
 .event{font:400 12px/15px 'Visa Dialect',Inter,sans-serif;letter-spacing:2.2px;text-transform:uppercase;color:#ffe9a8;margin-top:22px}
 header h1{font:400 31px/35px 'Visa Dialect',Inter,sans-serif;letter-spacing:-.4px;margin-top:6px}
@@ -65,7 +65,7 @@ button.primary{width:100%;height:56px;border:0;border-radius:16px;background:var
 button.primary:disabled{opacity:.6}
 button.primary svg{width:18px;height:18px}
 .enabled{display:flex;align-items:center;gap:7px;font:400 14px/16px 'Visa Dialect',Inter,sans-serif;color:var(--blue)}
-.enabled img{height:15px;width:auto;filter:brightness(0) saturate(100%) invert(16%) sepia(87%) saturate(4400%) hue-rotate(229deg) brightness(88%)}
+.enabled img{height:14px;width:auto}
 .note{font:400 10px/12.1px 'Visa Dialect',Inter,sans-serif;color:var(--muted);text-align:center}
 .formerr{font:400 13px/17px 'Visa Dialect',Inter,sans-serif;color:var(--err);text-align:center;display:none}
 .formerr.on{display:block}
@@ -82,7 +82,7 @@ button.primary svg{width:18px;height:18px}
 <body>
 <div class="wrap" id="wrap">
   <header>
-    <div class="brand"><img src="../brand/visa-logo-white.png" alt="Visa"><span class="vd">Direct</span></div>
+    <div class="brand"><img src="../brand/visa-direct-lockup.svg" alt="Visa Direct"></div>
     <div class="event">Payments in Motion · Money Movement Edition</div>
     <div class="thanks"><div class="seal"><svg viewBox="0 0 34 34" fill="none"><path d="M28.3321 8.5L12.7503 24.0822L5.66772 16.9994" stroke-width="2.5" stroke-linecap="round" stroke="#20785D"/></svg></div></div>
     <h1 id="h1">Keep the conversation going</h1>
@@ -136,7 +136,7 @@ button.primary svg{width:18px;height:18px}
     <footer>
       <div class="formerr" id="formerr"></div>
       <button class="primary" id="send" type="submit">Send my details<svg viewBox="0 0 18 18" fill="none"><path d="M3.74939 8.99999H14.2506M8.99999 14.2506L14.2506 8.99999L8.99999 3.74939" stroke-linecap="round" stroke="white"/></svg></button>
-      <div class="enabled">Enabled by <img src="../brand/visa-logo-white.png" alt="Visa"></div>
+      <div class="enabled">Enabled by <img src="../brand/visa-wordmark-blue.svg" alt="Visa"></div>
       <div class="note">Your details stay with the Visa booth team · Concept demo</div>
     </footer>
   </form>

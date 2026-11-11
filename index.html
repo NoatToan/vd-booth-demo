@@ -57,7 +57,8 @@ button{font-family:inherit;cursor:pointer}
 .vw{font-weight:900;font-style:italic;letter-spacing:-1px}
 .brand .vw{font-size:40px}
 .brand .mark{display:flex;align-items:center;gap:10px}
-.brand .logo{height:44px;width:auto;display:block}
+.brand .logo{height:40px;width:auto;display:block}
+.brand .lockup{height:44px;width:auto;display:block}
 .brand .vp{font-size:30px;letter-spacing:-.3px;margin-top:6px}
 .logo-xl{display:block;height:300px;width:auto;margin:8px auto 36px}
 .brand .vd{font-size:20px;font-weight:600;color:var(--muted)}
@@ -67,6 +68,9 @@ button{font-family:inherit;cursor:pointer}
 .idle{position:absolute;inset:0;cursor:pointer}
 /* the KV layout at 1920×1080: logo (104,84), title lockup (410,429)-(1508,650), the city under EDITION */
 .idle .kv-logo{position:absolute;left:104px;top:84px;width:268px;height:auto}
+/* accent sweep under the title, as the Make splash (#3aa0ff → #f7b600) */
+.idle .kv-sweep{position:absolute;left:750px;top:716px;width:420px;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,#3aa0ff,#f7b600,transparent);transform-origin:center;animation:sweep 1s .6s cubic-bezier(.22,1,.36,1) both}
+@keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .idle .kv-title{position:absolute;left:410px;top:429px;width:1098px;height:auto}
 .idle .kv-city{position:absolute;left:1152px;top:660px;font-size:30px;letter-spacing:.3px}
 .idle .kv-start{position:absolute;left:0;right:0;bottom:150px;display:flex;flex-direction:column;align-items:center;gap:26px}
@@ -78,6 +82,8 @@ button{font-family:inherit;cursor:pointer}
 .src b{animation:hl 6s infinite;opacity:.55}
 .src b:nth-of-type(2){animation-delay:2s}.src b:nth-of-type(3){animation-delay:4s}
 @keyframes hl{0%,40%,100%{opacity:.55;text-shadow:none}10%,30%{opacity:1;text-shadow:0 0 30px var(--c)}}
+.idle .touch{text-transform:uppercase;letter-spacing:.28em;font-size:24px;animation:tap 2s ease-in-out infinite}
+@keyframes tap{50%{opacity:.55}}
 .touch{position:relative;padding:24px 56px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);font-size:28px;font-weight:600;letter-spacing:2px}
 .touch::before,.touch::after{content:'';position:absolute;inset:-2px;border-radius:99px;border:2px solid rgba(47,155,255,.7);animation:ripple 2.4s infinite}
 .touch::after{animation-delay:1.2s}
