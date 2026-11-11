@@ -219,8 +219,33 @@ function armRing(scr, s) {
     // the indicator is a class on the CTA itself (an outline), so it scrolls with the button natively: no overlay to
     // reposition on scroll, no lag when the visitor flicks the page
     hot.style.setProperty('--ring', INK[S.zone]);
+    ctaFit(hot, scr);
     hot.classList.add('fx-cta');
   }, at);
+}
+
+/* Fit the CTA ring into the room the design leaves: the ring (2 px wide) breathes 2 px between offsets a and a+2, and
+   must not reach a clipping ancestor (a footer, a card, the phone). Room is measured once at arm time, in phone px; a
+   scroll container only limits the sides (it scrolls). With no room outside, the ring is drawn inside the button, in
+   white on a dark fill, in the app's ink otherwise. */
+function ctaFit(hot, scr) {
+  const k = hot.getBoundingClientRect().width / hot.offsetWidth || 1, h = hot.getBoundingClientRect();
+  let room = 4; // the most the ring ever needs outside: offset 2 + 2 px of breath
+  for (let a = hot.parentElement; a && a !== scr; a = a.parentElement) {
+    const cs = getComputedStyle(a);
+    if (cs.overflowX === 'visible' && cs.overflowY === 'visible') continue;
+    const c = a.getBoundingClientRect(), side = Math.min(h.left - c.left, c.right - h.right) / k;
+    room = Math.min(room, a.dataset.role === 'scroll' ? side : Math.min(side, (h.top - c.top) / k, (c.bottom - h.bottom) / k));
+  }
+  const inside = room < 4;
+  const a = inside ? -6 : 0; // outside: offsets 0 → 2 (ring at 0-4 px out); inside: -6 → -4 (ring at 2-6 px in)
+  // white only on a dark fill (a blue button); on a light card the app's ink stays readable
+  const m = getComputedStyle(hot).backgroundColor.match(/[\d.]+/g) || [];
+  const dark = m.length >= 3 && (m[3] === undefined || +m[3] > 0.5) && (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) < 140;
+  hot.style.setProperty('--cta-a', `${a}px`);
+  hot.style.setProperty('--cta-b', `${a + 2}px`);
+  if (inside && dark) hot.style.setProperty('--ring', 'rgba(255,255,255,.85)');
+  hot.dataset.ctaFit = inside ? 'inside' : 'outside';
 }
 
 /* touch feedback on the phone's actionable elements */
