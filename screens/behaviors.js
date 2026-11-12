@@ -9,8 +9,8 @@ const kids = (root, id) => { const p = q(root, id); return p ? [...p.children] :
 const EASE = 'cubic-bezier(.2,.8,.2,1)';
 // opacity replaces, transform adds onto the element's own (e.g. the banknote's Figma rotation)
 function anim(el, frames, opts) {
-  const op = frames.map(f => ({ opacity: f.opacity ?? 1, offset: f.offset }));
-  const tf = frames.map(f => ({ transform: f.transform ?? 'none', offset: f.offset }));
+  const op = frames.map(f => ({ opacity: f.opacity === undefined ? 1 : f.opacity, offset: f.offset }));
+  const tf = frames.map(f => ({ transform: f.transform === undefined ? 'none' : f.transform, offset: f.offset }));
   if (frames.some(f => 'opacity' in f)) el.animate(op.map(f => (f.offset === undefined ? { opacity: f.opacity } : f)), opts);
   if (frames.some(f => 'transform' in f)) return el.animate(tf.map(f => (f.offset === undefined ? { transform: f.transform } : f)), { ...opts, composite: 'add' });
 }

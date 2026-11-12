@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Booth status · Visa</title>
+<link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
+<link href="../vendor/inter.css" rel="stylesheet">
+<!--
+  Event-day monitor for the booth screens. Each kiosk posts /api/heartbeat every minute (app.js beat()); this page
+  reads /api/status with the booth team's key (LEADS_ADMIN_TOKEN, kept in this browser only) and refreshes every 15 s.
+  Name a screen by opening it with ?device=<name>, e.g. https://vd-booth-demo.vercel.app/?zone=send&device=led-send
+-->
+<style>
+:root{--blue:#1434cb;--bg:#f3f5fb;--card:#fff;--ink:#16192b;--muted:#6b7085;--line:#e3e5ee;--ok:#16a34a;--warn:#d97706;--bad:#dc2626}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 'Visa Dialect',Inter,system-ui,sans-serif}
+header{background:var(--blue);color:#fff;padding:18px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+header img{height:22px}header h1{font:400 20px/1 'Visa Dialect',Inter,sans-serif;margin:0}
+header .meta{margin-left:auto;font-size:13px;opacity:.85}
+main{max-width:1200px;margin:0 auto;padding:20px 16px 40px}
+.sum{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:14px}
+.pill b{font-size:20px;display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.dev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;border-left:6px solid var(--ok)}
+.dev.warn{border-left-color:var(--warn)}.dev.bad{border-left-color:var(--bad)}
+.dev h2{font:400 17px/1.2 'Visa Dialect',Inter,sans-serif;margin:0 0 2px}
+.dev .z{color:var(--muted);font-size:13px}
+.dev dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:10px 0 0;font-size:13.5px}
+.dev dt{color:var(--muted)}.dev dd{margin:0}
+.st{font-weight:600}.ok{color:var(--ok)}.warn .st{color:var(--warn)}.bad .st{color:var(--bad)}
+.err{color:var(--bad);font-size:12.5px;margin-top:6px;word-break:break-word}
+.forget{margin-top:8px;font-size:12px;color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;max-width:440px}
+form input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;margin:8px 0}
+form button,.tbtn{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:inherit;cursor:pointer}
+.empty{color:var(--muted);padding:20px 0}
+</style>
+</head>
+<body>
+<header><img src="../brand/visa-wordmark.svg" alt="Visa"><h1>Booth screens · status</h1><span class="meta" id="meta"></span></header>
+<main>
+  <form id="login" hidden><b>Booth team key</b><div style="font-size:13px;color:var(--muted)">The key used for the lead export. It stays in this browser.</div>
+    <input id="key" type="password" autocomplete="off" placeholder="Paste the key"><button>Open status</button></form>
+  <div id="view" hidden><div class="sum" id="sum"></div><div class="grid" id="grid"></div></div>
+</main>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let key = ''; try { key = localStorage.getItem('vd-status-key') || ''; } catch {}
+  const fmtDur = s => s == null ? '–' : s < 90 ? `${s}s` : s < 5400 ? `${Math.round(s / 60)} min` : `${(s / 3600).toFixed(1)} h`;
+  const esc = v => String(v ?? '–').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  async function load() {
+    const r = await fetch('../api/status', { headers: { Authorization: `Bearer ${key}` }, cache: 'no-store' });
+    if (r.status === 401) { $('login').hidden = false; $('view').hidden = true; return; }
+    const j = await r.json(); $('login').hidden = true; $('view').hidden = false;
+    let ok = 0, warn = 0, bad = 0;
+    $('grid').innerHTML = j.devices.map(d => {
+      const st = d.state || {}, cls = d.age_s < 150 ? '' : d.age_s < 600 ? 'warn' : 'bad';
+      cls === '' ? ok++ : cls === 'warn' ? warn++ : bad++;
+      return `<div class="dev ${cls}"><h2>${esc(d.device)}</h2><div class="z">${esc(d.zone)}</div>
+        <dl><dt>Status</dt><dd class="st ${cls ? '' : 'ok'}">${cls === '' ? 'Online' : cls === 'warn' ? 'Late' : 'Down'} · seen ${fmtDur(d.age_s)} ago</dd>
+        <dt>On screen</dt><dd>${esc(st.view)}${st.screen ? ' · ' + esc(st.screen) : ''} (idle ${fmtDur(st.idleS)})</dd>
+        <dt>Running</dt><dd>${fmtDur(st.uptimeS)} since load · ${esc(d.beats)} beats</dd>
+        <dt>Errors</dt><dd>${esc(st.errors)} · reloads ${esc(st.reloads)}${st.reloadWhy ? ' (' + esc(st.reloadWhy) + ')' : ''}</dd>
+        <dt>Memory</dt><dd>${st.heapMB != null ? esc(st.heapMB) + ' MB' : '–'}</dd>
+        <dt>Network</dt><dd>${st.online ? 'online' : 'offline'} · offline cache ${st.sw ? 'on' : 'off'}</dd>
+        <dt>Display</dt><dd>${esc(st.screenSize)}</dd></dl>
+        ${st.lastError ? `<div class="err">Last error: ${esc(st.lastError)}</div>` : ''}
+        <button class="forget" data-d="${esc(d.device)}">Forget this device</button></div>`;
+    }).join('') || '<div class="empty">No booth screen has reported yet. Open a kiosk link; it reports within a minute.</div>';
+    $('sum').innerHTML = `<div class="pill"><b class="ok">${ok}</b>online</div><div class="pill"><b style="color:var(--warn)">${warn}</b>late (2.5–10 min)</div><div class="pill"><b style="color:var(--bad)">${bad}</b>down (&gt; 10 min)</div>`;
+    $('meta').textContent = `Updated ${new Date().toLocaleTimeString('en-GB')}${j.commit ? ' · build ' + j.commit : ''}`;
+  }
+  $('login').addEventListener('submit', e => { e.preventDefault(); key = $('key').value.trim(); try { localStorage.setItem('vd-status-key', key); } catch {} load(); });
+  $('grid').addEventListener('click', async e => {
+    const b = e.target.closest('.forget'); if (!b || !confirm(`Forget ${b.dataset.d}?`)) return;
+    await fetch(`../api/status?device=${encodeURIComponent(b.dataset.d)}`, { method: 'DELETE', headers: { Authorization: `Bearer ${key}` } }); load();
+  });
+  load().catch(() => {}); setInterval(() => load().catch(() => {}), 15000);
+})();
+</script>
+</body>
+</html>

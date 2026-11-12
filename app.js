@@ -2,7 +2,9 @@
 const $ = (s, r = document) => r.querySelector(s);
 const P = new URLSearchParams(location.search);
 const SCREENS = window.FIGMA_SCREENS || [];
-const BY_KEY = Object.fromEntries(SCREENS.map(s => [s.key, s]));
+// ES2017 only (TV browsers can be Chromium 6x): no Object.fromEntries, ?., ??
+const toObj = pairs => pairs.reduce((o, [k, v]) => { o[k] = v; return o; }, {});
+const BY_KEY = toObj(SCREENS.map(s => [s.key, s]));
 // Five experiences (client brief 2026-11-10): SEND 1, RECEIVE 4. Keys are the screen-key prefixes in screens/gen.
 const ZONES = ['send', 'receive', 'collect', 'family', 'travel'];
 const GROUPS = [{ name: 'SEND', zones: ['send'] }, { name: 'RECEIVE', zones: ['receive', 'collect', 'family', 'travel'] }];
@@ -18,7 +20,7 @@ const KV_STREAKS = Array.from({ length: 9 }, () => {
   const o = 0.12 + Math.random() * 0.22;
   return `<span style="top:${8 + Math.random() * 84}%;width:${120 + Math.random() * 260}px;animation-duration:${6 + Math.random() * 6}s;animation-delay:${Math.random() * 5}s;background:linear-gradient(90deg,transparent,rgba(247,182,0,${(o * 0.7).toFixed(3)}),rgba(255,255,255,${(o + 0.15).toFixed(3)}),transparent)"></span>`;
 }).join('');
-const FLOW = Object.fromEntries(ZONES.map(z => [z, SCREENS.filter(s => s.zone === z).sort((a, b) => a.n - b.n)]));
+const FLOW = toObj(ZONES.map(z => [z, SCREENS.filter(s => s.zone === z).sort((a, b) => a.n - b.n)]));
 const raf2 = fn => requestAnimationFrame(() => requestAnimationFrame(fn));
 const markReady = () => (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => raf2(() => { document.documentElement.dataset.ready = '1'; }));
 
@@ -39,12 +41,20 @@ const IDLE_MS = (+P.get('idle') || 60) * 1000;
 // Done-screen QR: the lead form (lead/index.html) tagged with the experience; ?qr= overrides it for every journey
 const QR_URL = z => P.get('qr') || `https://vd-booth-demo.vercel.app/lead/?exp=${z}`;
 const RELOAD_MS = (P.has('reload') ? +P.get('reload') : 2) * 3600e3;
-const LOW_FX = P.get('fx') === 'low';
+// TV browsers (the booth runs on LED TVs) get the light mode automatically; ?fx=full forces the full effects.
+const TV = /Tizen|Web0S|webOS|SMART-TV|SmartTV|HbbTV|BRAVIA|NetCast|AFT[A-Z]|CrKey|Android TV|; TV/i.test(navigator.userAgent);
+const LOW_FX = P.get('fx') === 'low' || (TV && P.get('fx') !== 'full');
 const LOADED = Date.now();
 
 document.documentElement.lang = 'en';
 document.body.insertAdjacentHTML('afterbegin', '<div id="stage"><div id="kv"><i></i><i></i><i></i><i></i><i></i><i></i></div><canvas id="bg" width="1920" height="1080"></canvas><div id="shade"></div><div id="app"></div></div>');
-if (P.get('fx') === 'low') document.documentElement.classList.add('lowfx');
+if (LOW_FX) document.documentElement.classList.add('lowfx');
+// Fullscreen on the first touch (TV browsers often keep their address bar); ignored where unsupported or refused.
+addEventListener('pointerdown', function fs() {
+  removeEventListener('pointerdown', fs, true);
+  const d = document.documentElement, req = d.requestFullscreen || d.webkitRequestFullscreen;
+  if (req && !document.fullscreenElement && !P.has('nofs')) try { const r = req.call(d); if (r && r.catch) r.catch(() => {}); } catch (e) {}
+}, true);
 const stage = $('#stage'), app = $('#app');
 
 // Portrait phone → rotate the 16:9 stage 90° so it always reads landscape (browsers can't lock orientation outside fullscreen).
@@ -363,14 +373,61 @@ function draw() {
   }
 }
 
-/* ---------- idle timeout ---------- */
+/* ---------- all-day running: idle timeout, safe reload, error recovery, watchdog, heartbeat ---------- */
+const HEALTH = { errors: 0, recent: [], last: null, reloads: +(sessionStorage.getItem('vd-reloads') || 0) };
 ['pointerdown', 'keydown'].forEach(ev => addEventListener(ev, () => { lastTouch = Date.now(); }, true));
+// Reload only when the server answers: with the service worker the page also opens offline, but a reload into a
+// dead network without it would leave a blank screen on the booth.
+let reloading = false;
+async function safeReload(why) {
+  if (reloading) return;
+  reloading = true;
+  try {
+    const r = await fetch('index.html', { cache: 'no-store' });
+    if (!r.ok && !(navigator.serviceWorker && navigator.serviceWorker.controller)) throw new Error(r.status);
+    sessionStorage.setItem('vd-reloads', String(HEALTH.reloads + 1));
+    sessionStorage.setItem('vd-reload-why', why);
+    location.reload();
+  } catch { reloading = false; } // try again on the next tick
+}
 setInterval(() => {
   const quiet = Date.now() - lastTouch;
   if (S.view !== 'idle' && quiet > IDLE_MS) show('idle');
   // Periodic reload frees memory on long shows; only on the attract screen so no visitor is interrupted.
-  else if (RELOAD_MS && S.view === 'idle' && quiet > 30e3 && Date.now() - LOADED > RELOAD_MS) location.reload();
+  else if (RELOAD_MS && S.view === 'idle' && quiet > 30e3 && Date.now() - LOADED > RELOAD_MS) safeReload('scheduled');
+  // watchdog: the background loop stamps window.__vdBeat every frame; frames stopping while the page is visible
+  // means the renderer is stuck
+  else if (!document.hidden && window.__vdBeat && performance.now() - window.__vdBeat > 20e3) safeReload('frames stalled');
 }, 1000);
+// Errors: a journey that throws goes back to the attract screen; many errors in a row reload the page (when idle).
+function onError(msg) {
+  const now = Date.now();
+  HEALTH.errors++; HEALTH.last = String(msg).slice(0, 200);
+  HEALTH.recent = HEALTH.recent.filter(t => now - t < 10 * 60e3); HEALTH.recent.push(now);
+  if (HEALTH.recent.filter(t => now - t < 60e3).length >= 3 && S.view !== 'idle') { try { show('idle'); } catch {} }
+  if (HEALTH.recent.length >= 10 && S.view === 'idle') safeReload('errors');
+}
+addEventListener('error', e => onError(e.message || 'error'));
+addEventListener('unhandledrejection', e => onError((e.reason && e.reason.message) || 'unhandled rejection'));
+// Offline cache (sw.js) and heartbeat run on the deployed site; on a local server (the verify harness, Playwright)
+// only when asked with ?sw=1 / ?beat=1, so test runs stay hermetic.
+const LOCAL = /^(localhost|127\.|\[::1\])/.test(location.hostname);
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol) && (!LOCAL || P.has('sw')) && !P.has('nosw')) navigator.serviceWorker.register('sw.js').catch(() => {});
+// Heartbeat every minute to /api/heartbeat, shown on /status/ (device = ?device=<name>, else a stable random id).
+const DEVICE = (() => {
+  if (P.get('device')) return P.get('device').slice(0, 40);
+  try { let d = localStorage.getItem('vd-device'); if (!d) { d = 'kiosk-' + Math.random().toString(36).slice(2, 8); localStorage.setItem('vd-device', d); } return d; } catch { return 'kiosk-anon'; }
+})();
+function beat() {
+  if (!/^https?:$/.test(location.protocol) || P.has('nobeat') || (LOCAL && !P.has('beat'))) return;
+  const mem = performance.memory ? +(performance.memory.usedJSHeapSize / 1048576).toFixed(1) : null;
+  const body = { device: DEVICE, zone: LOCK || 'all', view: S.view, screen: cur() ? cur().key : null, uptimeS: Math.round((Date.now() - LOADED) / 1000),
+    loadedAt: new Date(LOADED).toISOString(), errors: HEALTH.errors, lastError: HEALTH.last, reloads: HEALTH.reloads,
+    reloadWhy: sessionStorage.getItem('vd-reload-why'), heapMB: mem, online: navigator.onLine,
+    sw: !!(navigator.serviceWorker && navigator.serviceWorker.controller), screenSize: `${innerWidth}x${innerHeight}`, idleS: Math.round((Date.now() - lastTouch) / 1000) };
+  fetch('api/heartbeat', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body), keepalive: true }).catch(() => {});
+}
+setTimeout(beat, 5000); setInterval(beat, 60e3);
 
 // Keep the display awake (Screen Wake Lock needs https or localhost; harmless elsewhere).
 let wakeLock = null;
@@ -395,6 +452,7 @@ for (let y = 24; y < H; y += 26) for (let x = 24; x < W; x += 26) {
   const n = Math.sin(x * .0042 + 1.3) * Math.cos(y * .0061 - .4) + .55 * Math.sin(x * .0113 + y * .0079) + .3 * Math.cos(x * .021 - y * .017);
   if (n > .42) DOTS.push([x, y, Math.random()]);
 }
+const DOT_GROUPS = Array.from({ length: 8 }, (_, k) => DOTS.filter(d => Math.floor(d[2] * 8) === k));
 let mode = 'idle', C = { x: 960, y: 540 }, routes = [];
 const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${n >> 8 & 255},${n & 255},${a})`; };
 const dot = () => { const d = DOTS[Math.random() * DOTS.length | 0]; return { x: d[0], y: d[1] }; };
@@ -419,12 +477,22 @@ function scene(m, x, y) {
 const bez = (r, t) => { const u = 1 - t; return { x: u * u * r.a.x + 2 * u * t * r.c.x + t * t * r.b.x, y: u * u * r.a.y + 2 * u * t * r.c.y + t * t * r.b.y }; };
 let lastFrame = 0;
 const TRAIL = LOW_FX ? 6 : 12;
+// The background is ambient: 30 fps is enough (20 fps on ?fx=low), and nothing is drawn while it cannot be seen
+// (attract screen covers it; tab hidden). Measured idle CPU went from ~11-16 % of a core to a few %.
+const FRAME_MS = LOW_FX ? 50 : 33;
 function frame(t) {
   requestAnimationFrame(frame);
-  if (LOW_FX && t - lastFrame < 32) return; // ~30fps on weak players
+  window.__vdBeat = t; // watchdog: the main thread is alive
+  if (S.view === 'idle' || document.hidden || t - lastFrame < FRAME_MS) return;
   lastFrame = t;
   g.clearRect(0, 0, W, H);
-  for (const d of DOTS) { g.fillStyle = `rgba(120,160,255,${.09 + .07 * Math.sin(t * .001 + d[2] * 6.28)})`; g.fillRect(d[0] - 1.5, d[1] - 1.5, 3, 3); }
+  // dots twinkle in 8 phase groups: one fill colour per group instead of one per dot
+  g.fillStyle = 'rgb(120,160,255)';
+  for (let k = 0; k < DOT_GROUPS.length; k++) {
+    g.globalAlpha = .09 + .07 * Math.sin(t * .001 + (k + .5) / DOT_GROUPS.length * 6.28);
+    for (const d of DOT_GROUPS[k]) g.fillRect(d[0] - 1.5, d[1] - 1.5, 3, 3);
+  }
+  g.globalAlpha = 1;
   const zoneMode = META[mode];
   if (zoneMode) for (let i = 0; i < 3; i++) {
     const ph = (t * .00035 + i / 3) % 1, out = mode === 'send';

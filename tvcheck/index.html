@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>TV check · Visa booth</title>
+<!--
+  Open this page on each booth TV. It measures what the TV's browser can do (engine version, the CSS/JS features the
+  kiosk uses, screen, touch, frame rate) and posts the result to /api/heartbeat as device "tvcheck-…", so it can be
+  read remotely through /api/status. Written in ES5 on purpose: it must run on the oldest TV browsers.
+-->
+<style>
+body{margin:0;background:#0a2a95;color:#fff;font:22px/1.4 sans-serif;padding:32px}
+h1{font-size:34px;margin:0 0 6px}
+.sub{opacity:.8;margin-bottom:22px}
+table{border-collapse:collapse;width:100%;max-width:1400px}
+td{padding:6px 14px;border-bottom:1px solid rgba(255,255,255,.18);vertical-align:top}
+td:first-child{opacity:.8;width:38%}
+.ok{color:#7ee2b8}.no{color:#ffb4a8}
+#code{font-size:30px;background:#fff;color:#0a2a95;display:inline-block;padding:6px 16px;border-radius:10px;margin-top:20px}
+#fx{position:fixed;right:30px;bottom:30px;width:160px;height:90px}
+#fx i{position:absolute;left:0;top:40px;width:40px;height:10px;background:#f7b600;animation:mv 1s linear infinite alternate}
+@keyframes mv{to{transform:translateX(120px)}}
+#probe-gap{display:flex;gap:10px;flex-direction:column;position:absolute;left:-9999px}
+#probe-gap div{height:10px}
+</style>
+</head>
+<body>
+<h1>Visa booth · TV check</h1>
+<div class="sub">Measuring this TV's browser… keep this page open for about 10 seconds.</div>
+<table id="t"></table>
+<div id="code"></div>
+<div id="fx"><i></i><canvas id="cv" width="160" height="40"></canvas></div>
+<div id="probe-gap"><div></div><div></div></div>
+<script>
+(function () {
+  var R = {}, rows = [];
+  function add(k, v, ok) { R[k] = v; rows.push([k, v, ok]); render(); }
+  function render() {
+    var h = '';
+    for (var i = 0; i < rows.length; i++) h += '<tr><td>' + rows[i][0] + '</td><td class="' + (rows[i][2] === false ? 'no' : rows[i][2] === true ? 'ok' : '') + '">' + String(rows[i][1]).replace(/</g, '&lt;') + '</td></tr>';
+    document.getElementById('t').innerHTML = h;
+  }
+  function sup(p, v) { try { return !!(window.CSS && CSS.supports(p, v)); } catch (e) { return false; } }
+  function js(src) { try { new Function(src); return true; } catch (e) { return false; } }
+  var ua = navigator.userAgent, m = ua.match(/Chrom(?:e|ium)\/(\d+)/);
+  add('User agent', ua);
+  add('Chromium version', m ? m[1] : 'not Chromium', m ? +m[1] >= 84 : false);
+  add('Platform', /Tizen/.test(ua) ? 'Samsung Tizen' : /Web0S|webOS/.test(ua) ? 'LG webOS' : /Android/.test(ua) ? 'Android TV / box' : /BRAVIA/.test(ua) ? 'Sony' : 'other');
+  add('Window (CSS px)', innerWidth + ' x ' + innerHeight);
+  add('Screen', screen.width + ' x ' + screen.height + ' @ dpr ' + (window.devicePixelRatio || 1));
+  add('CPU cores / memory', (navigator.hardwareConcurrency || '?') + ' cores / ' + (navigator.deviceMemory || '?') + ' GB');
+  add('Touch', 'maxTouchPoints ' + (navigator.maxTouchPoints || 0) + (('ontouchstart' in window) ? ', touch events' : '') + (window.PointerEvent ? ', pointer events' : ''), (navigator.maxTouchPoints || 0) > 0 || ('ontouchstart' in window));
+  var g = document.getElementById('probe-gap'), flexGap = g.getBoundingClientRect().height >= 29;
+  add('Flex gap (all phone screens)', flexGap, flexGap);
+  add('CSS inset', sup('inset', '0'), sup('inset', '0'));
+  add('CSS color-mix()', sup('color', 'color-mix(in srgb, red 50%, blue)'), sup('color', 'color-mix(in srgb, red 50%, blue)'));
+  var notOk = false; try { document.querySelector(':not(.a .b)'); notOk = true; } catch (e) {}
+  add('Selector :not(complex)', notOk, notOk);
+  add('backdrop-filter', sup('backdrop-filter', 'blur(4px)') || sup('-webkit-backdrop-filter', 'blur(4px)'), null);
+  add('JS optional chaining / ??', js('var a={};a?.b??1'), js('var a={};a?.b??1'));
+  add('JS logical assignment ||=', js('var a;a||=1'), js('var a;a||=1'));
+  add('Array.prototype.at', !!Array.prototype.at, !!Array.prototype.at);
+  add('Service worker (offline cache)', 'serviceWorker' in navigator, 'serviceWorker' in navigator);
+  add('Fullscreen API', !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen), null);
+  add('Wake lock', 'wakeLock' in navigator, null);
+  var code = 'tvcheck-' + Math.random().toString(36).slice(2, 7);
+  document.getElementById('code').textContent = 'Check code: ' + code;
+  function fontCheck(done) {
+    if (!window.FontFace) { add('Web fonts (FontFace)', false, false); return done(); }
+    var f = new FontFace('VDtest', 'url(../vendor/fonts/VisaDialect-Regular.ttf)');
+    f.load().then(function () { add('Visa Dialect font loads', true, true); done(); }, function () { add('Visa Dialect font loads', false, false); done(); });
+  }
+  function fps(done) {
+    var cv = document.getElementById('cv').getContext('2d'), n = 0, t0 = performance.now(), worst = 0, last = t0;
+    function f(t) {
+      n++; worst = Math.max(worst, t - last); last = t;
+      cv.clearRect(0, 0, 160, 40); for (var i = 0; i < 400; i++) { cv.fillStyle = 'rgba(120,160,255,' + (i % 7) / 10 + ')'; cv.fillRect((i * 13 + t / 10) % 160, (i * 7) % 40, 3, 3); }
+      if (t - t0 < 4000) requestAnimationFrame(f); else { var v = Math.round(n / ((t - t0) / 1000)); add('Frame rate (canvas + CSS)', v + ' fps, worst frame ' + Math.round(worst) + ' ms', v >= 45); done(); }
+    }
+    requestAnimationFrame(f);
+  }
+  fontCheck(function () { fps(function () {
+    add('Result sent', '…');
+    var x = new XMLHttpRequest();
+    x.open('POST', '../api/heartbeat'); x.setRequestHeader('content-type', 'application/json');
+    x.onload = function () { rows[rows.length - 1][1] = x.status === 200 ? 'yes, code ' + code : 'failed (' + x.status + ')'; rows[rows.length - 1][2] = x.status === 200; render(); };
+    x.onerror = function () { rows[rows.length - 1][1] = 'failed (network)'; rows[rows.length - 1][2] = false; render(); };
+    x.send(JSON.stringify({ device: code, zone: 'tvcheck', view: 'tvcheck', screenSize: innerWidth + 'x' + innerHeight, online: navigator.onLine, probe: R }));
+  }); });
+})();
+</script>
+</body>
+</html>

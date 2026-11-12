@@ -38,7 +38,7 @@ button{font-family:inherit;cursor:pointer}
 #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center;overflow:hidden;
   background:linear-gradient(160deg,#0a2a95 0%,#1336c9 42%,#0f2db8 68%,#08207a 100%)}
 /* Payments in Motion KV (brand/kv-reference.jpg): Visa blue with soft diagonal light streaks, drifting slowly */
-#kv{position:absolute;inset:0;pointer-events:none;overflow:hidden} /* exactly the stage: overflow here would make #stage scrollable (scrollIntoView would shift the whole kiosk) */
+#kv{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;overflow:hidden} /* exactly the stage: overflow here would make #stage scrollable (scrollIntoView would shift the whole kiosk) */
 /* streaks: soft radial gradients (no filter: blur, which repaints every frame on weak players), moved by transform only */
 #kv i{position:absolute;display:block;width:1600px;height:300px;transform:rotate(-21deg);will-change:transform;opacity:.9;animation:streak 26s ease-in-out infinite alternate}
 #kv i:nth-child(1){left:860px;top:80px;background:radial-gradient(closest-side,rgba(255,222,120,.95),rgba(255,214,107,.45) 45%,transparent)}
@@ -49,11 +49,11 @@ button{font-family:inherit;cursor:pointer}
 #kv i:nth-child(6){left:1480px;top:1010px;background:radial-gradient(closest-side,rgba(240,138,58,.6),transparent);height:220px;animation-duration:24s;animation-delay:-6s}
 @keyframes streak{from{transform:rotate(-21deg) translate(-140px,40px)}to{transform:rotate(-21deg) translate(140px,-40px)}}
 .lowfx #kv i{animation:none}
-#bg{position:absolute;inset:0;width:1920px;height:1080px;opacity:.45;transition:opacity .4s}
+#bg{position:absolute;top:0;right:0;bottom:0;left:0;width:1920px;height:1080px;opacity:.45;transition:opacity .4s}
 #stage.idle-view #bg{opacity:0}
-#shade{position:absolute;inset:0;pointer-events:none;
+#shade{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;
   background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(6,22,110,.35) 0%,rgba(6,22,110,.22) 60%,rgba(6,22,110,.08) 100%)}
-#app{position:absolute;inset:0}
+#app{position:absolute;top:0;right:0;bottom:0;left:0}
 
 /* ---------- brand corner (per journey, Q7) ---------- */
 .brand{position:absolute;right:64px;top:48px;display:flex;align-items:baseline;gap:12px;z-index:5}
@@ -68,10 +68,10 @@ button{font-family:inherit;cursor:pointer}
 .brand.co{flex-direction:column;align-items:flex-end;gap:2px} /* co-brand: partner bank under the Visa mark, clear of the phone */
 
 /* ---------- idle / attract ---------- */
-.idle{position:absolute;inset:0;cursor:pointer;overflow:hidden;animation:kv-in .55s cubic-bezier(.4,0,.2,1) both}
+.idle{position:absolute;top:0;right:0;bottom:0;left:0;cursor:pointer;overflow:hidden;animation:kv-in .55s cubic-bezier(.4,0,.2,1) both}
 /* the Make's SplashScreen.tsx motion, timings and easings as there */
 @keyframes kv-in{from{opacity:0;filter:blur(18px);transform:scale(1.03)}to{opacity:1;filter:blur(0);transform:none}}
-.idle .kv-bg{position:absolute;inset:0;overflow:hidden}
+.idle .kv-bg{position:absolute;top:0;right:0;bottom:0;left:0;overflow:hidden}
 .idle .kv-bg img{display:block;width:100%;height:100%;object-fit:cover;animation:kv-zoom 12s ease-out both}
 @keyframes kv-zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
 .idle .kv-streaks span{position:absolute;left:0;height:1px;border-radius:99px;pointer-events:none;transform:translateX(-30vw);animation:kv-streak 8s ease-in infinite both}
@@ -86,7 +86,15 @@ button{font-family:inherit;cursor:pointer}
 .idle .touch{background:rgba(8,28,120,.62);border-color:rgba(255,255,255,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 10px 40px rgba(4,18,90,.35)}
 @keyframes kv-fade{from{opacity:0}to{opacity:1}}
 #stage.idle-view #kv{opacity:0}
-.lowfx .idle,.lowfx .idle .kv-title,.lowfx .idle .kv-city{filter:none!important}
+#stage.idle-view #kv i{animation-play-state:paused} /* hidden: do not keep compositing it */
+/* light mode (?fx=low, and every TV browser): no full-screen blur, fewer moving layers */
+.lowfx .idle{animation-name:kv-in-low}
+@keyframes kv-in-low{from{opacity:0}to{opacity:1}}
+.lowfx .idle .kv-title,.lowfx .idle .kv-city{animation-name:kv-slide-low}
+@keyframes kv-slide-low{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
+.lowfx .idle .kv-streaks span:nth-child(n+5){display:none}
+.lowfx .idle .touch{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(8,28,120,.8)}
+.lowfx .idle .touch::before,.lowfx .idle .touch::after{animation:none;opacity:0}
 /* the KV layout at 1920×1080: logo (104,84), title lockup (410,429)-(1508,650), the city under EDITION */
 .idle .kv-logo{position:absolute;left:104px;top:84px;width:268px;height:auto}
 /* accent sweep under the title, as the Make splash (#3aa0ff → #f7b600) */
@@ -106,13 +114,13 @@ button{font-family:inherit;cursor:pointer}
 .idle .touch{text-transform:uppercase;letter-spacing:.28em;font-size:24px;animation:tap 2s ease-in-out infinite}
 @keyframes tap{0%,100%{opacity:.85}50%{opacity:.3}}
 .touch{position:relative;padding:24px 56px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);font-size:28px;font-weight:600;letter-spacing:2px}
-.touch::before,.touch::after{content:'';position:absolute;inset:-2px;border-radius:99px;border:2px solid rgba(47,155,255,.7);animation:ripple 2.4s infinite}
+.touch::before,.touch::after{content:'';position:absolute;top:-2px;right:-2px;bottom:-2px;left:-2px;border-radius:99px;border:2px solid rgba(47,155,255,.7);animation:ripple 2.4s infinite}
 .touch::after{animation-delay:1.2s}
 @keyframes ripple{from{transform:scale(1);opacity:.9}to{transform:scale(1.3,1.9);opacity:0}}
 .touch b{color:var(--z)}
 
 /* ---------- home ---------- */
-.home{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding-top:130px}
+.home{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;flex-direction:column;align-items:center;padding-top:130px}
 .home h1{font-size:76px;font-weight:800;letter-spacing:-1.5px}
 .home .k{font-size:28px;color:var(--muted);margin-top:14px}
 .cards{display:flex;gap:56px;margin-top:76px}
@@ -120,7 +128,7 @@ button{font-family:inherit;cursor:pointer}
   padding:48px;text-align:left;color:#fff;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .15s}
 .zc:active{transform:scale(.97)}
 .zc::before{content:'';position:absolute;right:-140px;top:-140px;width:400px;height:400px;border-radius:50%;background:radial-gradient(var(--z),transparent 70%);opacity:.4}
-.zc .ic{width:110px;height:110px;border-radius:32px;background:var(--z);display:grid;place-items:center;color:#071030;box-shadow:0 0 60px color-mix(in srgb,var(--z) 60%,transparent)}
+.zc .ic{width:110px;height:110px;border-radius:32px;background:var(--z);display:grid;place-items:center;color:#071030;box-shadow:0 0 60px rgba(47,155,255,.45);box-shadow:0 0 60px color-mix(in srgb,var(--z) 60%,transparent)}
 .zc .ic svg{width:56px;height:56px}
 .zc h2{font-size:72px;font-weight:900;letter-spacing:6px;margin-top:46px}
 .zc q{font-size:30px;font-weight:600;margin-top:14px;color:#e6edff;quotes:none}
@@ -152,7 +160,7 @@ button{font-family:inherit;cursor:pointer}
 .lane b{font-weight:700}
 
 /* ---------- flow ---------- */
-.flow::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,24,120,.9) 0%,rgba(6,24,120,.66) 36%,transparent 52%);pointer-events:none}
+.flow::before{content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(90deg,rgba(6,24,120,.9) 0%,rgba(6,24,120,.66) 36%,transparent 52%);pointer-events:none}
 .left{position:absolute;left:120px;top:120px;width:760px}
 .zone-pill{display:inline-flex;align-items:center;gap:16px;padding:12px 30px 12px 12px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);font-weight:800;font-size:24px;letter-spacing:6px}
 .zone-pill .ic{width:44px;height:44px;border-radius:50%;background:var(--z);display:grid;place-items:center;color:#071030}
@@ -163,13 +171,13 @@ button{font-family:inherit;cursor:pointer}
 .step{display:flex;align-items:center;gap:20px;font-size:24px;font-weight:500;color:rgba(255,255,255,.42);transition:color .3s}
 .step .n{width:42px;height:42px;flex:none;border-radius:50%;border:2px solid rgba(255,255,255,.22);display:grid;place-items:center;font-weight:700;font-size:18px}
 .step.on{color:#fff;font-weight:700}
-.step.on .n{background:var(--z);border-color:transparent;color:#071030;box-shadow:0 0 0 8px color-mix(in srgb,var(--z) 22%,transparent)}
+.step.on .n{background:var(--z);border-color:transparent;color:#071030;box-shadow:0 0 0 8px rgba(255,255,255,.18);box-shadow:0 0 0 8px color-mix(in srgb,var(--z) 22%,transparent)}
 .step.ok{color:rgba(255,255,255,.75)}
 .step.ok .n{background:rgba(25,195,125,.18);border-color:var(--ok);color:var(--ok)}
 .steps.compact{gap:6px;margin-top:26px}
 .steps.compact .step{font-size:20px;gap:16px}
 .steps.compact .step .n{width:34px;height:34px;font-size:15px}
-.steps.compact .step.on .n{box-shadow:0 0 0 6px color-mix(in srgb,var(--z) 22%,transparent)}
+.steps.compact .step.on .n{box-shadow:0 0 0 6px rgba(255,255,255,.18);box-shadow:0 0 0 6px color-mix(in srgb,var(--z) 22%,transparent)}
 /* the 18-step AFT journeys: two columns, filled top to bottom */
 .steps.dense{display:grid;grid-auto-flow:column;grid-template-rows:repeat(9,auto);grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;row-gap:6px}
 .steps.dense .step{font-size:18px;gap:14px;white-space:nowrap}
@@ -178,7 +186,7 @@ button{font-family:inherit;cursor:pointer}
   box-shadow:0 12px 40px rgba(0,0,0,.35)}
 .kbtn span{color:var(--blue);font-size:30px}
 .kbtn:active{transform:scale(.97)}
-.kbtn.pulse::before,.kbtn.pulse::after{content:'';position:absolute;inset:-3px;border-radius:99px;border:3px solid var(--z);animation:ripple 2s infinite;pointer-events:none}
+.kbtn.pulse::before,.kbtn.pulse::after{content:'';position:absolute;top:-3px;right:-3px;bottom:-3px;left:-3px;border-radius:99px;border:3px solid var(--z);animation:ripple 2s infinite;pointer-events:none}
 .kbtn.pulse::after{animation-delay:1s}
 /* kiosk Next / Finish: outside the phone, at its bottom-right edge (phone right = 1010 + (pw + 28) × 1.08) */
 .knav{position:absolute;bottom:56px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;z-index:5}

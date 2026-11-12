@@ -43,6 +43,27 @@ All 61 screens come from four Figma prototypes and keep their copy, figures and 
 
 How visitors move through each journey (one hotspot per screen, kiosk **Next** and **Finish** where the design has no call to action, auto-advance on status screens) is documented in [`docs/workflow.html`](docs/workflow.html). The product decisions are in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
+## Event day on the LED TVs
+
+The booth screens are LED TVs opening the site in their built-in browser.
+
+1. **Check each TV once:** open https://vd-booth-demo.vercel.app/tvcheck/ on the TV. It shows the browser engine, the
+   features the kiosk needs, the screen and the frame rate, and reports them to the server (code `tvcheck-…`).
+2. **Open the kiosk link with a device name**, e.g. `https://vd-booth-demo.vercel.app/?zone=aft-travel&device=led-travel`.
+   One visit online fills the offline cache; after that the screen keeps working if the venue network drops.
+3. **TV settings:** turn off eco / auto power-off / sleep timer / screen saver / "no signal" standby; set the picture to
+   a standard mode; set the browser home page to the kiosk link if the TV allows it.
+4. **Watch them:** https://vd-booth-demo.vercel.app/status/ (the booth team key, same as the lead export) lists every
+   screen with its last heartbeat (every minute), what it shows, uptime, errors, reloads, memory and network.
+
+What the kiosk does on its own: returns to the attract screen after 60 s without a touch, reloads every 2 h on the
+attract screen (only when the server answers), goes back to the attract screen after repeated errors and reloads after
+many, reloads if frames stop, keeps the display awake where the browser allows, and switches to a light mode on TV
+browsers (no full-screen blur, fewer moving layers, 20 fps background; `?fx=full` forces full effects). The code stays
+ES2017 / no `color-mix`-only or `inset` rules so Chromium 68+ TV engines run it.
+Soak test: `SOAK=10 pnpm --dir tests/e2e test soak` (journeys back to back; fails on heap or DOM growth).
+Before a deploy: `node scripts/gen/build-sw-assets.mjs` (refreshes the offline cache list and version).
+
 ## End-to-end tests (Playwright)
 
 ```bash
