@@ -12,6 +12,12 @@ const SIZE = { family: '414x896', travel: '414x896' }; // Figma device size; oth
 // Visa marks: vector from the Figma Make "Payments in Motion: Money Movement Edition" (shared/visa/wordmark and
 // demo/VisaDirectLockup), read through the Figma MCP 2026-11-11
 const BRAND_LOGO = 'brand/visa-wordmark.svg', BRAND_DIRECT = 'brand/visa-direct-lockup.svg';
+// attract screen = the Make's SplashScreen.tsx: 9 thin gold/white streaks sweeping left → right (random top, width,
+// speed, delay and opacity, as there), over the KV background image (Make image-35.png = brand/kv-background.jpg)
+const KV_STREAKS = Array.from({ length: 9 }, () => {
+  const o = 0.12 + Math.random() * 0.22;
+  return `<span style="top:${8 + Math.random() * 84}%;width:${120 + Math.random() * 260}px;animation-duration:${6 + Math.random() * 6}s;animation-delay:${Math.random() * 5}s;background:linear-gradient(90deg,transparent,rgba(247,182,0,${(o * 0.7).toFixed(3)}),rgba(255,255,255,${(o + 0.15).toFixed(3)}),transparent)"></span>`;
+}).join('');
 const FLOW = Object.fromEntries(ZONES.map(z => [z, SCREENS.filter(s => s.zone === z).sort((a, b) => a.n - b.n)]));
 const raf2 = fn => requestAnimationFrame(() => requestAnimationFrame(fn));
 const markReady = () => (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => raf2(() => { document.documentElement.dataset.ready = '1'; }));
@@ -316,6 +322,7 @@ function draw() {
   let html = '';
   if (S.view === 'idle') {
     html = `<div class="idle" data-a="start">
+      <div class="kv-bg"><img src="brand/kv-background.jpg" alt=""></div><div class="kv-streaks">${KV_STREAKS}</div>
       <img class="kv-logo" src="${BRAND_LOGO}" alt="Visa">
       <img class="kv-title" src="brand/kv-title.png" alt="Payments in Motion · Money Movement Edition">
       <div class="kv-city">Ho Chi Minh, Vietnam</div><i class="kv-sweep"></i>
