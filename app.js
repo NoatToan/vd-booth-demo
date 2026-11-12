@@ -235,33 +235,22 @@ function armRing(scr, s) {
     // the indicator is a class on the CTA itself (an outline), so it scrolls with the button natively: no overlay to
     // reposition on scroll, no lag when the visitor flicks the page
     hot.style.setProperty('--ring', INK[S.zone]);
-    ctaFit(hot, scr);
+    ctaFit(hot);
     hot.classList.add('fx-cta');
   }, at);
 }
 
-/* Fit the CTA ring into the room the design leaves: the ring (2 px wide) breathes 2 px between offsets a and a+2, and
-   must not reach a clipping ancestor (a footer, a card, the phone). Room is measured once at arm time, in phone px; a
-   scroll container only limits the sides (it scrolls). With no room outside, the ring is drawn inside the button, in
-   white on a dark fill, in the app's ink otherwise. */
-function ctaFit(hot, scr) {
-  const k = hot.getBoundingClientRect().width / hot.offsetWidth || 1, h = hot.getBoundingClientRect();
-  let room = 4; // the most the ring ever needs outside: offset 2 + 2 px of breath
-  for (let a = hot.parentElement; a && a !== scr; a = a.parentElement) {
-    const cs = getComputedStyle(a);
-    if (cs.overflowX === 'visible' && cs.overflowY === 'visible') continue;
-    const c = a.getBoundingClientRect(), side = Math.min(h.left - c.left, c.right - h.right) / k;
-    room = Math.min(room, a.dataset.role === 'scroll' ? side : Math.min(side, (h.top - c.top) / k, (c.bottom - h.bottom) / k));
-  }
-  const inside = room < 4;
-  const a = inside ? -6 : 0; // outside: offsets 0 → 2 (ring at 0-4 px out); inside: -6 → -4 (ring at 2-6 px in)
-  // white only on a dark fill (a blue button); on a light card the app's ink stays readable
+/* CTA indicator, the same on every screen and on the kiosk Next / Finish: a ring and a soft tint inside the button's
+   own box, under its label (::after at z-index -1 in an isolated stacking context), pulsing on one 1.6 s clock. It
+   never leaves the button, so it cannot cover other content, be cut by a footer, or reach the phone frame. */
+function ctaFit(hot) {
+  // the ring sits inside: white on a dark fill (a blue button), the app's ink on light or no fill
   const m = getComputedStyle(hot).backgroundColor.match(/[\d.]+/g) || [];
   const dark = m.length >= 3 && (m[3] === undefined || +m[3] > 0.5) && (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) < 140;
-  hot.style.setProperty('--cta-a', `${a}px`);
-  hot.style.setProperty('--cta-b', `${a + 2}px`);
-  if (inside && dark) hot.style.setProperty('--ring', 'rgba(255,255,255,.85)');
-  hot.dataset.ctaFit = inside ? 'inside' : 'outside';
+  if (dark) hot.style.setProperty('--ring', 'rgba(255,255,255,.9)');
+  hot.classList.toggle('fx-cta-dark', dark);
+  // ::after needs a positioned box; only when that cannot move an absolutely placed child
+  if (getComputedStyle(hot).position === 'static' && ![...hot.querySelectorAll('*')].some(e => getComputedStyle(e).position === 'absolute')) hot.style.position = 'relative';
 }
 
 /* touch feedback on the phone's actionable elements */
@@ -413,10 +402,12 @@ addEventListener('unhandledrejection', e => onError((e.reason && e.reason.messag
 // only when asked with ?sw=1 / ?beat=1, so test runs stay hermetic.
 const LOCAL = /^(localhost|127\.|\[::1\])/.test(location.hostname);
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol) && (!LOCAL || P.has('sw')) && !P.has('nosw')) navigator.serviceWorker.register('sw.js').catch(() => {});
-// Heartbeat every minute to /api/heartbeat, shown on /status/ (device = ?device=<name>, else a stable random id).
+// Heartbeat every minute to /api/heartbeat, shown on /status/ (device = ?device=<name> if given, else <experience>-<id>).
 const DEVICE = (() => {
   if (P.get('device')) return P.get('device').slice(0, 40);
-  try { let d = localStorage.getItem('vd-device'); if (!d) { d = 'kiosk-' + Math.random().toString(36).slice(2, 8); localStorage.setItem('vd-device', d); } return d; } catch { return 'kiosk-anon'; }
+  // default: the locked experience's link name + a short id kept by this TV, e.g. "aft-travel-x7k2"; no ?device needed
+  const base = LOCK ? (Object.keys(ALIAS).find(k => ALIAS[k] === LOCK) || LOCK) : 'kiosk';
+  try { let d = localStorage.getItem('vd-device-' + base); if (!d) { d = base + '-' + Math.random().toString(36).slice(2, 6); localStorage.setItem('vd-device-' + base, d); } return d; } catch (e) { return base; }
 })();
 function beat() {
   if (!/^https?:$/.test(location.protocol) || P.has('nobeat') || (LOCAL && !P.has('beat'))) return;

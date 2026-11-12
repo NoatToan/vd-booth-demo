@@ -47,7 +47,8 @@ function classFor(decl) {
   return name;
 }
 
-/** The tap target for a TEXT trigger: nearest ancestor frame that looks like a button (fill + radius), else the text's parent. */
+/** The tap target for a TEXT trigger: nearest ancestor frame that looks like a button (fill + radius), else the text
+ *  itself (a text link, e.g. "View transfer details": not its whole row, so the CTA indicator frames only the link). */
 function hotspotFor(f, triggerId, frameId, scrollId) {
   const t = f.byId.get(triggerId);
   if (!t) throw new Error(`trigger ${triggerId} not found`);
@@ -59,7 +60,7 @@ function hotspotFor(f, triggerId, frameId, scrollId) {
     if (!p || p.id === frameId) break;
     n = p;
   }
-  return first.id;
+  return t.id;
 }
 
 const out = [];

@@ -49,8 +49,9 @@ The booth screens are LED TVs opening the site in their built-in browser.
 
 1. **Check each TV once:** open https://vd-booth-demo.vercel.app/tvcheck/ on the TV. It shows the browser engine, the
    features the kiosk needs, the screen and the frame rate, and reports them to the server (code `tvcheck-…`).
-2. **Open the kiosk link with a device name**, e.g. `https://vd-booth-demo.vercel.app/?zone=aft-travel&device=led-travel`.
-   One visit online fills the offline cache; after that the screen keeps working if the venue network drops.
+2. **Open the kiosk link** of that screen (e.g. `https://vd-booth-demo.vercel.app/?zone=aft-travel`). It reports to
+   /status/ as `aft-travel-xxxx`; add `&device=<name>` only to choose another name. One visit online fills the offline
+   cache; after that the screen keeps working if the venue network drops.
 3. **TV settings:** turn off eco / auto power-off / sleep timer / screen saver / "no signal" standby; set the picture to
    a standard mode; set the browser home page to the kiosk link if the TV allows it.
 4. **Watch them:** https://vd-booth-demo.vercel.app/status/ (the booth team key, same as the lead export) lists every

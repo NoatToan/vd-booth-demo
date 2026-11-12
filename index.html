@@ -186,8 +186,10 @@ button{font-family:inherit;cursor:pointer}
   box-shadow:0 12px 40px rgba(0,0,0,.35)}
 .kbtn span{color:var(--blue);font-size:30px}
 .kbtn:active{transform:scale(.97)}
-.kbtn.pulse::before,.kbtn.pulse::after{content:'';position:absolute;top:-3px;right:-3px;bottom:-3px;left:-3px;border-radius:99px;border:3px solid var(--z);animation:ripple 2s infinite;pointer-events:none}
-.kbtn.pulse::after{animation-delay:1s}
+/* the same indicator as the phone CTAs: a ring inside the pill, pulsing on the 1.6 s clock (no ripple past the button) */
+.kbtn{isolation:isolate}
+.kbtn.pulse::after{content:'';position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  box-shadow:inset 0 0 0 3px var(--blue),inset 0 0 18px rgba(20,52,203,.22);background:rgba(20,52,203,.05);animation:cta-pulse 1.6s ease-in-out infinite}
 /* kiosk Next / Finish: outside the phone, at its bottom-right edge (phone right = 1010 + (pw + 28) × 1.08) */
 .knav{position:absolute;bottom:56px;display:flex;flex-direction:column;gap:16px;align-items:flex-start;z-index:5}
 .knav.s402{left:1500px}
