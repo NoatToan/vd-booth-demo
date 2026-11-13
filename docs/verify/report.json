@@ -1,6 +1,6 @@
 {
- "commit": "b313cee+dirty",
- "at": "2026-11-13T02:56:20.917Z",
+ "commit": "d818719+dirty",
+ "at": "2026-11-13T03:09:46.325Z",
  "summary": {
   "screens": 61,
   "screensHardPass": 61,
@@ -135,8 +135,8 @@
   },
   "hardFail": false,
   "app": {
-   "before": "cad0e835a082",
-   "after": "cad0e835a082",
+   "before": "4391cc3e64ed",
+   "after": "4391cc3e64ed",
    "changedDuringRun": false
   },
   "line": "ALL HARD GATES GREEN — screens 61/61 hard-green, flow PASS"
@@ -11738,7 +11738,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1513 ms"
+    "detail": "1521 ms"
    },
    {
     "run": "home-send",
@@ -11880,7 +11880,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "4994 ms"
+    "detail": "4990 ms"
    },
    {
     "run": "home-send",
@@ -14167,7 +14167,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4016 ms"
+    "detail": "4017 ms"
    },
    {
     "run": "home-collect",
@@ -16306,7 +16306,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4018 ms"
+    "detail": "4020 ms"
    },
    {
     "run": "home-family",
@@ -18193,7 +18193,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4028 ms"
+    "detail": "4002 ms"
    },
    {
     "run": "home-travel",
@@ -19447,7 +19447,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1521 ms"
+    "detail": "1516 ms"
    },
    {
     "run": "zone-send",
@@ -19466,7 +19466,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5005 ms"
+    "detail": "5026 ms"
    },
    {
     "run": "zone-send",
@@ -20096,7 +20096,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4015 ms"
+    "detail": "3990 ms"
    },
    {
     "run": "zone-collect",
@@ -20618,7 +20618,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "3999 ms"
+    "detail": "4016 ms"
    },
    {
     "run": "zone-family",
@@ -21108,7 +21108,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4018 ms"
+    "detail": "4004 ms"
    },
    {
     "run": "zone-travel",
@@ -21483,7 +21483,7 @@
     "step": "mid",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (mid-journey)",
     "ok": true,
-    "detail": "6355 ms"
+    "detail": "6448 ms"
    },
    {
     "run": "idle-done",
@@ -21737,7 +21737,7 @@
     "step": "done",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (on Done)",
     "ok": true,
-    "detail": "6531 ms"
+    "detail": "6597 ms"
    },
    {
     "run": "fx-low",
