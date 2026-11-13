@@ -2,6 +2,7 @@
 // Exit code 1 on any HARD failure (IMPL-PLAN §3 Output), 2 on a harness crash.
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import { execFileSync } from 'node:child_process';
 import crypto from 'node:crypto';
 import { MANIFEST, byKey, REPO } from './lib/figma.mjs';
@@ -37,6 +38,12 @@ process.on('SIGINT', () => cleanup().then(() => process.exit(130)));
 
 try {
   srv = await startServer();
+  // Gates compare with Figma, so serve the Figma build (no client palette, scripts/gen/palette.json) in place of
+  // screens/gen; the e2e suite checks that the deployed build carries the palette.
+  const figmaBuild = fs.mkdtempSync(path.join(os.tmpdir(), 'vd-figma-'));
+  execFileSync('node', [path.join(REPO, 'scripts/gen/build-screens.mjs'), '--figma', '--out', figmaBuild]);
+  for (const f of ['screens.css', 'screens.js']) srv.virtual.set(`/screens/gen/${f}`, fs.readFileSync(path.join(figmaBuild, f)));
+  fs.rmSync(figmaBuild, { recursive: true, force: true });
   browser = await launch();
   console.log(`Chrome ${await browser.version()}`);
 

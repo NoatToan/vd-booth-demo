@@ -5,6 +5,18 @@ import { svgFor } from './svg.mjs';
 const JUSTIFY = { MIN: 'flex-start', CENTER: 'center', MAX: 'flex-end', SPACE_BETWEEN: 'space-between' };
 const ALIGN = { MIN: 'flex-start', CENTER: 'center', MAX: 'flex-end', BASELINE: 'baseline' };
 
+/** Client colour change on top of Figma (ctx.palette, see scripts/gen/palette.json): `fill` maps background, border and
+ *  shadow colours, `ink` maps text/icon colours on light surfaces, and `onAccent` maps text/icon colours inside a
+ *  frame filled with `accent` (its original Figma colour), so the copy stays readable on the new fill. */
+function recolor(decl, pal, onAccent) {
+  if (!pal) return decl;
+  return decl.split(';').map(d => {
+    const i = d.indexOf(':'), k = d.slice(0, i), v = d.slice(i + 1);
+    if (k === 'color') return `color:${(onAccent && pal.onAccent[v]) || pal.ink[v] || v}`;
+    return k + ':' + v.replace(/#[0-9a-f]{6}\b/g, h => pal.fill[h] || h);
+  }).join(';');
+}
+
 /** Unrotated w×h of a box whose axis-aligned bounding box is W×H at rotation θ (rule 5). */
 function unrotate(W, H, rad) {
   if (!rad) return [W, H];
@@ -199,7 +211,11 @@ export class Translator {
     } else if (n.type !== 'VECTOR') {
       // children: Figma paints later siblings on top, as does the DOM order.
       let base = parentRot + (n.rotation || 0);
+      // a filled frame decides whether its copy sits on the accent colour (palette.onAccent)
+      const was = this.onAccent, bg = s.find(d => d.startsWith('background-color:'));
+      if (bg && ctx.palette) this.onAccent = bg === `background-color:${ctx.palette.accent}`;
       inner = (n.children || []).map(c => this.render(c, n, base)).join('');
+      this.onAccent = was;
     }
 
     // ---- element ----
@@ -208,7 +224,7 @@ export class Translator {
     this.used.add(ids.node);
     const ov = ctx.overrides.get(ids.node);
     if (ov && ov.css) s.push(ov.css.replace(/;\s*$/, ''));
-    const cls = [ctx.classFor(s.join(';'))];
+    const cls = [ctx.classFor(recolor(s.join(';'), ctx.palette, this.onAccent))];
     let attrs = ` data-node="${ids.node}"`;
     if (ids.twin) attrs += ` data-twin="${ids.twin}"`;
     if (isRoot) { cls.unshift('fr'); attrs += ` data-screen="${ctx.screenKey}" data-zone="${ctx.zone}"`; }
@@ -245,7 +261,7 @@ export class Translator {
         if (o.lineHeightPx) d.push(`line-height:${px(Math.round(o.lineHeightPx))}`);
         const f = solidPaints(o.fills);
         if (f.length) d.push(`color:${rgba(f[0].color, f[0].opacity)}`);
-        out += `<span class="${this.ctx.classFor(d.join(';'))}">${seg}</span>`;
+        out += `<span class="${this.ctx.classFor(recolor(d.join(';'), this.ctx.palette, this.onAccent))}">${seg}</span>`;
       }
       i = j;
     }

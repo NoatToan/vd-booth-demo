@@ -119,7 +119,7 @@ const META = {
     explain: 'A secure payment link lets family abroad pay with an eligible Visa card, with no account at the receiver’s bank, and the money lands directly in the receiver’s bank account.'
   },
   travel: {
-    name: 'RECEIVE', color: '#ff6b7a', brand: ['VISA Direct', ''], title: 'Travel wallet', via: 'Cross-border AFT · me-to-me',
+    name: 'RECEIVE', color: '#f7b600', brand: ['VISA Direct', ''], title: 'Travel wallet', via: 'Cross-border AFT · me-to-me',
     hero: 'Bring your money to Vietnam in seconds.', sub: 'XinChaoVietnam · Australia → Vietnam',
     route: 'Australia → Vietnam',
     verb: 'You just funded your trip from your own Visa card.',
@@ -201,7 +201,7 @@ function mount(dir) {
 }
 
 // ink of each app's primary buttons (Figma), for the scroll hint and the hotspot ring
-const INK = { send: '#5b2d90', receive: '#1434cb', collect: '#1434cb', family: '#2563eb', travel: '#8e1c2d' };
+const INK = { send: '#5b2d90', receive: '#1434cb', collect: '#1434cb', family: '#2563eb', travel: '#8a6100' };
 const CHEVRON = '<svg viewBox="0 0 22 14" fill="none"><path d="M3 3l8 8 8-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 /* scroll cue: outside the phone, in the bottom-right column above Next, so it never covers the app's content.
    Shown while the screen's scroll node has more below; tapping it scrolls the phone; hidden at the bottom. */

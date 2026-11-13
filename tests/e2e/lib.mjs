@@ -8,6 +8,9 @@ import pixelmatch from 'pixelmatch';
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const REPO = path.resolve(HERE, '../..');
 export const OUT = path.join(HERE, 'compare');
+export const FIGMA_BUILD = path.join(OUT, 'figma-build');
+// zones the client recoloured on top of Figma (scripts/gen/palette.json)
+export const PALETTE = JSON.parse(fs.readFileSync(path.join(REPO, 'scripts/gen/palette.json'), 'utf8')).zones;
 export const SCREENS = JSON.parse(fs.readFileSync(path.join(REPO, 'scripts/verify/screens.json'), 'utf8')).screens;
 export const ZONES = [
   { zone: 'send', link: 'send', name: 'SEND · Send abroad (Visa Direct)' },

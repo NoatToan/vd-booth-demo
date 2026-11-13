@@ -1,6 +1,6 @@
 {
- "commit": "7aaa93d+dirty",
- "at": "2026-11-12T04:18:05.043Z",
+ "commit": "f0d65b9+dirty",
+ "at": "2026-11-13T02:44:10.511Z",
  "summary": {
   "screens": 61,
   "screensHardPass": 61,
@@ -135,8 +135,8 @@
   },
   "hardFail": false,
   "app": {
-   "before": "54e21ec21b53",
-   "after": "54e21ec21b53",
+   "before": "2f09ff4023cc",
+   "after": "2f09ff4023cc",
    "changedDuringRun": false
   },
   "line": "ALL HARD GATES GREEN — screens 61/61 hard-green, flow PASS"
@@ -10537,7 +10537,7 @@
     "zone": "travel",
     "url": "http://127.0.0.1:4317/index.html",
     "ok": true,
-    "entry": "click [data-a=start] → click <button class=\"zc\" style=\"--z:#ff6b7a\" data-a=\"pick\" data-v=\"travel\">",
+    "entry": "click [data-a=start] → click <button class=\"zc\" style=\"--z:#f7b600\" data-a=\"pick\" data-v=\"travel\">",
     "doneShot": "img/flow/home-travel-99-done.png",
     "aborted": 0,
     "consoleErrors": []
@@ -11738,7 +11738,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1528 ms"
+    "detail": "1555 ms"
    },
    {
     "run": "home-send",
@@ -11880,7 +11880,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5000 ms"
+    "detail": "5009 ms"
    },
    {
     "run": "home-send",
@@ -14167,7 +14167,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4019 ms"
+    "detail": "4027 ms"
    },
    {
     "run": "home-collect",
@@ -16306,7 +16306,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4002 ms"
+    "detail": "4019 ms"
    },
    {
     "run": "home-family",
@@ -16934,7 +16934,7 @@
    {
     "run": "home-travel",
     "step": "travel-1",
-    "name": "E1 enters travel-1 (click [data-a=start] → click <button class=\"zc\" style=\"--z:#ff6b7a\" data-a=\"pick\" data-v=\"travel\">)",
+    "name": "E1 enters travel-1 (click [data-a=start] → click <button class=\"zc\" style=\"--z:#f7b600\" data-a=\"pick\" data-v=\"travel\">)",
     "ok": true,
     "detail": "#phone[data-screen]=none state=undefined"
    },
@@ -18193,7 +18193,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4000 ms"
+    "detail": "4001 ms"
    },
    {
     "run": "home-travel",
@@ -19447,7 +19447,7 @@
     "step": "send-7",
     "name": "E1 scan send-7 advances inside 1200–3000 ms",
     "ok": true,
-    "detail": "1529 ms"
+    "detail": "1577 ms"
    },
    {
     "run": "zone-send",
@@ -19466,7 +19466,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "4979 ms"
+    "detail": "4947 ms"
    },
    {
     "run": "zone-send",
@@ -20096,7 +20096,7 @@
     "step": "collect-7",
     "name": "E1 auto-advance collect-7 → collect-8 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4003 ms"
+    "detail": "4006 ms"
    },
    {
     "run": "zone-collect",
@@ -20618,7 +20618,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4008 ms"
+    "detail": "4005 ms"
    },
    {
     "run": "zone-family",
@@ -21108,7 +21108,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4032 ms"
+    "detail": "4006 ms"
    },
    {
     "run": "zone-travel",
@@ -21483,7 +21483,7 @@
     "step": "mid",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (mid-journey)",
     "ok": true,
-    "detail": "6478 ms"
+    "detail": "6525 ms"
    },
    {
     "run": "idle-done",
@@ -21737,7 +21737,7 @@
     "step": "done",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (on Done)",
     "ok": true,
-    "detail": "6534 ms"
+    "detail": "6525 ms"
    },
    {
     "run": "fx-low",

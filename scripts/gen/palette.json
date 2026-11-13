@@ -1,0 +1,11 @@
+{
+  "$comment": "Client colour changes on top of the Figma design, per zone. accent: the Figma fill being replaced; fill: background/border/shadow colours; ink: text and icon colours on light surfaces; onAccent: text and icon colours inside a frame filled with the accent. 2026-11-13: Travel wallet primary #8d242b -> Visa gold #f7b600 (client request). Gold is too light for text (1.8:1 on white), so copy on gold is Visa navy and accent copy on light surfaces is a deep gold (5.5:1).",
+  "zones": {
+    "travel": {
+      "accent": "#8d242b",
+      "fill": { "#8d242b": "#f7b600", "#f4e6e0": "#fef4d6" },
+      "ink": { "#8d242b": "#8a6100", "#bd6a50": "#8a6100" },
+      "onAccent": { "#ffffff": "#1a1f71", "#f3d9d5": "#3a3f86" }
+    }
+  }
+}
