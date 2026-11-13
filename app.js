@@ -237,6 +237,7 @@ function armRing(scr, s) {
     hot.style.setProperty('--ring', INK[S.zone]);
     ctaFit(hot);
     hot.classList.add('fx-cta');
+    if (s.tab) hot.classList.add('fx-cta-tab'); // a tab bar item: the louder tab variant (phone.css)
   }, at);
 }
 

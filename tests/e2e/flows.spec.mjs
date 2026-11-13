@@ -30,7 +30,7 @@ for (const z of ZONES) {
         const hot = scr.querySelector('[data-hotspot]'), sc = scr.querySelector('[data-role="scroll"]');
         const h = hot.getBoundingClientRect(), v = (sc && sc.contains(hot) ? sc : scr).getBoundingClientRect();
         const inView = h.top >= v.top - 1 && h.bottom <= v.bottom + 1;
-        const ring = hot.classList.contains('fx-cta') && getComputedStyle(hot, '::after').animationName === 'cta-pulse';
+        const ring = hot.classList.contains('fx-cta') && ['cta-pulse', 'cta-tab-fill'].includes(getComputedStyle(hot, '::after').animationName); // tab bar items: the tab variant
         if (inView) return ring ? 'ok' : 'CTA in view but no ring';
         return cueOn ? 'ok' : 'CTA below the fold and no scroll cue';
       }, s.go), { message: `${s.key}: tap target is indicated`, timeout: 8_000 }).toBe('ok');

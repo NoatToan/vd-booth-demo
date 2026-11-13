@@ -54,13 +54,21 @@ function classFor(decl) {
   return name;
 }
 
+/** A tab of a tab bar: a frame in a horizontal row of 3+ frames with the same name ("Tab bar" > "Navigation item"). */
+function isTab(f, n) {
+  const row = n.type !== 'TEXT' && f.parent.get(n.id);
+  return !!row && row.layoutMode === 'HORIZONTAL' && row.children.length >= 3 && row.children.every(c => c.name === n.name);
+}
+
 /** The tap target for a TEXT trigger: nearest ancestor frame that looks like a button (fill + radius), else the text
+ *  whole tab of a tab bar, else the text
  *  itself (a text link, e.g. "View transfer details": not its whole row, so the CTA indicator frames only the link). */
 function hotspotFor(f, triggerId, frameId, scrollId) {
   const t = f.byId.get(triggerId);
   if (!t) throw new Error(`trigger ${triggerId} not found`);
   let n = f.parent.get(t.id);
   const first = n;
+  if (n && isTab(f, n)) return n.id; // the whole tab, icon and label
   while (n && n.id !== frameId && n.id !== scrollId) {
     if (solidPaints(n.fills).length && (n.cornerRadius || n.rectangleCornerRadii)) return n.id;
     const p = f.parent.get(n.id);
@@ -106,7 +114,7 @@ for (const sc of manifest.screens) {
   }
   out.push({
     key: sc.key, zone, n: +nStr, node: app.id, twin: twin ? twin.id : null, title: sc.title, h, w: struct.absoluteBoundingBox.width,
-    go: sc.go, hot, back: sc.back || null, auto: sc.auto || null, scan: sc.scan || null,
+    go: sc.go, hot, tab: !!hot && isTab(f, f.byId.get(hot)), back: sc.back || null, auto: sc.auto || null, scan: sc.scan || null,
     scroll: scrollNode.id, lane, html,
   });
 }

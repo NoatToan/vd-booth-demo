@@ -46,6 +46,16 @@ html.solo, html.solo * { scrollbar-width: none; }
   border-radius: inherit; box-shadow: inset 0 0 0 2px var(--ring, #1434cb), inset 0 0 14px rgba(20,52,203,.18);
   background: rgba(20,52,203,.06); animation: cta-pulse 1.6s ease-in-out infinite; }
 .kiosk .fr .fx-cta.fx-cta-dark::after { box-shadow: inset 0 0 0 2px var(--ring, #fff), inset 0 0 16px rgba(255,255,255,.35); background: rgba(255,255,255,.08); }
+/* a tab of a tab bar (E-seller Channels, Balances): small and low on the screen, so it gets more: a tinted pill and a
+   ring, the tab's icon and label in the app's ink, and the icon lifting on the same clock */
+.kiosk .fr .fx-cta.fx-cta-tab::after { border-radius: 14px; background: var(--ring, #1434cb); box-shadow: none; animation: cta-tab-fill 1.6s ease-in-out infinite; }
+.kiosk .fr .fx-cta.fx-cta-tab::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; pointer-events: none;
+  border-radius: 14px; box-shadow: inset 0 0 0 2px var(--ring, #1434cb); animation: cta-pulse 1.6s ease-in-out infinite; }
+.kiosk .fr .fx-cta.fx-cta-tab > * { color: var(--ring, #1434cb) !important; }
+.kiosk .fr .fx-cta.fx-cta-tab > span { font-weight: 600; }
+.kiosk .fr .fx-cta.fx-cta-tab > svg { animation: cta-tab-lift 1.6s ease-in-out infinite; }
+@keyframes cta-tab-fill { 0%, 100% { opacity: .16; } 50% { opacity: .06; } }
+@keyframes cta-tab-lift { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-1px) scale(1.1); } }
 /* one clock for every CTA, in the phone and on the kiosk buttons */
 @keyframes cta-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
 
