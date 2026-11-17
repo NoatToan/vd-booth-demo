@@ -6,6 +6,8 @@
 
 **Design:** 4 file `.fig` được gửi lại giống từng byte với `figma/fig/*.fig` (bản 10/11). Figma chưa được cập nhật theo feedback, nên mọi thay đổi trong app điện thoại nằm ở `scripts/gen/client-edits.json`. File này chỉ áp vào bản kiosk, mỗi dòng ghi rõ lý do.
 
+**Ảnh trong email:** đã lưu ở `email/` (unnamed(17)–(25) và ảnh xem trước của file Visa Direct Logo White.png). Cả 9 ảnh khớp với các màn đã sửa.
+
 **Evidence:** mỗi mục có ảnh before và after, chụp ở 1920×1080 (kiosk) và 414 px (màn điện thoại).
 
 | Thư mục | Nguồn |
@@ -45,8 +47,8 @@ Email đã lưu thiếu thư mục ảnh và 2 file đính kèm, nên những đ
 |---|---|---|---|
 | Q1 | File "Visa Direct Logo White.png" của Natalie không có trên máy | Dùng logo Visa Direct vector đang có (`brand/visa-direct-lockup.svg`, lấy từ Figma Make) cho mọi trang | Thay file, sửa đúng 1 hằng số `BRAND_DIRECT` trong `app.js` |
 | Q2 | Thiếu video "Travel wallet screen.mp4" | Bỏ "Funding in progress". Sau khi bấm Approve, hiện thông báo kiểu iOS: "Visa · Top-up complete · AUD 500.00 added as VND 8,500,000 to your XinChaoVietnam wallet", rồi sang Top-up complete | Chỉnh lại theo video (`screens/behaviors.js` travel-9, `screens/phone.css` `.fx-notify`) |
-| Q3 | Ảnh 18: "card" nằm ở màn nào | travel-6: thẻ Visa duy nhất có hình dạng thẻ. Visa xuống góc dưới phải, "DEBIT · DEMO" lên góc trên phải | Thêm hoặc đổi màn trong `client-edits.json` |
-| Q4 | Ảnh 19: thêm "Address" ở màn nào | travel-5 "Add Visa card", ô "Billing address" ngay dưới Cardholder name, cùng cách với mục 16 bên F&F | Như trên |
+| Q3 | Ảnh 18: "card" nằm ở màn nào | **Đã xác nhận bằng ảnh email:** travel-6 "Card connected" | |
+| Q4 | Ảnh 19 xác nhận màn travel-5 "Add Visa card"; chưa rõ vị trí và nhãn của dòng mới | Ô "Billing address" ngay dưới Cardholder name | Sửa dòng cloneAfter trong `client-edits.json` |
 | Q5 | Chữ "Virtual account" | Đổi thành "US Receiving Account Number" (giữ "Number" để nhãn vẫn đúng nghĩa) | Sửa 1 dòng text |
 | Q6 | Natalie "không tìm thấy nút" | Ngoài nút Next bên ngoài điện thoại, nút chính trong app ("Share" ở bước 3, "Download Receipt" ở bước 5) giờ cũng đi tiếp và có vòng nhấp nháy như mọi CTA. Nút "Copy" vẫn không làm gì | Đổi `go` trong `client-edits.json` |
 | Q7 | Logo Visa nhỏ lại bao nhiêu | 168 px (trước là 268 px, đúng tỉ lệ poster KV). Không mở lại được file demo reference (`.make`) | Đổi 1 số trong `index.html` |
