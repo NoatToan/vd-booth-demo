@@ -84,6 +84,18 @@ figure.figma figcaption{background:#a259ff}
 .bx.red{border-color:#e11d48}.bx.red b{background:#e11d48}
 .bx.green{border-color:#16a34a}.bx.green b{background:#16a34a}
 .bx.ghost{border:3px dashed #e11d48;background:rgba(225,29,72,.08)}.bx.ghost b{background:#e11d48}
+#overview{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin-top:16px}
+#overview h2{font:400 20px/1.2 'Visa Dialect',Inter,sans-serif;margin:0 0 4px}
+#overview .note{margin:0 0 10px}
+#overview h3{font:600 13px/1.3 Inter,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:14px 0 6px}
+.ov-t{width:100%;border-collapse:collapse;font-size:14px}
+.ov-t td{border-top:1px solid var(--line);padding:7px 8px;vertical-align:top}
+.ov-t td:first-child{width:44px;white-space:nowrap}
+.ov-t td:last-child{width:120px;white-space:nowrap;color:#166534}
+.ov-t a{color:var(--ink);text-decoration:none;font-weight:600}
+.ov-t a:hover{color:var(--blue)}
+.ov-t q{quotes:none;font-style:italic}
+.ov-t .old td:last-child{color:var(--muted)}
 #lb{position:fixed;inset:0;background:rgba(10,12,30,.92);display:none;z-index:20;flex-direction:column;align-items:center;justify-content:center;padding:16px}
 #lb.on{display:flex}
 #lb .lbpic{display:inline-block;position:relative}
@@ -101,6 +113,7 @@ figure.figma figcaption{background:#a259ff}
   <div class="seg lang" id="lang"><button data-v="en">EN</button><button data-v="vi">VI</button></div>
 </div></div>
 <main>
+  <section id="overview"></section>
   <div class="bar" id="filters"></div>
   <div id="items"></div>
 </main>
@@ -110,12 +123,12 @@ figure.figma figcaption{background:#a259ff}
 var IMG = '../docs/feedback/2026-11-16/';
 var UI = {
   en: { title: 'Test changes · Feedback 16/11/2026', sub: 'Visa Direct booth demo · 16 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
-    home: 'Booth home', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
+    home: 'Booth home', ovTitle: 'Everything the email asked for', ovNote: 'Each line is one request, in the client’s words, as listed in the email thread. Click a number to jump to its item.', ovNat: 'Natalie Liew · 16/11 17:22 · design and branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Earlier in the thread (12–13/11)', fixedOn: 'Fixed', doneOld: 'Done 13/11', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
     legend: 'Figma = the original design · red box = what had to change · green box = changed · dashed box = removed', noImg: 'The email has no image for this item.', fixed: 'Fixed', cause: 'Cause',
     decTitle: 'Decided on our side (to be confirmed)', unclear: 'Unclear', chosen: 'Decided', later: 'To change it', before: 'Before', after: 'After', figma: 'Figma (original)',
     gone: 'This screen is no longer in the journey', done: '✓ Done', hasDec: 'Has a decision to confirm', from: 'email "Visa Direct demo experience"', close: 'Close' },
   vi: { title: 'Test changes · Feedback 16/11/2026', sub: 'Visa Direct booth demo · 16 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
-    home: 'Về trang home', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
+    home: 'Về trang home', ovTitle: 'Toàn bộ yêu cầu trong email', ovNote: 'Mỗi dòng là một yêu cầu, giữ nguyên câu của khách, theo thứ tự trong chuỗi email. Bấm số để tới mục tương ứng.', ovNat: 'Natalie Liew · 16/11 17:22 · design và branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Feedback trước đó trong chuỗi email (12–13/11)', fixedOn: 'Đã sửa', doneOld: 'Xong 13/11', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
     legend: 'Figma = design gốc · khung đỏ = chỗ cần sửa · khung xanh = đã sửa · khung nét đứt = chỗ đã bỏ', noImg: 'Email không kèm ảnh cho mục này.', fixed: 'Đã sửa', cause: 'Nguyên nhân',
     decTitle: 'Điểm tự chốt (chờ xác nhận)', unclear: 'Chưa rõ', chosen: 'Đã chốt', later: 'Nếu cần đổi', before: 'Before', after: 'After', figma: 'Figma (gốc)',
     gone: 'Màn này đã bỏ khỏi journey', done: '✓ Done', hasDec: 'Có điểm tự chốt', from: 'email "Visa Direct demo experience"', close: 'Đóng' }
@@ -312,9 +325,23 @@ function shotsBlock(i, step) {
       figure(afterFile ? IMG + 'after-deployed/' + afterFile + '.jpg' : null, t('after'), 'after', '#' + i.n + ' ' + label, a && a.after, ab) + '</div></div>';
   }).join('') + '</div></section>';
 }
+// the request list from the email, to confirm every request has its item
+var OLD = [
+  ['Hoa Nguyen · 12/11 14:03', 'Màu chủ đạo của Travel app: Em đổi giúp chị thành màu vàng nhé, ở Visa kỵ màu đỏ mà chị quên mất', { en: 'Done 13/11: Travel wallet primary colour #f7b600 (Visa gold).', vi: 'Xong 13/11: màu chủ đạo Travel wallet #f7b600 (vàng Visa).' }],
+  ['Hoa Nguyen · 12/11 14:03', 'E-seller withdrawal via VXBS: theo chị thấy thì trải nghiệm này chưa cover hết các screen', { en: 'Closed 12/11: all 8 screens were there (cache); Hoa replied "Chị làm được rồi".', vi: 'Đã đóng 12/11: đủ 8 màn (do cache trình duyệt); chị Hoa trả lời "Chị làm được rồi".' }]
+];
+function overview() {
+  var row = function (i) { return '<tr><td><a href="#item-' + i.n + '">#' + i.n + '</a></td><td><q lang="en">' + esc(i.quote) + '</q></td><td>✓ ' + t('fixedOn') + '</td></tr>'; };
+  var group = function (who) { return ITEMS.filter(function (i) { return i.time === who; }).map(row).join(''); };
+  return '<h2>' + t('ovTitle') + '</h2><p class="note">' + t('ovNote') + '</p>' +
+    '<h3>' + t('ovNat') + '</h3><table class="ov-t">' + group(NAT) + '</table>' +
+    '<h3>' + t('ovHoa') + '</h3><table class="ov-t">' + group(HOA) + '</table>' +
+    '<h3>' + t('ovOld') + '</h3><table class="ov-t">' + OLD.map(function (o) { return '<tr class="old"><td>–</td><td><q>' + esc(o[1]) + '</q><br><span class="note">' + esc(o[0]) + ' · ' + esc(L(o[2])) + '</span></td><td>✓</td></tr>'; }).join('') + '</table>';
+}
 function render() {
   document.documentElement.lang = state.lang;
   [].forEach.call(document.querySelectorAll('[data-t]'), function (e) { e.textContent = t(e.dataset.t); });
+  $('#overview').innerHTML = overview();
   var counts = {}; ITEMS.forEach(function (i) { counts[i.cause] = (counts[i.cause] || 0) + 1; });
   $('#filters').innerHTML = '<button class="chip" data-c="all">' + t('all') + ' · ' + ITEMS.length + '</button>' + Object.keys(CAUSE).map(function (k) {
     return '<button class="chip" data-c="' + k + '"><i style="background:' + CAUSE[k].color + '"></i>' + CAUSE[k][state.lang] + ' · ' + counts[k] + '</button>';
