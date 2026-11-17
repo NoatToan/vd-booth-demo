@@ -10,6 +10,7 @@ An interactive experience for the **Visa Direct** booth at the forum. Visitors w
 | GitHub Pages (mirror) | https://noattoan.github.io/vd-booth-demo/ |
 | Verification report | https://vd-booth-demo.vercel.app/docs/verify/report.html |
 | Screen-by-screen workflow | https://vd-booth-demo.vercel.app/docs/workflow.html |
+| Client feedback 16/11: fixes, analysis, before / after | https://vd-booth-demo.vercel.app/test-changes/ |
 
 One link per booth screen (each locks the screen to a single experience):
 
