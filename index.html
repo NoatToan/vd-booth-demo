@@ -164,11 +164,9 @@ button{font-family:inherit;cursor:pointer}
 .zone-pill em{font-style:normal;font-weight:600;letter-spacing:0;color:var(--muted);margin-left:4px}
 .zone-pill em::before{content:'·';margin-right:14px;color:rgba(255,255,255,.35)}
 /* F&F: whose phone the visitor is looking at (storyboard swimlane) */
-.lane{position:absolute;left:1010px;top:8px;display:flex;gap:12px;align-items:center;padding:8px 22px;border-radius:99px;background:var(--z);color:#071030;font-size:20px;z-index:4;box-shadow:0 6px 24px rgba(0,0,0,.25)}
-.lane.flash{animation:lane-flash .9s ease-out}
-@keyframes lane-flash{0%{transform:scale(.9);opacity:0}40%{transform:scale(1.06);opacity:1}100%{transform:none}}
+.lane{position:absolute;left:1010px;top:14px;transform:translateX(0);display:flex;gap:12px;align-items:baseline;padding:8px 20px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);font-size:17px;z-index:4}
 .lane span{letter-spacing:3px;font-weight:800;color:var(--z)}
-.lane b{font-weight:400}
+.lane b{font-weight:700}
 
 /* ---------- flow ---------- */
 .flow::before{content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(90deg,rgba(6,24,120,.9) 0%,rgba(6,24,120,.66) 36%,transparent 52%);pointer-events:none}

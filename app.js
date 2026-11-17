@@ -192,7 +192,7 @@ function mount(dir) {
   if (lane) {
     lane.hidden = !s.lane;
     const label = s.lane ? laneLabel(s) : '';
-    if (s.lane && lane.dataset.label !== label) { lane.dataset.label = label; lane.innerHTML = `<b>${label}</b>`; lane.classList.remove('flash'); void lane.offsetWidth; lane.classList.add('flash'); }
+    if (s.lane) lane.innerHTML = `<b>${label}</b>`; // wording only, the pill keeps its style
   }
   const fr = $('.fr', el);
   if (window.VD_WIRE) window.VD_WIRE(el, s, api);
