@@ -25,7 +25,9 @@ a{color:var(--blue)}
 .top img{height:24px}
 .top h1{font:400 24px/1.2 'Visa Dialect',Inter,sans-serif;margin:0}
 .top p{margin:4px 0 0;opacity:.8;font-size:14px}
-.top .lang{margin-left:auto}
+.top .home-btn{margin-left:auto;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.4);border-radius:99px;padding:7px 16px;font-size:14px}
+.top .home-btn:hover{background:rgba(255,255,255,.12)}
+.top .home-btn::before{content:'‹';margin-right:8px}
 main{max-width:1240px;margin:0 auto;padding:10px 16px 60px}
 .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 14px;font:inherit;font-size:14px;cursor:pointer;color:var(--ink)}
@@ -56,6 +58,7 @@ blockquote cite{display:block;margin-top:6px;font-style:normal;color:var(--muted
 .mimg img{display:block;max-width:100%;border-radius:6px;border:1px solid var(--line)}
 .mimg.dark img{background:#1a1f71;padding:8px}
 .mimg.nofile{display:none}
+.mvid{display:block;width:100%;max-height:420px;border-radius:6px;background:#000}
 .meta{display:grid;grid-template-columns:120px 1fr;gap:4px 14px;margin:0;font-size:14px}
 .meta dt{color:var(--muted)}.meta dd{margin:0}
 .decs{margin-top:10px;background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:12px 14px;font-size:14px}
@@ -94,6 +97,7 @@ figure.figma figcaption{background:#a259ff}
 <div class="top"><div class="in">
   <img src="../brand/visa-direct-lockup.svg" alt="Visa Direct">
   <div><h1 data-t="title"></h1><p data-t="sub"></p></div>
+  <a class="home-btn" href="../" data-t="home"></a>
   <div class="seg lang" id="lang"><button data-v="en">EN</button><button data-v="vi">VI</button></div>
 </div></div>
 <main>
@@ -106,12 +110,12 @@ figure.figma figcaption{background:#a259ff}
 var IMG = '../docs/feedback/2026-11-16/';
 var UI = {
   en: { title: 'Test changes · Feedback 16/11/2026', sub: 'Visa Direct booth demo · 16 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
-    all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
+    home: 'Booth home', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
     legend: 'Figma = the original design · red box = what had to change · green box = changed · dashed box = removed', noImg: 'The email has no image for this item.', fixed: 'Fixed', cause: 'Cause',
     decTitle: 'Decided on our side (to be confirmed)', unclear: 'Unclear', chosen: 'Decided', later: 'To change it', before: 'Before', after: 'After', figma: 'Figma (original)',
     gone: 'This screen is no longer in the journey', done: '✓ Done', hasDec: 'Has a decision to confirm', from: 'email "Visa Direct demo experience"', close: 'Close' },
   vi: { title: 'Test changes · Feedback 16/11/2026', sub: 'Visa Direct booth demo · 16 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
-    all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
+    home: 'Về trang home', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
     legend: 'Figma = design gốc · khung đỏ = chỗ cần sửa · khung xanh = đã sửa · khung nét đứt = chỗ đã bỏ', noImg: 'Email không kèm ảnh cho mục này.', fixed: 'Đã sửa', cause: 'Nguyên nhân',
     decTitle: 'Điểm tự chốt (chờ xác nhận)', unclear: 'Chưa rõ', chosen: 'Đã chốt', later: 'Nếu cần đổi', before: 'Before', after: 'After', figma: 'Figma (gốc)',
     gone: 'Màn này đã bỏ khỏi journey', done: '✓ Done', hasDec: 'Có điểm tự chốt', from: 'email "Visa Direct demo experience"', close: 'Đóng' }
@@ -218,14 +222,14 @@ var ITEMS = [
     shots: [['travel-5 · Add Visa card', 's-travel-5', { b: [1], a: [1] }]] },
   { n: 13, time: HOA, cause: 'new', quote: 'Remove this screen and replicate the Visa top-up completion notification as per attached video, then go to the next (Screen 11 “Top-up complete”) – please give me a call if you have any questions on this part.',
     email: [{ name: 'unnamed(20).png', img: 'email/unnamed(20).png', desc: { en: 'Travel wallet step 10 "Funding in progress" (travel-10, "On its way to your Vietnam"): the screen to remove.', vi: 'Travel wallet bước 10 "Funding in progress" (travel-10, "On its way to your Vietnam"): màn cần bỏ.' } },
-            { attach: 1, name: 'Travel wallet screen.mp4', desc: { en: 'Attached video (2.3 MB): the Visa top-up notification to replicate. Not saved with the email.', vi: 'Video đính kèm (2,3 MB): thông báo nạp tiền Visa cần làm lại. Chưa lưu kèm email.' } }],
-    title: { en: 'Replace the funding screen with a Visa top-up notification', vi: 'Thay màn chờ nạp tiền bằng thông báo nạp tiền Visa' },
-    fix: { en: 'travel-10 "Funding in progress" is removed. After "Approve" a Visa notification slides down for about 3 s, then "Top-up complete". The journey has 17 steps.', vi: 'Bỏ travel-10 "Funding in progress". Sau khi bấm Approve, thông báo Visa trượt xuống khoảng 3 giây rồi sang "Top-up complete". Journey còn 17 bước.' },
-    why: { en: 'The client changed the flow (with a reference video).', vi: 'Khách đổi luồng (kèm video).' },
+            { attach: 1, video: 'email/travel-wallet-screen.mp4', name: 'Travel wallet screen.mp4', desc: { en: 'Attached video (15 s): after Face ID, a deep indigo screen, the VISA wordmark wiped in, then a circle drawn around a check, then the receipt.', vi: 'Video đính kèm (15 giây): sau Face ID là màn xanh tím đậm, logo VISA hiện dần, rồi vòng tròn tự vẽ quanh dấu check, rồi tới màn biên nhận.' } }],
+    title: { en: 'Replace the funding screen with the Visa completion animation', vi: 'Thay màn chờ nạp tiền bằng hiệu ứng hoàn tất của Visa' },
+    fix: { en: 'travel-10 "Funding in progress" is removed. After "Approve demo authorization" the phone plays the animation from the video (3.9 s): deep indigo screen, the VISA wordmark wiped in left to right, then a circle drawn around a check, then "Top-up complete". The journey has 17 steps.', vi: 'Bỏ travel-10 "Funding in progress". Sau khi bấm "Approve demo authorization", điện thoại chạy hiệu ứng như video (3,9 giây): màn xanh tím đậm, logo VISA hiện dần từ trái sang phải, rồi vòng tròn tự vẽ quanh dấu check, rồi sang "Top-up complete". Journey còn 17 bước.' },
+    why: { en: 'The client changed the flow, with a reference video.', vi: 'Khách đổi luồng, kèm video tham khảo.' },
     figma: [['travel-10 · Funding in progress', 'travel-10']],
-    dec: [{ en: ['The notification should copy the attached video, which we do not have.', 'On "Issuer authorization", after "Approve demo authorization", an iOS-style banner slides down: Visa icon, title "Top-up complete", text "AUD 500.00 added as VND 8,500,000 to your XinChaoVietnam wallet". It stays about 3 s, then the app moves to "Top-up complete".', 'With the video: match its content, look and timing (screens/behaviors.js travel-9, screens/phone.css .fx-notify).'],
-            vi: ['Thông báo cần làm theo video đính kèm, mà video này chưa có.', 'Ở màn "Issuer authorization", sau khi bấm "Approve demo authorization", thông báo kiểu iOS trượt xuống: biểu tượng Visa, tiêu đề "Top-up complete", nội dung "AUD 500.00 added as VND 8,500,000 to your XinChaoVietnam wallet". Hiện khoảng 3 giây rồi app chuyển sang "Top-up complete".', 'Khi có video: chỉnh nội dung, kiểu dáng, thời gian cho giống (screens/behaviors.js travel-9, screens/phone.css .fx-notify).'] }],
-    shots: [[{ en: 'Removed screen · travel-10', vi: 'Màn bị bỏ · travel-10' }, 's-travel-10', { b: [], a: [] }, null], [{ en: 'Right after tapping Approve', vi: 'Ngay sau khi bấm Approve' }, 'k13-travel-after-issuer', { b: [0], a: [0] }]] },
+    dec: [{ en: ['The video comes from another app (a MYR wallet with Face ID and a "Funds Requested" receipt), not from the travel wallet design.', 'Only the Visa part is replicated: the indigo screen, VISA wiped in, the circle and check, with the video’s timing. The screens before and after stay as in Figma (Issuer authorization, then Top-up complete).', 'Timing and colours: screens/phone.css .fx-visa; length: screens/behaviors.js travel-9.'],
+            vi: ['Video quay từ một app khác (ví MYR có Face ID và biên nhận "Funds Requested"), không phải design travel wallet.', 'Chỉ làm lại phần của Visa: màn xanh tím, logo VISA hiện dần, vòng tròn và dấu check, theo đúng nhịp video. Màn trước và sau giữ như Figma (Issuer authorization rồi Top-up complete).', 'Nhịp và màu: screens/phone.css .fx-visa; độ dài: screens/behaviors.js travel-9.'] }],
+    shots: [[{ en: 'Removed screen · travel-10', vi: 'Màn bị bỏ · travel-10' }, 's-travel-10', { b: [], a: [] }, null], [{ en: 'About 1.4 s after tapping Approve', vi: 'Khoảng 1,4 giây sau khi bấm Approve' }, 'k13-travel-after-issuer', { b: [0], a: [0] }]] },
   { n: 14, time: HOA, cause: 'new', quote: 'On the “Friends and Family” experience, please separate the receiver (requester) view and the sender view by adding wording to clarify: Minh Anh (receiver) view · Sarah (sender) view – from step “Sarah receives the link” · Back to Minh Anh (receiver) view – from step “Money received notification”',
     email: [{ name: 'unnamed(21).png', img: 'email/unnamed(21).png', desc: { en: 'F&F step 7 "Track payment request" (Waiting for Sarah): Minh Anh’s phone, steps 1–7.', vi: 'F&F bước 7 "Track payment request" (Waiting for Sarah): điện thoại của Minh Anh, bước 1–7.' } },
             { name: 'unnamed(22).png', img: 'email/unnamed(22).png', desc: { en: 'The step list at step 8 "Sarah receives the link", where Sarah’s view starts.', vi: 'Danh sách bước ở bước 8 "Sarah receives the link", nơi bắt đầu góc nhìn của Sarah.' } },
@@ -275,6 +279,7 @@ function figure(src, cap, kind, label, sz, bx) {
 function emailBlock(i) {
   if (!i.email) return '<p class="note">' + t('noImg') + '</p>';
   return '<div class="mails">' + i.email.map(function (m) {
+    if (m.video) return '<div class="mail"><video class="mvid" src="' + IMG + m.video + '" controls playsinline preload="metadata"></video><b>📎 ' + esc(m.name) + '</b><span>' + esc(L(m.desc)) + '</span></div>';
     var src = m.img ? IMG + m.img.replace(/\(/g, '%28').replace(/\)/g, '%29') : '';
     var img = m.img ? '<figure class="mimg' + (m.dark ? ' dark' : '') + '" data-src="' + src + '" data-cap="' + esc('#' + i.n + ' · ' + m.name) + '"><span class="pic"><img src="' + src + '" alt="" onerror="this.closest(\'figure\').classList.add(\'nofile\')"></span></figure>' : '';
     return '<div class="mail">' + img + '<b>' + (m.attach ? '📎 ' : '') + esc(m.name) + '</b><span>' + esc(L(m.desc)) + '</span></div>';

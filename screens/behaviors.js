@@ -239,15 +239,15 @@ B['collect-8'] = { enter(fr) { stagger(kids(fr, '15:5615'), { delay: 150, step: 
 B['travel-2'] = { enter: autofill(['2:15860', '2:15864', '2:15869', '2:15874'], '2:15884') };
 B['travel-5'] = { enter: autofill(['2:16027', '2:16027~addr', '2:16031', '2:16043'], '2:16053', { total: 2800 }) };
 B['travel-7'] = { enter: autofill(['2:16131'], '2:16174', { total: 900 }) };
-// client feedback 2026-11-16 (Hoa #6): "Funding in progress" is left out (scripts/gen/client-edits.json); after the
-// issuer approves, the phone shows Visa's top-up completion notification, then Top-up complete. Amounts as in Figma.
+// client feedback 2026-11-16 (Hoa #6): "Funding in progress" is left out (scripts/gen/client-edits.json). After the
+// issuer approves, the Visa completion animation from the client's video (Travel wallet screen.mp4) plays over the
+// phone: a deep indigo screen, the VISA wordmark wiped in left to right, then a circle drawn around a check; then
+// Top-up complete. Timings read from the video at 30 fps.
 B['travel-9'] = {
   go(fr, api, scr, done) {
-    const n = api.fx(scr, 'fx-notify', `<div class="ic"><img src="brand/visa-wordmark.svg" alt="Visa"></div>
-      <div class="tx"><div class="hd"><b>Visa</b><span>now</span></div><b>Top-up complete</b>
-      <p>AUD 500.00 added as VND 8,500,000 to your XinChaoVietnam wallet.</p></div>`);
-    api.later(() => n.classList.add('out'), api.lowFx ? 2600 : 2900);
-    api.later(done, api.lowFx ? 2900 : 3250);
+    api.fx(scr, 'fx-visa', '<img class="vm" src="brand/visa-wordmark.svg" alt="Visa">' +
+      '<svg class="ok" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="36"/><path d="M25 41l10 10 20-21"/></svg>');
+    api.later(done, 3900);
   }
 };
 // AFT · friends and family (NovaBank)
