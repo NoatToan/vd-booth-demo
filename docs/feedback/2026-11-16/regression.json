@@ -1,0 +1,461 @@
+{
+ "rows": [
+  {
+   "k": "send-1",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-2",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-3",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-4",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-5",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-6",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-7",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-8",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-9",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-10",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "send-11",
+   "exp": "edited",
+   "local": 0.181,
+   "prod": 0.181,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "receive-1",
+   "exp": "edited",
+   "local": 0.048,
+   "prod": 0.048,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "receive-2",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "receive-3",
+   "exp": "edited",
+   "local": 0.094,
+   "prod": 0.094,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "receive-4",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "receive-5",
+   "exp": "edited",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "receive-6",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "collect-1",
+   "exp": "dropped",
+   "local": "absent",
+   "prod": "absent"
+  },
+  {
+   "k": "collect-2",
+   "exp": "dropped",
+   "local": "absent",
+   "prod": "absent"
+  },
+  {
+   "k": "collect-3",
+   "exp": "dropped",
+   "local": "absent",
+   "prod": "absent"
+  },
+  {
+   "k": "collect-4",
+   "exp": "dropped",
+   "local": "absent",
+   "prod": "absent"
+  },
+  {
+   "k": "collect-5",
+   "exp": "dropped",
+   "local": "absent",
+   "prod": "absent"
+  },
+  {
+   "k": "collect-6",
+   "exp": "dropped",
+   "local": "absent",
+   "prod": "absent"
+  },
+  {
+   "k": "collect-7",
+   "exp": "dropped",
+   "local": "absent",
+   "prod": "absent"
+  },
+  {
+   "k": "collect-8",
+   "exp": "dropped",
+   "local": "absent",
+   "prod": "absent"
+  },
+  {
+   "k": "travel-1",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-2",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-3",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-4",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-5",
+   "exp": "edited",
+   "local": 1.787,
+   "prod": 1.787,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-6",
+   "exp": "edited",
+   "local": 0.68,
+   "prod": 0.68,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-7",
+   "exp": "edited",
+   "local": 0.025,
+   "prod": 0.025,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-8",
+   "exp": "edited",
+   "local": 0.025,
+   "prod": 0.025,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-9",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-10",
+   "exp": "dropped",
+   "local": "absent",
+   "prod": "absent"
+  },
+  {
+   "k": "travel-11",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-12",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-13",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-14",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-15",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-16",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-17",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "travel-18",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-1",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-2",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-3",
+   "exp": "edited",
+   "local": 5.595,
+   "prod": 5.595,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-4",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-5",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-6",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-7",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-8",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-9",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-10",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-11",
+   "exp": "edited",
+   "local": 0.161,
+   "prod": 0.161,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-12",
+   "exp": "edited",
+   "local": 0.02,
+   "prod": 0.02,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-13",
+   "exp": "edited",
+   "local": 0.097,
+   "prod": 0.097,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-14",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-15",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-16",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-17",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  },
+  {
+   "k": "family-18",
+   "exp": "unchanged",
+   "local": 0,
+   "prod": 0,
+   "prodVsLocal": 0
+  }
+ ],
+ "journeys": {
+  "send": {
+   "removed": [],
+   "added": []
+  },
+  "receive": {
+   "removed": [
+    "receive-3:kiosk-next",
+    "receive-5:kiosk-next"
+   ],
+   "added": [
+    "receive-3:2:5772",
+    "receive-5:2:6195"
+   ]
+  },
+  "collect": {
+   "removed": [
+    "collect-1:15:5027",
+    "collect-2:15:5151",
+    "collect-3:15:5251",
+    "collect-4:15:5287",
+    "collect-5:15:5433",
+    "collect-6:15:5489",
+    "collect-7:auto:3000-6500ms",
+    "collect-8:kiosk-finish"
+   ],
+   "added": []
+  },
+  "family": {
+   "removed": [],
+   "added": []
+  },
+  "travel": {
+   "removed": [
+    "travel-10:auto:3000-6500ms"
+   ],
+   "added": []
+  }
+ }
+}

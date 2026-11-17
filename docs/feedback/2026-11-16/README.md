@@ -65,6 +65,24 @@ Email đã lưu thiếu thư mục ảnh và 2 file đính kèm, nên những đ
 | Ảnh before/after: các màn không đổi phải giống hệt | send-5, travel-9, travel-11: chênh 0,00 % pixel | send-5, travel-9, travel-11: chênh 0,00 % so với local |
 | Ảnh before/after: các màn có đổi | Chỉ khác ở đúng chỗ đã sửa (xem bảng) | Mọi màn điện thoại chênh 0,00 % so với local. Ảnh kiosk chênh ≤ 1,1 % do animation nền ngẫu nhiên |
 
+## Regression (so với bản trước khi sửa, commit 4c31b5d)
+
+Chi tiết từng màn trong `regression.json`. Ảnh mỗi màn điện thoại được chụp hết chiều cao, so pixel 3 bản: bản cũ (4c31b5d), bản mới chạy local, bản mới trên domain.
+
+| Kiểm tra | Kết quả |
+|---|---|
+| 40 màn không nằm trong danh sách sửa | Giống hệt bản cũ (0 % pixel) cả local lẫn domain |
+| 12 màn có chỉnh sửa | Chỉ khác ở chỗ đã sửa (0,02–5,6 %). receive-5 0 % là đúng, vì chỉ đổi nút bấm để đi tiếp, không đổi hình |
+| 9 màn bị bỏ (collect-1→8, travel-10) | Không còn trên cả local lẫn domain |
+| Domain so với local | 52/52 màn: 0 % |
+| Thứ tự các bước journey | SEND, F&F: không đổi. RECEIVE: bước 3 và 5 đi tiếp bằng Share / Download Receipt. Travel: bỏ bước 10. E-seller: đã gỡ |
+| Verify harness (bản Figma) | 61/61 hard-green, flow PASS |
+| Cú pháp cho trình duyệt TV (Chromium 68+) | `app.js` và `behaviors.js` qua được kiểm tra ES2019. Không thêm cú pháp mới so với bản cũ |
+| Link trên domain: 4 zone, link cũ `vxbs-individual`, `/lead/`, `/status/`, `/tvcheck/`, `sw.js` | Đều trả 200 |
+| Form lead | 4 lựa chọn, có "Global account receive", không còn E-seller |
+| `/api/leads` không có key | 401 (vẫn được bảo vệ) |
+| Danh sách file offline (`sw-assets.json`) | Không thiếu file nào |
+
 ## Giải thích nguyên nhân (để hiểu vì sao có các mục này)
 
 Booth gồm 2 phần:
