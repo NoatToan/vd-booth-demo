@@ -67,7 +67,7 @@ blockquote cite{display:block;margin-top:6px;font-style:normal;color:var(--muted
 .pair h4{margin:0 0 6px;font:600 13px/1.3 Inter,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .ba{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .ba.phone{grid-template-columns:repeat(2,minmax(0,300px))}
-.ba.one{grid-template-columns:minmax(0,300px)}
+.ba.phone.three{grid-template-columns:repeat(3,minmax(0,300px))}
 figure{margin:0;background:#f7f8fc;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:zoom-in;display:flex;flex-direction:column}
 figcaption{font:600 12px/1 Inter,sans-serif;padding:7px 10px;color:#fff;background:#3b3f56}
 figure.after figcaption{background:var(--ok)}
@@ -87,7 +87,7 @@ figure.figma figcaption{background:#a259ff}
 #lb .lbpic img{display:block;max-width:calc(100vw - 32px);max-height:calc(100vh - 90px);width:auto;height:auto;border-radius:8px;background:#fff}
 #lb .cap{color:#fff;margin-top:10px;font-size:14px;text-align:center}
 #lb .x{position:absolute;right:16px;top:12px;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}
-@media (max-width:700px){.bar{position:static}.ba,.ba.phone{grid-template-columns:1fr 1fr}.meta,.decs dl{grid-template-columns:1fr}.meta dt{margin-top:6px}}
+@media (max-width:700px){.bar{position:static}.ba,.ba.phone{grid-template-columns:1fr 1fr}.ba.phone.three{grid-template-columns:1fr 1fr 1fr}.meta,.decs dl{grid-template-columns:1fr}.meta dt{margin-top:6px}}
 </style>
 </head>
 <body>
@@ -106,14 +106,14 @@ figure.figma figcaption{background:#a259ff}
 var IMG = '../docs/feedback/2026-11-16/';
 var UI = {
   en: { title: 'Test changes · Feedback 16/11/2026', sub: 'Visa Direct booth demo · 16 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
-    all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Figma evidence (the original design, built as designed)', s4: 'Analysis', s5: 'Result: before / after (live site)',
-    legend: 'red box = what had to change · green box = changed · dashed box = removed', noImg: 'The email has no image for this item.', fixed: 'Fixed', cause: 'Cause',
-    decTitle: 'Decided on our side (to be confirmed)', unclear: 'Unclear', chosen: 'Decided', later: 'To change it', before: 'Before', after: 'After', figma: 'Figma',
+    all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
+    legend: 'Figma = the original design · red box = what had to change · green box = changed · dashed box = removed', noImg: 'The email has no image for this item.', fixed: 'Fixed', cause: 'Cause',
+    decTitle: 'Decided on our side (to be confirmed)', unclear: 'Unclear', chosen: 'Decided', later: 'To change it', before: 'Before', after: 'After', figma: 'Figma (original)',
     gone: 'This screen is no longer in the journey', done: '✓ Done', hasDec: 'Has a decision to confirm', from: 'email "Visa Direct demo experience"', close: 'Close' },
   vi: { title: 'Test changes · Feedback 16/11/2026', sub: 'Visa Direct booth demo · 16 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
-    all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Figma evidence (bản design gốc, mình đã làm đúng)', s4: 'Phân tích', s5: 'Kết quả: before / after (domain)',
-    legend: 'khung đỏ = chỗ cần sửa · khung xanh = đã sửa · khung nét đứt = chỗ đã bỏ', noImg: 'Email không kèm ảnh cho mục này.', fixed: 'Đã sửa', cause: 'Nguyên nhân',
-    decTitle: 'Điểm tự chốt (chờ xác nhận)', unclear: 'Chưa rõ', chosen: 'Đã chốt', later: 'Nếu cần đổi', before: 'Before', after: 'After', figma: 'Figma',
+    all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
+    legend: 'Figma = design gốc · khung đỏ = chỗ cần sửa · khung xanh = đã sửa · khung nét đứt = chỗ đã bỏ', noImg: 'Email không kèm ảnh cho mục này.', fixed: 'Đã sửa', cause: 'Nguyên nhân',
+    decTitle: 'Điểm tự chốt (chờ xác nhận)', unclear: 'Chưa rõ', chosen: 'Đã chốt', later: 'Nếu cần đổi', before: 'Before', after: 'After', figma: 'Figma (gốc)',
     gone: 'Màn này đã bỏ khỏi journey', done: '✓ Done', hasDec: 'Có điểm tự chốt', from: 'email "Visa Direct demo experience"', close: 'Đóng' }
 };
 var CAUSE = {
@@ -280,15 +280,13 @@ function emailBlock(i) {
     return '<div class="mail">' + img + '<b>' + (m.attach ? '📎 ' : '') + esc(m.name) + '</b><span>' + esc(L(m.desc)) + '</span></div>';
   }).join('') + '</div>';
 }
-function figmaBlock(i) {
-  if (i.cause !== 'new') return '';
-  var body = (i.figma || []).map(function (f) {
-    var a = ANN[f[1]], label = L(f[0]);
-    var fig = a && a.figma ? figure(IMG + a.figma.img, t('figma'), 'figma', '#' + i.n + ' ' + label, a.figma, boxes(a.figma, pick(a.figma.boxes, f[2]), 'red'))
-      : figure(IMG + 'figma/' + f[1] + '.png', t('figma'), 'figma', '#' + i.n + ' ' + label);
-    return '<div class="pair"><h4>' + esc(label) + '</h4><div class="ba phone one">' + fig + '</div></div>';
-  }).join('');
-  return '<section class="step"><h5><span>3</span>' + t('s3') + '</h5>' + (i.figmaNote ? '<p class="note">' + esc(L(i.figmaNote)) + '</p>' : '') + (body ? '<div class="pairs">' + body + '</div>' : '') + '</section>';
+// the Figma original for a result row: the item's figma entry for the same screen (s-<key> or <key>)
+function figmaFor(i, shot) {
+  var f = (i.figma || []).filter(function (x) { return x[1] === shot || 's-' + x[1] === shot; })[0];
+  if (!f) return '';
+  var a = ANN[f[1]], label = '#' + i.n + ' ' + L(f[0]);
+  return a && a.figma ? figure(IMG + a.figma.img, t('figma'), 'figma', label, a.figma, boxes(a.figma, pick(a.figma.boxes, f[2]), 'red'))
+    : figure(IMG + 'figma/' + f[1] + '.png', t('figma'), 'figma', label);
 }
 function decBlock(i) {
   if (!i.dec) return '';
@@ -298,11 +296,12 @@ function decBlock(i) {
   }).join('') + '</div>';
 }
 function shotsBlock(i, step) {
-  return '<section class="step"><h5><span>' + step + '</span>' + t('s5') + ' <small>' + t('legend') + '</small></h5><div class="pairs">' + i.shots.map(function (p) {
+  return '<section class="step"><h5><span>' + step + '</span>' + t('s4') + ' <small>' + t('legend') + '</small></h5><div class="pairs">' + i.shots.map(function (p) {
     var label = L(p[0]), phone = p[1].charAt(0) === 's', a = ANN[p[1]], sel = p[2] || {}, afterFile = p.length > 3 ? p[3] : p[1];
     var bb = a ? boxes(a.before, pick(a.before.boxes, sel.b), 'red') : '';
     var ab = a ? boxes(a.after, pick(a.after.boxes, sel.a), 'green') + (sel.ghost ? boxes(a.after, pick(a.before.boxes, sel.ghost), 'ghost') : '') : '';
-    return '<div class="pair"><h4>' + esc(label) + '</h4><div class="ba' + (phone ? ' phone' : '') + '">' +
+    var fg = figmaFor(i, p[1]);
+    return '<div class="pair"><h4>' + esc(label) + '</h4><div class="ba' + (phone ? ' phone' : '') + (fg ? ' three' : '') + '">' + fg +
       figure(IMG + 'before/' + p[1] + '.jpg', t('before'), 'before', '#' + i.n + ' ' + label, a && a.before, bb) +
       figure(afterFile ? IMG + 'after-deployed/' + afterFile + '.jpg' : null, t('after'), 'after', '#' + i.n + ' ' + label, a && a.after, ab) + '</div></div>';
   }).join('') + '</div></section>';
@@ -315,14 +314,14 @@ function render() {
     return '<button class="chip" data-c="' + k + '"><i style="background:' + CAUSE[k].color + '"></i>' + CAUSE[k][state.lang] + ' · ' + counts[k] + '</button>';
   }).join('');
   $('#items').innerHTML = ITEMS.filter(function (i) { return state.cause === 'all' || i.cause === state.cause; }).map(function (i) {
-    var c = CAUSE[i.cause], fig = i.cause === 'new';
+    var c = CAUSE[i.cause];
     return '<article class="item" id="item-' + i.n + '" style="--cc:' + c.color + '"><div class="head"><span class="num">' + i.n + '</span><h3>' + esc(L(i.title)) + '</h3>' +
       '<div class="tags"><span class="tag">' + i.time.split(' ')[0] + '</span><span class="tag cause">' + c[state.lang] + '</span><span class="tag done">' + t('done') + '</span>' + (i.dec ? '<span class="tag dec">' + t('hasDec') + '</span>' : '') + '</div></div>' +
       '<section class="step"><h5><span>1</span>' + t('s1') + '</h5><blockquote lang="en">' + esc(i.quote) + '<cite>' + esc(i.time) + ' · ' + t('from') + '</cite></blockquote></section>' +
       '<section class="step"><h5><span>2</span>' + t('s2') + '</h5>' + emailBlock(i) + '</section>' +
-      figmaBlock(i) +
-      '<section class="step"><h5><span>' + (fig ? 4 : 3) + '</span>' + t('s4') + '</h5><dl class="meta"><dt>' + t('fixed') + '</dt><dd>' + esc(L(i.fix)) + '</dd><dt>' + t('cause') + '</dt><dd>' + esc(L(i.why)) + '</dd></dl>' + decBlock(i) + '</section>' +
-      shotsBlock(i, fig ? 5 : 4) + '</article>';
+      '<section class="step"><h5><span>3</span>' + t('s3') + '</h5><dl class="meta"><dt>' + t('fixed') + '</dt><dd>' + esc(L(i.fix)) + '</dd><dt>' + t('cause') + '</dt><dd>' + esc(L(i.why)) + '</dd>' +
+        (i.figmaNote ? '<dt>' + t('figmaRow') + '</dt><dd>' + esc(L(i.figmaNote)) + '</dd>' : '') + '</dl>' + decBlock(i) + '</section>' +
+      shotsBlock(i, 4) + '</article>';
   }).join('');
   [].forEach.call(document.querySelectorAll('#filters .chip'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.c === state.cause)); });
   [].forEach.call(document.querySelectorAll('#lang button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === state.lang)); });

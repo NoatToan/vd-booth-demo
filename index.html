@@ -210,7 +210,8 @@ button{font-family:inherit;cursor:pointer}
 .scroll-cue:active{transform:scale(.97)}
 @keyframes cue-bounce{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
 .nav{position:absolute;left:120px;bottom:64px;display:flex;gap:16px}
-.ghost{height:64px;padding:0 32px;border-radius:99px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;font-weight:600;font-size:22px}
+.ghost{height:64px;padding:0 32px 0 26px;border-radius:99px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;font-weight:600;font-size:22px;display:inline-flex;align-items:center;gap:10px}
+.ghost .ni{width:22px;height:22px;flex:none;display:block}
 .ghost:active{background:rgba(255,255,255,.18)}
 .route{position:absolute;right:64px;top:150px;max-width:330px;padding:20px 26px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);text-align:right}
 .route span{display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:15px;letter-spacing:3px;text-transform:uppercase;color:var(--z);font-weight:800}

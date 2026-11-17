@@ -206,6 +206,9 @@ function mount(dir) {
 
 // ink of each app's primary buttons (Figma), for the scroll hint and the hotspot ring
 const INK = { send: '#5b2d90', receive: '#1434cb', family: '#2563eb', travel: '#8a6100' };
+// shell nav icons: one size and stroke for Back / All journeys / Start over (text glyphs ‹ and ↺ rendered unevenly)
+const NAV_BACK = '<svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+const NAV_RESTART = '<svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v5h5"/></svg>';
 const CHEVRON = '<svg viewBox="0 0 22 14" fill="none"><path d="M3 3l8 8 8-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 /* scroll cue: outside the phone, in the bottom-right column above Next, so it never covers the app's content.
    Shown while the screen's scroll node has more below; tapping it scrolls the phone; hidden at the bottom. */
@@ -333,7 +336,7 @@ function draw() {
     const card = k => { const g = META[k]; return `<button class="zc" style="--z:${g.color}" data-a="pick" data-v="${k}">
         <div class="ic">${ICON[k]}</div><h2>${g.title}</h2><div class="via">${g.via}</div><q>${g.hero}</q>
         <div class="go">Start<span>→</span></div></button>`; };
-    html = brand() + `<button class="ghost back-top" data-a="restart">‹ Back</button><div class="home"><h1>Choose your journey</h1><div class="k">Tap a card to try a live Visa money-movement experience</div>
+    html = brand() + `<button class="ghost back-top" data-a="restart">${NAV_BACK}Back</button><div class="home"><h1>Choose your journey</h1><div class="k">Tap a card to try a live Visa money-movement experience</div>
       <div class="groups">${GROUPS.map(gr => `<section class="grp g${gr.zones.length}"><h3>${gr.name}</h3><div class="cards">${gr.zones.map(card).join('')}</div></section>`).join('')}</div></div>`;
   } else if (S.view === 'flow') {
     html = brand(z) + `<div class="flow">
@@ -346,7 +349,7 @@ function draw() {
       <div class="route"><span>Live journey</span><b>${m.route}</b></div>
       <div id="lane" class="lane" hidden></div>
       <div id="phone" data-zone="${z}" data-size="${SIZE[z] || '402x874'}"><div class="viewport kiosk"></div></div>
-      <div class="nav">${LOCK ? '' : '<button class="ghost" data-a="home">‹ All journeys</button>'}<button class="ghost" data-a="restart">↺ Start over</button></div></div>`;
+      <div class="nav">${LOCK ? '' : `<button class="ghost" data-a="home">${NAV_BACK}All journeys</button>`}<button class="ghost" data-a="restart">${NAV_RESTART}Start over</button></div></div>`;
   } else if (S.view === 'done') {
     html = brand(z) + `<div class="done"><div class="done-l">
       <div class="zone-pill"><span class="ic">${ICON[z]}</span>${m.name}<em>${m.title}</em></div>
