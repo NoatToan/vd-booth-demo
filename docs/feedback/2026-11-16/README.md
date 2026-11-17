@@ -59,11 +59,11 @@ Email đã lưu thiếu thư mục ảnh và 2 file đính kèm, nên những đ
 
 | Kiểm tra | Local | Deployed |
 |---|---|---|
-| Verify harness (bản Figma): 61 màn, text, hình học, style, pixel, flow | 61/61 hard-green · flow PASS (0/1514 lỗi) | (cùng code) |
-| E2E Playwright: pixel từng màn so với Figma, 4 journey bấm từ đầu đến Done, chỉnh sửa của khách, palette travel, offline, khôi phục lỗi, heartbeat, TV mode | 76 passed, 2 skipped (soak, lead live) | |
-| Soak 3 phút: các journey chạy liên tục | SOAK_RESULT | |
-| Ảnh before/after: các màn không đổi phải giống hệt | send-5, travel-9, travel-11: chênh 0,00 % pixel | DEPLOYED_UNCHANGED |
-| Ảnh before/after: các màn có đổi | Chỉ khác ở đúng chỗ đã sửa (xem bảng) | DEPLOYED_CHANGED |
+| Verify harness (bản Figma): 61 màn, text, hình học, style, pixel, flow | 61/61 hard-green · flow PASS (0/1514 lỗi) | Bản trên domain trùng bản local: màn điện thoại chênh 0,00 % pixel |
+| E2E Playwright: pixel từng màn so với Figma, 4 journey bấm từ đầu đến Done, chỉnh sửa của khách, palette travel, offline, khôi phục lỗi, heartbeat, TV mode | 76 passed, 2 skipped (soak, lead live) | `app.js` trên domain đã có `global-account` |
+| Soak 3 phút: các journey chạy liên tục | PASS: 16 vòng / 3 phút, 0 lỗi, heap −0,23 MB, DOM +0 | (chạy trên local) |
+| Ảnh before/after: các màn không đổi phải giống hệt | send-5, travel-9, travel-11: chênh 0,00 % pixel | send-5, travel-9, travel-11: chênh 0,00 % so với local |
+| Ảnh before/after: các màn có đổi | Chỉ khác ở đúng chỗ đã sửa (xem bảng) | Mọi màn điện thoại chênh 0,00 % so với local. Ảnh kiosk chênh ≤ 1,1 % do animation nền ngẫu nhiên |
 
 ## Giải thích nguyên nhân (để hiểu vì sao có các mục này)
 
