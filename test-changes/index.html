@@ -55,11 +55,31 @@ h2{font:400 22px/1.2 'Visa Dialect',Inter,sans-serif;margin:34px 0 12px}
 .ba.phone{grid-template-columns:repeat(2,minmax(0,300px))}
 figure{margin:0;background:#f7f8fc;border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative}
 figure img{display:block;width:100%;height:auto}
-.ba.phone figure{max-height:680px}
 figure{display:flex;flex-direction:column}
-figcaption{order:-1;font:600 12px/1 Inter,sans-serif;padding:7px 10px;color:#fff;background:#3b3f56}
+figcaption{font:600 12px/1 Inter,sans-serif;padding:7px 10px;color:#fff;background:#3b3f56}
 figure.after figcaption{background:var(--ok)}
 .gone{display:grid;place-items:center;min-height:220px;color:var(--muted);font-size:14px;text-align:center;padding:20px;cursor:default}
+.step{margin-top:16px}
+.step h5{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 8px;font:600 14px/1.3 Inter,sans-serif}
+.step h5 span{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:12px}
+.step h5 small{font-weight:400;color:var(--muted);font-size:12.5px}
+blockquote{margin:0;padding:12px 16px;border-left:4px solid var(--cc);background:#f7f8fc;border-radius:0 10px 10px 0;font-size:15px;font-style:italic}
+blockquote cite{display:block;margin-top:6px;font-style:normal;color:var(--muted);font-size:12.5px}
+.mails{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.mail{border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;background:#fff}
+.mail.missing{background:#fffbeb;border-color:#fde68a}
+.mimg img{display:block;max-width:100%;border-radius:6px;border:1px solid var(--line)}
+.mimg em{display:none;font-style:normal;color:#92400e;background:#fffbeb;border:1px dashed #f59e0b;border-radius:8px;padding:10px;font-size:12.5px}
+.mimg.nofile img{display:none}.mimg.nofile em{display:block}
+.ba.one{grid-template-columns:minmax(0,300px)}
+figure.figma figcaption{background:#a259ff}
+.pic{position:relative;display:block}
+.ov{position:absolute;inset:0;pointer-events:none}
+.bx{position:absolute;border:3px solid;border-radius:8px;box-shadow:0 0 0 2px rgba(255,255,255,.85)}
+.bx b{position:absolute;left:-3px;top:-22px;font:700 11px/1 Inter,sans-serif;color:#fff;padding:4px 6px;border-radius:6px 6px 6px 0}
+.bx.red{border-color:#e11d48}.bx.red b{background:#e11d48}
+.bx.green{border-color:#16a34a}.bx.green b{background:#16a34a}
+.bx.ghost{border:3px dashed #e11d48;background:rgba(225,29,72,.08)}.bx.ghost b{background:#e11d48}
 table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14px}
 th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 th{background:#f7f8fc;font-weight:600;font-size:13px;color:var(--muted)}
@@ -69,7 +89,8 @@ th{background:#f7f8fc;font-weight:600;font-size:13px;color:var(--muted)}
 .note{color:var(--muted);font-size:13.5px}
 #lb{position:fixed;inset:0;background:rgba(10,12,30,.92);display:none;z-index:20;flex-direction:column;align-items:center;justify-content:center;padding:16px}
 #lb.on{display:flex}
-#lb img{max-width:100%;max-height:calc(100vh - 90px);border-radius:8px;background:#fff}
+#lb .lbpic{display:inline-block;position:relative}
+#lb .lbpic img{display:block;max-width:calc(100vw - 32px);max-height:calc(100vh - 90px);width:auto;height:auto;border-radius:8px;background:#fff}
 #lb .cap{color:#fff;margin-top:10px;font-size:14px;text-align:center}
 #lb .x{position:absolute;right:16px;top:12px;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}
 @media (max-width:700px){.bar{position:static}.ba,.ba.phone{grid-template-columns:1fr 1fr}.meta{grid-template-columns:1fr}.meta dt{margin-top:6px}}
@@ -79,7 +100,7 @@ th{background:#f7f8fc;font-weight:600;font-size:13px;color:var(--muted)}
 <header><div class="in">
   <img src="../brand/visa-direct-lockup.svg" alt="Visa Direct">
   <div><h1>Test changes · Feedback 16/11/2026</h1>
-  <p>Visa Direct booth demo · 16 mục đã sửa, phân tích nguyên nhân và ảnh before / after</p></div>
+  <p>Visa Direct booth demo · 16 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → kết quả test before / after có khung đánh dấu</p></div>
 </div></header>
 <main>
   <div class="stats" id="stats"></div>
@@ -113,7 +134,7 @@ th{background:#f7f8fc;font-weight:600;font-size:13px;color:var(--muted)}
   <div class="tw"><table class="legend" id="legend"><thead><tr><th>Nhóm</th><th>Nghĩa</th><th>Mục</th><th>Bài học</th></tr></thead><tbody></tbody></table></div>
   <p class="note" style="margin-top:24px">Nguồn: email "Visa Direct demo experience", Natalie Liew (16/11 17:22) và chị Hoa Nguyen (16/11 23:02). Chỉnh sửa trong app: <code>scripts/gen/client-edits.json</code>. Report dạng text: <a href="../docs/feedback/2026-11-16/README.md">README.md</a>.</p>
 </main>
-<div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Đóng">×</button><img alt=""><div class="cap"></div></div>
+<div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Đóng">×</button><div class="lbpic pic"></div><div class="cap"></div></div>
 <script>
 (function () {
 var IMG = '../docs/feedback/2026-11-16/';
@@ -124,23 +145,93 @@ var CAUSE = {
   new:   { name: 'Thay đổi mới so với Figma', color: 'var(--c-new)', mean: 'Mình làm đúng Figma, nay khách đổi yêu cầu', lesson: 'Không phải lỗi. Figma vẫn là nguồn chuẩn; thay đổi của khách nằm riêng trong client-edits.json, khi Figma được cập nhật thì xoá dòng tương ứng' }
 };
 // k = kiosk screenshot (1920×1080), s = one phone screen; after: null = the screen is gone
+// Every item: the feedback verbatim (email 16/11), the image the email carried, the Figma evidence (changes against
+// Figma), the analysis, then the test shots. Shots: [title, shot, {b: before box indexes, a: after box indexes}, after?]
+// (box indexes into docs/feedback/2026-11-16/annotations.json, measured from the DOM of 4c31b5d and of the new build).
+var N_TIME = 'Natalie Liew · 16/11 17:22', H_TIME = 'Hoa Nguyen · 16/11 23:02';
 var ITEMS = [
-  { n: 1, who: 'Natalie', cause: 'mine', title: 'Logo Visa ở màn chờ nhỏ lại', fix: 'Logo rộng 268 → 168 px.', why: 'Mình lấy tỉ lệ theo poster KV, trong khi Natalie muốn theo demo reference (Figma Make).', dec: 'Q7', pairs: [['Màn chờ', 'k01-attract']] },
-  { n: 2, who: 'Natalie', cause: 'shell', title: 'Bỏ chữ "SEND · RECEIVE" ở màn chờ', fix: 'Bỏ dòng chữ này cho màn chờ gọn hơn.', why: 'Shell do mình tự thiết kế, khách muốn bớt chi tiết vì màn đã nhiều chuyển động.', pairs: [['Màn chờ', 'k01-attract']] },
-  { n: 3, who: 'Natalie', cause: 'shell', title: 'Nút Back ở "Choose your journey"', fix: 'Thêm nút "‹ Back" góc trên trái để về màn chờ.', why: 'Màn chọn journey là shell do mình tự thiết kế, trước đó chưa có đường quay lại.', pairs: [['Choose your journey', 'k03-home']] },
-  { n: 4, who: 'Natalie', cause: 'asset', title: 'Một logo Visa Direct thống nhất mọi trang', fix: 'Mọi trang sau màn chờ dùng cùng một logo Visa Direct (trước đó RECEIVE chỉ có "VISA").', why: 'Lúc làm chưa có file logo chính thức. File PNG Natalie gửi chưa lưu về máy, nên tạm dùng bản vector.', dec: 'Q1', pairs: [['Journey RECEIVE', 'k09-flow-receive'], ['Màn Done', 'k04-done-receive']] },
-  { n: 5, who: 'Natalie', cause: 'shell', title: 'Nền Payments in Motion cho mọi trang', fix: 'Ảnh KV của màn chờ làm nền mọi trang, bỏ các vệt sáng vẽ thêm, làm mờ animation tuyến tiền.', why: 'Nền shell do mình tự thiết kế (gradient và vệt sáng mô phỏng KV), khách muốn dùng đúng ảnh KV.', dec: 'Q10', pairs: [['Journey SEND', 'k04-flow-send']] },
-  { n: 6, who: 'Natalie', cause: 'shell', title: 'Global account receive: không tìm thấy nút để đi tiếp', fix: 'Nút "Share" (bước 3) và "Download Receipt" (bước 5) trong app giờ đi tiếp, có vòng nhấp nháy như mọi CTA.', why: 'Figma không có nút đi tiếp ở 2 màn này. Mình đặt nút Next bên ngoài điện thoại nên khách không thấy.', dec: 'Q6', pairs: [['Bước 3 · Receiving details', 'k06-receive-3'], ['Bước 5 · Transfer details', 'k06-receive-5']] },
-  { n: 7, who: 'Natalie', cause: 'new', title: 'Logo Visa trong app sai, cần thay', fix: 'Chữ "VISA" đổi thành logo Visa thật: send-11, receive-1, family-11/12/13, travel-5/6/7/8 (các màn E-seller đã bỏ theo mục 8).', why: 'Figma vẽ chữ VISA làm logo tạm, mình render đúng Figma.', dec: 'Q9', pairs: [['send-11', 's-send-11'], ['receive-1', 's-receive-1'], ['family-13 · Visa Secure', 's-family-13'], ['travel-8', 's-travel-8']] },
-  { n: 8, who: 'Hoa', cause: 'new', title: 'Xoá trải nghiệm E-seller withdrawal', fix: 'Bỏ khỏi màn chọn journey, link, phím tắt và form lead. Link cũ ?zone=vxbs-seller mở màn chờ chung.', why: 'Đổi scope: chị Hoa cần trao đổi với Amazon về luồng này.', dec: 'Q8', pairs: [['Choose your journey', 'k03-home'], ['Link ?zone=vxbs-seller', 'k08-link-vxbs-seller']] },
-  { n: 9, who: 'Hoa', cause: 'new', title: '"Individual receiver" → "Global account receive"', fix: 'Đổi tên ở thẻ journey, nhãn journey, màn Done, form lead. Link mới ?zone=global-account, link cũ vẫn chạy.', why: 'Khách đổi tên trải nghiệm.', pairs: [['Màn Done', 'k04-done-receive']] },
-  { n: 10, who: 'Hoa', cause: 'new', title: '"Virtual account" → "US receiving account"', fix: 'receive-3: "Virtual Account Number" → "US Receiving Account Number".', why: 'Figma ghi "Virtual Account Number", khách đổi tên.', dec: 'Q5', pairs: [['receive-3', 's-receive-3']] },
-  { n: 11, who: 'Hoa', cause: 'new', title: 'Logo Visa ở góc dưới phải của thẻ', fix: 'travel-6: logo Visa xuống góc dưới phải, "DEBIT · DEMO" lên góc trên phải.', why: 'Figma đặt logo ở góc trên.', dec: 'Q3', pairs: [['travel-6 · Card connected', 's-travel-6']] },
-  { n: 12, who: 'Hoa', cause: 'new', title: 'Thêm dòng "Address" ở Travel wallet', fix: 'travel-5: thêm ô "Billing address" dưới Cardholder name, tự điền như các ô khác.', why: 'Figma không có ô địa chỉ.', dec: 'Q4', pairs: [['travel-5 · Add Visa card', 's-travel-5']] },
-  { n: 13, who: 'Hoa', cause: 'new', title: 'Thay màn chờ nạp tiền bằng thông báo nạp tiền Visa', fix: 'Bỏ travel-10 "Funding in progress". Sau khi bấm Approve, thông báo Visa trượt xuống khoảng 3 giây rồi sang "Top-up complete". Journey còn 17 bước.', why: 'Khách đổi luồng (kèm video, chưa có trên máy).', dec: 'Q2', pairs: [['Màn bị bỏ · travel-10', 's-travel-10', null], ['Ngay sau khi bấm Approve', 'k13-travel-after-issuer']] },
-  { n: 14, who: 'Hoa', cause: 'new', title: 'F&F: ghi rõ đang ở góc nhìn của ai', fix: 'Nhãn trên điện thoại: "Minh Anh (receiver) view" ở bước 1–7, "Sarah (sender) view" ở 8–15, "Back to Minh Anh (receiver) view" ở 16–18. Nhãn nhấp sáng khi đổi người.', why: 'Trước đó nhãn ghi "RECEIVER / VIETNAM · Nguyen Minh Anh", khách muốn đúng câu chữ trên.', pairs: [['Bước 1', 'k14-family-1'], ['Bước 8', 'k14-family-8'], ['Bước 16', 'k14-family-16']] },
-  { n: 15, who: 'Hoa', cause: 'new', title: 'F&F: bỏ "Linked card – Visa Debit"', fix: 'family-3: bỏ dòng Linked card.', why: 'Figma có dòng này.', pairs: [['family-3 · Create a payment request', 's-family-3']] },
-  { n: 16, who: 'Hoa', cause: 'new', title: 'F&F: "Billing ZIP" → "Address"', fix: 'family-11: nhãn "Address", ô gợi ý "Street address", tự điền "1 Market St, San Francisco, CA".', why: 'Figma ghi "Billing ZIP".', pairs: [['family-11 · Pay with Visa', 's-family-11']] }
+  { n: 1, who: 'Natalie', time: N_TIME, cause: 'mine', title: 'Logo Visa ở màn chờ nhỏ lại',
+    quote: 'Home page — Visa logo on the top left can be smaller. The proportion should follow the reference demo shared previously.',
+    email: null, fix: 'Logo rộng 268 → 168 px.', why: 'Mình lấy tỉ lệ theo poster KV, trong khi Natalie muốn theo demo reference (Figma Make).', dec: 'Q7',
+    shots: [['Màn chờ', 'k01-attract', { b: [0], a: [0] }]] },
+  { n: 2, who: 'Natalie', time: N_TIME, cause: 'shell', title: 'Bỏ chữ "SEND · RECEIVE" ở màn chờ',
+    quote: 'Removing the text “Send | Receive” will make the page visually less cluttered and cleaner, as there’s quite a bit of motion graphics going on currently.',
+    email: null, fix: 'Bỏ dòng chữ này cho màn chờ gọn hơn.', why: 'Shell do mình tự thiết kế, khách muốn bớt chi tiết vì màn đã nhiều chuyển động.',
+    shots: [['Màn chờ', 'k01-attract', { b: [1], a: [], ghost: [1] }]] },
+  { n: 3, who: 'Natalie', time: N_TIME, cause: 'shell', title: 'Nút Back ở "Choose your journey"',
+    quote: 'All other pages — “Choose your journey” page - can we have a back button in case we want to show the home screen?',
+    email: null, fix: 'Thêm nút "‹ Back" góc trên trái để về màn chờ.', why: 'Màn chọn journey là shell do mình tự thiết kế, trước đó chưa có đường quay lại.',
+    shots: [['Choose your journey', 'k03-home', { b: [], a: [0] }]] },
+  { n: 4, who: 'Natalie', time: N_TIME, cause: 'asset', title: 'Một logo Visa Direct thống nhất mọi trang',
+    quote: 'Visa Direct logo - use the version attached and standardize across all pages',
+    email: [{ attach: 'Visa Direct Logo White.png', desc: 'File đính kèm: logo Visa Direct màu trắng (1023 KB). File chưa lưu về máy.' }],
+    fix: 'Mọi trang sau màn chờ dùng cùng một logo Visa Direct (trước đó RECEIVE chỉ có "VISA").', why: 'Lúc làm chưa có file logo chính thức. File PNG Natalie gửi chưa lưu về máy, nên tạm dùng bản vector.', dec: 'Q1',
+    shots: [['Journey RECEIVE', 'k09-flow-receive', { b: [0], a: [0] }], ['Màn Done', 'k04-done-receive', { b: [0], a: [0] }]] },
+  { n: 5, who: 'Natalie', time: N_TIME, cause: 'shell', title: 'Nền Payments in Motion cho mọi trang',
+    quote: 'To change background to the Payments in Motion visual (same as home page)',
+    email: null, fix: 'Ảnh KV của màn chờ làm nền mọi trang, bỏ các vệt sáng vẽ thêm, làm mờ animation tuyến tiền.', why: 'Nền shell do mình tự thiết kế (gradient và vệt sáng mô phỏng KV), khách muốn dùng đúng ảnh KV.', dec: 'Q10',
+    shots: [['Journey SEND · thay đổi là toàn bộ nền', 'k04-flow-send', { b: [], a: [] }]] },
+  { n: 6, who: 'Natalie', time: N_TIME, cause: 'shell', title: 'Global account receive: không tìm thấy nút để đi tiếp',
+    quote: 'Individual receiver - can’t find the button to click on interface to proceed to next step - is this supposed to be like that?',
+    email: null, fix: 'Nút "Share" (bước 3) và "Download Receipt" (bước 5) trong app giờ đi tiếp, có vòng nhấp nháy như mọi CTA.', why: 'Figma không có nút đi tiếp ở 2 màn này. Mình đặt nút Next bên ngoài điện thoại nên khách không thấy.', dec: 'Q6',
+    shots: [['Bước 3 · Receiving details (before: Next ngoài điện thoại, Share không làm gì)', 'k06-receive-3', { b: [0, 1], a: [0] }], ['Bước 5 · Transfer details', 'k06-receive-5', { b: [0, 1], a: [0] }]] },
+  { n: 7, who: 'Natalie', time: N_TIME, cause: 'new', title: 'Logo Visa trong app sai, cần thay',
+    quote: 'Visa logo is incorrect in the below pages, to replace: Send abroad step 11 · Individual receiver step 1 · E-seller withdrawal: Step 1 to 4, Step 8 · Friends and family: Step 11, 12, 13 · Travel wallet: Step 5, 6, 7, 8',
+    email: null, fix: 'Chữ "VISA" đổi thành logo Visa thật: send-11, receive-1, family-11/12/13, travel-5/6/7/8 (các màn E-seller đã bỏ theo mục 8).', why: 'Figma vẽ chữ VISA làm logo tạm, mình render đúng Figma.', dec: 'Q9',
+    figma: [['send-11', 's-send-11'], ['receive-1', 's-receive-1'], ['family-13', 's-family-13'], ['travel-8', 's-travel-8']], figmaNote: 'Trong Figma, "VISA" là một lớp text (font in đậm nghiêng), không phải logo.',
+    shots: [['send-11', 's-send-11', { b: [0], a: [0] }], ['receive-1', 's-receive-1', { b: [0], a: [0] }], ['family-13 · Visa Secure', 's-family-13', { b: [0], a: [0] }], ['travel-8', 's-travel-8', { b: [0], a: [0] }]] },
+  { n: 8, who: 'Hoa', time: H_TIME, cause: 'new', title: 'Xoá trải nghiệm E-seller withdrawal',
+    quote: 'Please delete the “Eseller withdrawal” experience, I still need to consult with Amazon on the flow of this so we’ll do the Individual experience only.',
+    email: null, fix: 'Bỏ khỏi màn chọn journey, link, phím tắt và form lead. Link cũ ?zone=vxbs-seller mở màn chờ chung.', why: 'Đổi scope: chị Hoa cần trao đổi với Amazon về luồng này.', dec: 'Q8',
+    figmaNote: 'Không có màn Figma để so: đây là thay đổi scope. 8 màn E-seller vẫn có trong Figma (file VXBS, node 15:*).',
+    shots: [['Choose your journey', 'k03-home', { b: [0], a: [2] }], ['Link ?zone=vxbs-seller', 'k08-link-vxbs-seller', { b: [0], a: [0] }]] },
+  { n: 9, who: 'Hoa', time: H_TIME, cause: 'new', title: '"Individual receiver" → "Global account receive"',
+    quote: 'Please change “Individual Receiver” to “Global account receive”',
+    email: null, fix: 'Đổi tên ở thẻ journey, nhãn journey, màn Done, form lead. Link mới ?zone=global-account, link cũ vẫn chạy.', why: 'Khách đổi tên trải nghiệm.',
+    figmaNote: 'Không có màn Figma để so: tên "Individual receiver" nằm ở phần shell, lấy theo brief qua email 9/11 ("Individual receiver via VXBS").',
+    shots: [['Màn Done', 'k04-done-receive', { b: [1], a: [1] }]] },
+  { n: 10, who: 'Hoa', time: H_TIME, cause: 'new', title: '"Virtual account" → "US receiving account"',
+    quote: 'Please change the “Virtual account” on this screenshot below to “US receiving account” for the “Global Account Receive” experience',
+    email: [{ file: 'unnamed(17).png', w: 201, h: 88, desc: 'Ảnh cắt nhỏ (201×88): dòng "Virtual Account Number" ở màn Receiving details (receive-3).' }],
+    fix: 'receive-3: "Virtual Account Number" → "US Receiving Account Number".', why: 'Figma ghi "Virtual Account Number", khách đổi tên.', dec: 'Q5',
+    figma: [['receive-3 · Receiving details', 's-receive-3']],
+    shots: [['receive-3', 's-receive-3', { b: [0], a: [0] }]] },
+  { n: 11, who: 'Hoa', time: H_TIME, cause: 'new', title: 'Logo Visa ở góc dưới phải của thẻ',
+    quote: 'The “Visa” card logo should be on the bottom right corner of the card in below image for the “Travel wallet” experience',
+    email: [{ file: 'unnamed(18).jpg', w: 205, h: 273, desc: 'Ảnh dọc (205×273): thẻ Visa trong Travel wallet, logo đang ở góc trên phải (travel-6 "Card connected").' }],
+    fix: 'travel-6: logo Visa xuống góc dưới phải, "DEBIT · DEMO" lên góc trên phải.', why: 'Figma đặt logo ở góc trên.', dec: 'Q3',
+    figma: [['travel-6 · Card connected', 's-travel-6']],
+    shots: [['travel-6 · Card connected', 's-travel-6', { b: [0, 1], a: [0, 1] }]] },
+  { n: 12, who: 'Hoa', time: H_TIME, cause: 'new', title: 'Thêm dòng "Address" ở Travel wallet',
+    quote: 'Please add an “Address” line in this screen for “Travel wallet” experience',
+    email: [{ file: 'unnamed(19).png', w: 827, h: 435, desc: 'Ảnh ngang (827×435): một màn Travel wallet. Nhiều khả năng là form thẻ "Add Visa card" (travel-5).' }],
+    fix: 'travel-5: thêm ô "Billing address" dưới Cardholder name, tự điền như các ô khác.', why: 'Figma không có ô địa chỉ.', dec: 'Q4',
+    figma: [['travel-5 · Add Visa card (chỗ chèn dòng mới)', 's-travel-5', [1]]],
+    shots: [['travel-5 · Add Visa card', 's-travel-5', { b: [1], a: [1] }]] },
+  { n: 13, who: 'Hoa', time: H_TIME, cause: 'new', title: 'Thay màn chờ nạp tiền bằng thông báo nạp tiền Visa',
+    quote: 'Remove this screen and replicate the Visa top-up completion notification as per attached video, then go to the next (Screen 11 “Top-up complete”) – please give me a call if you have any questions on this part.',
+    email: [{ file: 'unnamed(20).png', w: 598, h: 379, desc: 'Ảnh ngang (598×379): màn cần bỏ, trước "Top-up complete", tức travel-10 "Funding in progress".' }, { attach: 'Travel wallet screen.mp4', desc: 'Video đính kèm (2,3 MB): thông báo nạp tiền Visa cần làm lại. File chưa lưu về máy.' }],
+    fix: 'Bỏ travel-10 "Funding in progress". Sau khi bấm Approve, thông báo Visa trượt xuống khoảng 3 giây rồi sang "Top-up complete". Journey còn 17 bước.', why: 'Khách đổi luồng (kèm video, chưa có trên máy).', dec: 'Q2',
+    figma: [['travel-10 · Funding in progress', 'travel-10', null]],
+    shots: [['Màn bị bỏ · travel-10', 's-travel-10', { b: [], a: [] }, null], ['Ngay sau khi bấm Approve', 'k13-travel-after-issuer', { b: [0], a: [0] }]] },
+  { n: 14, who: 'Hoa', time: H_TIME, cause: 'new', title: 'F&F: ghi rõ đang ở góc nhìn của ai',
+    quote: 'On the “Friends and Family” experience, please separate the receiver (requester) view and the sender view by adding wording to clarify: Minh Anh (receiver) view · Sarah (sender) view – from step “Sarah receives the link” · Back to Minh Anh (receiver) view – from step “Money received notification”',
+    email: [{ file: 'unnamed(21).png', w: 787, h: 335, desc: 'Ảnh ngang (787×335): các bước đầu của F&F, góc nhìn Minh Anh.' }, { file: 'unnamed(22).png', w: 348, h: 47, desc: 'Ảnh cắt (348×47): tên bước "Sarah receives the link".' }, { file: 'unnamed(23).png', w: 576, h: 325, desc: 'Ảnh ngang (576×325): bước "Money received notification".' }],
+    fix: 'Nhãn trên điện thoại: "Minh Anh (receiver) view" ở bước 1–7, "Sarah (sender) view" ở 8–15, "Back to Minh Anh (receiver) view" ở 16–18. Nhãn nhấp sáng khi đổi người.', why: 'Trước đó nhãn ghi "RECEIVER / VIETNAM · Nguyen Minh Anh", khách muốn đúng câu chữ trên.',
+    figmaNote: 'Figma storyboard ghi tên làn (swimlane) "RECEIVER / VIETNAM · Nguyen Minh Anh" và "SENDER / UNITED STATES · Sarah Nguyen". Bản cũ lấy đúng 2 dòng này làm nhãn.',
+    shots: [['Bước 1', 'k14-family-1', { b: [0], a: [0] }], ['Bước 8', 'k14-family-8', { b: [0], a: [0] }], ['Bước 16', 'k14-family-16', { b: [0], a: [0] }]] },
+  { n: 15, who: 'Hoa', time: H_TIME, cause: 'new', title: 'F&F: bỏ "Linked card – Visa Debit"',
+    quote: 'Remove the “Linked card” – Visa Debit from this screen in the “Friends and Family Experience”',
+    email: [{ file: 'unnamed(24).png', w: 289, h: 334, desc: 'Ảnh dọc (289×334): khung "Receive into / Linked card · Visa Debit" ở family-3 "Create a payment request".' }],
+    fix: 'family-3: bỏ dòng Linked card.', why: 'Figma có dòng này.',
+    figma: [['family-3 · Create a payment request', 's-family-3']],
+    shots: [['family-3 · Create a payment request', 's-family-3', { b: [0], a: [] , ghost: [0] }]] },
+  { n: 16, who: 'Hoa', time: H_TIME, cause: 'new', title: 'F&F: "Billing ZIP" → "Address"',
+    quote: 'Please change “billing zip” line from this screenshot in “Friends and Family” experience to “Address”',
+    email: [{ file: 'unnamed(25).png', w: 810, h: 421, desc: 'Ảnh ngang (810×421): form "Pay with Visa" (family-11), dòng "Billing ZIP".' }],
+    fix: 'family-11: nhãn "Address", ô gợi ý "Street address", tự điền "1 Market St, San Francisco, CA".', why: 'Figma ghi "Billing ZIP".',
+    figma: [['family-11 · Pay with Visa', 's-family-11', [1]]],
+    shots: [['family-11 · Pay with Visa', 's-family-11', { b: [1], a: [1] }]] }
 ];
 var DECISIONS = [
   ['Q1', 'File "Visa Direct Logo White.png" của Natalie chưa có trên máy', 'Dùng logo Visa Direct vector đang có (lấy từ Figma Make) cho mọi trang', 'Thay file, sửa 1 hằng số BRAND_DIRECT trong app.js'],
@@ -181,30 +272,64 @@ $('#filters').innerHTML = '<button class="chip" data-c="all">Tất cả · 16</b
   return '<button class="chip" data-c="' + k + '"><i style="background:' + CAUSE[k].color + '"></i>' + CAUSE[k].name + ' · ' + counts[k] + '</button>';
 }).join('');
 
-function figure(dir, file, cap, after, label) {
-  if (!file) return '<figure class="gone"><div>Màn này đã bỏ khỏi journey</div></figure>';
-  var src = IMG + dir + '/' + file + '.jpg';
-  return '<figure class="' + (after ? 'after' : '') + '" data-src="' + src + '" data-cap="' + esc(label + ' · ' + cap) + '"><img loading="lazy" src="' + src + '" alt="' + esc(cap + ' ' + label) + '"><figcaption>' + cap + '</figcaption></figure>';
+var ANN = {};
+// a shot with the change boxed: red on the old build and Figma, green on the new one; ghost = where something was
+function boxes(sz, list, cls) {
+  return (list || []).map(function (b, i) {
+    var p = 6, x = (b[0] - p) / sz.w * 100, y = (b[1] - p) / sz.h * 100, w = (b[2] + 2 * p) / sz.w * 100, h = (b[3] + 2 * p) / sz.h * 100;
+    return '<i class="bx ' + cls + '" style="left:' + x + '%;top:' + y + '%;width:' + w + '%;height:' + h + '%"><b>' + (i + 1) + '</b></i>';
+  }).join('');
+}
+function pick(arr, idx) { return idx ? idx.map(function (i) { return arr[i]; }).filter(Boolean) : arr; }
+function figure(src, cap, kind, label, sz, bx) {
+  if (!src) return '<figure class="gone"><div>Màn này đã bỏ khỏi journey</div></figure>';
+  var ov = sz && bx ? '<span class="ov">' + bx + '</span>' : '';
+  return '<figure class="' + kind + '" data-src="' + src + '" data-cap="' + esc(label + ' · ' + cap) + '"><figcaption>' + cap + '</figcaption><span class="pic"><img loading="lazy" src="' + src + '" alt="' + esc(cap + ' ' + label) + '">' + ov + '</span></figure>';
+}
+function emailBlock(i) {
+  if (!i.email) return '<p class="note">Email không kèm ảnh cho mục này.</p>';
+  return '<div class="mails">' + i.email.map(function (m) {
+    if (m.attach) return '<div class="mail missing"><b>📎 ' + esc(m.attach) + '</b><span>' + esc(m.desc) + '</span></div>';
+    var src = IMG + 'email/' + encodeURIComponent(m.file);
+    return '<div class="mail"><span class="mimg"><img src="' + src + '" alt="" onerror="this.parentNode.classList.add(\'nofile\')"><em>Ảnh <code>' + esc(m.file) + '</code> (' + m.w + '×' + m.h + ') chưa có trên máy. Lưu thư mục ảnh của email vào docs/feedback/2026-11-16/email/ để hiện.</em></span><span>' + esc(m.desc) + '</span></div>';
+  }).join('') + '</div>';
+}
+function figmaBlock(i) {
+  if (i.cause !== 'new') return '';
+  var body = (i.figma || []).map(function (f) {
+    var a = ANN[f[1]], key = a && a.figma ? null : f[1];
+    if (a && a.figma) return '<div class="pair"><h4>' + esc(f[0]) + '</h4><div class="ba phone one">' + figure(IMG + a.figma.img, 'Figma', 'figma', '#' + i.n + ' ' + f[0], a.figma, boxes(a.figma, pick(a.figma.boxes, f[2]), 'red')) + '</div></div>';
+    return '<div class="pair"><h4>' + esc(f[0]) + '</h4><div class="ba phone one">' + figure(IMG + 'figma/' + key + '.png', 'Figma', 'figma', '#' + i.n + ' ' + f[0]) + '</div></div>';
+  }).join('');
+  return '<section class="step"><h5><span>3</span>Figma evidence (bản design gốc, mình đã làm đúng)</h5>' + (i.figmaNote ? '<p class="note">' + esc(i.figmaNote) + '</p>' : '') + (body ? '<div class="pairs">' + body + '</div>' : '') + '</section>';
+}
+function shotsBlock(i, step) {
+  return '<section class="step"><h5><span>' + step + '</span>Kết quả test: before / after <small>khung đỏ = chỗ cần sửa · khung xanh = đã sửa · khung nét đứt = chỗ đã bỏ</small></h5><div class="pairs">' + i.shots.map(function (p) {
+    var phone = p[1].charAt(0) === 's', a = ANN[p[1]], sel = p[2] || {}, afterFile = p.length > 3 ? p[3] : p[1];
+    var bb = a ? boxes(a.before, pick(a.before.boxes, sel.b), 'red') : '';
+    var ab = a ? boxes(a.after, pick(a.after.boxes, sel.a), 'green') + (sel.ghost ? boxes(a.after, pick(a.before.boxes, sel.ghost), 'ghost') : '') : '';
+    return '<div class="pair"><h4>' + esc(p[0]) + '</h4><div class="ba' + (phone ? ' phone' : '') + '">' +
+      figure(IMG + 'before/' + p[1] + '.jpg', 'Before', 'before', '#' + i.n + ' ' + p[0], a && a.before, bb) +
+      figure(afterFile ? IMG + state.after + '/' + afterFile + '.jpg' : null, state.after === 'after-local' ? 'After · local' : 'After · domain', 'after', '#' + i.n + ' ' + p[0], a && a.after, ab) + '</div></div>';
+  }).join('') + '</div></section>';
 }
 function render() {
   $('#items').innerHTML = ITEMS.filter(function (i) { return state.cause === 'all' || i.cause === state.cause; }).map(function (i) {
-    var c = CAUSE[i.cause];
-    var pairs = i.pairs.map(function (p) {
-      var phone = p[1].charAt(0) === 's', after = p.length > 2 ? p[2] : p[1];
-      return '<div class="pair"><h4>' + esc(p[0]) + '</h4><div class="ba' + (phone ? ' phone' : '') + '">' +
-        figure('before', p[1], 'Before', false, '#' + i.n + ' ' + p[0]) +
-        figure(state.after, after, state.after === 'after-local' ? 'After · local' : 'After · domain', true, '#' + i.n + ' ' + p[0]) + '</div></div>';
-    }).join('');
-    return '<article class="item" style="--cc:' + c.color + '"><header><span class="num">' + i.n + '</span><h3>' + esc(i.title) + '</h3>' +
+    var c = CAUSE[i.cause], fig = i.cause === 'new';
+    return '<article class="item" id="item-' + i.n + '" style="--cc:' + c.color + '"><header><span class="num">' + i.n + '</span><h3>' + esc(i.title) + '</h3>' +
       '<div class="tags"><span class="tag">' + i.who + '</span><span class="tag cause">' + c.name + '</span><span class="tag done">✓ Done</span>' + (i.dec ? '<span class="tag dec">Tự chốt ' + i.dec + '</span>' : '') + '</div></header>' +
-      '<dl class="meta"><dt>Đã sửa</dt><dd>' + esc(i.fix) + '</dd><dt>Nguyên nhân</dt><dd>' + esc(i.why) + '</dd></dl><div class="pairs">' + pairs + '</div></article>';
+      '<section class="step"><h5><span>1</span>Feedback nguyên văn</h5><blockquote>' + esc(i.quote) + '<cite>' + esc(i.time) + ' · email "Visa Direct demo experience"</cite></blockquote></section>' +
+      '<section class="step"><h5><span>2</span>Ảnh mô tả trong email</h5>' + emailBlock(i) + '</section>' +
+      figmaBlock(i) +
+      '<section class="step"><h5><span>' + (fig ? 4 : 3) + '</span>Phân tích</h5><dl class="meta"><dt>Đã sửa</dt><dd>' + esc(i.fix) + '</dd><dt>Nguyên nhân</dt><dd>' + esc(i.why) + '</dd>' + (i.dec ? '<dt>Tự chốt</dt><dd>' + i.dec + ' (xem bảng "Các điểm tự chốt")</dd>' : '') + '</dl></section>' +
+      shotsBlock(i, fig ? 5 : 4) + '</article>';
   }).join('');
   [].forEach.call(document.querySelectorAll('#filters .chip'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.c === state.cause)); });
   [].forEach.call(document.querySelectorAll('#src button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === state.after)); });
 }
 $('#filters').addEventListener('click', function (e) { var b = e.target.closest('.chip'); if (b) { state.cause = b.dataset.c; render(); } });
 $('#src').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; state.after = b.dataset.v; try { localStorage.setItem('tc-after', state.after); } catch (err) {} render(); });
-render();
+fetch(IMG + 'annotations.json').then(function (r) { return r.json(); }).then(function (d) { ANN = d; }).catch(function () {}).then(render);
 
 $('#decisions tbody').innerHTML = DECISIONS.map(function (d) { return '<tr><td><b>' + d[0] + '</b></td><td>' + esc(d[1]) + '</td><td>' + esc(d[2]) + '</td><td class="note">' + esc(d[3]) + '</td></tr>'; }).join('');
 $('#tests tbody').innerHTML = TESTS.map(function (t) { return '<tr><td>' + esc(t[0]) + '</td><td class="pass">' + esc(t[1]) + '</td></tr>'; }).join('');
@@ -225,7 +350,7 @@ fetch(IMG + 'regression.json').then(function (r) { return r.json(); }).then(func
 
 // lightbox: click an image; ←/→ moves through the images on the page
 var lb = $('#lb'), figs = [], at = 0;
-function open(i) { figs = [].slice.call(document.querySelectorAll('figure[data-src]')); at = (i + figs.length) % figs.length; $('img', lb).src = figs[at].dataset.src; $('.cap', lb).textContent = figs[at].dataset.cap + '  (←/→)'; lb.classList.add('on'); }
+function open(i) { figs = [].slice.call(document.querySelectorAll('figure[data-src]')); at = (i + figs.length) % figs.length; $('.lbpic', lb).innerHTML = figs[at].querySelector('.pic').innerHTML; $('.cap', lb).textContent = figs[at].dataset.cap + '  (←/→)'; lb.classList.add('on'); }
 document.addEventListener('click', function (e) { var f = e.target.closest('figure[data-src]'); if (f) open([].indexOf.call(document.querySelectorAll('figure[data-src]'), f)); });
 lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('x')) lb.classList.remove('on'); });
 document.addEventListener('keydown', function (e) { if (!lb.classList.contains('on')) return; if (e.key === 'Escape') lb.classList.remove('on'); if (e.key === 'ArrowRight') open(at + 1); if (e.key === 'ArrowLeft') open(at - 1); });
