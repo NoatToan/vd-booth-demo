@@ -1,7 +1,7 @@
 // Every journey, clicked through as a visitor would on the booth screen (1920×1080): lock link → attract → each step
 // by its own CTA, the kiosk Next / Finish, or the auto-advance → Done with the lead-form QR. One kiosk shot per step.
 import { test, expect } from '@playwright/test';
-import { SCREENS, ZONES, write, result } from './lib.mjs';
+import { KIOSK_SCREENS as SCREENS, ZONES, write, result } from './lib.mjs';
 
 const screenKey = page => page.locator('#phone').getAttribute('data-screen');
 

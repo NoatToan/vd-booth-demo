@@ -12,7 +12,8 @@ const QR_OVERRIDE = 'https://example.org/vd-booth-selfcheck';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const win = s => { const m = /^(?:auto|scan):(\d+)-(\d+)/.exec(s || ''); return m ? [+m[1], +m[2]] : null; };
 
-const ZONES = ['send', 'receive', 'collect', 'family', 'travel'];
+// the kiosk's experiences (app.js ZONES): E-seller withdrawal (collect) is off the booth since 2026-11-16
+const ZONES = ['send', 'receive', 'family', 'travel'];
 export async function runFlow(browser, { zones = ZONES, imgDir } = {}) {
   const F = { steps: [], fails: [], checks: [], asserts: 0, runs: [] };
   const allLogs = [];

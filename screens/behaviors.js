@@ -237,9 +237,20 @@ B['collect-8'] = { enter(fr) { stagger(kids(fr, '15:5615'), { delay: 150, step: 
 
 // AFT · travel wallet (XinChaoVietnam)
 B['travel-2'] = { enter: autofill(['2:15860', '2:15864', '2:15869', '2:15874'], '2:15884') };
-B['travel-5'] = { enter: autofill(['2:16027', '2:16031', '2:16043'], '2:16053', { total: 2400 }) };
+B['travel-5'] = { enter: autofill(['2:16027', '2:16027~addr', '2:16031', '2:16043'], '2:16053', { total: 2800 }) };
 B['travel-7'] = { enter: autofill(['2:16131'], '2:16174', { total: 900 }) };
+// client feedback 2026-11-16 (Hoa #6): "Funding in progress" is left out (scripts/gen/client-edits.json); after the
+// issuer approves, the phone shows Visa's top-up completion notification, then Top-up complete. Amounts as in Figma.
+B['travel-9'] = {
+  go(fr, api, scr, done) {
+    const n = api.fx(scr, 'fx-notify', `<div class="ic"><img src="brand/visa-wordmark.svg" alt="Visa"></div>
+      <div class="tx"><div class="hd"><b>Visa</b><span>now</span></div><b>Top-up complete</b>
+      <p>AUD 500.00 added as VND 8,500,000 to your XinChaoVietnam wallet.</p></div>`);
+    api.later(() => n.classList.add('out'), api.lowFx ? 2600 : 2900);
+    api.later(done, api.lowFx ? 2900 : 3250);
+  }
+};
 // AFT · friends and family (NovaBank)
 B['family-3'] = { enter: autofill(['2:46985', '2:46993', '2:46999'], '2:47014', { total: 2600 }) };
-B['family-11'] = { enter: (fr, api) => simulate(fr, api, [['2:47654', '4111 1234 5678 4812'], ['2:47660', '08/29'], ['2:47664', '•••'], ['2:47669', 'Sarah Nguyen'], ['2:47673', '94107']], { cta: '2:47683' }) };
+B['family-11'] = { enter: (fr, api) => simulate(fr, api, [['2:47654', '4111 1234 5678 4812'], ['2:47660', '08/29'], ['2:47664', '•••'], ['2:47669', 'Sarah Nguyen'], ['2:47673', '1 Market St, San Francisco, CA']], { cta: '2:47683' }) };
 })();

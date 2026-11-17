@@ -14,8 +14,7 @@ An interactive experience for the **Visa Direct** booth at the forum. Visitors w
 One link per booth screen (each locks the screen to a single experience):
 
 - SEND · Send at Vietnam Pioneer Bank via Visa Direct: https://vd-booth-demo.vercel.app/?zone=send
-- RECEIVE · Individual receiver via VXBS: https://vd-booth-demo.vercel.app/?zone=vxbs-individual
-- RECEIVE · E-seller withdrawal via VXBS: https://vd-booth-demo.vercel.app/?zone=vxbs-seller
+- RECEIVE · Global account receive via VXBS: https://vd-booth-demo.vercel.app/?zone=global-account (the old `?zone=vxbs-individual` still works)
 - RECEIVE · Cross-border AFT, friends and family (me-to-you): https://vd-booth-demo.vercel.app/?zone=aft-family
 - RECEIVE · Cross-border AFT, travel app (me-to-me): https://vd-booth-demo.vercel.app/?zone=aft-travel
 
@@ -25,21 +24,20 @@ One link per booth screen (each locks the screen to a single experience):
 |---|---|---|
 | ![Home](docs/home.png) | ![SEND journey](docs/journey-send.png) | ![Done](docs/done.png) |
 
-| RECEIVE | COLLECT |
-|---|---|
-| ![RECEIVE journey](docs/journey-receive.png) | ![COLLECT journey](docs/journey-collect.png) |
+| RECEIVE |
+|---|
+| ![RECEIVE journey](docs/journey-receive.png) |
 
 ## Journeys
 
-All 61 screens come from four Figma prototypes and keep their copy, figures and layout exactly; `figma/` is the single source of truth.
+The screens come from four Figma prototypes; `figma/` is the single source of truth. The client's changes on top of Figma (feedback 2026-11-16) are listed edit by edit in `scripts/gen/client-edits.json` (content) and `scripts/gen/palette.json` (colours), applied to the kiosk build only. The E-seller withdrawal journey is off the booth until Visa settles that flow (its screens stay in the Figma build). Report with before / after screenshots: [`docs/feedback/2026-11-16/README.md`](docs/feedback/2026-11-16/README.md).
 
 | Experience | Story | Steps |
 |---|---|---|
 | **SEND**: VISA Direct × Vietnam Pioneer Bank | A Vietnam Pioneer Bank customer in Vietnam sends AUD 2,900 to a family member's NAB account in Australia for medical expenses: purpose → recipient → supporting documents (OCR checked) → amount with FX rate lock → review → Face ID → paperwork review → approved → 6-stage tracking → Visa Direct confirmation. | 11 |
-| **RECEIVE · Individual receiver** via VXBS | Linh in Vietnam receives 2,500 USD from Daniel Carter in the US: quote → USD receiving details and QR → live tracking → transfer details → funds arrived in Vietnam Bank (63,295,800 VND). | 6 |
-| **RECEIVE · E-seller withdrawal** via VXBS | Linh Studio collects marketplace earnings: earnings dashboard → upcoming payouts → connected channels (Amazon, Shopify, invoices) → multi-currency balances → withdraw → FX conversion → payout tracking → settlement history. | 8 |
+| **RECEIVE · Global account receive** via VXBS | Linh in Vietnam receives 2,500 USD from Daniel Carter in the US: quote → USD receiving details and QR → live tracking → transfer details → funds arrived in Vietnam Bank (63,295,800 VND). | 6 |
 | **RECEIVE · Friends & family**: cross-border AFT, me-to-you (NovaBank) | Minh Anh in Vietnam requests USD 200 from Sarah in the US with a secure link: request → share via iMessage → *Sarah's phone:* secure payment page → pay with Visa (USD 202 incl. fee) → Visa Secure → sent → *Minh Anh's phone:* notification → 4,900,000 VND in her bank account in 2m 28s. The kiosk shows whose phone is on screen. | 18 |
-| **RECEIVE · Travel wallet**: cross-border AFT, me-to-me (XinChaoVietnam) | James from Australia creates a Vietnam travel wallet, links his Visa Debit, adds AUD 500 = 8,500,000 ₫, then pays Lotus Coffee in Hanoi by QR (185,000 ₫) and reviews his wallet and trip. | 18 |
+| **RECEIVE · Travel wallet**: cross-border AFT, me-to-me (XinChaoVietnam) | James from Australia creates a Vietnam travel wallet, links his Visa Debit, adds AUD 500 = 8,500,000 ₫, then pays Lotus Coffee in Hanoi by QR (185,000 ₫) and reviews his wallet and trip. After the issuer approves, a Visa top-up notification leads to Top-up complete. | 17 |
 
 How visitors move through each journey (one hotspot per screen, kiosk **Next** and **Finish** where the design has no call to action, auto-advance on status screens) is documented in [`docs/workflow.html`](docs/workflow.html). The product decisions are in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
@@ -103,16 +101,16 @@ Uses the installed Google Chrome (`channel: 'chrome'`). A screen passes when it 
 
 | Parameter | Meaning | Default |
 |---|---|---|
-| `zone=send\|vxbs-individual\|vxbs-seller\|aft-family\|aft-travel` | Lock the screen to one experience (short keys `receive`, `collect`, `family`, `travel` also work) | experience picker |
+| `zone=send\|global-account\|aft-family\|aft-travel` | Lock the screen to one experience (`vxbs-individual` and the short keys `receive`, `family`, `travel` also work) | experience picker |
 | `idle=60` | Seconds without a touch before returning to the attract screen | `60` |
 | `reload=2` | Hours between automatic reloads (attract screen only, `0` = off) | `2` |
 | `fx=low` | Lighter background animation for low-end machines | full |
 | `qr=https://...` | URL encoded in the Done screen QR code | `https://vd-booth-demo.vercel.app/` |
-| `goto=home \| send:3 \| done:collect` | Jump straight to a screen (1-based step, for testing) | none |
+| `goto=home \| send:3 \| done:family` | Jump straight to a screen (1-based step, for testing) | none |
 | `solo=send-1` | Render a single phone screen at 1x and full Figma height, without the kiosk (used by the verification harness). Format `zone-n`, n is 1-based | none |
 | `solo=receive-2&clip=1` | The same screen inside the 402×874 kiosk viewport (fixed header and footer) | none |
 
-Keyboard shortcuts: `F` full screen · `Esc` back to the attract screen · `1/2/3` open SEND / RECEIVE / COLLECT.
+Keyboard shortcuts: `F` full screen · `Esc` back to the attract screen · `1–4` open SEND / Global account receive / Friends & family / Travel wallet.
 
 ## Running at the booth
 

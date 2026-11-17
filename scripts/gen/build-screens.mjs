@@ -6,6 +6,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadFile, twinMap, isSvgRoot, solidPaints } from './lib/figma.mjs';
 import { Translator } from './lib/node.mjs';
+import { loadEdits } from './lib/edits.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const manifest = JSON.parse(readFileSync(`${ROOT}/scripts/gen/screens.json`, 'utf8'));
@@ -22,6 +23,8 @@ for (const o of overridesList) {
 const argv = process.argv.slice(2);
 const FIGMA_ONLY = argv.includes('--figma');
 const OUT_DIR = argv.includes('--out') ? resolve(argv[argv.indexOf('--out') + 1]) : `${ROOT}/screens/gen`;
+// client content changes (scripts/gen/client-edits.json), kiosk build only, like the palette
+const edits = FIGMA_ONLY ? null : loadEdits(ROOT);
 const palette = FIGMA_ONLY ? {} : JSON.parse(readFileSync(`${ROOT}/scripts/gen/palette.json`, 'utf8')).zones;
 const SCROLL_NAME = { send: 'Screen content', receive: 'Scroll content', collect: 'Content', family: 'Screen content', travel: 'Content' };
 // image fills are served from figma/assets/<key>/fills/<imageRef>.<ext> (downloaded or unzipped from the .fig)
@@ -80,7 +83,9 @@ function hotspotFor(f, triggerId, frameId, scrollId) {
 
 const out = [];
 const counts = {};
-for (const sc of manifest.screens) {
+for (const sc0 of manifest.screens) {
+  if (edits && edits.dropped.has(sc0.key)) continue;
+  const sc = edits && edits.goFor(sc0.key) ? { ...sc0, go: edits.goFor(sc0.key) } : sc0;
   const [zone, nStr] = sc.key.split('-');
   const f = file(manifest.files[zone]);
   const app = f.byId.get(sc.node);
@@ -96,7 +101,7 @@ for (const sc of manifest.screens) {
     scrollId: scrollNode.id, frameId: app.id,
     idOf: n => (map ? { node: map.get(n.id), twin: n.id } : { node: n.id }),
   });
-  const html = tr.render(struct, null, 0);
+  const html = edits ? edits.apply(sc.key, tr.render(struct, null, 0)) : tr.render(struct, null, 0);
   const hot = /^\d+:\d+$/.test(sc.go) ? hotspotFor(f, sc.go, app.id, scrollNode.id) : null;
   if (sc.back && !f.byId.get(sc.back)) throw new Error(`${sc.key}: back ${sc.back} not found`);
   const h = struct.absoluteBoundingBox.height;

@@ -12,10 +12,15 @@ export const FIGMA_BUILD = path.join(OUT, 'figma-build');
 // zones the client recoloured on top of Figma (scripts/gen/palette.json)
 export const PALETTE = JSON.parse(fs.readFileSync(path.join(REPO, 'scripts/gen/palette.json'), 'utf8')).zones;
 export const SCREENS = JSON.parse(fs.readFileSync(path.join(REPO, 'scripts/verify/screens.json'), 'utf8')).screens;
+// the journeys as the kiosk plays them: the kiosk build, with the client's edits (scripts/gen/client-edits.json:
+// dropped screens, changed tap targets) on top of the Figma manifest
+const genJs = fs.readFileSync(path.join(REPO, 'screens/gen/screens.js'), 'utf8');
+export const KIOSK_SCREENS = JSON.parse(genJs.slice(genJs.indexOf('['), genJs.lastIndexOf(']') + 1)).map(({ html, ...s }) => s);
+export const EDITS = JSON.parse(fs.readFileSync(path.join(REPO, 'scripts/gen/client-edits.json'), 'utf8')).edits;
+// E-seller withdrawal (collect) is off the booth since 2026-11-16 (client feedback)
 export const ZONES = [
   { zone: 'send', link: 'send', name: 'SEND · Send abroad (Visa Direct)' },
-  { zone: 'receive', link: 'vxbs-individual', name: 'RECEIVE · Individual receiver (VXBS)' },
-  { zone: 'collect', link: 'vxbs-seller', name: 'RECEIVE · E-seller withdrawal (VXBS)' },
+  { zone: 'receive', link: 'global-account', name: 'RECEIVE · Global account receive (VXBS)' },
   { zone: 'family', link: 'aft-family', name: 'RECEIVE · Friends & family (cross-border AFT)' },
   { zone: 'travel', link: 'aft-travel', name: 'RECEIVE · Travel wallet (cross-border AFT)' },
 ];

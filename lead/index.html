@@ -121,8 +121,7 @@ button.primary svg{width:18px;height:18px}
           <select name="experience" id="experience">
             <option value="">Choose one</option>
             <option value="send">Send abroad · Visa Direct</option>
-            <option value="receive">Individual receiver · VXBS</option>
-            <option value="collect">E-seller withdrawal · VXBS</option>
+            <option value="receive">Global account receive · VXBS</option>
             <option value="family">Friends &amp; family · cross-border AFT</option>
             <option value="travel">Travel wallet · cross-border AFT</option>
           </select></label>
@@ -148,7 +147,7 @@ button.primary svg{width:18px;height:18px}
 (() => {
   // Client rules mirror api/_validate.js (the server is the authority and re-checks everything).
   const P = new URLSearchParams(location.search), f = document.getElementById('form'), startedAt = Date.now();
-  const NAMES = { send: 'Send abroad · Visa Direct', receive: 'Individual receiver · VXBS', collect: 'E-seller withdrawal · VXBS', family: 'Friends & family · cross-border AFT', travel: 'Travel wallet · cross-border AFT' };
+  const NAMES = { send: 'Send abroad · Visa Direct', receive: 'Global account receive · VXBS', collect: 'E-seller withdrawal · VXBS', family: 'Friends & family · cross-border AFT', travel: 'Travel wallet · cross-border AFT' };
   const INTEREST = { send: 'visa-direct', receive: 'vxbs', collect: 'vxbs', family: 'cross-border-aft', travel: 'cross-border-aft' };
   const EMAIL = /^(?!\.)(?!.*\.\.)[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]{1,64}(?<!\.)@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,24}$/;
   const exp = P.get('exp');

@@ -8,8 +8,8 @@
   Visa Direct forum booth: kiosk demo for a 16:9 touch LED / TV (designed at 1920x1080, scales to any size).
   The phone screens are generated from the Figma prototypes (screens/gen/*, see scripts/gen/build-screens.mjs).
   URL params:
-    ?zone=send|vxbs-individual|vxbs-seller|aft-family|aft-travel  lock this screen to one experience (one TV each;
-                                the short keys receive|collect|family|travel also work). No param = home chooser.
+    ?zone=send|global-account|aft-family|aft-travel  lock this screen to one experience (one TV each; vxbs-individual
+                                and the short keys receive|family|travel also work). No param = home chooser.
     ?idle=60                    seconds without touch before returning to the attract screen
     ?qr=https://...             link encoded in the end-screen QR (default https://vd-booth-demo.vercel.app/)
     ?reload=2                   hours between automatic page reloads (only on the attract screen, 0 = off)
@@ -17,7 +17,7 @@
     ?goto=home | send:3 | done:collect | travel:5   jump straight to a screen (step is 1-based; for testing)
     ?solo=send-1                render one phone screen only, unscaled at its full Figma height (verification)
     ?solo=receive-2&clip=1      the same screen in the kiosk viewport (402x874, AFT 414x896; fixed header and footer)
-  Keys: F fullscreen · Esc attract screen · 1–5 open SEND / VXBS individual / VXBS seller / AFT family / AFT travel
+  Keys: F fullscreen · Esc attract screen · 1–4 open SEND / Global account receive / AFT family / AFT travel
   Brand: Visa pack "Payments in Motion · Money Movement Edition" (brand/, vendor/fonts/VisaDialect-Regular.ttf, web use
   approved by the client 2026-11-11); the shell copy lives in app.js META.
 -->
@@ -36,7 +36,9 @@ html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Vi
 button{font-family:inherit;cursor:pointer}
 [hidden]{display:none!important}
 #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center;overflow:hidden;
-  background:linear-gradient(160deg,#0a2a95 0%,#1336c9 42%,#0f2db8 68%,#08207a 100%)}
+  background:#1336c9 url(brand/kv-background.jpg) center/cover no-repeat}
+/* every page shows the Payments in Motion KV, as the attract screen (client feedback 2026-11-16); the drawn streaks
+   that imitated it are off, the route animation is fainter so the pages stay calm */
 /* Payments in Motion KV (brand/kv-reference.jpg): Visa blue with soft diagonal light streaks, drifting slowly */
 #kv{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;overflow:hidden} /* exactly the stage: overflow here would make #stage scrollable (scrollIntoView would shift the whole kiosk) */
 /* streaks: soft radial gradients (no filter: blur, which repaints every frame on weak players), moved by transform only */
@@ -49,10 +51,12 @@ button{font-family:inherit;cursor:pointer}
 #kv i:nth-child(6){left:1480px;top:1010px;background:radial-gradient(closest-side,rgba(240,138,58,.6),transparent);height:220px;animation-duration:24s;animation-delay:-6s}
 @keyframes streak{from{transform:rotate(-21deg) translate(-140px,40px)}to{transform:rotate(-21deg) translate(140px,-40px)}}
 .lowfx #kv i{animation:none}
-#bg{position:absolute;top:0;right:0;bottom:0;left:0;width:1920px;height:1080px;opacity:.45;transition:opacity .4s}
+#kv{display:none}
+#bg{position:absolute;top:0;right:0;bottom:0;left:0;width:1920px;height:1080px;opacity:.3;transition:opacity .4s}
 #stage.idle-view #bg{opacity:0}
 #shade{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;
-  background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(6,22,110,.35) 0%,rgba(6,22,110,.22) 60%,rgba(6,22,110,.08) 100%)}
+  background:radial-gradient(ellipse 65% 60% at 50% 50%,rgba(6,22,110,.45) 0%,rgba(6,22,110,.32) 60%,rgba(6,22,110,.2) 100%)}
+#stage.idle-view #shade{opacity:0}
 #app{position:absolute;top:0;right:0;bottom:0;left:0}
 
 /* ---------- brand corner (per journey, Q7) ---------- */
@@ -96,7 +100,7 @@ button{font-family:inherit;cursor:pointer}
 .lowfx .idle .touch{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(8,28,120,.8)}
 .lowfx .idle .touch::before,.lowfx .idle .touch::after{animation:none;opacity:0}
 /* the KV layout at 1920×1080: logo (104,84), title lockup (410,429)-(1508,650), the city under EDITION */
-.idle .kv-logo{position:absolute;left:104px;top:84px;width:268px;height:auto}
+.idle .kv-logo{position:absolute;left:104px;top:84px;width:168px;height:auto} /* smaller than the KV poster (268), client feedback 2026-11-16 */
 /* accent sweep under the title, as the Make splash (#3aa0ff → #f7b600) */
 .idle .kv-sweep{position:absolute;left:750px;top:716px;width:420px;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,#3aa0ff,#f7b600,transparent);transform-origin:center;animation:sweep .8s .8s cubic-bezier(.22,1,.36,1) both}
 @keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
@@ -120,6 +124,7 @@ button{font-family:inherit;cursor:pointer}
 .touch b{color:var(--z)}
 
 /* ---------- home ---------- */
+.back-top{position:absolute;left:64px;top:48px;z-index:5}
 .home{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;flex-direction:column;align-items:center;padding-top:130px}
 .home h1{font-size:76px;font-weight:800;letter-spacing:-1.5px}
 .home .k{font-size:28px;color:var(--muted);margin-top:14px}
@@ -140,6 +145,10 @@ button{font-family:inherit;cursor:pointer}
 .grp h3{font-size:22px;font-weight:800;letter-spacing:8px;color:var(--muted);margin:0 0 18px 6px}
 .grp .cards{margin-top:0;gap:32px}
 .grp.g4 .cards{display:grid;grid-template-columns:repeat(2,520px);gap:32px}
+.grp.g3 .cards{display:flex;gap:32px}
+.grp.g1 .zc,.grp.g3 .zc{width:400px;height:580px;padding:40px 36px}
+.grp.g1 .zc h2,.grp.g3 .zc h2{font-size:42px}
+.grp.g1 .zc .via,.grp.g3 .zc .via{font-size:16px;letter-spacing:1px}
 .grp .zc{width:440px;height:664px;padding:40px}
 .grp.g4 .zc{width:520px;height:316px;padding:32px 36px}
 .grp .zc h2{font-size:46px;letter-spacing:0;font-weight:800;margin-top:34px;line-height:1.05}
@@ -155,9 +164,11 @@ button{font-family:inherit;cursor:pointer}
 .zone-pill em{font-style:normal;font-weight:600;letter-spacing:0;color:var(--muted);margin-left:4px}
 .zone-pill em::before{content:'·';margin-right:14px;color:rgba(255,255,255,.35)}
 /* F&F: whose phone the visitor is looking at (storyboard swimlane) */
-.lane{position:absolute;left:1010px;top:14px;transform:translateX(0);display:flex;gap:12px;align-items:baseline;padding:8px 20px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);font-size:17px;z-index:4}
+.lane{position:absolute;left:1010px;top:8px;display:flex;gap:12px;align-items:center;padding:8px 22px;border-radius:99px;background:var(--z);color:#071030;font-size:20px;z-index:4;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.lane.flash{animation:lane-flash .9s ease-out}
+@keyframes lane-flash{0%{transform:scale(.9);opacity:0}40%{transform:scale(1.06);opacity:1}100%{transform:none}}
 .lane span{letter-spacing:3px;font-weight:800;color:var(--z)}
-.lane b{font-weight:700}
+.lane b{font-weight:400}
 
 /* ---------- flow ---------- */
 .flow::before{content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(90deg,rgba(6,24,120,.9) 0%,rgba(6,24,120,.66) 36%,transparent 52%);pointer-events:none}

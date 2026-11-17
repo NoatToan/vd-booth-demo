@@ -5,11 +5,13 @@ const SCREENS = window.FIGMA_SCREENS || [];
 // ES2017 only (TV browsers can be Chromium 6x): no Object.fromEntries, ?., ??
 const toObj = pairs => pairs.reduce((o, [k, v]) => { o[k] = v; return o; }, {});
 const BY_KEY = toObj(SCREENS.map(s => [s.key, s]));
-// Five experiences (client brief 2026-11-10): SEND 1, RECEIVE 4. Keys are the screen-key prefixes in screens/gen.
-const ZONES = ['send', 'receive', 'collect', 'family', 'travel'];
-const GROUPS = [{ name: 'SEND', zones: ['send'] }, { name: 'RECEIVE', zones: ['receive', 'collect', 'family', 'travel'] }];
+// Four experiences: SEND 1, RECEIVE 3. Keys are the screen-key prefixes in screens/gen. E-seller withdrawal
+// (collect) is out until Visa settles that flow with Amazon (client feedback 2026-11-16); its screens are dropped from
+// the kiosk build in scripts/gen/client-edits.json and stay in the Figma build.
+const ZONES = ['send', 'receive', 'family', 'travel'];
+const GROUPS = [{ name: 'SEND', zones: ['send'] }, { name: 'RECEIVE', zones: ['receive', 'family', 'travel'] }];
 // readable lock links, e.g. ?zone=aft-travel (the short keys keep working)
-const ALIAS = { 'vxbs-individual': 'receive', 'vxbs-seller': 'collect', 'aft-family': 'family', 'aft-travel': 'travel' };
+const ALIAS = { 'global-account': 'receive', 'vxbs-individual': 'receive', 'aft-family': 'family', 'aft-travel': 'travel' };
 const SIZE = { family: '414x896', travel: '414x896' }; // Figma device size; others are 402x874
 // Visa marks: vector from the Figma Make "Payments in Motion: Money Movement Edition" (shared/visa/wordmark and
 // demo/VisaDirectLockup), read through the Figma MCP 2026-11-11
@@ -72,7 +74,6 @@ document.addEventListener('fullscreenchange', () => {
 const ICON = {
   send: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 38 38 10M18 10h20v20"/></svg>',
   receive: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M38 10 10 38M30 38H10V18"/></svg>',
-  collect: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="27" r="6"/><path d="M6 7l11 11M42 7 31 18M24 46V37"/></svg>',
   family: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 28a8 8 0 0 1 0-11l6-6a8 8 0 0 1 11 11l-3 3M28 20a8 8 0 0 1 0 11l-6 6a8 8 0 0 1-11-11l3-3"/></svg>',
   travel: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30 42 14M14 26l-4-10 6-2 8 8M22 22l8 18 6-3-2-17"/></svg>'
 };
@@ -88,7 +89,7 @@ const META = {
     explain: 'Visa Direct helps banks like Vietnam Pioneer Bank push funds across borders to bank accounts, cards and wallets in near real time, with compliance and FX built into the flow.'
   },
   receive: {
-    name: 'RECEIVE', color: '#f7b600', brand: ['VISA', ''], title: 'Individual receiver', via: 'via VXBS',
+    name: 'RECEIVE', color: '#f7b600', brand: ['VISA Direct', ''], title: 'Global account receive', via: 'via VXBS',
     intent: 'I want to get paid from overseas.',
     hero: 'Receive from overseas.', sub: 'United States → Vietnam Bank, Vietnam',
     route: 'United States → Vietnam',
@@ -96,16 +97,6 @@ const META = {
     summary: 'Linh shared her USD receiving details, Daniel paid from the US, and 63,295,800 ₫ reached Vietnam Bank the same day.',
     powered: 'Powered by Visa Cross-Border Solutions', product: 'VXBS Global Receiving',
     explain: 'Visa Cross-Border Solutions give people in Vietnam a global receiving account, a transparent quote before the money moves, live tracking and local settlement in VND.'
-  },
-  collect: {
-    name: 'RECEIVE', color: '#22d3ae', brand: ['VISA', ''], title: 'E-seller withdrawal', via: 'via VXBS',
-    intent: 'I want to collect my sales from the world.',
-    hero: 'Your sales, connected.', sub: 'Seller · Amazon / Shopify / invoices → Vietnam',
-    route: 'Amazon · Shopify · Invoices → Vietnam',
-    verb: 'You just collected your global sales.',
-    summary: 'Linh Studio held five currencies, connected its sales channels, and withdrew USD to Vietnam Bank with the rate and fee shown up front.',
-    powered: 'Powered by Visa Cross-Border Solutions', product: 'VXBS for sellers',
-    explain: 'Visa Cross-Border Solutions help online sellers, SMEs and freelancers collect from marketplaces and clients abroad, hold multiple currencies, and settle locally in Vietnam.'
   },
   // AFT copy: scenario facts are the Figma texts (storyboard header, receipts); the explainers paraphrase the
   // designs' own "About Visa Direct XB AFT" notes until Visa supplies approved marketing copy.
@@ -158,6 +149,15 @@ function nextStep() {
 }
 function prevStep() { if (S.view === 'flow' && S.step > 0) { S.step--; mount(-1); } }
 
+/* F&F: whose phone this is, in the client's words (feedback 2026-11-16): "Minh Anh (receiver) view", "Sarah (sender)
+   view", and "Back to Minh Anh (receiver) view" once the journey returns to the receiver. Names from the storyboard lane. */
+function laneLabel(s) {
+  const recv = /^RECEIVER/i.test(s.lane.role), words = s.lane.name.split(' ');
+  const who = recv ? words.slice(-2).join(' ') : words[0];
+  const back = recv && FLOW[s.zone].some(x => x.n < s.n && x.lane && !/^RECEIVER/i.test(x.lane.role));
+  return `${back ? 'Back to ' : ''}${who} (${recv ? 'receiver' : 'sender'}) view`;
+}
+
 /* ---------- the phone ---------- */
 let lastTouch = Date.now(), ringTimer = null;
 function phoneScale() { const vp = $('.viewport'); return vp ? vp.getBoundingClientRect().width / vp.offsetWidth : 1; }
@@ -189,7 +189,11 @@ function mount(dir) {
   $('#phone').dataset.screen = s.key;
   drawRail();
   const lane = $('#lane');
-  if (lane) { lane.hidden = !s.lane; if (s.lane) lane.innerHTML = `<span>${s.lane.role}</span><b>${s.lane.name}</b>`; }
+  if (lane) {
+    lane.hidden = !s.lane;
+    const label = s.lane ? laneLabel(s) : '';
+    if (s.lane && lane.dataset.label !== label) { lane.dataset.label = label; lane.innerHTML = `<b>${label}</b>`; lane.classList.remove('flash'); void lane.offsetWidth; lane.classList.add('flash'); }
+  }
   const fr = $('.fr', el);
   if (window.VD_WIRE) window.VD_WIRE(el, s, api);
   const b = (window.BEHAVIORS || {})[s.key];
@@ -201,13 +205,13 @@ function mount(dir) {
 }
 
 // ink of each app's primary buttons (Figma), for the scroll hint and the hotspot ring
-const INK = { send: '#5b2d90', receive: '#1434cb', collect: '#1434cb', family: '#2563eb', travel: '#8a6100' };
+const INK = { send: '#5b2d90', receive: '#1434cb', family: '#2563eb', travel: '#8a6100' };
 const CHEVRON = '<svg viewBox="0 0 22 14" fill="none"><path d="M3 3l8 8 8-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 /* scroll cue: outside the phone, in the bottom-right column above Next, so it never covers the app's content.
    Shown while the screen's scroll node has more below; tapping it scrolls the phone; hidden at the bottom. */
 function scrollHint(scr, s) {
   const cue = $('#scroll-cue');
-  if (!cue || !scr.isConnected || s.zone === 'collect') return;
+  if (!cue || !scr.isConnected) return;
   const sc = $('[data-role="scroll"]', scr);
   if (!sc || sc.scrollHeight <= sc.clientHeight + 1) { cue.hidden = true; return; }
   $('b', cue).textContent = s.key === 'receive-2' ? 'Scroll to continue' : 'Scroll for more';
@@ -300,12 +304,10 @@ app.addEventListener('click', e => {
 });
 
 /* ---------- views ---------- */
+// one Visa Direct lockup on every page after the attract screen (client feedback 2026-11-16); a co-brand stays text
 const brand = z => {
-  const b = z ? META[z].brand : ['VISA', 'Direct'];
-  // the Visa mark is an image (brand/logo.svg, a test image until Visa supplies the approved logo); the product
-  // name ("Direct") and the co-brand stay text
-  const direct = /^VISA Direct$/.test(b[0]);
-  return `<div class="brand${b[1].startsWith('×') ? ' co' : ''}"><span class="mark">${direct ? `<img class="lockup" src="${BRAND_DIRECT}" alt="Visa Direct">` : `<img class="logo" src="${BRAND_LOGO}" alt="Visa">`}</span><span class="vd">${b[1]}</span></div>`;
+  const co = z ? META[z].brand[1] : '';
+  return `<div class="brand${co.startsWith('×') ? ' co' : ''}"><span class="mark"><img class="lockup" src="${BRAND_DIRECT}" alt="Visa Direct"></span>${co ? `<span class="vd">${co}</span>` : ''}</div>`;
 };
 function drawRail() {
   const rail = $('#rail');
@@ -326,13 +328,12 @@ function draw() {
       <img class="kv-logo" src="${BRAND_LOGO}" alt="Visa">
       <img class="kv-title" src="brand/kv-title.png" alt="Payments in Motion · Money Movement Edition">
       <div class="kv-city">Ho Chi Minh, Vietnam</div><i class="kv-sweep"></i>
-      <div class="kv-start"><div class="src"><b style="--c:#ffd66b">SEND</b><i></i><b style="--c:#ffd66b">RECEIVE</b></div>
-      <div class="touch">${LOCK ? `Touch to start · <b>${m.name} · ${m.title}</b>` : 'Touch anywhere to start'}</div></div></div>`;
+      <div class="kv-start"><div class="touch">${LOCK ? `Touch to start · <b>${m.name} · ${m.title}</b>` : 'Touch anywhere to start'}</div></div></div>`;
   } else if (S.view === 'home') {
     const card = k => { const g = META[k]; return `<button class="zc" style="--z:${g.color}" data-a="pick" data-v="${k}">
         <div class="ic">${ICON[k]}</div><h2>${g.title}</h2><div class="via">${g.via}</div><q>${g.hero}</q>
         <div class="go">Start<span>→</span></div></button>`; };
-    html = brand() + `<div class="home"><h1>Choose your journey</h1><div class="k">Tap a card to try a live Visa money-movement experience</div>
+    html = brand() + `<button class="ghost back-top" data-a="restart">‹ Back</button><div class="home"><h1>Choose your journey</h1><div class="k">Tap a card to try a live Visa money-movement experience</div>
       <div class="groups">${GROUPS.map(gr => `<section class="grp g${gr.zones.length}"><h3>${gr.name}</h3><div class="cards">${gr.zones.map(card).join('')}</div></section>`).join('')}</div></div>`;
   } else if (S.view === 'flow') {
     html = brand(z) + `<div class="flow">
@@ -433,7 +434,7 @@ addEventListener('contextmenu', e => e.preventDefault());
 addEventListener('keydown', e => {
   if (e.key === 'f' || e.key === 'F') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {});
   if (e.key === 'Escape') show('idle');
-  if (/^[1-5]$/.test(e.key)) openFlow(ZONES[+e.key - 1]);
+  if (/^[1-4]$/.test(e.key)) openFlow(ZONES[+e.key - 1]);
 });
 
 /* ---------- background money-movement animation ---------- */
@@ -464,7 +465,6 @@ function scene(m, x, y) {
     }
   } else if (m === 'send') for (let i = 0; i < 7; i++) routes.push(route(C, far(430), META.send.color));
   else if (m === 'receive' || m === 'family' || m === 'travel') for (let i = 0; i < 7; i++) routes.push(route(far(430), C, META[m].color));
-  else if (m === 'collect') ['$', '€', '£', 'S$', 'A$', '₫'].forEach(l => routes.push(route(far(400), C, META.collect.color, l)));
 }
 const bez = (r, t) => { const u = 1 - t; return { x: u * u * r.a.x + 2 * u * t * r.c.x + t * t * r.b.x, y: u * u * r.a.y + 2 * u * t * r.c.y + t * t * r.b.y }; };
 let lastFrame = 0;
@@ -518,7 +518,7 @@ function frame(t) {
 requestAnimationFrame(frame);
 
 /* ---------- start ---------- */
-// ?goto=home | send:3 (1-based step) | done:collect | travel:5
+// ?goto=home | send:3 (1-based step) | done:family | travel:5
 const go = P.get('goto');
 if (go === 'home') show('home');
 else if (go && go.startsWith('done:') && META[go.slice(5)]) { S.zone = go.slice(5); show('done'); }

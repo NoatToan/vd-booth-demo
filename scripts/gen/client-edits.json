@@ -1,0 +1,35 @@
+{
+  "$comment": "Client content changes on top of the Figma screens (feedback 2026-11-16, docs/feedback/2026-11-16/README.md). Applied by build-screens.mjs to the kiosk build only; --figma builds the design exactly as in Figma for the verify harness. Every edit names the screen, the Figma node (data-node) and the reason. Ops: text (replace the node's text), remove (drop the node), visaMark (the word VISA drawn as text in Figma becomes the Visa wordmark), swap (exchange two nodes), cloneAfter (copy a node right after itself, with new texts; the copy's ids get a suffix), go (the screen's tap target, instead of the manifest's), drop (screen left out of the journey). When Figma is updated with a change, delete its edit here.",
+  "edits": [
+    { "op": "drop", "screen": "collect-1", "reason": "Hoa #1: E-seller withdrawal deleted from the booth until Visa consults Amazon on the flow" },
+    { "op": "drop", "screen": "collect-2", "reason": "Hoa #1: E-seller withdrawal deleted from the booth until Visa consults Amazon on the flow" },
+    { "op": "drop", "screen": "collect-3", "reason": "Hoa #1: E-seller withdrawal deleted from the booth until Visa consults Amazon on the flow" },
+    { "op": "drop", "screen": "collect-4", "reason": "Hoa #1: E-seller withdrawal deleted from the booth until Visa consults Amazon on the flow" },
+    { "op": "drop", "screen": "collect-5", "reason": "Hoa #1: E-seller withdrawal deleted from the booth until Visa consults Amazon on the flow" },
+    { "op": "drop", "screen": "collect-6", "reason": "Hoa #1: E-seller withdrawal deleted from the booth until Visa consults Amazon on the flow" },
+    { "op": "drop", "screen": "collect-7", "reason": "Hoa #1: E-seller withdrawal deleted from the booth until Visa consults Amazon on the flow" },
+    { "op": "drop", "screen": "collect-8", "reason": "Hoa #1: E-seller withdrawal deleted from the booth until Visa consults Amazon on the flow" },
+
+    { "screen": "send-11", "node": "22:148", "op": "visaMark", "reason": "Natalie #7: Visa logo incorrect (Figma draws the word VISA as text)" },
+    { "screen": "receive-1", "node": "2:5500", "op": "visaMark", "reason": "Natalie #7" },
+    { "screen": "family-11", "node": "2:47647", "op": "visaMark", "reason": "Natalie #7" },
+    { "screen": "family-12", "node": "2:47746", "op": "visaMark", "reason": "Natalie #7" },
+    { "screen": "family-13", "node": "2:47795", "op": "visaMark", "reason": "Natalie #7 (VISA Secure: the word VISA becomes the wordmark, Secure stays text)" },
+    { "screen": "travel-5", "node": "2:16019", "op": "visaMark", "reason": "Natalie #7" },
+    { "screen": "travel-6", "node": "2:16081", "op": "visaMark", "reason": "Natalie #7" },
+    { "screen": "travel-7", "node": "2:16122", "op": "visaMark", "reason": "Natalie #7" },
+    { "screen": "travel-8", "node": "2:16197", "op": "visaMark", "reason": "Natalie #7" },
+
+    { "screen": "receive-3", "node": "2:5745", "op": "text", "text": "US Receiving Account Number", "reason": "Hoa #3: Virtual account -> US receiving account" },
+    { "screen": "receive-3", "op": "go", "go": "2:5772", "reason": "Natalie #6: no button in the app to go on; Share (the screen's primary button) now continues" },
+    { "screen": "receive-5", "op": "go", "go": "2:6195", "reason": "Natalie #6: Download Receipt (the screen's primary button) now continues" },
+
+    { "screen": "travel-6", "op": "swap", "nodes": ["2:16081", "2:16085"], "reason": "Hoa #4: Visa logo on the bottom right of the card (DEBIT · DEMO moves to the top right)" },
+    { "screen": "travel-5", "node": "2:16024", "op": "cloneAfter", "suffix": "addr", "texts": { "2:16025": "Billing address", "2:16027": "12 GEORGE ST, SYDNEY NSW 2000" }, "reason": "Hoa #5: Address line in the travel wallet card form" },
+    { "op": "drop", "screen": "travel-10", "reason": "Hoa #6: Funding in progress removed; the top-up notification (behaviors.js travel-9) leads to Top-up complete" },
+
+    { "screen": "family-3", "node": "2:47004", "op": "remove", "reason": "Hoa #8: remove Linked card · Visa Debit" },
+    { "screen": "family-11", "node": "2:47671", "op": "text", "text": "Address", "reason": "Hoa #9: Billing ZIP -> Address" },
+    { "screen": "family-11", "node": "2:47673", "op": "text", "text": "Street address", "reason": "Hoa #9: placeholder of the Address field" }
+  ]
+}

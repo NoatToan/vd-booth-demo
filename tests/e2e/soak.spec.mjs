@@ -3,7 +3,7 @@
 // heap or the DOM keeps growing, which is what would take a booth screen down after hours.
 //   SOAK=10 pnpm --dir tests/e2e test soak      (minutes; skipped without SOAK)    -> compare/soak.json + soak.csv
 import { test, expect } from '@playwright/test';
-import { SCREENS, ZONES, write } from './lib.mjs';
+import { KIOSK_SCREENS as SCREENS, ZONES, write } from './lib.mjs';
 
 test('soak: journeys back to back, no heap or DOM growth', async ({ page }) => {
   const minutes = +process.env.SOAK || 0;
