@@ -1,5 +1,5 @@
 {
- "version": "74dca18d0fed",
+ "version": "8b6817706c0e",
  "files": [
   "app.js",
   "brand/apple-touch-icon.png",
@@ -7,6 +7,9 @@
   "brand/favicon.svg",
   "brand/kv-background.jpg",
   "brand/kv-title.png",
+  "brand/lottie/face-id.json",
+  "brand/lottie/visa-blue.json",
+  "brand/lottie/visa-white.json",
   "brand/visa-direct-lockup.svg",
   "brand/visa-wordmark-blue.svg",
   "brand/visa-wordmark.svg",
@@ -41,6 +44,7 @@
   "vendor/fonts/lora-latin-wght-italic.woff2",
   "vendor/fonts/lora-latin-wght-normal.woff2",
   "vendor/inter.css",
+  "vendor/lottie_light.min.js",
   "vendor/qrcode.min.js"
  ]
 }

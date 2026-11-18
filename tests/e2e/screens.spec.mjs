@@ -31,6 +31,7 @@ test('client edits are in the kiosk build', async ({ page }) => {
   const kiosk = new Set(KIOSK_SCREENS.map(s => s.key)), fails = [];
   for (let e of EDITS) {
     if (e.op === 'drop') { if (kiosk.has(e.screen)) fails.push(`${e.screen} still in the journey`); continue; }
+    if (e.op === 'step') { const i = KIOSK_SCREENS.findIndex(x => x.key === e.after); if (KIOSK_SCREENS[i + 1]?.key !== e.screen) fails.push(`${e.screen} not after ${e.after}`); continue; }
     if (e.op === 'go') { const s = KIOSK_SCREENS.find(x => x.key === e.screen); if (!s || s.go !== e.go) fails.push(`${e.screen}: go ${s && s.go}`); continue; }
     // a text edit followed by visaMark on the same node: the word VISA ends up drawn as the wordmark
     const marked = EDITS.slice(EDITS.indexOf(e) + 1).some(x => x.op === 'visaMark' && x.screen === e.screen && x.node === e.node);

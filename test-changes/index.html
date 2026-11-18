@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Test changes · Feedback 16/11</title>
+<title>Test changes · Feedback</title>
 <link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
 <link href="../vendor/inter.css" rel="stylesheet">
 <!--
@@ -130,15 +130,18 @@ figure.figma figcaption{background:#a259ff}
 <div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Close">×</button><div class="lbpic pic"></div><div class="cap"></div></div>
 <script>
 (function () {
-var IMG = '../docs/feedback/2026-11-16/', IMG2 = '../docs/feedback/2026-11-18/';
+var IMG = '../docs/feedback/2026-11-16/', IMG2 = '../docs/feedback/2026-11-18/', IMG3 = '../docs/feedback/2026-11-18-pm/';
+// the folder of an item's images and its boxes, by feedback round
+var dirOf = function (i) { return i.p3 ? IMG3 : i.p2 ? IMG2 : IMG; };
+var phOf = function (i) { return i.p3 ? 3 : i.p2 ? 2 : 1; };
 var UI = {
-  en: { title: 'Test changes · Feedback 16/11 and 18/11/2026', sub: 'Visa Direct booth demo · 20 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
-    home: 'Booth home', ovTitle: 'Everything the email asked for', ovNote: 'One section per feedback round, closed by default: open one to see its requests, in the client’s words, and the item for each.', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'items', nHold: 'on hold', ovNat2: 'Natalie Liew · 18/11 10:48 · on the 18/11 update', hold: 'On hold', holdTag: '⏸ On hold', ovNat: 'Natalie Liew · 16/11 17:22 · design and branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Earlier in the thread (12–13/11)', fixedOn: 'Fixed', doneOld: 'Done 13/11', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
+  en: { title: 'Test changes · Feedback 16/11 and 18/11/2026', sub: 'Visa Direct booth demo · 25 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
+    home: 'Booth home', ovTitle: 'Everything the email asked for', ovNote: 'One section per feedback round, closed by default: open one to see its requests, in the client’s words, and the item for each.', ph3: 'Phase 3 · Feedback 18/11 (afternoon)', ovHoa3: 'Hoa Nguyen · 18/11 14:54 · final comments', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'items', nHold: 'on hold', ovNat2: 'Natalie Liew · 18/11 10:48 · on the 18/11 update', hold: 'On hold', holdTag: '⏸ On hold', ovNat: 'Natalie Liew · 16/11 17:22 · design and branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Earlier in the thread (12–13/11)', fixedOn: 'Fixed', doneOld: 'Done 13/11', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
     legend: 'Figma = the original design · red box = what had to change · green box = changed · dashed box = removed', noImg: 'The email has no image for this item.', fixed: 'Fixed', cause: 'Cause',
     decTitle: 'Decided on our side (to be confirmed)', unclear: 'Unclear', chosen: 'Decided', later: 'To change it', before: 'Before', after: 'After', figma: 'Figma (original)',
     gone: 'This screen is no longer in the journey', done: '✓ Done', hasDec: 'Has a decision to confirm', from: 'email "Visa Direct demo experience"', close: 'Close' },
-  vi: { title: 'Test changes · Feedback 16/11 và 18/11/2026', sub: 'Visa Direct booth demo · 20 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
-    home: 'Về trang home', ovTitle: 'Toàn bộ yêu cầu trong email', ovNote: 'Mỗi đợt feedback là một khối, mặc định đóng: mở khối cần xem để thấy các yêu cầu (giữ nguyên câu của khách) và mục xử lý của từng yêu cầu.', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'mục', nHold: 'tạm giữ', ovNat2: 'Natalie Liew · 18/11 10:48 · góp ý bản cập nhật 18/11', hold: 'Tạm giữ', holdTag: '⏸ Tạm giữ', ovNat: 'Natalie Liew · 16/11 17:22 · design và branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Feedback trước đó trong chuỗi email (12–13/11)', fixedOn: 'Đã sửa', doneOld: 'Xong 13/11', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
+  vi: { title: 'Test changes · Feedback 16/11 và 18/11/2026', sub: 'Visa Direct booth demo · 25 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
+    home: 'Về trang home', ovTitle: 'Toàn bộ yêu cầu trong email', ovNote: 'Mỗi đợt feedback là một khối, mặc định đóng: mở khối cần xem để thấy các yêu cầu (giữ nguyên câu của khách) và mục xử lý của từng yêu cầu.', ph3: 'Phase 3 · Feedback 18/11 (chiều)', ovHoa3: 'Hoa Nguyen · 18/11 14:54 · góp ý cuối', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'mục', nHold: 'tạm giữ', ovNat2: 'Natalie Liew · 18/11 10:48 · góp ý bản cập nhật 18/11', hold: 'Tạm giữ', holdTag: '⏸ Tạm giữ', ovNat: 'Natalie Liew · 16/11 17:22 · design và branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Feedback trước đó trong chuỗi email (12–13/11)', fixedOn: 'Đã sửa', doneOld: 'Xong 13/11', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
     legend: 'Figma = design gốc · khung đỏ = chỗ cần sửa · khung xanh = đã sửa · khung nét đứt = chỗ đã bỏ', noImg: 'Email không kèm ảnh cho mục này.', fixed: 'Đã sửa', cause: 'Nguyên nhân',
     decTitle: 'Điểm tự chốt (chờ xác nhận)', unclear: 'Chưa rõ', chosen: 'Đã chốt', later: 'Nếu cần đổi', before: 'Before', after: 'After', figma: 'Figma (gốc)',
     gone: 'Màn này đã bỏ khỏi journey', done: '✓ Done', hasDec: 'Có điểm tự chốt', from: 'email "Visa Direct demo experience"', close: 'Đóng' }
@@ -152,7 +155,7 @@ var CAUSE = {
 // Every item: the client's words (always English), the email image, the Figma evidence (changes against Figma), the
 // analysis with the points we decided, then the live-site shots: [title, shot, {b: before boxes, a: after boxes,
 // ghost: before boxes drawn dashed on after}, after shot (null = gone)]; box indexes into annotations.json.
-var NAT = 'Natalie Liew · 16/11 17:22', HOA = 'Hoa Nguyen · 16/11 23:02', NAT2 = 'Natalie Liew · 18/11 10:48';
+var NAT = 'Natalie Liew · 16/11 17:22', HOA = 'Hoa Nguyen · 16/11 23:02', NAT2 = 'Natalie Liew · 18/11 10:48', HOA3 = 'Hoa Nguyen · 18/11 14:54';
 var ITEMS = [
   { n: 1, time: NAT, cause: 'mine', quote: 'Home page — Visa logo on the top left can be smaller. The proportion should follow the reference demo shared previously.',
     title: { en: 'Smaller Visa logo on the attract screen', vi: 'Logo Visa ở màn chờ nhỏ lại' },
@@ -300,12 +303,56 @@ var ITEMS = [
     why: { en: 'The 60 s was our own default, chosen for visitors on their own; staff explaining a step need longer.', vi: '60 giây là mặc định mình tự đặt, hợp khi khách tự chơi; nhân viên giải thích một bước thì cần lâu hơn.' },
     dec: [{ en: ['Natalie asks for a longer time but gives no number.', '3 minutes, with a 15 s "Still there?" countdown at the end: a visitor who walks away still resets the kiosk, and a long explanation is never cut.', 'Per link: add ?idle=<seconds> to the booth URL (e.g. ?zone=send&idle=300); default: IDLE_MS in app.js.'],
             vi: ['Natalie muốn lâu hơn nhưng không nói con số.', '3 phút, 15 giây cuối hiện hộp đếm ngược "Still there?": khách bỏ đi thì kiosk vẫn tự reset, mà giải thích lâu cũng không bị cắt.', 'Theo từng link: thêm ?idle=<giây> vào URL booth (vd. ?zone=send&idle=300); mặc định: IDLE_MS trong app.js.'] }],
-    shots: [[{ en: '61 s without a touch (SEND step 3)', vi: '61 giây không chạm (SEND bước 3)' }, 'k-idle-61s', {}], [{ en: '166 s without a touch', vi: '166 giây không chạm' }, 'k-idle-166s', { a: [0] }], [{ en: '181 s without a touch', vi: '181 giây không chạm' }, 'k-idle-181s', {}]] }
+    shots: [[{ en: '61 s without a touch (SEND step 3)', vi: '61 giây không chạm (SEND bước 3)' }, 'k-idle-61s', {}], [{ en: '166 s without a touch', vi: '166 giây không chạm' }, 'k-idle-166s', { a: [0] }], [{ en: '181 s without a touch', vi: '181 giây không chạm' }, 'k-idle-181s', {}]] },
+  // feedback 18/11 14:54 (p3: images and boxes in docs/feedback/2026-11-18-pm/); the client's videos come from the Figma Make
+  { n: 21, p3: 1, time: HOA3, cause: 'new', quote: 'VXBS: this part can you do auto-population of the numbers?',
+    email: [{ name: 'unnamed(26).png', img: 'email/unnamed(26).png', desc: { en: 'Global account receive, step 2 "Receive funds": the "See what you’ll receive" card (2,500.00 USD, fee, amount to convert, 63,295,800 VND).', vi: 'Global account receive, bước 2 "Receive funds": khung "See what you’ll receive" (2,500.00 USD, phí, số tiền quy đổi, 63,295,800 VND).' } }],
+    title: { en: 'Global account receive: the numbers fill themselves in', vi: 'Global account receive: các con số tự điền' },
+    fix: { en: 'receive-2: "Sender sends" types in 2,500.00, then the fee, the amount to convert and the VND figure count up to their values, one after another; then the Continue ring.', vi: 'receive-2: ô "Sender sends" tự gõ 2,500.00, rồi phí, số tiền quy đổi và số VND lần lượt đếm lên tới giá trị; sau đó nút Continue sáng lên.' },
+    why: { en: 'The screen showed its figures as they are in Figma, with no motion; the client wants them populated like the other journeys.', vi: 'Màn này hiển thị số tĩnh như Figma; khách muốn số tự điền như các journey khác.' },
+    shots: [[{ en: 'Step 2 · Receive funds, about 1 s in', vi: 'Bước 2 · Receive funds, khoảng 1 giây sau khi vào' }, 'p-receive-2', { b: [0, 1, 2, 3], a: [0, 1, 2, 3] }]] },
+  { n: 22, p3: 1, time: HOA3, cause: 'new', quote: 'AFT Me-to-you (Friends and Family) and VDAW (Send): For the Face ID here can you create an animated Face ID experience similar to attached video “Travel wallet screen”?',
+    email: [{ name: 'unnamed(27).png', img: 'email/unnamed(27).png', desc: { en: 'Photo of the booth: F&F step 13 "Visa Secure authentication", the Face ID row on "Confirm it’s you".', vi: 'Ảnh chụp booth: F&F bước 13 "Visa Secure authentication", dòng Face ID ở màn "Confirm it’s you".' } },
+            { name: 'unnamed(28).png', img: 'email/unnamed(28).png', desc: { en: 'Photo of the booth: Send step 7 "Security authorization", the Face ID block on "Authorize Transfer".', vi: 'Ảnh chụp booth: Send bước 7 "Security authorization", khối Face ID ở màn "Authorize Transfer".' } },
+            { attach: 1, video: '../2026-11-16/email/travel-wallet-screen.mp4', name: 'Travel wallet screen.mp4', desc: { en: 'Recorded from the Figma Make: after "Confirm & Move Funds", the Face ID scan, then the Visa animation.', vi: 'Quay từ Figma Make: sau "Confirm & Move Funds" là quét Face ID, rồi hiệu ứng Visa.' } }],
+    title: { en: 'F&F and Send: animated Face ID', vi: 'F&F và Send: Face ID có hiệu ứng' },
+    fix: { en: 'Tapping Authorize (F&F step 13, Send step 7) plays the Make’s Face ID: a blurred dark veil, a glass card "Verify with Face ID" with the Face ID Lottie (the face looks around, the outline closes, a check), then the Visa authorization (item 23).', vi: 'Bấm Authorize (F&F bước 13, Send bước 7) chạy Face ID của Make: lớp phủ tối mờ, thẻ kính "Verify with Face ID" với Lottie Face ID (khuôn mặt nhìn quanh, viền khép lại, hiện dấu check), rồi tới hiệu ứng Visa (mục 23).' },
+    why: { en: 'The client’s videos were recorded from the Figma Make “Payments in Motion”; the booth plays the Make’s own component with its Lottie file, sizes, colours and timings.', vi: 'Video của khách quay từ Figma Make “Payments in Motion”; booth chạy đúng component của Make với file Lottie, kích thước, màu và nhịp như trong Make.' },
+    figmaNote: { en: 'Make: flows/topup/NewPaymentMethod.tsx FaceIDScreen, Face_Id_Authenticate_sucess.json at 70 px, 2× speed, 1.5 s after it ends.', vi: 'Make: flows/topup/NewPaymentMethod.tsx FaceIDScreen, Face_Id_Authenticate_sucess.json 70 px, tốc độ 2×, 1,5 giây sau khi chạy xong.' },
+    dec: [{ en: ['The Make’s Face ID screen in the video is a step of its own in a dark app; F&F and Send are light apps whose Face ID sits on the authorization screen itself.', 'The Make’s Face ID overlay (the one it shows over the card form) on top of the step, so the screen stays the same and the scan plays over it. Texts: "Authenticate to securely approve this payment" (F&F), "…authorize this transfer" (Send).', 'Text: faceIdThenSecuring calls in screens/behaviors.js.'],
+            vi: ['Màn Face ID trong video là một bước riêng của app nền tối; F&F và Send là app nền sáng, Face ID nằm ngay trên màn xác nhận.', 'Dùng lớp phủ Face ID của Make (loại hiện trên form thẻ) đè lên bước đó, màn giữ nguyên và hiệu ứng quét chạy phía trên. Câu chữ: "Authenticate to securely approve this payment" (F&F), "…authorize this transfer" (Send).', 'Câu chữ: lời gọi faceIdThenSecuring trong screens/behaviors.js.'] }],
+    shots: [[{ en: 'F&F step 13 · 1.5 s after Authorize', vi: 'F&F bước 13 · 1,5 giây sau khi bấm Authorize' }, 'p-family-13-faceid', { b: [], a: [0] }], [{ en: 'Send step 7 · 1.5 s after Confirm', vi: 'Send bước 7 · 1,5 giây sau khi bấm Confirm' }, 'p-send-7-faceid', { b: [], a: [0] }]] },
+  { n: 23, p3: 1, time: HOA3, cause: 'new', quote: 'Add a Visa animated authorization similar to below step in AFT Me-to-me: NOTE: can you make Visa logo slightly bigger and in the middle of screen for both Me-to-me and Me-to-you',
+    title: { en: 'Visa authorization animation, logo bigger and centred', vi: 'Hiệu ứng xác thực Visa, logo to hơn và nằm giữa' },
+    fix: { en: 'After Face ID, F&F and Send play the Make’s "Securing" step: the Visa Lottie in the middle, then a circle and tick, then the next step. The travel wallet’s (item 13) is replaced by the same Make component. Logo a little bigger than in the Make: dark 110 → 150 px box, light 416 → 500 px box.', vi: 'Sau Face ID, F&F và Send chạy bước "Securing" của Make: Lottie Visa ở giữa màn, rồi vòng tròn và dấu tick, rồi sang bước tiếp. Hiệu ứng ở Travel wallet (mục 13) cũng thay bằng đúng component này. Logo to hơn Make một chút: bản tối khung 110 → 150 px, bản sáng 416 → 500 px.' },
+    why: { en: 'The client’s videos were recorded from the Figma Make “Payments in Motion”; the booth plays the Make’s own component with its Lottie file, sizes, colours and timings.', vi: 'Video của khách quay từ Figma Make “Payments in Motion”; booth chạy đúng component của Make với file Lottie, kích thước, màu và nhịp như trong Make.' },
+    figmaNote: { en: 'Make: shared/securing-animation/VdaUsa07.tsx; visa_white_small_padding.json (dark, wallet top-up) or VISA_BLUE_001.json (light); tick 0.5 s + 0.45 s, 1.4 s hold.', vi: 'Make: shared/securing-animation/VdaUsa07.tsx; visa_white_small_padding.json (nền tối, ví top-up) hoặc VISA_BLUE_001.json (nền sáng); tick 0,5 + 0,45 giây, giữ 1,4 giây.' },
+    dec: [{ en: ['The request is under "AFT Me-to-you and VDAW (Send)", the note names Me-to-me and Me-to-you only. The Make picks dark for its wallet top-up and light (white, blue Visa) for its bank and payment-request flows.', 'Send gets it too (it is under the heading). Travel wallet dark, as the video; F&F and Send light, as the Make does for those kinds of flow.', 'Light or dark: securing(api, scr, dark) in screens/behaviors.js; size: .fx-sec .lt in screens/phone.css.'],
+            vi: ['Yêu cầu nằm dưới tiêu đề "AFT Me-to-you and VDAW (Send)", phần NOTE chỉ nhắc Me-to-me và Me-to-you. Make dùng nền tối cho ví top-up, nền trắng logo xanh cho các luồng ngân hàng và payment request.', 'Send cũng có (vì nằm dưới tiêu đề đó). Travel wallet nền tối như video; F&F và Send nền trắng như Make dùng cho loại luồng này.', 'Đổi sáng/tối: securing(api, scr, dark) trong screens/behaviors.js; kích thước: .fx-sec .lt trong screens/phone.css.'] }],
+    shots: [[{ en: 'F&F · after Face ID', vi: 'F&F · sau Face ID' }, 'p-family-13-visa', { b: [], a: [0] }], [{ en: 'Send · after Face ID', vi: 'Send · sau Face ID' }, 'p-send-7-visa', { b: [], a: [0] }], [{ en: 'Travel wallet · 0.9 s after Approve', vi: 'Travel wallet · 0,9 giây sau khi bấm Approve' }, 'p-travel-9-visa', { b: [0], a: [0] }]] },
+  { n: 24, p3: 1, time: HOA3, cause: 'new', quote: 'AFT Me-to-me (Travel App): Please can you add an animated Face ID step after the below step called “Verify it’s you”',
+    email: [{ name: 'unnamed(29).png', img: 'email/unnamed(29).png', desc: { en: 'Travel wallet step 6 "Card linked" ("A familiar card. A new adventure.").', vi: 'Travel wallet bước 6 "Card linked" ("A familiar card. A new adventure.").' } }],
+    title: { en: 'Travel wallet: new step "Verify it’s you" with Face ID', vi: 'Travel wallet: bước mới "Verify it’s you" có Face ID' },
+    fix: { en: 'A new step 7 "Verify it’s you" after Card linked: the Make’s Face ID step (dark screen, 120 px tile, Face ID Lottie, "Scanning…" then "Face ID confirmed"), then Funding amount by itself. The journey has 18 steps.', vi: 'Thêm bước 7 "Verify it’s you" sau Card linked: màn Face ID của Make (nền tối, ô 120 px, Lottie Face ID, "Scanning…" rồi "Face ID confirmed"), rồi tự sang Funding amount. Journey có 18 bước.' },
+    why: { en: 'New step requested by the client; Figma has no frame for it, the Make has (kira/screens/otp-verify.tsx).', vi: 'Bước mới khách yêu cầu; Figma không có frame này, Make có (kira/screens/otp-verify.tsx).' },
+    figmaNote: { en: 'Make: kira/screens/otp-verify.tsx (step "Verify with Face ID" of the wallet top-up), Lottie at 76 px, 1.3× speed, 0.9 s after "Face ID confirmed".', vi: 'Make: kira/screens/otp-verify.tsx (bước "Verify with Face ID" của ví top-up), Lottie 76 px, tốc độ 1,3×, 0,9 giây sau "Face ID confirmed".' },
+    dec: [{ en: ['The sentence reads both ways; with the image of Card linked we read it as: a new step named "Verify it’s you", after Card linked.', 'Step title and heading "Verify it’s you", top bar "Verification" as in the Make, line "Use Face ID to securely verify your Visa card.", the tile edge in the wallet’s gold.', 'scripts/gen/client-edits.json, the step line (title, heading, sub).'],
+            vi: ['Câu này hiểu được hai cách; kèm ảnh Card linked nên mình hiểu là: thêm một bước tên "Verify it’s you", nằm sau Card linked.', 'Tên bước và tiêu đề "Verify it’s you", thanh trên "Verification" như Make, dòng phụ "Use Face ID to securely verify your Visa card.", viền ô màu vàng của ví.', 'scripts/gen/client-edits.json, dòng step (title, heading, sub).'] }],
+    shots: [[{ en: 'After Card linked · 1.8 s', vi: 'Sau Card linked · 1,8 giây' }, 'p-travel-6-next', { b: [], a: [0, 1] }]] },
+  { n: 25, p3: 1, time: HOA3, cause: 'new', quote: 'Also add 1 animated message similar to the attached video “Card link verification” after the below step:',
+    email: [{ attach: 1, video: 'email/card-link-verification.mp4', name: 'Card link verification.mp4', desc: { en: 'Recorded from the Figma Make (Add Card): the card number types in, the Visa logo shows in the field, "Validating card…", then "Card eligible for funding · This card is billed in SGD · Lion Bank, Singapore". The screenshot of the step was in the collapsed part of the email.', vi: 'Quay từ Figma Make (Add Card): số thẻ tự gõ, logo Visa hiện trong ô, "Validating card…", rồi "Card eligible for funding · This card is billed in SGD · Lion Bank, Singapore". Ảnh chụp bước này nằm trong phần thu gọn của email.' } }],
+    title: { en: 'Travel wallet: card check while the card is added', vi: 'Travel wallet: kiểm tra thẻ khi thêm thẻ' },
+    fix: { en: 'travel-5 Add Visa card: once the card number is in, the Visa logo shows in the field, "Validating card…" for 0.8 s, then "Card eligible for funding" and "🇦🇺 This card is billed in AUD · Outback Bank, Sydney"; then the security code types in.', vi: 'travel-5 Add Visa card: gõ xong số thẻ thì logo Visa hiện trong ô, "Validating card…" 0,8 giây, rồi "Card eligible for funding" và "🇦🇺 This card is billed in AUD · Outback Bank, Sydney"; sau đó ô security code tự gõ.' },
+    why: { en: 'The client’s videos were recorded from the Figma Make “Payments in Motion”; the booth plays the Make’s own component with its Lottie file, sizes, colours and timings.', vi: 'Video của khách quay từ Figma Make “Payments in Motion”; booth chạy đúng component của Make với file Lottie, kích thước, màu và nhịp như trong Make.' },
+    figmaNote: { en: 'Make: kira/screens/add-money-card-details.tsx; bank names per currency from the Make (AUD → Outback Bank, Sydney).', vi: 'Make: kira/screens/add-money-card-details.tsx; tên ngân hàng theo tiền tệ lấy từ Make (AUD → Outback Bank, Sydney).' },
+    dec: [{ en: ['"After the below step": the screenshot was in the collapsed part of the email and is missing.', 'On travel-5 Add Visa card, where the card number is entered, as in the video; the travel journey’s card is Australian (AUD), so the Make’s AUD bank.', 'screens/behaviors.js travel-5.'],
+            vi: ['"After the below step": ảnh chụp bước đó nằm trong phần thu gọn của email nên không có.', 'Đặt ở travel-5 Add Visa card, chỗ nhập số thẻ, như trong video; thẻ của journey Travel là thẻ Úc (AUD) nên dùng ngân hàng AUD của Make.', 'screens/behaviors.js travel-5.'] }],
+    shots: [[{ en: 'Add Visa card · about 4 s in', vi: 'Add Visa card · khoảng 4 giây sau khi vào' }, 'p-travel-5-check', { b: [], a: [0, 1] }]] }
 ];
 
 var $ = function (s, r) { return (r || document).querySelector(s); };
 var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-var state = { cause: 'all', lang: 'en', open: { 1: false, 2: false } }, ANN = {}, ANN2 = {};
+var state = { cause: 'all', lang: 'en', open: { 1: false, 2: false, 3: false } }, ANN = {}, ANN2 = {}, ANN3 = {};
 try { state.lang = localStorage.getItem('tc-lang') || 'en'; } catch (e) {}
 var L = function (v) { return typeof v === 'string' ? v : v[state.lang]; };
 var t = function (k) { return UI[state.lang][k]; };
@@ -327,8 +374,8 @@ function figure(src, cap, kind, label, sz, bx) {
 function emailBlock(i) {
   if (!i.email) return '<p class="note">' + t('noImg') + '</p>';
   return '<div class="mails">' + i.email.map(function (m) {
-    if (m.video) return '<div class="mail"><video class="mvid" src="' + IMG + m.video + '" controls playsinline preload="metadata"></video><b>📎 ' + esc(m.name) + '</b><span>' + esc(L(m.desc)) + '</span></div>';
-    var src = m.img ? IMG + m.img.replace(/\(/g, '%28').replace(/\)/g, '%29') : '';
+    if (m.video) return '<div class="mail"><video class="mvid" src="' + dirOf(i) + m.video + '" controls playsinline preload="metadata"></video><b>📎 ' + esc(m.name) + '</b><span>' + esc(L(m.desc)) + '</span></div>';
+    var src = m.img ? dirOf(i) + m.img.replace(/\(/g, '%28').replace(/\)/g, '%29') : '';
     var img = m.img ? '<figure class="mimg' + (m.dark ? ' dark' : '') + '" data-src="' + src + '" data-cap="' + esc('#' + i.n + ' · ' + m.name) + '"><span class="pic"><img src="' + src + '" alt="" onerror="this.closest(\'figure\').classList.add(\'nofile\')"></span></figure>' : '';
     return '<div class="mail">' + img + '<b>' + (m.attach ? '📎 ' : '') + esc(m.name) + '</b><span>' + esc(L(m.desc)) + '</span></div>';
   }).join('') + '</div>';
@@ -351,9 +398,9 @@ function decBlock(i) {
 }
 function shotsBlock(i, step) {
   if (!i.shots) return '';
-  var DIR = i.p2 ? IMG2 : IMG, A = i.p2 ? ANN2 : ANN;
+  var DIR = dirOf(i), A = i.p3 ? ANN3 : i.p2 ? ANN2 : ANN;
   return '<section class="step"><h5><span>' + step + '</span>' + t('s4') + ' <small>' + t('legend') + '</small></h5><div class="pairs">' + i.shots.map(function (p) {
-    var label = L(p[0]), phone = p[1].charAt(0) === 's', a = A[p[1]], sel = p[2] || {}, afterFile = p.length > 3 ? p[3] : p[1];
+    var label = L(p[0]), phone = /^[sp]-/.test(p[1]), a = A[p[1]], sel = p[2] || {}, afterFile = p.length > 3 ? p[3] : p[1];
     var bb = a ? boxes(a.before, pick(a.before.boxes, sel.b), 'red') : '';
     var ab = a ? boxes(a.after, pick(a.after.boxes, sel.a), 'green') + (sel.ghost ? boxes(a.after, pick(a.before.boxes, sel.ghost), 'ghost') : '') : '';
     var fg = figmaFor(i, p[1]);
@@ -372,6 +419,7 @@ function overview() {
   var group = function (who) { return ITEMS.filter(function (i) { return i.time === who; }).map(row).join(''); };
   return {
     intro: '<h2>' + t('ovTitle') + '</h2><p class="note">' + t('ovNote') + '</p>',
+    3: '<h3>' + t('ovHoa3') + '</h3><table class="ov-t">' + group(HOA3) + '</table>',
     2: '<h3>' + t('ovNat2') + '</h3><table class="ov-t">' + group(NAT2) + '</table>',
     1: '<h3>' + t('ovNat') + '</h3><table class="ov-t">' + group(NAT) + '</table>' +
     '<h3>' + t('ovHoa') + '</h3><table class="ov-t">' + group(HOA) + '</table>' +
@@ -396,8 +444,8 @@ function render() {
         (i.hold ? '<dt>' + t('hold') + '</dt><dd>' + esc(L(i.hold)) + '</dd>' : '') + (i.figmaNote ? '<dt>' + t('figmaRow') + '</dt><dd>' + esc(L(i.figmaNote)) + '</dd>' : '') + '</dl>' + decBlock(i) + '</section>' +
       shotsBlock(i, ++k) + '</article>';
   };
-  $('#items').innerHTML = [2, 1].map(function (ph) {
-    var all = ITEMS.filter(function (i) { return (i.p2 ? 2 : 1) === ph; }), shown = all.filter(function (i) { return state.cause === 'all' || i.cause === state.cause; });
+  $('#items').innerHTML = [3, 2, 1].map(function (ph) {
+    var all = ITEMS.filter(function (i) { return phOf(i) === ph; }), shown = all.filter(function (i) { return state.cause === 'all' || i.cause === state.cause; });
     var hold = all.filter(function (i) { return i.hold; }).length;
     return '<details class="phase" data-ph="' + ph + '"' + (state.open[ph] ? ' open' : '') + '><summary><b>' + t('ph' + ph) + '</b><span>#' + all[0].n + '–' + all[all.length - 1].n + ' · ' +
       all.length + ' ' + t('nItems') + (hold ? ' · ' + hold + ' ' + t('nHold') : '') + '</span></summary><div class="ph-req">' + ov[ph] + '</div>' + shown.map(card).join('') + '</details>';
@@ -410,7 +458,7 @@ function render() {
 function reveal(hash) {
   var m = /^#item-(\d+)$/.exec(hash || ''); if (!m) return;
   var it = ITEMS.filter(function (i) { return i.n === +m[1]; })[0]; if (!it) return;
-  var ph = it.p2 ? 2 : 1;
+  var ph = phOf(it);
   if (state.cause !== 'all' && state.cause !== it.cause) { state.cause = 'all'; render(); }
   state.open[ph] = true; var d = $('.phase[data-ph="' + ph + '"]'); if (d) d.open = true;
   var el = document.getElementById('item-' + m[1]); if (el) el.scrollIntoView();
@@ -418,8 +466,8 @@ function reveal(hash) {
 document.addEventListener('click', function (e) { var a = e.target.closest('a[href^="#item-"]'); if (!a) return; e.preventDefault(); history.replaceState(null, '', a.getAttribute('href')); reveal(a.getAttribute('href')); });
 $('#filters').addEventListener('click', function (e) { var b = e.target.closest('.chip'); if (b) { state.cause = b.dataset.c; render(); } });
 $('#lang').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; state.lang = b.dataset.v; try { localStorage.setItem('tc-lang', state.lang); } catch (err) {} render(); });
-Promise.all([IMG, IMG2].map(function (u) { return fetch(u + 'annotations.json').then(function (r) { return r.json(); }).catch(function () { return {}; }); }))
-  .then(function (d) { ANN = d[0]; ANN2 = d[1]; }).then(render).then(function () { reveal(location.hash); });
+Promise.all([IMG, IMG2, IMG3].map(function (u) { return fetch(u + 'annotations.json').then(function (r) { return r.json(); }).catch(function () { return {}; }); }))
+  .then(function (d) { ANN = d[0]; ANN2 = d[1]; ANN3 = d[2]; }).then(render).then(function () { reveal(location.hash); });
 
 // lightbox: the image with its boxes; ←/→ moves through the images on the page
 var lb = $('#lb'), figs = [], at = 0;

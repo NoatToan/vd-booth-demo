@@ -28,6 +28,7 @@
 
     { "screen": "travel-6", "op": "swap", "nodes": ["2:16081", "2:16085"], "reason": "Hoa #4: Visa logo on the bottom right of the card (DEBIT · DEMO moves to the top right)" },
     { "screen": "travel-5", "node": "2:16024", "op": "cloneAfter", "suffix": "addr", "texts": { "2:16025": "Billing address", "2:16027": "12 GEORGE ST, SYDNEY NSW 2000" }, "reason": "Hoa #5: Address line in the travel wallet card form" },
+    { "op": "step", "screen": "travel-6v", "after": "travel-6", "title": "Verify it\u2019s you", "bar": "Verification", "heading": "Verify it\u2019s you", "sub": "Use Face ID to securely verify your Visa card.", "auto": 5600, "reason": "Hoa 18/11: an animated Face ID step called Verify it's you after Card linked; the Make's Face ID step (kira/screens/otp-verify.tsx, Lottie at 1.3x, then Face ID confirmed, 0.9 s), behaviors.js travel-6v" },
     { "op": "drop", "screen": "travel-10", "reason": "Hoa #6: Funding in progress removed; the top-up notification (behaviors.js travel-9) leads to Top-up complete" },
 
     { "screen": "family-3", "node": "2:47004", "op": "remove", "reason": "Hoa #8: remove Linked card · Visa Debit" },

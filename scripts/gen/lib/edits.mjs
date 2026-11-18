@@ -37,6 +37,8 @@ export function loadEdits(root) {
   const forScreen = key => edits.filter(e => e.screen === key);
   return {
     dropped: new Set(edits.filter(e => e.op === 'drop').map(e => e.screen)),
+    // new steps with no Figma frame: { screen, after, title, sub, auto }; the screen's behaviour draws the scene
+    steps: edits.filter(e => e.op === 'step'),
     goFor: key => { const e = forScreen(key).find(x => x.op === 'go'); return e ? e.go : null; },
     apply(key, html) {
       for (const e of forScreen(key)) {
@@ -56,7 +58,7 @@ export function loadEdits(root) {
           for (const [id, t] of Object.entries(e.texts || {})) { const [c, d] = need(copy, id, key); copy = copy.slice(0, c) + setText(copy.slice(c, d), t) + copy.slice(d); }
           copy = copy.replace(/data-node="([^"]+)"/g, `data-node="$1~${e.suffix}"`).replace(/ data-twin="[^"]+"/g, '');
           html = html.slice(0, b) + copy + html.slice(b);
-        } else if (e.op !== 'go' && e.op !== 'drop') throw new Error(`${key}: unknown op ${e.op}`);
+        } else if (!['go', 'drop', 'step'].includes(e.op)) throw new Error(`${key}: unknown op ${e.op}`);
       }
       return html;
     },

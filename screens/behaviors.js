@@ -112,6 +112,41 @@ function toast(api, scr, near, text) {
   t.style.top = `${r.y - 26}px`;
   setTimeout(() => t.remove(), 1300);
 }
+// Animations from the Figma Make "Payments in Motion" (client feedback 2026-11-18: the videos were recorded from it),
+// played from the Make's own Lottie files (brand/lottie, vendor/lottie_light.min.js) with the Make's timings.
+const LOTTIE = {};
+for (const k of ['face-id', 'visa-white', 'visa-blue']) fetch(`brand/lottie/${k}.json`).then(r => r.json()).then(d => { LOTTIE[k] = d; }, () => {});
+function lottie(el, key, speed = 1) {
+  if (!el || !window.lottie || !LOTTIE[key]) return null;
+  const a = window.lottie.loadAnimation({ container: el, renderer: 'svg', loop: false, autoplay: true, animationData: LOTTIE[key], rendererSettings: { preserveAspectRatio: 'xMidYMid meet' } });
+  a.setSpeed(speed);
+  return a;
+}
+// a Lottie's length in ms at a speed: (op - ip) / fr
+const LEN = { 'face-id': 150 / 25 * 1000, 'visa-white': 50 / 30 * 1000, 'visa-blue': 40 / 30 * 1000 };
+const TICK = '<svg class="tick" viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="62"/><path d="M42 72L62 92L98 52"/></svg>';
+// Securing (VdaUsa07): Visa Lottie, then the circle and tick, 1.4 s later done; dark for the wallet top-up
+const secMs = dark => LEN[dark ? 'visa-white' : 'visa-blue'] + 1400;
+function securing(api, scr, dark) {
+  const key = dark ? 'visa-white' : 'visa-blue';
+  const el = api.fx(scr, 'fx-sec' + (dark ? ' dark' : ''), '<div class="lt"></div>');
+  lottie(el.firstChild, key);
+  api.later(() => { el.innerHTML = TICK; }, LEN[key]);
+  return el;
+}
+// Face ID over the screen (NewPaymentMethod FaceIDScreen): Lottie at 2×, 1.5 s after it ends
+const FID_MS = LEN['face-id'] / 2 + 1500;
+function faceId(api, scr, text) {
+  const el = api.fx(scr, 'fx-fid', `<div class="card"><div class="lt"></div><div><b>Verify with Face ID</b><p>${text}</p></div></div>`);
+  lottie(el.querySelector('.lt'), 'face-id', 2);
+  return el;
+}
+// Face ID, then Securing, then the next step (client: F&F and Send, like the travel wallet)
+function faceIdThenSecuring(api, scr, text, done) {
+  const f = faceId(api, scr, text);
+  api.later(() => { securing(api, scr, false); api.later(() => f.remove(), 400); }, FID_MS);
+  api.later(done, FID_MS + secMs(false));
+}
 
 /* ---------- wiring: hotspot, back ---------- */
 window.VD_WIRE = (scr, s, api) => {
@@ -146,16 +181,8 @@ B['send-7'] = {
     const block = q(fr, '2:4772');
     if (block) block.setAttribute('data-a', 'next'); // tapping the Face ID block also authorises
   },
-  // Face ID scan, about 1.5 s, then advance
-  go(fr, api, scr, done) {
-    const em = q(fr, '2:4774') || q(fr, '2:4772');
-    const check = q(fr, '2:5138');
-    const r = api.rel(em, scr);
-    const ring = api.fx(scr, 'fx-scan run');
-    Object.assign(ring.style, { left: `${r.x - 6}px`, top: `${r.y - 6}px`, width: `${r.w + 12}px`, height: `${r.h + 12}px` });
-    if (check) anim(check, [{ opacity: 0, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(1)', offset: .7 }, { opacity: 1, transform: 'scale(1.3)', offset: .85 }, { opacity: 1, transform: 'scale(1)' }], { duration: 1500 });
-    api.later(() => { ring.remove(); done(); }, 1500);
-  }
+  // client feedback 2026-11-18 (Hoa): the Face ID scan from the video, then the Visa authorisation, then advance
+  go(fr, api, scr, done) { faceIdThenSecuring(api, scr, 'Authenticate to securely authorize this transfer', done); }
 };
 B['send-8'] = {
   enter(fr, api, scr) {
@@ -177,6 +204,18 @@ B['send-10'] = {
 
 // RECEIVE
 B['receive-1'] = { enter(fr, api) { countUp(q(fr, '2:5518'), api, 1100); draw(q(fr, '2:5538'), 300, 1400); } };
+// client feedback 2026-11-18 (Hoa): the amount types itself in, then the fee, the amount to convert and the VND
+// figure count up to their values
+B['receive-2'] = {
+  enter(fr, api) {
+    const figs = qa(fr, ['2:5681', '2:5684', '2:5688']);
+    figs.forEach(el => { el.style.visibility = 'hidden'; });
+    const end = typeIn(fr, api, ['2:5676'], { delay: 450, total: 900 });
+    api.later(() => figs.forEach((el, i) => api.later(() => { el.style.visibility = ''; countUp(el, api, 900); }, i * 220)), end);
+    fr.parentElement.dataset.ctaAt = Math.round(end + 2 * 220 + 900 + 300);
+    const b = q(fr, '2:5702'); if (b) api.later(() => pop(b.closest('[data-hotspot]') || b, 0, 380), end + 1300);
+  }
+};
 B['receive-3'] = {
   enter(fr, api, scr) {
     for (const id of ['2:6390', '2:6393', '2:6396', '2:6399', '2:6402', '2:5767']) {
@@ -237,20 +276,46 @@ B['collect-8'] = { enter(fr) { stagger(kids(fr, '15:5615'), { delay: 150, step: 
 
 // AFT · travel wallet (XinChaoVietnam)
 B['travel-2'] = { enter: autofill(['2:15860', '2:15864', '2:15869', '2:15874'], '2:15884') };
-B['travel-5'] = { enter: autofill(['2:16027', '2:16027~addr', '2:16031', '2:16043'], '2:16053', { total: 2800 }) };
+// client feedback 2026-11-18 (Hoa, video Card link verification.mp4) as in the Make (kira/screens/add-money-card-details):
+// the 16th digit brings the Visa wordmark into the field (0.35 s), "Validating card…" for 0.8 s, then "Card eligible
+// for funding" and where the card is billed (the Make's bank for AUD); 150 ms later the security code types in
+B['travel-5'] = {
+  enter(fr, api) {
+    let t = typeIn(fr, api, ['2:16027', '2:16027~addr', '2:16031'], { total: 2200 });
+    const box = q(fr, '2:16030'), group = q(fr, '2:16028'), icon = q(fr, '2:16959');
+    api.later(() => {
+      if (icon) icon.style.display = 'none';
+      if (box) box.insertAdjacentHTML('beforeend', '<i class="fx-cardvisa" role="img" aria-label="Visa"></i>');
+      if (group) group.insertAdjacentHTML('beforeend', '<div class="fx-cardcheck"><p class="run"><i class="sp"></i>Validating card…</p></div>');
+    }, t);
+    api.later(() => {
+      const c = group && group.querySelector('.fx-cardcheck');
+      if (c) c.innerHTML = '<p class="ok"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="7" fill="#17DA9A"/><path d="M4 7.3l2.1 2 4-4.3" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Card eligible for funding</p>' +
+        '<p class="sub"><span class="fl">🇦🇺</span>This card is billed in AUD · <b>Outback Bank, Sydney</b></p>';
+    }, t + 800);
+    t = typeIn(fr, api, ['2:16043'], { delay: t + 800 + 150, total: 165 });
+    fr.parentElement.dataset.ctaAt = Math.round(t + 400);
+    const b = q(fr, '2:16053'); if (b) api.later(() => pop(b.closest('[data-hotspot]') || b, 0, 380), t);
+  }
+};
 B['travel-7'] = { enter: autofill(['2:16131'], '2:16174', { total: 900 }) };
 // client feedback 2026-11-16 (Hoa #6): "Funding in progress" is left out (scripts/gen/client-edits.json). After the
 // issuer approves, the Visa completion animation from the client's video (Travel wallet screen.mp4) plays over the
 // phone: a deep indigo screen, the VISA wordmark wiped in left to right, then a circle drawn around a check; then
 // Top-up complete. Timings read from the video at 30 fps.
-B['travel-9'] = {
-  go(fr, api, scr, done) {
-    api.fx(scr, 'fx-visa', '<img class="vm" src="brand/visa-wordmark.svg" alt="Visa">' +
-      '<svg class="ok" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="36"/><path d="M25 41l10 10 20-21"/></svg>');
-    api.later(done, 3900);
+B['travel-9'] = { go(fr, api, scr, done) { securing(api, scr, true); api.later(done, secMs(true)); } };
+// client feedback 2026-11-18 (Hoa): "Verify it's you", a Face ID step after Card linked (client-edits.json step op);
+// the screen is the Face ID scene and moves on by itself (auto)
+// (AftFaceId): the Lottie at 1.3×, then "Face ID confirmed", 0.9 s later the next step (the step's auto)
+B['travel-6v'] = {
+  enter(fr, api) {
+    lottie(fr.querySelector('.lt'), 'face-id', 1.3);
+    api.later(() => { fr.classList.add('ok'); const l = fr.querySelector('.lbl'); if (l) l.textContent = 'Face ID confirmed'; }, LEN['face-id'] / 1.3);
   }
 };
 // AFT · friends and family (NovaBank)
 B['family-3'] = { enter: autofill(['2:46985', '2:46993', '2:46999'], '2:47014', { total: 2600 }) };
+// client feedback 2026-11-18 (Hoa): Authorize Payment plays the Face ID scan, then the Visa authorisation
+B['family-13'] = { go(fr, api, scr, done) { faceIdThenSecuring(api, scr, 'Authenticate to securely approve this payment', done); } };
 B['family-11'] = { enter: (fr, api) => simulate(fr, api, [['2:47654', '4111 1234 5678 4812'], ['2:47660', '08/29'], ['2:47664', '•••'], ['2:47669', 'Sarah Nguyen'], ['2:47673', '1 Market St, San Francisco, CA']], { cta: '2:47683' }) };
 })();
