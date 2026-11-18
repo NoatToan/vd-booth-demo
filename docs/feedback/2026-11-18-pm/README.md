@@ -26,3 +26,5 @@ Decisions to confirm are on the test-changes page (items 22–25). Evidence: `be
   booth with Playwright video on and checks timing, centring on the phone (≤ 6 px) and the Make's texts.
 - Fixes from the comparison: the light Visa box (500 px) is centred on the 402–414 px phone (it overflowed to the
   right); the tick's circle is drawn from 3 o'clock, as motion's pathLength does in the Make.
+
+| 26 | Send — Step 8: Capitalize "Your" for "Your paperwork.." (addendum) | send-8: text edit on node 4:244, "Your paperwork is being reviewed" | (Figma text) |

@@ -141,13 +141,13 @@ var IMG = '../docs/feedback/2026-11-16/', IMG2 = '../docs/feedback/2026-11-18/',
 var dirOf = function (i) { return i.p3 ? IMG3 : i.p2 ? IMG2 : IMG; };
 var phOf = function (i) { return i.p3 ? 3 : i.p2 ? 2 : 1; };
 var UI = {
-  en: { title: 'Test changes · Feedback 16/11 and 18/11/2026', sub: 'Visa Direct booth demo · 25 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
-    home: 'Booth home', ovTitle: 'Everything the email asked for', ovNote: 'One section per feedback round, closed by default: open one to see its requests, in the client’s words, and the item for each.', frames: 'Frames at the same times (Make above, booth below)', cmpNote: 'Left: the Figma Make’s own component, run from its source. Right: the booth. Recorded with Playwright.', ph3: 'Phase 3 · Feedback 18/11 (afternoon)', ovHoa3: 'Hoa Nguyen · 18/11 14:54 · final comments', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'items', nHold: 'on hold', ovNat2: 'Natalie Liew · 18/11 10:48 · on the 18/11 update', hold: 'On hold', holdTag: '⏸ On hold', ovNat: 'Natalie Liew · 16/11 17:22 · design and branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Earlier in the thread (12–13/11)', fixedOn: 'Fixed', doneOld: 'Done 13/11', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
+  en: { title: 'Test changes · Feedback 16/11 and 18/11/2026', sub: 'Visa Direct booth demo · 26 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
+    home: 'Booth home', ovTitle: 'Everything the email asked for', ovNote: 'One section per feedback round, closed by default: open one to see its requests, in the client’s words, and the item for each.', frames: 'Frames at the same times (Make above, booth below)', cmpNote: 'Left: the Figma Make’s own component, run from its source. Right: the booth. Recorded with Playwright.', ph3: 'Phase 3 · Feedback 18/11 (afternoon)', ovHoa3: 'Hoa Nguyen · 18/11 14:54 · final comments', ovAdd3: 'Client · 18/11 · one extra comment', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'items', nHold: 'on hold', ovNat2: 'Natalie Liew · 18/11 10:48 · on the 18/11 update', hold: 'On hold', holdTag: '⏸ On hold', ovNat: 'Natalie Liew · 16/11 17:22 · design and branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Earlier in the thread (12–13/11)', fixedOn: 'Fixed', doneOld: 'Done 13/11', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
     legend: 'Figma = the original design · red box = what had to change · green box = changed · dashed box = removed', noImg: 'The email has no image for this item.', fixed: 'Fixed', cause: 'Cause',
     decTitle: 'Decided on our side (to be confirmed)', unclear: 'Unclear', chosen: 'Decided', later: 'To change it', before: 'Before', after: 'After', figma: 'Figma (original)',
     gone: 'This screen is no longer in the journey', done: '✓ Done', hasDec: 'Has a decision to confirm', from: 'email "Visa Direct demo experience"', close: 'Close' },
-  vi: { title: 'Test changes · Feedback 16/11 và 18/11/2026', sub: 'Visa Direct booth demo · 25 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
-    home: 'Về trang home', ovTitle: 'Toàn bộ yêu cầu trong email', ovNote: 'Mỗi đợt feedback là một khối, mặc định đóng: mở khối cần xem để thấy các yêu cầu (giữ nguyên câu của khách) và mục xử lý của từng yêu cầu.', frames: 'Khung hình cùng thời điểm (trên: Make, dưới: booth)', cmpNote: 'Trái: component của Figma Make chạy từ source gốc. Phải: booth. Quay bằng Playwright.', ph3: 'Phase 3 · Feedback 18/11 (chiều)', ovHoa3: 'Hoa Nguyen · 18/11 14:54 · góp ý cuối', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'mục', nHold: 'tạm giữ', ovNat2: 'Natalie Liew · 18/11 10:48 · góp ý bản cập nhật 18/11', hold: 'Tạm giữ', holdTag: '⏸ Tạm giữ', ovNat: 'Natalie Liew · 16/11 17:22 · design và branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Feedback trước đó trong chuỗi email (12–13/11)', fixedOn: 'Đã sửa', doneOld: 'Xong 13/11', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
+  vi: { title: 'Test changes · Feedback 16/11 và 18/11/2026', sub: 'Visa Direct booth demo · 26 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
+    home: 'Về trang home', ovTitle: 'Toàn bộ yêu cầu trong email', ovNote: 'Mỗi đợt feedback là một khối, mặc định đóng: mở khối cần xem để thấy các yêu cầu (giữ nguyên câu của khách) và mục xử lý của từng yêu cầu.', frames: 'Khung hình cùng thời điểm (trên: Make, dưới: booth)', cmpNote: 'Trái: component của Figma Make chạy từ source gốc. Phải: booth. Quay bằng Playwright.', ph3: 'Phase 3 · Feedback 18/11 (chiều)', ovHoa3: 'Hoa Nguyen · 18/11 14:54 · góp ý cuối', ovAdd3: 'Khách · 18/11 · góp ý bổ sung', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'mục', nHold: 'tạm giữ', ovNat2: 'Natalie Liew · 18/11 10:48 · góp ý bản cập nhật 18/11', hold: 'Tạm giữ', holdTag: '⏸ Tạm giữ', ovNat: 'Natalie Liew · 16/11 17:22 · design và branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Feedback trước đó trong chuỗi email (12–13/11)', fixedOn: 'Đã sửa', doneOld: 'Xong 13/11', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
     legend: 'Figma = design gốc · khung đỏ = chỗ cần sửa · khung xanh = đã sửa · khung nét đứt = chỗ đã bỏ', noImg: 'Email không kèm ảnh cho mục này.', fixed: 'Đã sửa', cause: 'Nguyên nhân',
     decTitle: 'Điểm tự chốt (chờ xác nhận)', unclear: 'Chưa rõ', chosen: 'Đã chốt', later: 'Nếu cần đổi', before: 'Before', after: 'After', figma: 'Figma (gốc)',
     gone: 'Màn này đã bỏ khỏi journey', done: '✓ Done', hasDec: 'Có điểm tự chốt', from: 'email "Visa Direct demo experience"', close: 'Đóng' }
@@ -161,7 +161,7 @@ var CAUSE = {
 // Every item: the client's words (always English), the email image, the Figma evidence (changes against Figma), the
 // analysis with the points we decided, then the live-site shots: [title, shot, {b: before boxes, a: after boxes,
 // ghost: before boxes drawn dashed on after}, after shot (null = gone)]; box indexes into annotations.json.
-var NAT = 'Natalie Liew · 16/11 17:22', HOA = 'Hoa Nguyen · 16/11 23:02', NAT2 = 'Natalie Liew · 18/11 10:48', HOA3 = 'Hoa Nguyen · 18/11 14:54';
+var NAT = 'Natalie Liew · 16/11 17:22', HOA = 'Hoa Nguyen · 16/11 23:02', NAT2 = 'Natalie Liew · 18/11 10:48', HOA3 = 'Hoa Nguyen · 18/11 14:54', ADD3 = 'Client · 18/11 · addendum';
 var ITEMS = [
   { n: 1, time: NAT, cause: 'mine', quote: 'Home page — Visa logo on the top left can be smaller. The proportion should follow the reference demo shared previously.',
     title: { en: 'Smaller Visa logo on the attract screen', vi: 'Logo Visa ở màn chờ nhỏ lại' },
@@ -356,7 +356,13 @@ var ITEMS = [
     figmaNote: { en: 'Make: kira/screens/add-money-card-details.tsx; bank names per currency from the Make (AUD → Outback Bank, Sydney).', vi: 'Make: kira/screens/add-money-card-details.tsx; tên ngân hàng theo tiền tệ lấy từ Make (AUD → Outback Bank, Sydney).' },
     dec: [{ en: ['"After the below step": the screenshot was in the collapsed part of the email and is missing.', 'On travel-5 Add Visa card, where the card number is entered, as in the video; the travel journey’s card is Australian (AUD), so the Make’s AUD bank.', 'screens/behaviors.js travel-5.'],
             vi: ['"After the below step": ảnh chụp bước đó nằm trong phần thu gọn của email nên không có.', 'Đặt ở travel-5 Add Visa card, chỗ nhập số thẻ, như trong video; thẻ của journey Travel là thẻ Úc (AUD) nên dùng ngân hàng AUD của Make.', 'screens/behaviors.js travel-5.'] }],
-    shots: [[{ en: 'Add Visa card · about 4 s in', vi: 'Add Visa card · khoảng 4 giây sau khi vào' }, 'p-travel-5-check', { b: [], a: [0, 1] }]] }
+    shots: [[{ en: 'Add Visa card · about 4 s in', vi: 'Add Visa card · khoảng 4 giây sau khi vào' }, 'p-travel-5-check', { b: [], a: [0, 1] }]] },
+  { n: 26, p3: 1, time: ADD3, cause: 'new', quote: 'Apologies, 1 extra comment on my end for Send — Step 8: Capitalize “Your” for “Your paperwork..”.',
+    title: { en: 'Send step 8: capital “Your” in the heading', vi: 'Send bước 8: viết hoa “Your” ở tiêu đề' },
+    fix: { en: 'send-8 Paperwork review: "your paperwork is being reviewed" → "Your paperwork is being reviewed".', vi: 'send-8 Paperwork review: "your paperwork is being reviewed" → "Your paperwork is being reviewed".' },
+    why: { en: 'Figma writes the heading in lower case; the build followed Figma.', vi: 'Figma viết thường chữ đầu của tiêu đề; bản build làm theo Figma.' },
+    figma: [['send-8 · Paperwork review', 's-send-8']],
+    shots: [['send-8 · Paperwork review', 's-send-8', { b: [0], a: [0] }]] }
 ];
 
 var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -393,8 +399,9 @@ function emailBlock(i) {
 function figmaFor(i, shot) {
   var f = (i.figma || []).filter(function (x) { return x[1] === shot || 's-' + x[1] === shot; })[0];
   if (!f) return '';
-  var a = ANN[f[1]], label = '#' + i.n + ' ' + L(f[0]);
-  return a && a.figma ? figure(IMG + a.figma.img, t('figma'), 'figma', label, a.figma, boxes(a.figma, pick(a.figma.boxes, f[2]), 'red'))
+  // the round's own Figma evidence first, else the 16/11 one
+  var own = (i.p3 ? ANN3 : i.p2 ? ANN2 : ANN)[f[1]], a = own && own.figma ? own : ANN[f[1]], base = own && own.figma ? dirOf(i) : IMG, label = '#' + i.n + ' ' + L(f[0]);
+  return a && a.figma ? figure(base + a.figma.img, t('figma'), 'figma', label, a.figma, boxes(a.figma, pick(a.figma.boxes, f[2]), 'red'))
     : figure(IMG + 'figma/' + f[1] + '.png', t('figma'), 'figma', label);
 }
 // decOk: approved on 17/11; the decision stays in the data for reference but is not shown
@@ -431,7 +438,7 @@ function overview() {
   var group = function (who) { return ITEMS.filter(function (i) { return i.time === who; }).map(row).join(''); };
   return {
     intro: '<h2>' + t('ovTitle') + '</h2><p class="note">' + t('ovNote') + '</p>',
-    3: '<h3>' + t('ovHoa3') + '</h3><table class="ov-t">' + group(HOA3) + '</table>',
+    3: '<h3>' + t('ovHoa3') + '</h3><table class="ov-t">' + group(HOA3) + '</table>' + '<h3>' + t('ovAdd3') + '</h3><table class="ov-t">' + group(ADD3) + '</table>',
     2: '<h3>' + t('ovNat2') + '</h3><table class="ov-t">' + group(NAT2) + '</table>',
     1: '<h3>' + t('ovNat') + '</h3><table class="ov-t">' + group(NAT) + '</table>' +
     '<h3>' + t('ovHoa') + '</h3><table class="ov-t">' + group(HOA) + '</table>' +

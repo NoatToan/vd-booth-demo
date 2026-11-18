@@ -31,6 +31,8 @@
     { "op": "step", "screen": "travel-6v", "after": "travel-6", "title": "Verify it\u2019s you", "bar": "Verification", "heading": "Verify it\u2019s you", "sub": "Use Face ID to securely verify your Visa card.", "auto": 5600, "reason": "Hoa 18/11: an animated Face ID step called Verify it's you after Card linked; the Make's Face ID step (kira/screens/otp-verify.tsx, Lottie at 1.3x, then Face ID confirmed, 0.9 s), behaviors.js travel-6v" },
     { "op": "drop", "screen": "travel-10", "reason": "Hoa #6: Funding in progress removed; the top-up notification (behaviors.js travel-9) leads to Top-up complete" },
 
+    { "screen": "send-8", "node": "4:244", "op": "text", "text": "Your paperwork is being reviewed", "reason": "Client 18/11 (phase 3 addendum): capitalize Your (Figma: your paperwork is being reviewed)" },
+
     { "screen": "family-3", "node": "2:47004", "op": "remove", "reason": "Hoa #8: remove Linked card · Visa Debit" },
     { "screen": "family-11", "node": "2:47671", "op": "text", "text": "Address", "reason": "Hoa #9: Billing ZIP -> Address" },
     { "screen": "family-11", "node": "2:47673", "op": "text", "text": "Street address", "reason": "Hoa #9: placeholder of the Address field" }
