@@ -107,11 +107,14 @@ html.solo, html.solo * { scrollbar-width: none; }
    little bigger here at the client's request. */
 .fx-sec { position: absolute; z-index: 9; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; display: grid; place-items: center; background: #fff; animation: fx-sec-in .34s cubic-bezier(.22,1,.36,1) both; }
 .fx-sec.dark { background: linear-gradient(175deg, #2a1442 0%, #1d0f34 45%, #120a22 100%); }
+/* centred on the phone even when the Lottie box is wider than the screen (500 px light box on a 402–414 px phone) */
+.fx-sec .lt, .fx-sec .tick { position: absolute; left: 50%; top: 50%; translate: -50% -50%; }
 .fx-sec .lt { width: 500px; height: 500px; }
 .fx-sec.dark .lt { width: 150px; height: 150px; }
 .fx-sec .tick { width: 91px; height: 91px; fill: none; stroke: #1434cb; stroke-linecap: round; stroke-linejoin: round; animation: fx-sec-tick .35s ease-out both; }
 .fx-sec.dark .tick { stroke: #fff; }
-.fx-sec .tick circle { stroke-width: 6; stroke-dasharray: 390; stroke-dashoffset: 390; transform: rotate(-90deg); transform-origin: 70px 70px; animation: fx-sec-draw .5s ease-out both; }
+/* drawn from 3 o'clock, as motion's pathLength on an svg circle in the Make */
+.fx-sec .tick circle { stroke-width: 6; stroke-dasharray: 390; stroke-dashoffset: 390; animation: fx-sec-draw .5s ease-out both; }
 .fx-sec .tick path { stroke-width: 8; stroke-dasharray: 90; stroke-dashoffset: 90; animation: fx-sec-draw .45s .3s ease-out both; }
 @keyframes fx-sec-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fx-sec-tick { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }

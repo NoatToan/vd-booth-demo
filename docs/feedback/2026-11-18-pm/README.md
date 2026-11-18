@@ -16,3 +16,13 @@ Live page: <https://vd-booth-demo.vercel.app/test-changes/#item-21> (items 21–
 
 Decisions to confirm are on the test-changes page (items 22–25). Evidence: `before/` (production at a6a58d2),
 `after-local/`, `after-deployed/`, boxes in `annotations.json`; email images and the Card link video in `email/`.
+
+## Make vs booth, recorded
+
+- `compare/*.mp4`: left the Figma Make's own component, run from its source in a reference harness (React, motion,
+  lottie-react 2.4.1, Tailwind, the Make's files unchanged), right the booth; both recorded with Playwright and started
+  at the same moment. `compare/*-frames.jpg`: frames at the same times, Make above, booth below.
+- `video/*.webm`: `tests/e2e/animations.spec.mjs` (`pnpm --dir tests/e2e test animations`) plays each animation on the
+  booth with Playwright video on and checks timing, centring on the phone (≤ 6 px) and the Make's texts.
+- Fixes from the comparison: the light Visa box (500 px) is centred on the 402–414 px phone (it overflowed to the
+  right); the tick's circle is drawn from 3 o'clock, as motion's pathLength does in the Make.
