@@ -84,10 +84,20 @@ figure.figma figcaption{background:#a259ff}
 .bx.red{border-color:#e11d48}.bx.red b{background:#e11d48}
 .bx.green{border-color:#16a34a}.bx.green b{background:#16a34a}
 .bx.ghost{border:3px dashed #e11d48;background:rgba(225,29,72,.08)}.bx.ghost b{background:#e11d48}
+/* each feedback round folds; closed by default so the reader opens the one they need */
+.phase{margin:16px 0}
+.phase .item{scroll-margin-top:70px}
+.ph-req{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px 20px 14px;margin-top:10px}
+.phase>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 20px}
+.phase>summary::-webkit-details-marker{display:none}
+.phase>summary::before{content:'▸';color:var(--blue);font-size:18px;transition:transform .15s}
+.phase[open]>summary::before{transform:rotate(90deg)}
+.phase>summary b{font:400 20px/1.2 'Visa Dialect',Inter,sans-serif;color:var(--navy)}
+.phase>summary span{color:var(--muted);font-size:14px}
 #overview{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin-top:16px}
 #overview h2{font:400 20px/1.2 'Visa Dialect',Inter,sans-serif;margin:0 0 4px}
 #overview .note{margin:0 0 10px}
-#overview h3{font:600 13px/1.3 Inter,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:14px 0 6px}
+#overview h3,.ph-req h3{font:600 13px/1.3 Inter,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:14px 0 6px}
 .ov-t{width:100%;border-collapse:collapse;font-size:14px}
 .ov-t td{border-top:1px solid var(--line);padding:7px 8px;vertical-align:top}
 .ov-t td:first-child{width:44px;white-space:nowrap}
@@ -123,12 +133,12 @@ figure.figma figcaption{background:#a259ff}
 var IMG = '../docs/feedback/2026-11-16/', IMG2 = '../docs/feedback/2026-11-18/';
 var UI = {
   en: { title: 'Test changes · Feedback 16/11 and 18/11/2026', sub: 'Visa Direct booth demo · 20 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
-    home: 'Booth home', ovTitle: 'Everything the email asked for', ovNote: 'Each line is one request, in the client’s words, as listed in the email thread. Click a number to jump to its item.', ovNat2: 'Natalie Liew · 18/11 10:48 · on the 18/11 update', hold: 'On hold', holdTag: '⏸ On hold', ovNat: 'Natalie Liew · 16/11 17:22 · design and branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Earlier in the thread (12–13/11)', fixedOn: 'Fixed', doneOld: 'Done 13/11', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
+    home: 'Booth home', ovTitle: 'Everything the email asked for', ovNote: 'One section per feedback round, closed by default: open one to see its requests, in the client’s words, and the item for each.', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'items', nHold: 'on hold', ovNat2: 'Natalie Liew · 18/11 10:48 · on the 18/11 update', hold: 'On hold', holdTag: '⏸ On hold', ovNat: 'Natalie Liew · 16/11 17:22 · design and branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Earlier in the thread (12–13/11)', fixedOn: 'Fixed', doneOld: 'Done 13/11', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
     legend: 'Figma = the original design · red box = what had to change · green box = changed · dashed box = removed', noImg: 'The email has no image for this item.', fixed: 'Fixed', cause: 'Cause',
     decTitle: 'Decided on our side (to be confirmed)', unclear: 'Unclear', chosen: 'Decided', later: 'To change it', before: 'Before', after: 'After', figma: 'Figma (original)',
     gone: 'This screen is no longer in the journey', done: '✓ Done', hasDec: 'Has a decision to confirm', from: 'email "Visa Direct demo experience"', close: 'Close' },
   vi: { title: 'Test changes · Feedback 16/11 và 18/11/2026', sub: 'Visa Direct booth demo · 20 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
-    home: 'Về trang home', ovTitle: 'Toàn bộ yêu cầu trong email', ovNote: 'Mỗi dòng là một yêu cầu, giữ nguyên câu của khách, theo thứ tự trong chuỗi email. Bấm số để tới mục tương ứng.', ovNat2: 'Natalie Liew · 18/11 10:48 · góp ý bản cập nhật 18/11', hold: 'Tạm giữ', holdTag: '⏸ Tạm giữ', ovNat: 'Natalie Liew · 16/11 17:22 · design và branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Feedback trước đó trong chuỗi email (12–13/11)', fixedOn: 'Đã sửa', doneOld: 'Xong 13/11', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
+    home: 'Về trang home', ovTitle: 'Toàn bộ yêu cầu trong email', ovNote: 'Mỗi đợt feedback là một khối, mặc định đóng: mở khối cần xem để thấy các yêu cầu (giữ nguyên câu của khách) và mục xử lý của từng yêu cầu.', ph2: 'Phase 2 · Feedback 18/11', ph1: 'Phase 1 · Feedback 16/11', nItems: 'mục', nHold: 'tạm giữ', ovNat2: 'Natalie Liew · 18/11 10:48 · góp ý bản cập nhật 18/11', hold: 'Tạm giữ', holdTag: '⏸ Tạm giữ', ovNat: 'Natalie Liew · 16/11 17:22 · design và branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Feedback trước đó trong chuỗi email (12–13/11)', fixedOn: 'Đã sửa', doneOld: 'Xong 13/11', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
     legend: 'Figma = design gốc · khung đỏ = chỗ cần sửa · khung xanh = đã sửa · khung nét đứt = chỗ đã bỏ', noImg: 'Email không kèm ảnh cho mục này.', fixed: 'Đã sửa', cause: 'Nguyên nhân',
     decTitle: 'Điểm tự chốt (chờ xác nhận)', unclear: 'Chưa rõ', chosen: 'Đã chốt', later: 'Nếu cần đổi', before: 'Before', after: 'After', figma: 'Figma (gốc)',
     gone: 'Màn này đã bỏ khỏi journey', done: '✓ Done', hasDec: 'Có điểm tự chốt', from: 'email "Visa Direct demo experience"', close: 'Đóng' }
@@ -295,7 +305,7 @@ var ITEMS = [
 
 var $ = function (s, r) { return (r || document).querySelector(s); };
 var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-var state = { cause: 'all', lang: 'en' }, ANN = {}, ANN2 = {};
+var state = { cause: 'all', lang: 'en', open: { 1: false, 2: false } }, ANN = {}, ANN2 = {};
 try { state.lang = localStorage.getItem('tc-lang') || 'en'; } catch (e) {}
 var L = function (v) { return typeof v === 'string' ? v : v[state.lang]; };
 var t = function (k) { return UI[state.lang][k]; };
@@ -360,21 +370,23 @@ var OLD = [
 function overview() {
   var row = function (i) { return '<tr><td><a href="#item-' + i.n + '">#' + i.n + '</a></td><td><q lang="en">' + esc(i.quote) + '</q></td><td>' + (i.hold ? t('holdTag') : '✓ ' + t('fixedOn')) + '</td></tr>'; };
   var group = function (who) { return ITEMS.filter(function (i) { return i.time === who; }).map(row).join(''); };
-  return '<h2>' + t('ovTitle') + '</h2><p class="note">' + t('ovNote') + '</p>' +
-    '<h3>' + t('ovNat2') + '</h3><table class="ov-t">' + group(NAT2) + '</table>' +
-    '<h3>' + t('ovNat') + '</h3><table class="ov-t">' + group(NAT) + '</table>' +
+  return {
+    intro: '<h2>' + t('ovTitle') + '</h2><p class="note">' + t('ovNote') + '</p>',
+    2: '<h3>' + t('ovNat2') + '</h3><table class="ov-t">' + group(NAT2) + '</table>',
+    1: '<h3>' + t('ovNat') + '</h3><table class="ov-t">' + group(NAT) + '</table>' +
     '<h3>' + t('ovHoa') + '</h3><table class="ov-t">' + group(HOA) + '</table>' +
-    '<h3>' + t('ovOld') + '</h3><table class="ov-t">' + OLD.map(function (o) { return '<tr class="old"><td>–</td><td><q>' + esc(o[1]) + '</q><br><span class="note">' + esc(o[0]) + ' · ' + esc(L(o[2])) + '</span></td><td>✓</td></tr>'; }).join('') + '</table>';
+    '<h3>' + t('ovOld') + '</h3><table class="ov-t">' + OLD.map(function (o) { return '<tr class="old"><td>–</td><td><q>' + esc(o[1]) + '</q><br><span class="note">' + esc(o[0]) + ' · ' + esc(L(o[2])) + '</span></td><td>✓</td></tr>'; }).join('') + '</table>' };
 }
 function render() {
   document.documentElement.lang = state.lang;
   [].forEach.call(document.querySelectorAll('[data-t]'), function (e) { e.textContent = t(e.dataset.t); });
-  $('#overview').innerHTML = overview();
+  var ov = overview();
+  $('#overview').innerHTML = ov.intro;
   var counts = {}; ITEMS.forEach(function (i) { counts[i.cause] = (counts[i.cause] || 0) + 1; });
   $('#filters').innerHTML = '<button class="chip" data-c="all">' + t('all') + ' · ' + ITEMS.length + '</button>' + Object.keys(CAUSE).map(function (k) {
     return '<button class="chip" data-c="' + k + '"><i style="background:' + CAUSE[k].color + '"></i>' + CAUSE[k][state.lang] + ' · ' + counts[k] + '</button>';
   }).join('');
-  $('#items').innerHTML = ITEMS.filter(function (i) { return state.cause === 'all' || i.cause === state.cause; }).map(function (i) {
+  var card = function (i) {
     var c = CAUSE[i.cause], k = 0;
     return '<article class="item" id="item-' + i.n + '" style="--cc:' + c.color + '"><div class="head"><span class="num">' + i.n + '</span><h3>' + esc(L(i.title)) + '</h3>' +
       '<div class="tags"><span class="tag">' + i.time.split(' ')[0] + '</span><span class="tag cause">' + c[state.lang] + '</span>' + (i.hold ? '<span class="tag dec">' + t('holdTag') + '</span>' : '<span class="tag done">' + t('done') + '</span>') + (i.dec && !i.decOk ? '<span class="tag dec">' + t('hasDec') + '</span>' : '') + '</div></div>' +
@@ -383,15 +395,31 @@ function render() {
       '<section class="step"><h5><span>' + (++k) + '</span>' + t('s3') + '</h5><dl class="meta"><dt>' + t('fixed') + '</dt><dd>' + esc(L(i.fix)) + '</dd><dt>' + t('cause') + '</dt><dd>' + esc(L(i.why)) + '</dd>' +
         (i.hold ? '<dt>' + t('hold') + '</dt><dd>' + esc(L(i.hold)) + '</dd>' : '') + (i.figmaNote ? '<dt>' + t('figmaRow') + '</dt><dd>' + esc(L(i.figmaNote)) + '</dd>' : '') + '</dl>' + decBlock(i) + '</section>' +
       shotsBlock(i, ++k) + '</article>';
+  };
+  $('#items').innerHTML = [2, 1].map(function (ph) {
+    var all = ITEMS.filter(function (i) { return (i.p2 ? 2 : 1) === ph; }), shown = all.filter(function (i) { return state.cause === 'all' || i.cause === state.cause; });
+    var hold = all.filter(function (i) { return i.hold; }).length;
+    return '<details class="phase" data-ph="' + ph + '"' + (state.open[ph] ? ' open' : '') + '><summary><b>' + t('ph' + ph) + '</b><span>#' + all[0].n + '–' + all[all.length - 1].n + ' · ' +
+      all.length + ' ' + t('nItems') + (hold ? ' · ' + hold + ' ' + t('nHold') : '') + '</span></summary><div class="ph-req">' + ov[ph] + '</div>' + shown.map(card).join('') + '</details>';
   }).join('');
+  [].forEach.call(document.querySelectorAll('.phase'), function (d) { d.addEventListener('toggle', function () { state.open[d.dataset.ph] = d.open; }); });
   [].forEach.call(document.querySelectorAll('#filters .chip'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.c === state.cause)); });
   [].forEach.call(document.querySelectorAll('#lang button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === state.lang)); });
   $('#lb .x').setAttribute('aria-label', t('close'));
 }
+function reveal(hash) {
+  var m = /^#item-(\d+)$/.exec(hash || ''); if (!m) return;
+  var it = ITEMS.filter(function (i) { return i.n === +m[1]; })[0]; if (!it) return;
+  var ph = it.p2 ? 2 : 1;
+  if (state.cause !== 'all' && state.cause !== it.cause) { state.cause = 'all'; render(); }
+  state.open[ph] = true; var d = $('.phase[data-ph="' + ph + '"]'); if (d) d.open = true;
+  var el = document.getElementById('item-' + m[1]); if (el) el.scrollIntoView();
+}
+document.addEventListener('click', function (e) { var a = e.target.closest('a[href^="#item-"]'); if (!a) return; e.preventDefault(); history.replaceState(null, '', a.getAttribute('href')); reveal(a.getAttribute('href')); });
 $('#filters').addEventListener('click', function (e) { var b = e.target.closest('.chip'); if (b) { state.cause = b.dataset.c; render(); } });
 $('#lang').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; state.lang = b.dataset.v; try { localStorage.setItem('tc-lang', state.lang); } catch (err) {} render(); });
 Promise.all([IMG, IMG2].map(function (u) { return fetch(u + 'annotations.json').then(function (r) { return r.json(); }).catch(function () { return {}; }); }))
-  .then(function (d) { ANN = d[0]; ANN2 = d[1]; }).then(render);
+  .then(function (d) { ANN = d[0]; ANN2 = d[1]; }).then(render).then(function () { reveal(location.hash); });
 
 // lightbox: the image with its boxes; ←/→ moves through the images on the page
 var lb = $('#lb'), figs = [], at = 0;
