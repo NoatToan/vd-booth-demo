@@ -23,6 +23,12 @@ const open = async (page, step) => {
 const tap = page => page.locator('.viewport .scr:last-child [data-hotspot]').click();
 const screen = page => page.evaluate(() => window.VD.state().screen);
 // how far the drawn content of an element sits from the centre of the phone screen, in px
+const boxCentre = (page, sel) => page.evaluate(sel => {
+  const host = document.querySelector('.viewport .scr:last-child'), el = document.querySelector(sel);
+  if (!host || !el) return null;
+  const s = host.getBoundingClientRect(), r = el.getBoundingClientRect();
+  return { dx: Math.round(r.left + r.width / 2 - (s.left + s.width / 2)), dy: Math.round(r.top + r.height / 2 - (s.top + s.height / 2)) };
+}, sel);
 const offCentre = (page, sel) => page.evaluate(sel => {
   const host = document.querySelector('.viewport .scr:last-child'), el = document.querySelector(sel);
   if (!host || !el) return null;
@@ -31,7 +37,7 @@ const offCentre = (page, sel) => page.evaluate(sel => {
   const s = host.getBoundingClientRect();
   const cx = (Math.min(...parts.map(r => r.left)) + Math.max(...parts.map(r => r.right))) / 2;
   const cy = (Math.min(...parts.map(r => r.top)) + Math.max(...parts.map(r => r.bottom))) / 2;
-  return { dx: Math.round(cx - (s.left + s.width / 2)), dy: Math.round(cy - (s.top + s.height / 2)) };
+  return { dx: Math.round(cx - (s.left + s.width / 2)), dy: Math.round(cy - (s.top + s.height / 2)), w: Math.round(Math.max(...parts.map(r => r.right)) - Math.min(...parts.map(r => r.left))) };
 }, sel);
 
 for (const [title, step, next, text] of [
@@ -47,11 +53,11 @@ for (const [title, step, next, text] of [
   await expect(page.locator('.fx-fid .lt svg')).toBeVisible();
   // then Securing (Make VdaUsa07, light): the Visa Lottie centred, then the tick, then the next step
   await expect(page.locator('.fx-sec:not(.dark) .lt svg')).toBeVisible({ timeout: 6000 });
-  await page.waitForTimeout(900);
-  const c = await offCentre(page, '.fx-sec .lt');
-  expect(c, 'Visa wordmark centred on the phone').not.toBeNull();
-  expect(Math.abs(c.dx)).toBeLessThanOrEqual(6);
-  expect(Math.abs(c.dy)).toBeLessThanOrEqual(6);
+  // the Lottie box sits on the centre of the phone (its letters slide in, as the Make's own file does)
+  const c = await boxCentre(page, '.fx-sec .lt');
+  expect(c, 'Visa Lottie box centred on the phone').not.toBeNull();
+  expect(Math.abs(c.dx)).toBeLessThanOrEqual(1);
+  expect(Math.abs(c.dy)).toBeLessThanOrEqual(1);
   await expect(page.locator('.fx-sec .tick')).toBeVisible({ timeout: 3000 });
   const t = await offCentre(page, '.fx-sec');
   expect(Math.abs(t.dx)).toBeLessThanOrEqual(2);
@@ -77,10 +83,11 @@ test('travel-9: Visa securing (dark) after the issuer approval', async ({ page }
   expect(await screen(page)).toBe('travel-9');
   await tap(page);
   await expect(page.locator('.fx-sec.dark .lt svg')).toBeVisible();
-  await page.waitForTimeout(1000);
-  const c = await offCentre(page, '.fx-sec .lt');
-  expect(Math.abs(c.dx)).toBeLessThanOrEqual(6);
-  expect(Math.abs(c.dy)).toBeLessThanOrEqual(6);
+  // the Lottie box sits on the centre of the phone (its letters slide in, as the Make's own file does)
+  const c = await boxCentre(page, '.fx-sec .lt');
+  expect(c, 'Visa Lottie box centred on the phone').not.toBeNull();
+  expect(Math.abs(c.dx)).toBeLessThanOrEqual(1);
+  expect(Math.abs(c.dy)).toBeLessThanOrEqual(1);
   await expect(page.locator('.fx-sec.dark .tick')).toBeVisible({ timeout: 2000 });
   await expect.poll(() => screen(page), { timeout: 4000 }).toBe('travel-11');
 });
@@ -108,4 +115,25 @@ test('receive-2: the numbers populate', async ({ page }) => {
   expect((await amt.textContent()).length, 'the amount is still typing in').toBeLessThan('2,500.00'.length);
   await expect(page.locator('.viewport .scr:last-child [data-node="2:5688"]')).toHaveText('63,295,800', { timeout: 5000 });
   await expect(amt).toHaveText('2,500.00');
+});
+
+for (const [title, step, sms] of [
+  ['send-11: payment success, check springs in with pulsing rings', 'send:11', null],
+  ['travel-11: top-up success, pulsing rings and the bank SMS', 'travel:11', 'Outback Bank, Sydney'],
+]) test(title, async ({ page }) => {
+  await page.goto(`/index.html?goto=${step}&idle=999&nobeat=1&nosw=1`);
+  await page.waitForFunction(() => window.VD && window.VD.state().view === 'flow');
+  const rings = page.locator('.viewport .scr:last-child .fx-ring');
+  await expect(rings).toHaveCount(2);
+  // the rings sit on the check circle, at its size (measured before the spring)
+  const [ring, ok] = await Promise.all([rings.first().boundingBox(), page.locator('.viewport .scr:last-child .fx-okpop').boundingBox()]);
+  await page.waitForTimeout(900);
+  const ok2 = await page.locator('.viewport .scr:last-child .fx-okpop').boundingBox();
+  expect(Math.abs(ok2.x + ok2.width / 2 - (ring.x + ring.width / 2))).toBeLessThanOrEqual(8);
+  if (sms) {
+    await expect(page.locator('.fx-sms .hd b')).toHaveText(sms, { timeout: 2000 });
+    await page.locator('.fx-sms').click();
+    await expect(page.locator('.fx-sms.out')).toHaveCount(1);
+  }
+  await page.waitForTimeout(2000);
 });

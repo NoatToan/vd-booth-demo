@@ -147,3 +147,22 @@ html.solo, html.solo * { scrollbar-width: none; }
 .fid-screen .lt { width: 76px; height: 76px; }
 .fid-screen .lbl { margin: 0; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.55); }
 .fid-screen.ok .lbl { color: #3ddc84; animation: fx-in .25s ease-out both; }
+
+/* payment success from the Make (behaviors.js successPulse, bankSms) */
+.fx-okpop { animation: fx-okpop .75s both; transform-origin: 50% 50%; }
+@keyframes fx-okpop { 0% { opacity: 0; transform: scale(.4); animation-timing-function: cubic-bezier(.3,.7,.4,1); } 45% { opacity: 1; transform: scale(1.08); animation-timing-function: ease-in-out; } 72% { transform: scale(.97); } 100% { opacity: 1; transform: none; } }
+.fx-ring { position: absolute; z-index: 4; pointer-events: none; border-radius: 50%; border: 1.5px solid; box-sizing: border-box; opacity: 0; animation: fx-ring 2.4s ease-out infinite; }
+@keyframes fx-ring { 0% { transform: scale(.9); opacity: 0; } 50% { opacity: .5; } 100% { transform: scale(1.8); opacity: 0; } }
+.fx-sms { position: absolute; z-index: 9; top: 52px; left: 10px; right: 10px; display: flex; gap: 11px; align-items: flex-start; padding: 11px 13px; border-radius: 20px; cursor: pointer;
+  background: rgba(245,245,247,.86); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); box-shadow: 0 12px 34px -8px rgba(0,0,0,.55); font-family: Inter, sans-serif; color: #000;
+  animation: fx-sms-in .6s cubic-bezier(.3,1.35,.5,1) both; }
+.fx-sms.out { animation: fx-sms-out .35s ease-in both; }
+.fx-sms .ic { width: 36px; height: 36px; border-radius: 9px; flex: none; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #3fd155, #1cb943); }
+.fx-sms .tx { flex: 1; min-width: 0; }
+.fx-sms p { margin: 0; font-size: 12.5px; line-height: 1.4; color: rgba(0,0,0,.8); }
+.fx-sms .hd { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 4px; line-height: 1; }
+.fx-sms .hd b { font-size: 13px; font-weight: 600; color: #000; }
+.fx-sms .hd i { font-style: normal; font-size: 11px; color: rgba(0,0,0,.45); }
+.fx-sms p b { font-weight: 600; color: #000; }
+@keyframes fx-sms-in { from { transform: translateY(-140px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes fx-sms-out { to { transform: translateY(-140px); opacity: 0; } }

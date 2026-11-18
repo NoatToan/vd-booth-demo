@@ -148,6 +148,27 @@ function faceIdThenSecuring(api, scr, text, done) {
   api.later(done, FID_MS + secMs(false));
 }
 
+// Payment success as in the Make (RemittanceSuccess / DadPaymentSuccess / kira AftSuccess): the check circle springs in
+// (scale 0.4 → 1, damping 14, stiffness 200) with two rings pulsing out behind it in its colour (1.5 px, scale 0.9 → 1.8,
+// opacity 0 → 0.5 → 0, 2.4 s, the second 1.2 s later, repeating)
+function successPulse(fr, api, scr, id) {
+  const c = q(fr, id); if (!c) return;
+  // measured before the spring starts it at 0.4×
+  const r = api.rel(c, scr), bg = getComputedStyle(c).backgroundColor;
+  c.classList.add('fx-okpop');
+  for (const i of [0, 1]) {
+    const ring = api.fx(scr, 'fx-ring');
+    Object.assign(ring.style, { left: `${r.x}px`, top: `${r.y}px`, width: `${r.w}px`, height: `${r.h}px`, borderColor: bg, animationDelay: `${i * 1.2}s` });
+  }
+}
+// the bank's SMS on the wallet top-up's success (kira AftSuccess): 0.9 s in, an iOS banner springs down; a tap hides it
+function bankSms(api, scr, bank, text) {
+  api.later(() => {
+    const b = api.fx(scr, 'fx-sms', `<span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3C6.9 3 3 6.34 3 10.5c0 2.02.93 3.86 2.46 5.22-.13 1.2-.6 2.4-1.32 3.28-.2.24-.02.6.28.56 1.6-.2 3.02-.78 4.06-1.5.78.2 1.62.31 2.52.31 5.1 0 9-3.34 9-7.5S17.1 3 12 3z" fill="#fff"/></svg></span><div class="tx"><p class="hd"><b>${bank}</b><i>now</i></p><p>${text}</p></div>`);
+    b.addEventListener('click', () => b.classList.add('out'));
+  }, 900);
+}
+
 /* ---------- wiring: hotspot, back ---------- */
 window.VD_WIRE = (scr, s, api) => {
   if (s.hot) { const h = q(scr, s.hot); if (h) { h.setAttribute('data-a', 'next'); h.setAttribute('data-hotspot', ''); } }
@@ -201,6 +222,9 @@ B['send-10'] = {
     stagger(kids(fr, '2:4888'), { delay: 500, step: 600, dy: 6 });
   }
 };
+
+// client 2026-11-18: payment success from the Make
+B['send-11'] = { enter(fr, api, scr) { successPulse(fr, api, scr, '22:153'); } };
 
 // RECEIVE
 B['receive-1'] = { enter(fr, api) { countUp(q(fr, '2:5518'), api, 1100); draw(q(fr, '2:5538'), 300, 1400); } };
@@ -313,9 +337,19 @@ B['travel-6v'] = {
     api.later(() => { fr.classList.add('ok'); const l = fr.querySelector('.lbl'); if (l) l.textContent = 'Face ID confirmed'; }, LEN['face-id'] / 1.3);
   }
 };
+// client 2026-11-18: success from the Make (AftSuccess): the check springs in with pulsing rings, the bank's SMS
+B['travel-11'] = {
+  enter(fr, api, scr) {
+    successPulse(fr, api, scr, '2:16359');
+    bankSms(api, scr, 'Outback Bank, Sydney', 'You spent <b>AUD 500.00</b> on your Visa card ending 4242 at XinChaoVietnam. Wallet top-up of 8,500,000 ₫ confirmed.');
+  }
+};
 // AFT · friends and family (NovaBank)
 B['family-3'] = { enter: autofill(['2:46985', '2:46993', '2:46999'], '2:47014', { total: 2600 }) };
 // client feedback 2026-11-18 (Hoa): Authorize Payment plays the Face ID scan, then the Visa authorisation
 B['family-13'] = { go(fr, api, scr, done) { faceIdThenSecuring(api, scr, 'Authenticate to securely approve this payment', done); } };
+// client 2026-11-18: Payment Sent springs in as the Make's DadPaymentSuccess (the Figma screen has an illustration
+// where the Make has the check circle, so the illustration takes the spring)
+B['family-15'] = { enter(fr) { const t = q(fr, '2:47933'), ill = t && t.previousElementSibling; if (ill) ill.classList.add('fx-okpop'); } };
 B['family-11'] = { enter: (fr, api) => simulate(fr, api, [['2:47654', '4111 1234 5678 4812'], ['2:47660', '08/29'], ['2:47664', '•••'], ['2:47669', 'Sarah Nguyen'], ['2:47673', '1 Market St, San Francisco, CA']], { cta: '2:47683' }) };
 })();
