@@ -11,6 +11,6 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never', outputFolder: 'playwright-report' }]],
   globalSetup: './global-setup.mjs',
   globalTeardown: './global-teardown.mjs',
-  use: { baseURL: 'http://127.0.0.1:4320', channel: 'chrome', headless: true },
+  use: { baseURL: process.env.BASE_URL || 'http://127.0.0.1:4320', channel: 'chrome', headless: true },
   webServer: { command: 'node serve.mjs', url: 'http://127.0.0.1:4320/index.html', reuseExistingServer: true },
 });
