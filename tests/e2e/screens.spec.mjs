@@ -29,9 +29,12 @@ for (const s of SCREENS) {
 
 test('client edits are in the kiosk build', async ({ page }) => {
   const kiosk = new Set(KIOSK_SCREENS.map(s => s.key)), fails = [];
-  for (const e of EDITS) {
+  for (let e of EDITS) {
     if (e.op === 'drop') { if (kiosk.has(e.screen)) fails.push(`${e.screen} still in the journey`); continue; }
     if (e.op === 'go') { const s = KIOSK_SCREENS.find(x => x.key === e.screen); if (!s || s.go !== e.go) fails.push(`${e.screen}: go ${s && s.go}`); continue; }
+    // a text edit followed by visaMark on the same node: the word VISA ends up drawn as the wordmark
+    const marked = EDITS.slice(EDITS.indexOf(e) + 1).some(x => x.op === 'visaMark' && x.screen === e.screen && x.node === e.node);
+    if (marked) e = { ...e, text: e.text.replace(/\bVISA\b\s*/, '') };
     await page.goto(`/index.html?solo=${e.screen}`);
     await page.waitForFunction(() => document.documentElement.dataset.ready === '1');
     const got = await page.evaluate(e => {

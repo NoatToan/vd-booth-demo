@@ -39,7 +39,10 @@ if (P.has('solo')) {
 
 /* ---------- kiosk ---------- */
 const LOCK = (z => (ZONES.includes(z) ? z : null))(ALIAS[P.get('zone')] || P.get('zone'));
-const IDLE_MS = (+P.get('idle') || 60) * 1000;
+// No touch for IDLE_MS returns to the attract screen; the last WARN_MS show a "Still there?" countdown, a tap keeps
+// the visitor on their step (client feedback 2026-11-18: 60 s was too short while staff explain a step)
+const IDLE_MS = (+P.get('idle') || 180) * 1000;
+const WARN_MS = Math.min(15e3, IDLE_MS / 4);
 // Done-screen QR: the lead form (lead/index.html) tagged with the experience; ?qr= overrides it for every journey
 const QR_URL = z => P.get('qr') || `https://vd-booth-demo.vercel.app/lead/?exp=${z}`;
 const RELOAD_MS = (P.has('reload') ? +P.get('reload') : 2) * 3600e3;
@@ -384,8 +387,20 @@ async function safeReload(why) {
     location.reload();
   } catch { reloading = false; } // try again on the next tick
 }
+function idleWarn(left) {
+  let w = $('#still');
+  if (left === null) { if (w) w.remove(); return; }
+  if (!w) {
+    stage.insertAdjacentHTML('beforeend', '<div id="still"><div class="box"><b>Still there?</b><p>Tap anywhere to continue</p><span class="sec"></span></div></div>');
+    w = $('#still');
+    // the tap that dismisses the warning does not also press what is under it
+    w.addEventListener('pointerdown', e => { e.stopPropagation(); e.preventDefault(); lastTouch = Date.now(); idleWarn(null); });
+  }
+  w.querySelector('.sec').textContent = Math.max(1, Math.ceil(left / 1000));
+}
 setInterval(() => {
   const quiet = Date.now() - lastTouch;
+  idleWarn(S.view !== 'idle' && quiet > IDLE_MS - WARN_MS && quiet <= IDLE_MS ? IDLE_MS - quiet : null);
   if (S.view !== 'idle' && quiet > IDLE_MS) show('idle');
   // Periodic reload frees memory on long shows; only on the attract screen so no visitor is interrupted.
   else if (RELOAD_MS && S.view === 'idle' && quiet > 30e3 && Date.now() - LOADED > RELOAD_MS) safeReload('scheduled');

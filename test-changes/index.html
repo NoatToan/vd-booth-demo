@@ -120,15 +120,15 @@ figure.figma figcaption{background:#a259ff}
 <div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Close">×</button><div class="lbpic pic"></div><div class="cap"></div></div>
 <script>
 (function () {
-var IMG = '../docs/feedback/2026-11-16/';
+var IMG = '../docs/feedback/2026-11-16/', IMG2 = '../docs/feedback/2026-11-18/';
 var UI = {
-  en: { title: 'Test changes · Feedback 16/11/2026', sub: 'Visa Direct booth demo · 16 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
-    home: 'Booth home', ovTitle: 'Everything the email asked for', ovNote: 'Each line is one request, in the client’s words, as listed in the email thread. Click a number to jump to its item.', ovNat: 'Natalie Liew · 16/11 17:22 · design and branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Earlier in the thread (12–13/11)', fixedOn: 'Fixed', doneOld: 'Done 13/11', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
+  en: { title: 'Test changes · Feedback 16/11 and 18/11/2026', sub: 'Visa Direct booth demo · 20 items: feedback as written → image in the email → Figma evidence → analysis → before / after on the live site, change boxed',
+    home: 'Booth home', ovTitle: 'Everything the email asked for', ovNote: 'Each line is one request, in the client’s words, as listed in the email thread. Click a number to jump to its item.', ovNat2: 'Natalie Liew · 18/11 10:48 · on the 18/11 update', hold: 'On hold', holdTag: '⏸ On hold', ovNat: 'Natalie Liew · 16/11 17:22 · design and branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Earlier in the thread (12–13/11)', fixedOn: 'Fixed', doneOld: 'Done 13/11', all: 'All', s1: 'Feedback as written', s2: 'Image in the email', s3: 'Analysis', s4: 'Result: Figma original · before · after (live site)', figmaRow: 'Figma',
     legend: 'Figma = the original design · red box = what had to change · green box = changed · dashed box = removed', noImg: 'The email has no image for this item.', fixed: 'Fixed', cause: 'Cause',
     decTitle: 'Decided on our side (to be confirmed)', unclear: 'Unclear', chosen: 'Decided', later: 'To change it', before: 'Before', after: 'After', figma: 'Figma (original)',
     gone: 'This screen is no longer in the journey', done: '✓ Done', hasDec: 'Has a decision to confirm', from: 'email "Visa Direct demo experience"', close: 'Close' },
-  vi: { title: 'Test changes · Feedback 16/11/2026', sub: 'Visa Direct booth demo · 16 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
-    home: 'Về trang home', ovTitle: 'Toàn bộ yêu cầu trong email', ovNote: 'Mỗi dòng là một yêu cầu, giữ nguyên câu của khách, theo thứ tự trong chuỗi email. Bấm số để tới mục tương ứng.', ovNat: 'Natalie Liew · 16/11 17:22 · design và branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Feedback trước đó trong chuỗi email (12–13/11)', fixedOn: 'Đã sửa', doneOld: 'Xong 13/11', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
+  vi: { title: 'Test changes · Feedback 16/11 và 18/11/2026', sub: 'Visa Direct booth demo · 20 mục: feedback nguyên văn → ảnh trong email → Figma evidence → phân tích → before / after trên domain, có khung đánh dấu chỗ sửa',
+    home: 'Về trang home', ovTitle: 'Toàn bộ yêu cầu trong email', ovNote: 'Mỗi dòng là một yêu cầu, giữ nguyên câu của khách, theo thứ tự trong chuỗi email. Bấm số để tới mục tương ứng.', ovNat2: 'Natalie Liew · 18/11 10:48 · góp ý bản cập nhật 18/11', hold: 'Tạm giữ', holdTag: '⏸ Tạm giữ', ovNat: 'Natalie Liew · 16/11 17:22 · design và branding', ovHoa: 'Hoa Nguyen · 16/11 23:02', ovOld: 'Feedback trước đó trong chuỗi email (12–13/11)', fixedOn: 'Đã sửa', doneOld: 'Xong 13/11', all: 'Tất cả', s1: 'Feedback nguyên văn', s2: 'Ảnh mô tả trong email', s3: 'Phân tích', s4: 'Kết quả: Figma gốc · before · after (domain)', figmaRow: 'Figma',
     legend: 'Figma = design gốc · khung đỏ = chỗ cần sửa · khung xanh = đã sửa · khung nét đứt = chỗ đã bỏ', noImg: 'Email không kèm ảnh cho mục này.', fixed: 'Đã sửa', cause: 'Nguyên nhân',
     decTitle: 'Điểm tự chốt (chờ xác nhận)', unclear: 'Chưa rõ', chosen: 'Đã chốt', later: 'Nếu cần đổi', before: 'Before', after: 'After', figma: 'Figma (gốc)',
     gone: 'Màn này đã bỏ khỏi journey', done: '✓ Done', hasDec: 'Có điểm tự chốt', from: 'email "Visa Direct demo experience"', close: 'Đóng' }
@@ -142,7 +142,7 @@ var CAUSE = {
 // Every item: the client's words (always English), the email image, the Figma evidence (changes against Figma), the
 // analysis with the points we decided, then the live-site shots: [title, shot, {b: before boxes, a: after boxes,
 // ghost: before boxes drawn dashed on after}, after shot (null = gone)]; box indexes into annotations.json.
-var NAT = 'Natalie Liew · 16/11 17:22', HOA = 'Hoa Nguyen · 16/11 23:02';
+var NAT = 'Natalie Liew · 16/11 17:22', HOA = 'Hoa Nguyen · 16/11 23:02', NAT2 = 'Natalie Liew · 18/11 10:48';
 var ITEMS = [
   { n: 1, time: NAT, cause: 'mine', quote: 'Home page — Visa logo on the top left can be smaller. The proportion should follow the reference demo shared previously.',
     title: { en: 'Smaller Visa logo on the attract screen', vi: 'Logo Visa ở màn chờ nhỏ lại' },
@@ -265,12 +265,37 @@ var ITEMS = [
     fix: { en: 'family-11: label "Address", placeholder "Street address", typed in as "1 Market St, San Francisco, CA".', vi: 'family-11: nhãn "Address", ô gợi ý "Street address", tự điền "1 Market St, San Francisco, CA".' },
     why: { en: 'Figma says "Billing ZIP".', vi: 'Figma ghi "Billing ZIP".' },
     figma: [['family-11 · Pay with Visa', 's-family-11', [1]]],
-    shots: [['family-11 · Pay with Visa', 's-family-11', { b: [1], a: [1] }]] }
+    shots: [['family-11 · Pay with Visa', 's-family-11', { b: [1], a: [1] }]] },
+  // feedback 18/11 on the 18/11 update (p2: images and boxes in docs/feedback/2026-11-18/)
+  { n: 17, p2: 1, time: NAT2, cause: 'shell', quote: 'Across all pages - remove the animated moving streaks in the background',
+    hold: { en: 'Hoa Nguyen, 18/11 10:54: "phần này em giữ nguyên giúp chị nhé, chị sẽ trao đổi với bạn" (keep it as it is, she will talk it over with Natalie). Nothing changed.', vi: 'Hoa Nguyen, 18/11 10:54: "phần này em giữ nguyên giúp chị nhé, chị sẽ trao đổi với bạn". Chưa thay đổi gì.' },
+    title: { en: 'Moving streaks in the background (on hold)', vi: 'Vệt chuyển động trên nền (tạm giữ)' },
+    fix: { en: 'Not changed, on hold until Hoa and Natalie agree.', vi: 'Chưa sửa, chờ chị Hoa và Natalie thống nhất.' },
+    why: { en: 'The background animations are our own shell design: the money routes drawn over the KV on the chooser, every journey and Done (30 % opacity), and the 9 gold/white streaks sweeping across the attract screen.', vi: 'Hiệu ứng nền do mình tự thiết kế: các tuyến tiền bay trên ảnh KV ở màn chọn journey, mọi journey và màn Done (độ mờ 30 %), và 9 vệt vàng/trắng quét ngang màn chờ.' } },
+  { n: 18, p2: 1, time: NAT2, cause: 'new', quote: 'Send - Step 11 - Change Visa Direct logo to Visa logo',
+    title: { en: 'Send step 11: Visa logo instead of Visa Direct', vi: 'Send bước 11: logo Visa thay cho Visa Direct' },
+    fix: { en: 'send-11: the word "Direct" after the Visa logo is removed; the Visa logo stays.', vi: 'send-11: bỏ chữ "Direct" sau logo Visa, chỉ còn logo Visa.' },
+    why: { en: 'On 16/11 (item 7) the word VISA became the Visa logo and the Figma text "Direct" was kept; Natalie now wants the Visa logo alone.', vi: 'Ngày 16/11 (mục 7) mình thay chữ VISA bằng logo Visa và giữ chữ "Direct" của Figma; giờ Natalie muốn chỉ còn logo Visa.' },
+    figma: [['send-11', 's-send-11']],
+    shots: [['send-11 · Money transferred', 's-send-11', { b: [0], a: [0] }]] },
+  { n: 19, p2: 1, time: NAT2, cause: 'new', quote: 'Receive (Friends & family) - Step 13 - Remove “Secure” after Visa logo',
+    title: { en: 'F&F step 13: remove "Secure" after the Visa logo', vi: 'F&F bước 13: bỏ chữ "Secure" sau logo Visa' },
+    fix: { en: 'family-13: "Secure" is removed; the Visa logo stays, "YOUR CARD ISSUER" unchanged.', vi: 'family-13: bỏ chữ "Secure", giữ logo Visa, "YOUR CARD ISSUER" giữ nguyên.' },
+    why: { en: 'Figma reads "VISA Secure"; on 16/11 only the word VISA became the logo.', vi: 'Figma ghi "VISA Secure"; ngày 16/11 mình chỉ thay chữ VISA bằng logo.' },
+    figma: [['family-13', 's-family-13']],
+    shots: [['family-13 · Confirm it’s you', 's-family-13', { b: [0], a: [0] }]] },
+  { n: 20, p2: 1, time: NAT2, cause: 'shell', quote: 'I noticed also that it auto-directs back to the homepage after some inactivity - but the duration is pretty short. Can that be fixed? As some users might spend a longer time on a step, or might need some explanation on a slide.',
+    title: { en: 'Longer time before returning to the home screen', vi: 'Tăng thời gian trước khi tự về màn chờ' },
+    fix: { en: 'Untouched for 3 minutes (was 60 s) before returning to the attract screen. For the last 15 s a "Still there? Tap anywhere to continue" box counts down; a tap keeps the visitor on their step.', vi: '3 phút không chạm mới về màn chờ (trước là 60 giây). 15 giây cuối hiện hộp "Still there? Tap anywhere to continue" đếm ngược; chạm vào là ở lại bước đang xem.' },
+    why: { en: 'The 60 s was our own default, chosen for visitors on their own; staff explaining a step need longer.', vi: '60 giây là mặc định mình tự đặt, hợp khi khách tự chơi; nhân viên giải thích một bước thì cần lâu hơn.' },
+    dec: [{ en: ['Natalie asks for a longer time but gives no number.', '3 minutes, with a 15 s "Still there?" countdown at the end: a visitor who walks away still resets the kiosk, and a long explanation is never cut.', 'Per link: add ?idle=<seconds> to the booth URL (e.g. ?zone=send&idle=300); default: IDLE_MS in app.js.'],
+            vi: ['Natalie muốn lâu hơn nhưng không nói con số.', '3 phút, 15 giây cuối hiện hộp đếm ngược "Still there?": khách bỏ đi thì kiosk vẫn tự reset, mà giải thích lâu cũng không bị cắt.', 'Theo từng link: thêm ?idle=<giây> vào URL booth (vd. ?zone=send&idle=300); mặc định: IDLE_MS trong app.js.'] }],
+    shots: [[{ en: '61 s without a touch (SEND step 3)', vi: '61 giây không chạm (SEND bước 3)' }, 'k-idle-61s', {}], [{ en: '166 s without a touch', vi: '166 giây không chạm' }, 'k-idle-166s', { a: [0] }], [{ en: '181 s without a touch', vi: '181 giây không chạm' }, 'k-idle-181s', {}]] }
 ];
 
 var $ = function (s, r) { return (r || document).querySelector(s); };
 var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-var state = { cause: 'all', lang: 'en' }, ANN = {};
+var state = { cause: 'all', lang: 'en' }, ANN = {}, ANN2 = {};
 try { state.lang = localStorage.getItem('tc-lang') || 'en'; } catch (e) {}
 var L = function (v) { return typeof v === 'string' ? v : v[state.lang]; };
 var t = function (k) { return UI[state.lang][k]; };
@@ -315,14 +340,16 @@ function decBlock(i) {
   }).join('') + '</div>';
 }
 function shotsBlock(i, step) {
+  if (!i.shots) return '';
+  var DIR = i.p2 ? IMG2 : IMG, A = i.p2 ? ANN2 : ANN;
   return '<section class="step"><h5><span>' + step + '</span>' + t('s4') + ' <small>' + t('legend') + '</small></h5><div class="pairs">' + i.shots.map(function (p) {
-    var label = L(p[0]), phone = p[1].charAt(0) === 's', a = ANN[p[1]], sel = p[2] || {}, afterFile = p.length > 3 ? p[3] : p[1];
+    var label = L(p[0]), phone = p[1].charAt(0) === 's', a = A[p[1]], sel = p[2] || {}, afterFile = p.length > 3 ? p[3] : p[1];
     var bb = a ? boxes(a.before, pick(a.before.boxes, sel.b), 'red') : '';
     var ab = a ? boxes(a.after, pick(a.after.boxes, sel.a), 'green') + (sel.ghost ? boxes(a.after, pick(a.before.boxes, sel.ghost), 'ghost') : '') : '';
     var fg = figmaFor(i, p[1]);
     return '<div class="pair"><h4>' + esc(label) + '</h4><div class="ba' + (phone ? ' phone' : '') + (fg ? ' three' : '') + '">' + fg +
-      figure(IMG + 'before/' + p[1] + '.jpg', t('before'), 'before', '#' + i.n + ' ' + label, a && a.before, bb) +
-      figure(afterFile ? IMG + 'after-deployed/' + afterFile + '.jpg' : null, t('after'), 'after', '#' + i.n + ' ' + label, a && a.after, ab) + '</div></div>';
+      figure(DIR + 'before/' + p[1] + '.jpg', t('before'), 'before', '#' + i.n + ' ' + label, a && a.before, bb) +
+      figure(afterFile ? DIR + 'after-deployed/' + afterFile + '.jpg' : null, t('after'), 'after', '#' + i.n + ' ' + label, a && a.after, ab) + '</div></div>';
   }).join('') + '</div></section>';
 }
 // the request list from the email, to confirm every request has its item
@@ -331,9 +358,10 @@ var OLD = [
   ['Hoa Nguyen · 12/11 14:03', 'E-seller withdrawal via VXBS: theo chị thấy thì trải nghiệm này chưa cover hết các screen', { en: 'Closed 12/11: all 8 screens were there (cache); Hoa replied "Chị làm được rồi".', vi: 'Đã đóng 12/11: đủ 8 màn (do cache trình duyệt); chị Hoa trả lời "Chị làm được rồi".' }]
 ];
 function overview() {
-  var row = function (i) { return '<tr><td><a href="#item-' + i.n + '">#' + i.n + '</a></td><td><q lang="en">' + esc(i.quote) + '</q></td><td>✓ ' + t('fixedOn') + '</td></tr>'; };
+  var row = function (i) { return '<tr><td><a href="#item-' + i.n + '">#' + i.n + '</a></td><td><q lang="en">' + esc(i.quote) + '</q></td><td>' + (i.hold ? t('holdTag') : '✓ ' + t('fixedOn')) + '</td></tr>'; };
   var group = function (who) { return ITEMS.filter(function (i) { return i.time === who; }).map(row).join(''); };
   return '<h2>' + t('ovTitle') + '</h2><p class="note">' + t('ovNote') + '</p>' +
+    '<h3>' + t('ovNat2') + '</h3><table class="ov-t">' + group(NAT2) + '</table>' +
     '<h3>' + t('ovNat') + '</h3><table class="ov-t">' + group(NAT) + '</table>' +
     '<h3>' + t('ovHoa') + '</h3><table class="ov-t">' + group(HOA) + '</table>' +
     '<h3>' + t('ovOld') + '</h3><table class="ov-t">' + OLD.map(function (o) { return '<tr class="old"><td>–</td><td><q>' + esc(o[1]) + '</q><br><span class="note">' + esc(o[0]) + ' · ' + esc(L(o[2])) + '</span></td><td>✓</td></tr>'; }).join('') + '</table>';
@@ -349,11 +377,11 @@ function render() {
   $('#items').innerHTML = ITEMS.filter(function (i) { return state.cause === 'all' || i.cause === state.cause; }).map(function (i) {
     var c = CAUSE[i.cause], k = 0;
     return '<article class="item" id="item-' + i.n + '" style="--cc:' + c.color + '"><div class="head"><span class="num">' + i.n + '</span><h3>' + esc(L(i.title)) + '</h3>' +
-      '<div class="tags"><span class="tag">' + i.time.split(' ')[0] + '</span><span class="tag cause">' + c[state.lang] + '</span><span class="tag done">' + t('done') + '</span>' + (i.dec && !i.decOk ? '<span class="tag dec">' + t('hasDec') + '</span>' : '') + '</div></div>' +
+      '<div class="tags"><span class="tag">' + i.time.split(' ')[0] + '</span><span class="tag cause">' + c[state.lang] + '</span>' + (i.hold ? '<span class="tag dec">' + t('holdTag') + '</span>' : '<span class="tag done">' + t('done') + '</span>') + (i.dec && !i.decOk ? '<span class="tag dec">' + t('hasDec') + '</span>' : '') + '</div></div>' +
       '<section class="step"><h5><span>' + (++k) + '</span>' + t('s1') + '</h5><blockquote lang="en">' + esc(i.quote) + '<cite>' + esc(i.time) + ' · ' + t('from') + '</cite></blockquote></section>' +
       (i.email ? '<section class="step"><h5><span>' + (++k) + '</span>' + t('s2') + '</h5>' + emailBlock(i) + '</section>' : '') +
       '<section class="step"><h5><span>' + (++k) + '</span>' + t('s3') + '</h5><dl class="meta"><dt>' + t('fixed') + '</dt><dd>' + esc(L(i.fix)) + '</dd><dt>' + t('cause') + '</dt><dd>' + esc(L(i.why)) + '</dd>' +
-        (i.figmaNote ? '<dt>' + t('figmaRow') + '</dt><dd>' + esc(L(i.figmaNote)) + '</dd>' : '') + '</dl>' + decBlock(i) + '</section>' +
+        (i.hold ? '<dt>' + t('hold') + '</dt><dd>' + esc(L(i.hold)) + '</dd>' : '') + (i.figmaNote ? '<dt>' + t('figmaRow') + '</dt><dd>' + esc(L(i.figmaNote)) + '</dd>' : '') + '</dl>' + decBlock(i) + '</section>' +
       shotsBlock(i, ++k) + '</article>';
   }).join('');
   [].forEach.call(document.querySelectorAll('#filters .chip'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.c === state.cause)); });
@@ -362,7 +390,8 @@ function render() {
 }
 $('#filters').addEventListener('click', function (e) { var b = e.target.closest('.chip'); if (b) { state.cause = b.dataset.c; render(); } });
 $('#lang').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; state.lang = b.dataset.v; try { localStorage.setItem('tc-lang', state.lang); } catch (err) {} render(); });
-fetch(IMG + 'annotations.json').then(function (r) { return r.json(); }).then(function (d) { ANN = d; }).catch(function () {}).then(render);
+Promise.all([IMG, IMG2].map(function (u) { return fetch(u + 'annotations.json').then(function (r) { return r.json(); }).catch(function () { return {}; }); }))
+  .then(function (d) { ANN = d[0]; ANN2 = d[1]; }).then(render);
 
 // lightbox: the image with its boxes; ←/→ moves through the images on the page
 var lb = $('#lb'), figs = [], at = 0;

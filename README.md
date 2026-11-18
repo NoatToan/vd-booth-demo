@@ -103,7 +103,7 @@ Uses the installed Google Chrome (`channel: 'chrome'`). A screen passes when it 
 | Parameter | Meaning | Default |
 |---|---|---|
 | `zone=send\|global-account\|aft-family\|aft-travel` | Lock the screen to one experience (`vxbs-individual` and the short keys `receive`, `family`, `travel` also work) | experience picker |
-| `idle=60` | Seconds without a touch before returning to the attract screen | `60` |
+| `idle=180` | Seconds without a touch before returning to the attract screen; the last 15 s (a quarter for short values) show a "Still there?" countdown that a tap dismisses | `180` |
 | `reload=2` | Hours between automatic reloads (attract screen only, `0` = off) | `2` |
 | `fx=low` | Lighter background animation for low-end machines | full |
 | `qr=https://...` | URL encoded in the Done screen QR code | `https://vd-booth-demo.vercel.app/` |

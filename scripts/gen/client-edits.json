@@ -11,10 +11,12 @@
     { "op": "drop", "screen": "collect-8", "reason": "Hoa #1: E-seller withdrawal deleted from the booth until Visa consults Amazon on the flow" },
 
     { "screen": "send-11", "node": "22:148", "op": "visaMark", "reason": "Natalie #7: Visa logo incorrect (Figma draws the word VISA as text)" },
+    { "screen": "send-11", "node": "22:149", "op": "remove", "reason": "Natalie 18/11: Visa logo instead of Visa Direct (the word Direct goes)" },
     { "screen": "receive-1", "node": "2:5500", "op": "visaMark", "reason": "Natalie #7" },
     { "screen": "family-11", "node": "2:47647", "op": "visaMark", "reason": "Natalie #7" },
     { "screen": "family-12", "node": "2:47746", "op": "visaMark", "reason": "Natalie #7" },
-    { "screen": "family-13", "node": "2:47795", "op": "visaMark", "reason": "Natalie #7 (VISA Secure: the word VISA becomes the wordmark, Secure stays text)" },
+    { "screen": "family-13", "node": "2:47795", "op": "text", "text": "VISA", "reason": "Natalie 18/11: remove Secure after the Visa logo" },
+    { "screen": "family-13", "node": "2:47795", "op": "visaMark", "reason": "Natalie #7: the word VISA becomes the wordmark" },
     { "screen": "travel-5", "node": "2:16019", "op": "visaMark", "reason": "Natalie #7" },
     { "screen": "travel-6", "node": "2:16081", "op": "visaMark", "reason": "Natalie #7" },
     { "screen": "travel-7", "node": "2:16122", "op": "visaMark", "reason": "Natalie #7" },
