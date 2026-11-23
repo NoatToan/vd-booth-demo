@@ -23,8 +23,11 @@ Decisions to confirm are on the test-changes page (items 22–25). Evidence: `be
   lottie-react 2.4.1, Tailwind, the Make's files unchanged), right the booth; both recorded with Playwright and started
   at the same moment. `compare/*-frames.jpg`: frames at the same times, Make above, booth below.
 - `video/*.webm`: `tests/e2e/animations.spec.mjs` (`pnpm --dir tests/e2e test animations`) plays each animation on the
-  booth with Playwright video on and checks timing, centring on the phone (≤ 6 px) and the Make's texts.
+  booth with Playwright video on and checks timing, centring on the phone (the Lottie box ≤ 1 px from the centre, the tick ≤ 2 px) and the Make's texts.
 - Fixes from the comparison: the light Visa box (500 px) is centred on the 402–414 px phone (it overflowed to the
   right); the tick's circle is drawn from 3 o'clock, as motion's pathLength does in the Make.
 
 | 26 | Send — Step 8: Capitalize "Your" for "Your paperwork.." (addendum) | send-8: text edit on node 4:244, "Your paperwork is being reviewed" | (Figma text) |
+
+Since 23/11 (phase 4, `../2026-11-23/`) Send plays the Visa securing after Transfer Progress, not after Face ID, and F&F
+drops Sending your money; the 18/11 videos and shots here show the 18/11 placement.

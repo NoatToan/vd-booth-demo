@@ -141,7 +141,12 @@ function faceId(api, scr, text) {
   lottie(el.querySelector('.lt'), 'face-id', 2);
   return el;
 }
-// Face ID, then Securing, then the next step (client: F&F and Send, like the travel wallet)
+// Face ID alone, then the next step (Send: the Visa tick moved after Transfer Progress, client 2026-11-23)
+function faceIdThen(api, scr, text, done) {
+  const f = faceId(api, scr, text);
+  api.later(() => { f.remove(); done(); }, FID_MS);
+}
+// Face ID, then Securing, then the next step (client: F&F, like the travel wallet)
 function faceIdThenSecuring(api, scr, text, done) {
   const f = faceId(api, scr, text);
   api.later(() => { securing(api, scr, false); api.later(() => f.remove(), 400); }, FID_MS);
@@ -202,8 +207,8 @@ B['send-7'] = {
     const block = q(fr, '2:4772');
     if (block) block.setAttribute('data-a', 'next'); // tapping the Face ID block also authorises
   },
-  // client feedback 2026-11-18 (Hoa): the Face ID scan from the video, then the Visa authorisation, then advance
-  go(fr, api, scr, done) { faceIdThenSecuring(api, scr, 'Authenticate to securely authorize this transfer', done); }
+  // client feedback 2026-11-18 (Hoa): the Face ID scan from the video, then advance; the Visa tick is on send-10 (2026-11-23)
+  go(fr, api, scr, done) { faceIdThen(api, scr, 'Authenticate to securely authorize this transfer', done); }
 };
 B['send-8'] = {
   enter(fr, api, scr) {
@@ -220,7 +225,9 @@ B['send-10'] = {
     cls(q(fr, '2:4830'), 'fx-halo');
     draw(q(fr, '2:4887'), 400, 2600);
     stagger(kids(fr, '2:4888'), { delay: 500, step: 600, dy: 6 });
-  }
+  },
+  // client 2026-11-23 (Hoa): the Visa tick goes after Transfer Progress; View Transfer Receipt plays it, then Transfer complete
+  go(fr, api, scr, done) { securing(api, scr, false); api.later(done, secMs(false)); }
 };
 
 // client 2026-11-18: payment success from the Make
@@ -346,7 +353,8 @@ B['travel-11'] = {
 };
 // AFT · friends and family (NovaBank)
 B['family-3'] = { enter: autofill(['2:46985', '2:46993', '2:46999'], '2:47014', { total: 2600 }) };
-// client feedback 2026-11-18 (Hoa): Authorize Payment plays the Face ID scan, then the Visa authorisation
+// client feedback 2026-11-18 (Hoa): Authorize Payment plays the Face ID scan, then the Visa authorisation; since
+// 2026-11-23 Sending your money (family-14) is gone, so the Visa tick sits right before Payment Sent
 B['family-13'] = { go(fr, api, scr, done) { faceIdThenSecuring(api, scr, 'Authenticate to securely approve this payment', done); } };
 // client 2026-11-18: Payment Sent springs in as the Make's DadPaymentSuccess (the Figma screen has an illustration
 // where the Make has the check circle, so the illustration takes the spring)

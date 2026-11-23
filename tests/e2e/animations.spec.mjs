@@ -1,18 +1,21 @@
 // The animations from the Figma Make "Payments in Motion" (client feedback 2026-11-18): each one is played on the booth,
 // recorded on video, and checked for timing, centring on the phone and the texts the Make shows.
-//   pnpm --dir tests/e2e test animations      videos land in tests/e2e/test-results/ and docs/feedback/2026-11-18-pm/video/
+//   pnpm --dir tests/e2e test animations      videos land in tests/e2e/test-results/ and docs/feedback/<round>/video/
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
 import { REPO } from './lib.mjs';
 
-const VIDEO_DIR = path.join(REPO, 'docs/feedback/2026-11-18-pm/video');
+// the steps the 23/11 feedback moved record into that round's folder, so the 18/11 videos keep showing that round
+const MOVED = ['family-13', 'send-7', 'send-10'];
+const videoDir = name => path.join(REPO, `docs/feedback/${MOVED.includes(name) ? '2026-11-23' : '2026-11-18-pm'}/video`);
 test.use({ viewport: { width: 1920, height: 1080 }, video: { mode: 'on', size: { width: 1920, height: 1080 } } });
 test.afterEach(async ({ page }, info) => {
   const v = page.video(); if (!v) return;
   await page.close();
-  fs.mkdirSync(VIDEO_DIR, { recursive: true });
-  await v.saveAs(path.join(VIDEO_DIR, `${info.title.split(':')[0]}.webm`));
+  const name = info.title.split(':')[0];
+  fs.mkdirSync(videoDir(name), { recursive: true });
+  await v.saveAs(path.join(videoDir(name), `${name}.webm`));
 });
 
 const open = async (page, step) => {
@@ -40,9 +43,9 @@ const offCentre = (page, sel) => page.evaluate(sel => {
   return { dx: Math.round(cx - (s.left + s.width / 2)), dy: Math.round(cy - (s.top + s.height / 2)), w: Math.round(Math.max(...parts.map(r => r.right)) - Math.min(...parts.map(r => r.left))) };
 }, sel);
 
+// Hoa 23/11: F&F drops Sending your money (family-14), so the Visa tick leads straight to Payment Sent
 for (const [title, step, next, text] of [
-  ['family-13: Face ID then Visa securing (light)', 'family:13', 'family-14', 'Authenticate to securely approve this payment'],
-  ['send-7: Face ID then Visa securing (light)', 'send:7', 'send-8', 'Authenticate to securely authorize this transfer'],
+  ['family-13: Face ID then Visa securing (light)', 'family:13', 'family-15', 'Authenticate to securely approve this payment'],
 ]) test(title, async ({ page }) => {
   await open(page, step);
   await tap(page);
@@ -62,6 +65,30 @@ for (const [title, step, next, text] of [
   const t = await offCentre(page, '.fx-sec');
   expect(Math.abs(t.dx)).toBeLessThanOrEqual(2);
   await expect.poll(() => screen(page), { timeout: 4000 }).toBe(next);
+});
+
+// Hoa 23/11: Send keeps Face ID on step 7 and plays the Visa tick after Transfer Progress (send-10 → send-11)
+test('send-7: Face ID, then Paperwork review (no Visa tick)', async ({ page }) => {
+  await open(page, 'send:7');
+  await tap(page);
+  await expect(page.locator('.fx-fid p')).toHaveText('Authenticate to securely authorize this transfer');
+  await expect(page.locator('.fx-fid .lt svg')).toBeVisible();
+  await expect.poll(() => screen(page), { timeout: 6000 }).toBe('send-8');
+  await expect(page.locator('.fx-sec')).toHaveCount(0);
+});
+
+test('send-10: View Transfer Receipt plays the Visa securing (light), then Transfer complete', async ({ page }) => {
+  await open(page, 'send:10');
+  expect(await screen(page)).toBe('send-10');
+  await tap(page);
+  await expect(page.locator('.fx-sec:not(.dark) .lt svg')).toBeVisible();
+  const c = await boxCentre(page, '.fx-sec .lt');
+  expect(c, 'Visa Lottie box centred on the phone').not.toBeNull();
+  expect(Math.abs(c.dx)).toBeLessThanOrEqual(1);
+  expect(Math.abs(c.dy)).toBeLessThanOrEqual(1);
+  await expect(page.locator('.fx-sec .tick')).toBeVisible({ timeout: 3000 });
+  expect(await screen(page), 'still on Transfer Progress while the tick plays').toBe('send-10');
+  await expect.poll(() => screen(page), { timeout: 4000 }).toBe('send-11');
 });
 
 test('travel-6v: Verify it’s you, Face ID step (dark)', async ({ page }) => {

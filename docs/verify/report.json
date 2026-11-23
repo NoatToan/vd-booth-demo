@@ -1,6 +1,6 @@
 {
- "commit": "d1ea4ee+dirty",
- "at": "2026-11-18T17:05:38.471Z",
+ "commit": "d587609+dirty",
+ "at": "2026-11-23T10:46:43.652Z",
  "summary": {
   "screens": 61,
   "screensHardPass": 61,
@@ -129,14 +129,14 @@
   "topIssues": [],
   "flow": {
    "pass": true,
-   "asserts": 1516,
+   "asserts": 1518,
    "fails": 0,
    "aborted": 0
   },
   "hardFail": false,
   "app": {
-   "before": "02f1f74fce5a",
-   "after": "02f1f74fce5a",
+   "before": "ee600efff6e6",
+   "after": "ee600efff6e6",
    "changedDuringRun": false
   },
   "line": "ALL HARD GATES GREEN — screens 61/61 hard-green, flow PASS"
@@ -10506,7 +10506,7 @@
     "consoleErrors": []
    }
   ],
-  "asserts": 1516,
+  "asserts": 1518,
   "aborted": 0,
   "checks": [
    {
@@ -11620,9 +11620,9 @@
    {
     "run": "home-send",
     "step": "send-7",
-    "name": "E1 scan send-7 advances inside 7000–7800 ms",
+    "name": "E1 scan send-7 advances inside 4300–5100 ms",
     "ok": true,
-    "detail": "7257 ms"
+    "detail": "4510 ms"
    },
    {
     "run": "home-send",
@@ -11764,7 +11764,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5020 ms"
+    "detail": "4998 ms"
    },
    {
     "run": "home-send",
@@ -12062,6 +12062,13 @@
     "name": "E1 sequence send-10 → send-11",
     "ok": true,
     "detail": "unexpected screens on the way: "
+   },
+   {
+    "run": "home-send",
+    "step": "send-10",
+    "name": "E1 scan send-10 advances inside 2500–3300 ms",
+    "ok": true,
+    "detail": "2749 ms"
    },
    {
     "run": "home-send",
@@ -15091,7 +15098,7 @@
     "step": "family-13",
     "name": "E1 scan family-13 advances inside 7000–7800 ms",
     "ok": true,
-    "detail": "7235 ms"
+    "detail": "7242 ms"
    },
    {
     "run": "home-family",
@@ -15226,7 +15233,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4018 ms"
+    "detail": "4001 ms"
    },
    {
     "run": "home-family",
@@ -17113,7 +17120,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4013 ms"
+    "detail": "4010 ms"
    },
    {
     "run": "home-travel",
@@ -18365,9 +18372,9 @@
    {
     "run": "zone-send",
     "step": "send-7",
-    "name": "E1 scan send-7 advances inside 7000–7800 ms",
+    "name": "E1 scan send-7 advances inside 4300–5100 ms",
     "ok": true,
-    "detail": "7258 ms"
+    "detail": "4531 ms"
    },
    {
     "run": "zone-send",
@@ -18386,7 +18393,7 @@
     "step": "send-8",
     "name": "E1 auto-advance send-8 → send-9 inside 4000–7000 ms",
     "ok": true,
-    "detail": "5010 ms"
+    "detail": "5001 ms"
    },
    {
     "run": "zone-send",
@@ -18451,6 +18458,13 @@
     "name": "E1 sequence send-10 → send-11",
     "ok": true,
     "detail": "unexpected screens on the way: "
+   },
+   {
+    "run": "zone-send",
+    "step": "send-10",
+    "name": "E1 scan send-10 advances inside 2500–3300 ms",
+    "ok": true,
+    "detail": "2749 ms"
    },
    {
     "run": "zone-send",
@@ -19228,7 +19242,7 @@
     "step": "family-13",
     "name": "E1 scan family-13 advances inside 7000–7800 ms",
     "ok": true,
-    "detail": "7262 ms"
+    "detail": "7238 ms"
    },
    {
     "run": "zone-family",
@@ -19247,7 +19261,7 @@
     "step": "family-14",
     "name": "E1 auto-advance family-14 → family-15 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4004 ms"
+    "detail": "4021 ms"
    },
    {
     "run": "zone-family",
@@ -19737,7 +19751,7 @@
     "step": "travel-10",
     "name": "E1 auto-advance travel-10 → travel-11 inside 3000–6500 ms",
     "ok": true,
-    "detail": "4001 ms"
+    "detail": "4003 ms"
    },
    {
     "run": "zone-travel",
@@ -20112,7 +20126,7 @@
     "step": "mid",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (mid-journey)",
     "ok": true,
-    "detail": "6394 ms"
+    "detail": "6493 ms"
    },
    {
     "run": "idle-done",
@@ -20366,7 +20380,7 @@
     "step": "done",
     "name": "E6 ?idle=6 returns to idle in 6–9 s (on Done)",
     "ok": true,
-    "detail": "6522 ms"
+    "detail": "6544 ms"
    },
    {
     "run": "fx-low",

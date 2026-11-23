@@ -82,7 +82,7 @@
       "png": "2-4747_security-authorization.png",
       "h": 943,
       "go": "2:4803",
-      "then": "scan:7000-7800",
+      "then": "scan:4300-5100",
       "back": "2:4757",
       "w": 402
     },
@@ -119,6 +119,7 @@
       "png": "2-4809_transfer-tracking.png",
       "h": 1244,
       "go": "2:4913",
+      "then": "scan:2500-3300",
       "back": "2:4819",
       "w": 402
     },
